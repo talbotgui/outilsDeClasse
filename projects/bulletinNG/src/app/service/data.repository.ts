@@ -82,6 +82,7 @@ export class DataRepository {
           el.contacts.forEach((c) => {
             const newC = new model.Contact();
             newC.adressePostale = c.adressePostale;
+            newC.nom = c.nom;
             newC.email = c.email;
             newC.telephone = c.telephone;
             newC.type = c.type;
