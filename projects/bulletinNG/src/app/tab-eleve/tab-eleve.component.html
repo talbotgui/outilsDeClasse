@@ -200,13 +200,8 @@
 					<mat-label>Jour</mat-label>
 					<mat-select #inputJour="ngModel" [(ngModel)]="absence.jour" placeholder="Jour" name="jour"
 						[ngModelOptions]="{standalone:true}">
-						<mat-option value="1">Lundi</mat-option>
-						<mat-option value="2">Mardi</mat-option>
-						<mat-option value="3">Mercredi</mat-option>
-						<mat-option value="4">Jeudi</mat-option>
-						<mat-option value="5">Vendredi</mat-option>
-						<mat-option value="6">Samedi</mat-option>
-						<mat-option value="0">Dimanche</mat-option>
+						<mat-option *ngFor="let entry of joursDeLaSemaine | mapValues" [value]="entry.key">{{entry.val}}
+						</mat-option>
 					</mat-select>
 				</mat-form-field>
 			</div>

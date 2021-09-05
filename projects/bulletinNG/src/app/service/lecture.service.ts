@@ -14,6 +14,19 @@ export class LectureService {
 
   constructor(private dataRepository: DataRepository) { }
 
+  /** Méthode créant une map des jours de la semaine */
+  public creerMapJoursDeLaSemaine(): Map<string, string> {
+    const map = new Map();
+    map.set('0', 'Dimanche');
+    map.set('1', 'Lundi');
+    map.set('2', 'Mardi');
+    map.set('3', 'Mercredi');
+    map.set('4', 'Jeudi');
+    map.set('5', 'Vendredi');
+    map.set('6', 'Samedi');
+    return map;
+  }
+
   /** Retourne la liste des tâches */
   getListeTaches(): model.Tache[] {
     return this.dataRepository.getAnneeChargee().taches;

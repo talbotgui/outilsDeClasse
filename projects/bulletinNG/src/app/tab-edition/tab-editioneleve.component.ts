@@ -18,6 +18,15 @@ export class TabEditionEleveComponent extends TabAbstractEditionComponent {
   // Données à afficher
   public eleve?: model.Eleve;
 
+  // Map des types de contact
+  public mapTypeContact: Map<string, string> = new Map();
+
+  // Map des raison d'absence'
+  public mapRaisonAbsence: Map<string, string> = new Map();
+
+  // Map des jours de la semaine
+  public joursDeLaSemaine: Map<string, string> = new Map();
+
   // Un constructeur pour se faire injecter les dépendances
   constructor(private routeur: Router, route: ActivatedRoute, editionService: EditionService,
     private lectureService: LectureService, private dataRepository: DataRepository) {
@@ -44,6 +53,12 @@ export class TabEditionEleveComponent extends TabAbstractEditionComponent {
 
   // Initialisation de l'édition
   initialiseEdition(params: { [key: string]: any }): void {
+
+    // Récupération des listes de valeur
+    this.mapTypeContact = this.lectureService.getMapTypeContactMap();
+    this.mapRaisonAbsence = this.lectureService.getmapRaisonAbsenceMap();
+    this.joursDeLaSemaine = this.lectureService.creerMapJoursDeLaSemaine();
+
     // lecture des paramètres
     this.idEleve = params.idEleve;
 
