@@ -1,0 +1,27 @@
+<div class="container-fluid">
+
+	<compo-messagesauvegarde></compo-messagesauvegarde>
+
+	<div class="row even titre-row">Chargement d'un fichier local</div>
+	<div class="row even">
+		<label [class]="jsonChargeDepuisFichierLocal ? 'inputFile inputFileDone' : 'inputFile'">
+			<input class="inputFichierChargement" (change)="onSelectFichierLocal($event)" type="file" />
+		</label>
+	</div>
+
+	<div class="row odd titre-row">Chargement d'un fichier du serveur</div>
+	<div class="row odd" *ngIf="fichiers && fichiers.length>0">
+		<mat-select class="selectFichierChargement" [(ngModel)]="fichierSelectionne">
+			<mat-option *ngFor="let fichier of fichiers" [value]="fichier">{{fichier}}</mat-option>
+		</mat-select>
+	</div>
+	<div class="row odd" *ngIf="!fichiers || fichiers.length===0">
+		<span>Aucun serveur de données détecté</span>
+		<em class="fa fa-question-circle" matTooltip="Le serveur est attendu à l'adresse http://192.168.1.52/upload.php"></em>
+	</div>
+
+	<div class="row">
+		<button class="button annuler" (click)="onDemandeAnnulation()">Annuler</button>
+		<button class="button charger" (click)="onDemandeChargement()">Charger</button>
+	</div>
+</div>

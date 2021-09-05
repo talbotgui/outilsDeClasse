@@ -1,0 +1,302 @@
+<!-- Actions -->
+<div class="actions">
+	<em *ngIf="eleveSelectionne" matTooltip="Imprimer la fiche de l'élève" class="fa fa-print" mat-button
+		[routerLink]="['/tab-editioneleve-route', eleveSelectionne.id]"></em>
+	<em class="fa fa-plus" matTooltip="Ajouter un nouvel élève" (click)="creerEleve()"></em>
+	<em matTooltip="Imprimer la liste des élèves" class="fa fa-print" mat-button
+		[routerLink]="['/tab-editionlisteeleve-route']"></em>
+</div>
+
+<!-- Liste des élèves -->
+<mat-chip-list class="listeEleves" [selectable]="true">
+	<mat-chip *ngFor="let eleve of eleves" (click)="onSelectEleve(eleve); eleveForm.reset(eleve);"
+		[class.eleveSelectionne]="eleve === eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</mat-chip>
+</mat-chip-list>
+
+<!-- Formulaire de modification -->
+<form novalidate #eleveForm="ngForm" class="container-fluid">
+	<div *ngIf="eleveSelectionne">
+		<div class="row titre-row">
+			<div class="col-12">Elève</div>
+		</div>
+		<div class="row">
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Nom</mat-label>
+					<input matInput type="text" required minlength="3" #inputNom="ngModel" name="nom"
+						[(ngModel)]="eleveSelectionne.nom">
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Prénom</mat-label>
+					<input matInput type="text" required #inputPrenom="ngModel" name="prenom"
+						[(ngModel)]="eleveSelectionne.prenom">
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Date de naissance (dd/mm/yyyy)</mat-label>
+					<input matInput type="text" name="dateNaissance" #inputDateNaissance
+						[value]="eleveSelectionne.dateNaissance | date:'dd/MM/yyyy'"
+						(input)="eleveSelectionne.dateNaissance = parserDate($event)">
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Date d'admission (dd/mm/yyyy)</mat-label>
+					<input matInput type="text" name="dateAdmission" #inputDateAdmission
+						[value]="eleveSelectionne.dateAdmission | date:'dd/MM/yyyy'"
+						(input)="eleveSelectionne.dateAdmission = parserDate($event)">
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Statut</mat-label>
+					<mat-select #inputStatut="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut"
+						name="statut">
+						<mat-option *ngFor="let entry of mapStatutEleve | mapValues" [value]="entry.key">{{entry.val}}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="row titre-row">
+			<div class="col-12">Contacts <em class="fa fa-plus" (click)="ajouterUnContact()"></em></div>
+		</div>
+		<div class="row" *ngFor="let contact of eleveSelectionne.contacts;">
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Type</mat-label>
+					<mat-select #inputStatut="ngModel" [(ngModel)]="contact.type" placeholder="Type" name="type"
+						[ngModelOptions]="{standalone:true}">
+						<mat-option *ngFor="let entry of mapTypeContact | mapValues" [value]="entry.key">{{entry.val}}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Nom</mat-label>
+					<input matInput name="nom" [(ngModel)]="contact.nom" [ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Email</mat-label>
+					<input matInput type="email" name="email" [(ngModel)]="contact.email"
+						[ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Téléphone</mat-label>
+					<input matInput type="telephone" name="telephone" [(ngModel)]="contact.telephone"
+						[ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+			<div class="col-4">
+				<mat-form-field appearance="fill">
+					<mat-label>Adresse postale</mat-label>
+					<input matInput type="adressePostale" name="adressePostale" [(ngModel)]="contact.adressePostale"
+						[ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="row titre-row">
+			<div class="col-12">Date de bilans (PPI, dates rencontres parents et ESS)</div>
+		</div>
+		<div class="row">
+			<div class="col col-4">
+				<textarea [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="datesPPA"
+					rows="6"></textarea>
+			</div>
+			<div class="col col-4">
+				<textarea [(ngModel)]="eleveSelectionne.datesPAP" name="datesPAP" placeholder="datesRencontresParents"
+					rows="6"></textarea>
+			</div>
+			<div class="col col-4">
+				<textarea [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="datesESS"
+					rows="6"></textarea>
+			</div>
+		</div>
+
+		<div class="row titre-row">
+			<div class="col-12">Inclusion mise en place</div>
+		</div>
+		<div class="row">
+			<div class="col col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Nom de l'école</mat-label>
+					<input matInput type="text" name="ecoleNom" [(ngModel)]="eleveSelectionne.inclusion.ecoleNom"
+						[ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+			<div class="col col-4">
+				<mat-form-field appearance="fill">
+					<mat-label>Adresse de l'école</mat-label>
+					<input matInput type="text" name="ecoleAdresse"
+						[(ngModel)]="eleveSelectionne.inclusion.ecoleAdresse" [ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+			<div class="col col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Nom du contact</mat-label>
+					<input matInput type="text" name="nomContact" [(ngModel)]="eleveSelectionne.inclusion.nomContact"
+						[ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+			<div class="col col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Email du contact</mat-label>
+					<input matInput type="text" name="emailContact"
+						[(ngModel)]="eleveSelectionne.inclusion.emailContact" [ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+			<div class="col col-1">
+				<mat-form-field appearance="fill">
+					<mat-label>Téléphone du contact</mat-label>
+					<input matInput type="text" name="telContact" [(ngModel)]="eleveSelectionne.inclusion.telContact"
+						[ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-1">
+				<mat-form-field appearance="fill">
+					<mat-label>Classe</mat-label>
+					<input matInput type="text" name="niveau" [(ngModel)]="eleveSelectionne.inclusion.niveau"
+						[ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+			<div class="col col-4">
+				<mat-form-field appearance="fill">
+					<mat-label>Enseignant(s)</mat-label>
+					<input matInput type="text" name="enseignant" [(ngModel)]="eleveSelectionne.inclusion.enseignant"
+						[ngModelOptions]="{standalone:true}">
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="row titre-row">
+			<div class="col-12">Temps d'accompagnement et d'inclusion <em class="fa fa-plus"
+					(click)="ajouterUneAbsence()"></em></div>
+		</div>
+		<div class="row" *ngFor="let absence of eleveSelectionne.absences;">
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Type</mat-label>
+					<mat-select #inputStatut="ngModel" [(ngModel)]="absence.raison" placeholder="Type" name="raison"
+						[ngModelOptions]="{standalone:true}">
+						<mat-option *ngFor="let entry of mapRaisonAbsence | mapValues" [value]="entry.key">{{entry.val}}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Jour</mat-label>
+					<mat-select #inputJour="ngModel" [(ngModel)]="absence.jour" placeholder="Jour" name="jour"
+						[ngModelOptions]="{standalone:true}">
+						<mat-option value="1">Lundi</mat-option>
+						<mat-option value="2">Mardi</mat-option>
+						<mat-option value="3">Mercredi</mat-option>
+						<mat-option value="4">Jeudi</mat-option>
+						<mat-option value="5">Vendredi</mat-option>
+						<mat-option value="6">Samedi</mat-option>
+						<mat-option value="0">Dimanche</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Début</mat-label>
+					<mat-select #inputDebut="ngModel" [(ngModel)]="absence.heureDebut" name="debut"
+						[ngModelOptions]="{standalone:true}">
+						<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
+					<mat-label>Fin</mat-label>
+					<mat-select #inputFin="ngModel" [(ngModel)]="absence.heureFin" name="fin"
+						[ngModelOptions]="{standalone:true}">
+						<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="col-1 text-center">
+				<em class="fa fa-remove" matTooltip="Supprimer cette ligne" (click)="retirerUneAbsence(absence)"></em>
+			</div>
+		</div>
+
+		<!--
+		<div *ngIf="" class="row titre-row">Droit à l'image et autorisation de baignade</div>
+		<div class="row">
+			<div class="col col-6">
+				<textarea [(ngModel)]="eleveSelectionne.droitImage" name="droitImage"
+					placeholder="droit à l'image envoyé/reçu/validé" rows="2"></textarea>
+			</div>
+			<div class="col col-6">
+				<textarea [(ngModel)]="eleveSelectionne.autorisationBaignade" name="autorisationBaignade"
+					placeholder="autorisation de baignade envoyée/reçue/validée" rows="2"></textarea>
+			</div>
+		</div>
+	-->
+	</div>
+</form>
+
+<div *ngIf="eleveSelectionne" class="formulaireEleve container-fluid">
+	<div class="row titre-row">
+		<div class="col-12">Cursus scolaire</div>
+	</div>
+	<div class="row text-center">
+		<div class="col-3">Niveau</div>
+		<div class="col-4">Etablissement</div>
+		<div class="col-4">Accompagnement</div>
+		<div class="col-1">
+			<em class="fa fa-plus" matTooltip="Ajouter une ligne dans le cursus" (click)="ajouterCursus()"></em>
+		</div>
+	</div>
+	<div class="row" *ngFor="let cur of eleveSelectionne.cursus; let i = index;">
+		<div class="col-3">
+			<mat-form-field appearance="fill">
+				<mat-label>Niveau en 09/{{cur.annee}}</mat-label>
+				<input matInput name="niveau-{{i}}" [(ngModel)]="cur.niveau" [ngModelOptions]="{standalone:true}">
+			</mat-form-field>
+		</div>
+		<div class="col-4">
+			<mat-form-field appearance="fill">
+				<mat-label>Etablissement en 09/{{cur.annee}}</mat-label>
+				<input matInput name="etablissement-{{i}}" [(ngModel)]="cur.etablissement"
+					[ngModelOptions]="{standalone:true}">
+			</mat-form-field>
+		</div>
+		<div class="col-4">
+			<mat-form-field appearance="fill">
+				<mat-label>Accompagnement en 09/{{cur.annee}}</mat-label>
+				<input matInput name="accompagnement-{{i}}" [(ngModel)]="cur.accompagnement"
+					[ngModelOptions]="{standalone:true}">
+			</mat-form-field>
+		</div>
+		<div class="col-1 text-center">
+			<em class="fa fa-remove" matTooltip="Supprimer cette ligne du cursus" (click)="retirerCursus(cur)"></em>
+		</div>
+	</div>
+	<div class="row titre-row">
+		<div class="col-12">Bilans</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="NgxEditor__Wrapper">
+				<ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+				<ngx-editor [editor]="editor" [ngModel]="eleveSelectionne.bilans" [disabled]="false"
+					[placeholder]="'Bilan'"></ngx-editor>
+			</div>
+		</div>
+	</div>
+	<br />
+</div>

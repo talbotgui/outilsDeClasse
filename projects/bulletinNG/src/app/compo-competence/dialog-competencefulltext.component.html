@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Recherche de compétences par texte</h2>
+
+<mat-dialog-content>
+	<div class="row">
+		<div class="col-12">
+			<mat-form-field appearance="fill">
+				<mat-label>Filtre</mat-label>
+				<input matInput [(ngModel)]="filtreLibelleCompetence" name="filtreLibelleCompetence" class="inputFiltre"
+					[ngModelOptions]="{standalone:true}">
+			</mat-form-field>
+			<button class="button" (click)=rechercher()>Rechercher</button>
+		</div>
+	</div>
+
+	<div class="row titre-row">
+		<div class="col-12">Compétences correspondantes :</div>
+	</div>
+	<div class="row listeResultats">
+		<mat-radio-group [(ngModel)]="idCompetenceSelectionnee">
+			<div class="col-12" *ngFor="let c of competencesTrouvees; let j = index">
+				<mat-radio-button value="{{c.id}}">
+				</mat-radio-button>
+				<span>{{c.libelleComplet?c.libelleComplet:c.text}}&nbsp;</span>
+				<em (click)="afficherMasquerLibelleComplet(c)" class="fa fa-info"></em>
+			</div>
+		</mat-radio-group>
+	</div>
+
+	<div class="row">
+		<div class="col-12">
+			<button class="button" (click)=selectionner()>Fermer</button>
+		</div>
+	</div>
+</mat-dialog-content>
