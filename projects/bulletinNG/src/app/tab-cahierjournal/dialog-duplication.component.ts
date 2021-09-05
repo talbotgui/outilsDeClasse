@@ -44,14 +44,14 @@ export class DialogDuplicationComponent implements OnInit {
       return;
     }
 
-    // Si duplication de journal
-    if (this.journal) {
-      this.journalService.dupliquerJournal(this.journal, this.dateCible);
+    // Si duplication du temps
+    else if (this.journal && this.temps) {
+      this.journalService.dupliquerTemps(this.temps, this.dateCible);
     }
 
-    // Si duplication du temps
-    else if (this.temps) {
-      this.journalService.dupliquerTemps(this.temps, this.dateCible);
+    // Si duplication de journal
+    else if (this.journal) {
+      this.journalService.dupliquerJournal(this.journal, this.dateCible);
     }
 
     this.dialogRef.close();
