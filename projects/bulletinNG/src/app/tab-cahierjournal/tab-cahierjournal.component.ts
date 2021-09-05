@@ -119,6 +119,11 @@ export class TabCahierJournalComponent implements OnInit {
     if (this.dateJournal) {
       this.journal = this.lectureService.getJournal(this.dateJournal);
       this.forceEditionJournalDuPasse = false;
+      this.tempsEnCoursDedition = undefined;
+      this.editorTemps.setContent('');
+      if (this.journal && this.journal.remarque) {
+        this.editor.setContent(this.journal.remarque);
+      }
     }
   }
 
@@ -142,6 +147,8 @@ export class TabCahierJournalComponent implements OnInit {
         commentaireJournalParDefaut = '<ul>' + commentaireJournalParDefaut + '</ul>';
       }
       this.editor.setContent(commentaireJournalParDefaut);
+      this.tempsEnCoursDedition = undefined;
+      this.editorTemps.setContent('');
     }
   }
 
@@ -164,12 +171,17 @@ export class TabCahierJournalComponent implements OnInit {
       }
       this.journal.temps.push(new model.Temps());
       // Réinitialisation du contenu de l'éditeur de bilan
+      this.tempsEnCoursDedition = undefined;
       this.editor.setContent('');
     }
   }
 
   retirerTemp(index: number) {
     if (this.journal) {
+      if (this.tempsEnCoursDedition === this.journal.temps[index]) {
+        this.tempsEnCoursDedition = undefined;
+        this.editorTemps.setContent('');
+      }
       this.journal.temps.splice(index, 1);
     }
   }
@@ -211,6 +223,7 @@ export class TabCahierJournalComponent implements OnInit {
   }
 
   demandeDuplicationJournal(): void {
+    this.tempsEnCoursDedition = undefined;
     if (this.journal) {
       const dialog = this.dialog.open(DialogDuplicationComponent, { height: '200px', width: '400px' }).componentInstance;
       dialog.journal = this.journal;
@@ -218,6 +231,7 @@ export class TabCahierJournalComponent implements OnInit {
   }
 
   demandeDuplicationTemps(temps: model.Temps): void {
+    this.tempsEnCoursDedition = undefined;
     if (this.journal) {
       const dialog = this.dialog.open(DialogDuplicationComponent, { height: '200px', width: '400px' }).componentInstance;
       dialog.journal = this.journal;
@@ -226,6 +240,7 @@ export class TabCahierJournalComponent implements OnInit {
   }
 
   changeDate(delta: number) {
+    this.tempsEnCoursDedition = undefined;
     if (this.dateJournal) {
       const nouvelleDate = new Date();
       nouvelleDate.setTime(this.dateJournal.getTime() + (delta * 1000 * 3600 * 24));
