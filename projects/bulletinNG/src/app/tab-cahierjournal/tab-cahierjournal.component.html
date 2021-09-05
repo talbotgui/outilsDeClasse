@@ -1,0 +1,164 @@
+<em class="fa fa-fast-backward" matTooltip="Reculer d'une semaine" (click)="changeDate(-7)"></em>
+<em class="fa fa-backward" matTooltip="Reculer d'une journée" (click)="changeDate(-1)"></em>
+
+<input [matDatepicker]="myDatepicker" [(ngModel)]="dateJournal" name="dateJournal" placeholder="Date du journal"
+	(ngModelChange)="onChangementDateJournal()" class="filtre">
+<mat-datepicker-toggle [for]="myDatepicker">
+</mat-datepicker-toggle>
+<mat-datepicker #myDatepicker>
+</mat-datepicker>
+
+<em class="fa fa-forward" matTooltip="Avancer d'une journée" (click)="changeDate(1)"></em>
+<em class="fa fa-fast-forward" matTooltip="Avancer d'une semaine" (click)="changeDate(7)"></em>
+
+<div class="container-fluid">
+
+	<div *ngIf="!!dateJournal" class="row odd titre-row">
+		<div class="col">
+			<span class="dateDuJournal">Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}} (semaine {{dateJournal |
+				date:'ww'}})</span>
+
+			<div class="float-right">
+				<em *ngIf="journal && journalDuPasse" class="fa fa-edit"
+					matTooltip="Permettre l'édition d'un journal du passé"
+					(click)="forcerEditionDunJournalDuPasse()"></em>
+				<em *ngIf="journal" class="fa fa-print" matTooltip="Afficher les données à imprimer" mat-button
+					[routerLink]="['/tab-editionjournal-route', timeJournal]"></em>
+				<em *ngIf="journal" class="fa fa-copy" matTooltip="Dupliquer"
+					(click)="demandeDuplicationJournal()"></em>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="!!dateJournal" class="row odd">
+
+		<div *ngIf="!journal" class="col">Aucun journal à cette date. Voulez-vous en créer un ?
+			<span class="clickable" (click)="creerJournal()">OUI</span>
+		</div>
+
+		<div *ngIf="!!journal" class="col">
+			<div class="NgxEditor__Wrapper" *ngIf="journalEditable">
+				<ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+				<ngx-editor [editor]="editor" [ngModel]="journal.remarque" [disabled]="false"
+					[placeholder]="'Remarques du jour'"></ngx-editor>
+			</div>
+			<div *ngIf="!journalEditable" [innerHTML]="journal.remarque"></div>
+			<br />
+			<table class="cahierJournal">
+				<thead>
+					<tr>
+						<th>Temps</th>
+						<th>Elèves</th>
+						<th>Compétences</th>
+						<th>Commentaire</th>
+						<th>
+							<em *ngIf="journalEditable" (click)="ajouterTemps()" matTooltip="Ajouter un temps"
+								class="fa fa-clock-o fa-lg"></em>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let temp of journal.temps; let j = index" [class]="j%2==0 ? 'even' : 'odd'">
+						<td>
+							<input [attr.disabled]="journalEditable ? null : ''" [(ngModel)]="temp.nom" name="nomTemps"
+								placeholder="Nom" class="petitChamp" />
+							<br />
+							<br />
+							<mat-select [disabled]="journalEditable === false" [(ngModel)]="temp.debut"
+								name="debutTemps" placeholder="Début" class="petitChamp">
+								<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
+							</mat-select>
+							<br />
+							<br />
+							<mat-select [disabled]="journalEditable === false" [(ngModel)]="temp.fin" name="finTemps"
+								placeholder="Fin" class="petitChamp">
+								<mat-option *ngFor="let t of tempsDisponibles" [value]="t">{{t}}</mat-option>
+							</mat-select>
+							<br />
+							<br />
+							<mat-select [disabled]="journalEditable === false" [(ngModel)]="temp.type" name="typeTemps"
+								placeholder="Type" class="petitChamp">
+								<mat-option *ngFor="let t of typesDeTemps" [value]="t">{{t}}</mat-option>
+							</mat-select>
+						</td>
+						<td class="tdSelectionEleve">
+							<mat-chip-list class="mat-chip-list-stacked selectionEleve">
+								<mat-chip *ngFor="let ele of eleves" selected="true"
+									color="{{(temp.eleves.indexOf(ele.id)!==-1)?'accent':''}}"
+									(click)="ajouterOuSupprimerEleve(temp, ele.id)">{{ele.prenom}}</mat-chip>
+							</mat-chip-list>
+						</td>
+						<td class="paddinggd10">
+							<div *ngFor="let c of temp.competences; let i = index" style="display: inline-flex">
+								<em *ngIf="journalEditable" (click)="retirerCompetence(temp, i)"
+									matTooltip="Supprimer la compétence" class="fa fa-remove"></em>
+								<compo-competence [lectureSeule]="!journalEditable" [temp]="temp"
+									[tempIndexCompetence]="i">
+								</compo-competence>
+
+								<br />
+							</div>
+						</td>
+						<td>
+							<div class="NgxEditor__Wrapper" *ngIf="journalEditable && temp===tempsEnCoursDedition">
+								<ngx-editor-menu [editor]="editorTemps" [toolbar]="configurationBarre">
+								</ngx-editor-menu>
+								<ngx-editor [editor]="editorTemps" [ngModel]="temp.commentaire" [disabled]="false"
+									[placeholder]="'commentaire'"></ngx-editor>
+							</div>
+							<div *ngIf="(!journalEditable || temp!==tempsEnCoursDedition) && temp.commentaire"
+								[innerHTML]="temp.commentaire" (click)="tempsEnCoursDedition=temp">
+							</div>
+						</td>
+						<td>
+							<em *ngIf="journalEditable" (click)="demandeDuplicationTemps(temp)"
+								matTooltip="Dupliquer ce temps" class="fa fa-copy"></em>
+							<br />
+							<em *ngIf="journalEditable" (click)="ajouterCompetence(temp)"
+								matTooltip="Ajouter une compétence" class="fa fa-cogs fa-lg"></em>
+							<br />
+							<em *ngIf="journalEditable" (click)="ajouterCompetenceDepuisProjet(temp)"
+								matTooltip="Ajouter les compétences liées à un projet"
+								class="fa fa-puzzle-piece fa-lg"></em>
+							<br />
+							<em *ngIf="journalEditable && temp!==tempsEnCoursDedition"
+								(click)="tempsEnCoursDedition=temp" matTooltip="Modifier le commentaire"
+								class="fa fa-edit">
+							</em>
+							<br />
+							<em *ngIf="journalEditable" (click)="retirerTemp(j)" matTooltip="Supprimer le temps"
+								class="fa fa-remove fa-lg"></em>
+							<br />
+							<em *ngIf="journalEditable && j !== 0" (click)="deplacerTemps(j, -1)"
+								matTooltip="Déplacer le temps vers le haut" class="fa fa-chevron-circle-up fa-lg"></em>
+							<br />
+							<em *ngIf="journalEditable && j !== journal.temps.length-1" (click)="deplacerTemps(j, 1)"
+								matTooltip="Déplacer le temps vers le bas" class="fa fa-chevron-circle-down fa-lg"></em>
+							<br />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- Série de retour à la ligne pour tenter de résoudre le problème des dropdown qui s'affiche en haut de l'écran -->
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />&nbsp;
+</div>

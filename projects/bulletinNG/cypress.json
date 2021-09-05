@@ -1,0 +1,10 @@
+{
+  "integrationFolder": "projects/bulletinNG/cypress/integration",
+  "supportFile": "projects/bulletinNG/cypress/support/index.ts",
+  "videosFolder": "projects/bulletinNG/cypress/videos",
+  "screenshotsFolder": "projects/bulletinNG/cypress/screenshots",
+  "pluginsFile": false,
+  "fixturesFolder": "projects/bulletinNG/cypress/fixtures",
+  "baseUrl": "http://localhost:4200",
+  "scrollBehavior": "center"
+}

@@ -1,0 +1,137 @@
+<!-- Boutons d'action -->
+<div class="actions">
+    <em class="fa fa-arrow-left fa-2x" matTooltip="Retour à la fiche élève" (click)="retour()"></em>
+    <em class="fa fa-print fa-2x" matTooltip="Imprimer les données" (click)="imprimerLaPage()"></em>
+</div>
+
+<!-- Page à imprimer -->
+<div class="edition" *ngIf="eleve">
+    <div class="barre">
+        <div class="entete" [innerHTML]="entete"></div>
+        <div class="titre">
+            <h1>{{titre}}</h1>
+        </div>
+        <div class="annee">
+            <div>
+                <span>{{anneeScolaire}}</span>
+                <br />
+                <span> {{nomPeriode}}</span>
+            </div>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <td rowspan="2" class="editionEleve-identite">{{eleve.nom.toUpperCase()}} {{eleve.prenom}}</td>
+            <td class="editionEleve-dates">
+                <span class="libelle">Date de naissance : </span>
+                <span [innerHTML]="formatDate(eleve.dateNaissance)"></span>
+                <br />
+                <span class="libelle">Date d'admission : </span>
+                <span [innerHTML]="formatDate(eleve.dateAdmission)"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="editionEleve-contacts">
+                <span class="libelle">Adresses :</span>
+                <br />
+                <!-- <span [innerHTML]="nettoieString(eleve.adresses)"></span> -->
+                <br />
+                <br />
+                <span class="libelle">Téléphones : </span>
+                <br />
+                <!-- <span [innerHTML]="nettoieString(eleve.telephones)"></span> -->
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td class="editionEleve-pere">
+                <span class="libelle">Père :</span>
+                <br />
+                <!-- <span [innerHTML]="nettoieString(eleve.pere)"></span> -->
+            </td>
+            <td class="editionEleve-mere">
+                <span class="libelle">Mère :</span>
+                <br />
+                <!-- <span [innerHTML]="nettoieString(eleve.mere)"></span> -->
+            </td>
+            <td class="editionEleve-fratrie">
+                <span class="libelle">Fratrie :</span>
+                <br />
+                <!-- <span [innerHTML]="nettoieString(eleve.fratrie)"></span> -->
+            </td>
+            <td class="editionEleve-accueil">
+                <span class="libelle">Informations complémentaires :</span>
+                <br />
+                <span [innerHTML]="nettoieString(eleve.accueil)"></span>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td class="editionEleve-datesPPA">
+                <span class="libelle">Dates PPA :</span>
+                <br />
+                <span [innerHTML]="nettoieString(eleve.datesPPA)"></span>
+            </td>
+            <td class="editionEleve-datesPAP">
+                <span class="libelle">Dates rencontres parents :</span>
+                <br />
+                <span [innerHTML]="nettoieString(eleve.datesPAP)"></span>
+            </td>
+            <td class="editionEleve-datesESS">
+                <span class="libelle">Dates ESS :</span>
+                <br />
+                <span [innerHTML]="nettoieString(eleve.datesESS)"></span>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td class="editionEleve-droit">
+                <span class="libelle">Droit à l'image :</span>
+                <br />
+                <span [innerHTML]="nettoieString(eleve.droitImage)"></span>
+            </td>
+            <td class="editionEleve-autorisation">
+                <span class="libelle">Autorisation de baignade :</span>
+                <br />
+                <span [innerHTML]="nettoieString(eleve.autorisationBaignade)"></span>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div class="editionEleve-cursus">
+        <table class="tablesorter-blue">
+            <thead>
+                <tr>
+                    <th>Année scolaire</th>
+                    <th>Niveau</th>
+                    <th>Etablissement</th>
+                    <th>Accompagnement</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let c of eleve.cursus">
+                <tr id="{{c.annee}}">
+                    <td>{{c.annee}}-{{(c.annee + 1)}}</td>
+                    <td>
+                        <span [innerHTML]="nettoieString(c.niveau)"></span>
+                    </td>
+                    <td>
+                        <span [innerHTML]="nettoieString(c.etablissement)"></span>
+                    </td>
+                    <td>
+                        <span [innerHTML]="nettoieString(c.accompagnement)"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <!-- <div class="breakafter"></div> -->
+    <div class="editionEleve-bilan" [innerHtml]="eleve.bilans"></div>
+</div>
