@@ -34,8 +34,6 @@ export class DataRepository {
     nouvelleAnnee.cycleNiveau = annee.cycleNiveau;
     nouvelleAnnee.libellesTypeTempsJournal = annee.libellesTypeTempsJournal;
     nouvelleAnnee.themeSelectionne = annee.themeSelectionne;
-    nouvelleAnnee.mapLibelleNotes = annee.mapLibelleNotes;
-    nouvelleAnnee.mapLibelleStatutEleve = annee.mapLibelleStatutEleve;
     nouvelleAnnee.competences = [];
     if (annee.competences) {
       annee.competences.forEach((c) => {
@@ -172,24 +170,28 @@ export class DataRepository {
     this.anneeChargee = nouvelleAnnee;
 
     // Les MAP sont chargées comme des objets classiques avec des attributs. Donc reconstruction manuelle des MAP
+    nouvelleAnnee.mapLibelleStatutEleve = annee.mapLibelleStatutEleve;
     this.anneeChargee.mapLibelleStatutEleveMap = new Map<string, string>();
     for (const k in annee.mapLibelleStatutEleve) {
       if (annee.mapLibelleStatutEleve.hasOwnProperty(k)) {
         this.anneeChargee.mapLibelleStatutEleveMap.set(k, annee.mapLibelleStatutEleve[k]);
       }
     }
+    nouvelleAnnee.mapLibelleNotes = annee.mapLibelleNotes;
     this.anneeChargee.mapLibelleNotesMap = new Map<string, string>();
     for (const k in annee.mapLibelleNotes) {
       if (annee.mapLibelleNotes.hasOwnProperty(k)) {
         this.anneeChargee.mapLibelleNotesMap.set(k, annee.mapLibelleNotes[k]);
       }
     }
+    nouvelleAnnee.mapTypeContact = annee.mapTypeContact;
     this.anneeChargee.mapTypeContactMap = new Map<string, string>();
     for (const k in annee.mapTypeContact) {
       if (annee.mapTypeContact.hasOwnProperty(k)) {
         this.anneeChargee.mapTypeContactMap.set(k, annee.mapTypeContact[k]);
       }
     }
+    nouvelleAnnee.mapRaisonAbsence = annee.mapRaisonAbsence;
     this.anneeChargee.mapRaisonAbsenceMap = new Map<string, string>();
     for (const k in annee.mapRaisonAbsence) {
       if (annee.mapRaisonAbsence.hasOwnProperty(k)) {
