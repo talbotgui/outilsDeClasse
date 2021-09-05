@@ -29,6 +29,9 @@ export class TabEleveComponent implements OnInit {
   // Map des raison d'absence'
   public mapRaisonAbsence?: Map<string, string>;
 
+  // Map des jours de la semaine
+  public joursDeLaSemaine: Map<string, string> = new Map();
+
   // Liste des heures pour la sélection de l'heure de début et de fin des temps
   public tempsDisponibles: string[] = [];
 
@@ -51,6 +54,7 @@ export class TabEleveComponent implements OnInit {
     this.mapStatutEleve = this.lectureService.getMapLibelleStatutEleveMap();
     this.mapTypeContact = this.lectureService.getMapTypeContactMap();
     this.mapRaisonAbsence = this.lectureService.getmapRaisonAbsenceMap();
+    this.joursDeLaSemaine = this.lectureService.creerMapJoursDeLaSemaine();
 
     // Initialisation des DropDown
     for (let i = 8; i < 18; i++) {

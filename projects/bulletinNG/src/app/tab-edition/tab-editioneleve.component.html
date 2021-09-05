@@ -22,7 +22,8 @@
 
     <table>
         <tr>
-            <td rowspan="2" class="editionEleve-identite">{{eleve.nom.toUpperCase()}} {{eleve.prenom}}</td>
+            <td [attr.rowspan]="eleve.contacts.length + 1" class="editionEleve-identite">{{eleve.nom.toUpperCase()}}
+                {{eleve.prenom}}</td>
             <td class="editionEleve-dates">
                 <span class="libelle">Date de naissance : </span>
                 <span [innerHTML]="formatDate(eleve.dateNaissance)"></span>
@@ -31,41 +32,18 @@
                 <span [innerHTML]="formatDate(eleve.dateAdmission)"></span>
             </td>
         </tr>
-        <tr>
+        <tr *ngFor="let contact of eleve.contacts;">
             <td class="editionEleve-contacts">
-                <span class="libelle">Adresses :</span>
-                <br />
-                <!-- <span [innerHTML]="nettoieString(eleve.adresses)"></span> -->
-                <br />
-                <br />
-                <span class="libelle">Téléphones : </span>
-                <br />
-                <!-- <span [innerHTML]="nettoieString(eleve.telephones)"></span> -->
-            </td>
-        </tr>
-    </table>
-    <br />
-    <table>
-        <tr>
-            <td class="editionEleve-pere">
-                <span class="libelle">Père :</span>
-                <br />
-                <!-- <span [innerHTML]="nettoieString(eleve.pere)"></span> -->
-            </td>
-            <td class="editionEleve-mere">
-                <span class="libelle">Mère :</span>
-                <br />
-                <!-- <span [innerHTML]="nettoieString(eleve.mere)"></span> -->
-            </td>
-            <td class="editionEleve-fratrie">
-                <span class="libelle">Fratrie :</span>
-                <br />
-                <!-- <span [innerHTML]="nettoieString(eleve.fratrie)"></span> -->
-            </td>
-            <td class="editionEleve-accueil">
-                <span class="libelle">Informations complémentaires :</span>
-                <br />
-                <span [innerHTML]="nettoieString(eleve.accueil)"></span>
+                <span class="libelle" *ngIf="contact.type">{{mapTypeContact.get(contact.type)}} : </span>
+                <span [innerHTML]="nettoieString(contact.nom)"></span>
+                <span *ngIf="contact.email || contact.telephone"> (</span>
+                <span [innerHTML]="nettoieString(contact.email)"></span>
+                <span *ngIf="contact.telephone"> - </span>
+                <span [innerHTML]="nettoieString(contact.telephone)"></span>
+                <span *ngIf="contact.email || contact.telephone">)</span>
+                <br *ngIf="contact.adressePostale" />
+                <span *ngIf="contact.adressePostale">Adresse postale : </span>
+                <span [innerHTML]="nettoieString(contact.adressePostale)"></span>
             </td>
         </tr>
     </table>
@@ -92,6 +70,48 @@
     <br />
     <table>
         <tr>
+            <td class="editionEleve-inclusionEcole">
+                <span class="libelle">Inclusion mise en place :</span>
+                <br />
+                <span>Ecole : </span>
+                <span [innerHTML]="nettoieString(eleve.inclusion.ecoleNom)"></span>
+                <span> (</span>
+                <span [innerHTML]="nettoieString(eleve.inclusion.ecoleAdresse)"></span>
+                <span>)</span>
+                <br />
+                <span>Contact : </span>
+                <span [innerHTML]="nettoieString(eleve.inclusion.nomContact)"></span>
+                <span> (</span>
+                <span [innerHTML]="nettoieString(eleve.inclusion.emailContact)"></span>
+                <span> - </span>
+                <span [innerHTML]="nettoieString(eleve.inclusion.telContact)"></span>
+                <span>)</span>
+                <br />
+                <span>Classe : </span>
+                <span [innerHTML]="nettoieString(eleve.inclusion.niveau)"></span>
+                <span> avec </span>
+                <span [innerHTML]="nettoieString(eleve.inclusion.enseignant)"></span>
+            </td>
+            <td class="editionEleve-inclusionEcole">
+                <span class="libelle">Temps d'accompagnement et d'inclusion :</span>
+                <ng-template ngFor let-absence [ngForOf]="eleve.absences">
+                    <br />
+                    <span>en </span>
+                    <span [innerHTML]="nettoieString(absence.raison?mapRaisonAbsence.get(absence.raison):'')"></span>
+                    <span> le </span>
+                    <span [innerHTML]="nettoieString(absence.jour?joursDeLaSemaine.get(absence.jour):'')"></span>
+                    <span> de </span>
+                    <span [innerHTML]="nettoieString(absence.heureDebut)"></span>
+                    <span> à </span>
+                    <span [innerHTML]="nettoieString(absence.heureFin)"></span>
+                </ng-template>
+            </td>
+        </tr>
+    </table>
+    <!--
+    <br />
+    <table>
+        <tr>
             <td class="editionEleve-droit">
                 <span class="libelle">Droit à l'image :</span>
                 <br />
@@ -104,6 +124,7 @@
             </td>
         </tr>
     </table>
+    -->
     <br />
     <div class="editionEleve-cursus">
         <table class="tablesorter-blue">
