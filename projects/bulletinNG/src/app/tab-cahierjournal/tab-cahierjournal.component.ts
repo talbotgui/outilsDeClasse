@@ -172,7 +172,7 @@ export class TabCahierJournalComponent implements OnInit {
       this.journal.temps.push(new model.Temps());
       // Réinitialisation du contenu de l'éditeur de bilan
       this.tempsEnCoursDedition = undefined;
-      this.editor.setContent('');
+      this.editorTemps.setContent('');
     }
   }
 
