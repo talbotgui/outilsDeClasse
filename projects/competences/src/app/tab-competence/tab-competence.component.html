@@ -1,0 +1,38 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field appearance="fill">
+                <mat-label>Filtre</mat-label>
+                <input matInput type="text" [(ngModel)]="filtre" class="filtreCompetences" (change)="recherche()">
+                <button *ngIf="filtre" matSuffix mat-icon-button aria-label="Clear" (click)="filtre='';recherche()">
+                    <em class="fa fa-close"></em>
+                </button>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <mat-form-field appearance="fill">
+                <mat-label>Compétence sélectionnée</mat-label>
+                <input matInput readonly type="text" [ngModel]="libelleCompletCompetenceSelectionnee">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                <mat-tree-node *matTreeNodeDef="let noeud" matTreeNodeToggle matTreeNodePadding
+                    [class.d-none]="!noeud.aAfficher">
+                    <em *ngIf="!!noeud.expandable"
+                        [class]="treeControl.isExpanded(noeud) ? 'fa fa-caret-down' : 'fa fa-caret-right'"></em>
+                    <span class="clickable level{{noeud.level}}">{{noeud.level}}</span>&nbsp;
+                    <span class="clickable" id="competence{{noeud.id}}"
+                        (click)="selectionnerCompetence(noeud.id)">{{noeud.name}}</span>
+                </mat-tree-node>
+            </mat-tree>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+#entete { margin: 0px; }
+#entete-logo { cursor: pointer; }
+#entete-titre { text-align: center; color: white; font-size: 25px; }
+#entete-actions { text-align: right; font-size: 1.5em; }
+#contenu { margin-top:15px; }
+
+nav a { padding: 5px 20px; text-decoration: none; margin-top: 10px; display: inline-block; background-color: #eee; border-radius: 4px; font-size: 16px; }
+nav a:visited, a:link { color: #607D8B; }
+nav a:hover { color: #039be5; background-color: #CFD8DC; }
+nav a.active { color: white; background-color: #6b6159; font-weight: bold; }
+
+.mat-sidenav-container { height: 90px; background: none; }
+
+.centrerVerticalement { margin-top: 20px; }
+.soustitre { font-size: 0.7em; line-height:40px}
