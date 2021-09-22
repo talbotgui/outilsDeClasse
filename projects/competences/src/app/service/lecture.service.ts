@@ -7,60 +7,11 @@ import { DataRepository } from './data.repository';
 export class LectureService {
 
   /** Données de cache utilisées pour ne pas parcourir anneeChargee constamment */
-  private cacheMapDateJournal: Map<number, model.Journal> = new Map<number, model.Journal>();
   private cacheMapCompetence: Map<string, model.Competence> = new Map<string, model.Competence>();
   private cacheMapLibelleCompletCompetence: Map<string, string> = new Map<string, string>();
   private cacheMapListeCompetencesEnfant: Map<string, model.Competence[]> = new Map<string, model.Competence[]>();
 
   constructor(private dataRepository: DataRepository) { }
-
-  /** Méthode créant une map des jours de la semaine */
-  public creerMapJoursDeLaSemaine(): Map<string, string> {
-    const map = new Map();
-    map.set('0', 'Dimanche');
-    map.set('1', 'Lundi');
-    map.set('2', 'Mardi');
-    map.set('3', 'Mercredi');
-    map.set('4', 'Jeudi');
-    map.set('5', 'Vendredi');
-    map.set('6', 'Samedi');
-    return map;
-  }
-
-  /** Retourne la liste des tâches */
-  getListeTaches(): model.Tache[] {
-    return this.dataRepository.getAnneeChargee().taches;
-  }
-
-  /** Pour obtenir la liste des types de temps */
-  getlisteTypeDeTemps(): string[] {
-    return this.dataRepository.getAnneeChargee().libellesTypeTempsJournal;
-  }
-
-  /** Pour obtenir le journal d'un jour précis */
-  getJournal(date: Date): model.Journal | undefined {
-    if (!date) {
-      return undefined;
-    }
-
-    const time = date.getTime();
-
-    // Si présent dans le cache, on renvoie
-    if (this.cacheMapDateJournal.has(time)) {
-      return this.cacheMapDateJournal.get(time);
-    }
-
-    // Sinon, recherche, mise en cache et renvoie
-    for (const journal of this.dataRepository.getAnneeChargee().journal) {
-      if (journal.date && journal.date.getTime() === time) {
-        this.cacheMapDateJournal.set(time, journal);
-        return journal;
-      }
-    }
-
-    // Si aucune référence, undefined
-    return undefined;
-  }
 
   /**
    * Obtenir une compétence par sa date.
@@ -81,17 +32,6 @@ export class LectureService {
 
     // Sinon
     return undefined;
-  }
-
-  /**
-   * Recherche de notes
-   * @param idEleve Identifiant d'un élève
-   * @param periode Période
-   * @param idCompetence Id de la compétence
-   */
-  rechercheNotes(idEleve: string, periode: model.Periode, idCompetence: string): model.Note[] {
-    return this.getListeNote().filter((note: model.Note) => note.idEleve === idEleve && note.idItem === idCompetence
-      && note.date && periode.debut && periode.fin && periode.debut <= note.date && note.date <= periode.fin);
   }
 
   /**
@@ -143,10 +83,6 @@ export class LectureService {
     return resultat;
   }
 
-  getListeProjets(): model.Projet[] {
-    return this.dataRepository.getAnneeChargee().projets;
-  }
-
   /** Recherche des compétences "enfants" d'une compétence */
   getListeCompetencesEnfant(idCompetence: string): model.Competence[] {
 
@@ -167,88 +103,11 @@ export class LectureService {
     return liste;
   }
 
-  getEleve(id: string): model.Eleve | undefined {
-    for (const e of this.dataRepository.getAnneeChargee().eleves) {
-      if (e.id === id) {
-        return e;
-      }
-    }
-    return undefined;
-  }
-
-  /** Donne la liste complète des élèves */
-  getListeEleve(): model.Eleve[] {
-    return this.dataRepository.getAnneeChargee().eleves;
-  }
-
-  /** Donne la liste des periodes */
-  getListePeriode(): model.Periode[] {
-    return this.dataRepository.getAnneeChargee().periodes;
-  }
-
-  /** Donne la liste des note */
-  getListeNote(): model.Note[] {
-    return this.dataRepository.getAnneeChargee().notes;
-  }
-
-  getPeriode(index: number): model.Periode | undefined {
-    const periodes = this.dataRepository.getAnneeChargee().periodes;
-    if (index < 0 || index >= periodes.length) {
-      return undefined;
-    } else {
-      return periodes[index];
-    }
-  }
-
-  getPeriodeById(id: number): model.Periode | undefined {
-    const periodes = this.dataRepository.getAnneeChargee().periodes;
-    for (const p of periodes) {
-      if (p.id === id) {
-        return p;
-      }
-    }
-    return undefined;
-  }
-
-  getPeriodeSuivante(periode: model.Periode): model.Periode | undefined {
-    const periodes = this.getListePeriode();
-    const indexPeriode = periodes.findIndex((p) => p === periode);
-    if (0 <= indexPeriode && indexPeriode < periodes.length - 1) {
-      return periodes[indexPeriode + 1];
-    } else {
-      return undefined;
-    }
-  }
-
-  /** Donne la liste des élèves présents dans la classe */
-  getListeEleveActif(): model.Eleve[] {
-    return this.getListeEleve().filter((eleve) => eleve.statut === model.Eleve.CODE_STATUT_DANS_LA_CLASSE);
-  }
-
   /** Donne la liste complète des compétences */
   getListeCompetence(): model.Competence[] {
     return this.dataRepository.getAnneeChargee().competences;
   }
 
-  /** Donne la map des libellés de note */
-  getMapLibelleNote(): any {
-    return this.dataRepository.getAnneeChargee().mapLibelleNotes;
-  }
-
-  /** Donne la map des status d'élève */
-  getMapLibelleStatutEleveMap(): Map<string, string> {
-    return this.dataRepository.getAnneeChargee().mapLibelleStatutEleveMap as Map<string, string>;
-  }
-
-  /** Donne la map des types de contact */
-  getMapTypeContactMap(): Map<string, string> {
-    return this.dataRepository.getAnneeChargee().mapTypeContactMap as Map<string, string>;
-  }
-
-  /** Donne la map des raison d'absence d'un élève */
-  getmapRaisonAbsenceMap(): Map<string, string> {
-    return this.dataRepository.getAnneeChargee().mapRaisonAbsenceMap as Map<string, string>;
-  }
 
   /** Retourne une Map <idCompetence Competence> de toutes les compétences existantes */
   getMapCompetences(): Map<string, model.Competence> {

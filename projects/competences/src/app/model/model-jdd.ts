@@ -4,18 +4,6 @@ export class Jdd {
 
   // Jeu de données riche
   static JDD_RICHE = {
-    enteteEdition: '',
-    enseignant: '',
-    cycleNiveau: '',
-    anneeScolaire: '',
-    projets: [],
-    periodes: [],
-    mapLibelleNotes: {},
-    mapLibelleStatutEleve: {},
-    mapTypeContact: {},
-    mapRaisonAbsence: {},
-    libellesTypeTempsJournal: [],
-    eleves: [],
     competences: [
       {
         id: 'compAsso',
@@ -6847,14 +6835,7 @@ export class Jdd {
         text: ' Expliquer sa démarche ou son raisonnement, comprendre les explications d’un autre et argumenter dans l’échange.',
         parent: 'X97'
       }
-    ],
-    notes: [],
-    dateDerniereSauvegarde: '2017-07-03T15:57:12.878Z',
-    historique: [],
-    journal: [],
-    taches: [],
-    erreursChargement: [],
-    logs: []
+    ]
   };
 
   static getAnnee(jdd: any): Annee {
