@@ -63,6 +63,7 @@ export class DataRepository {
         newE.inclusion.ecoleNom = el.inclusion?.ecoleNom;
         newE.inclusion.emailContact = el.inclusion?.emailContact;
         newE.inclusion.enseignant = el.inclusion?.enseignant;
+        newE.inclusion.telephoneEnseignant = el.inclusion?.telephoneEnseignant;
         newE.inclusion.niveau = el.inclusion?.niveau;
         newE.inclusion.nomContact = el.inclusion?.nomContact;
         newE.inclusion.telContact = el.inclusion?.telContact;

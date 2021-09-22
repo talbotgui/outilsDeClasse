@@ -50,6 +50,8 @@ export class TabNouvelleAnneeComponent implements OnInit {
       this.anneeAtelecharger.mapLibelleNotes = { '0': 'non atteint', '1': 'atteint partiellement', '2': 'atteint', '3': 'dépassé', 'n': 'non évalué', 'a': 'absent' };
       this.anneeAtelecharger.mapLibelleStatutEleve = { '0': 'hors établissement', '1': 'dans l\'établissement', '2': 'dans la classe' }
       this.anneeAtelecharger.mapTypeContact = { P: "Père", M: "Mère", S: "Structure", F: "Famille d'accueil", A: "Autre" };
+      this.anneeAtelecharger.mapTypeContact = { P: "Père", M: "Mère", S: "Structure", F: "Famille d'accueil", A: "Autre" };
+      this.anneeAtelecharger.mapRaisonAbsence = { I: "Inclusion", O: "Orthophoniste", PM: "Psychomotricité", P: "Psychologue", A: "Autre" };
       this.anneeAtelecharger.competences = CompetencesParDefaut.COMPETENCES_PAR_DEFAUT;
     }
   }

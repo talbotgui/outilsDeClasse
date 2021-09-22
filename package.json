@@ -13,7 +13,7 @@
     "//ncu : pour vérifier la présence de mise à jour de package NPM (npm audit pour l'audit de base de NPM)": "",
     "ncu": "ncu",
     "bulletinNG-e2e": "ng run bulletinNG:cypress-open --watch",
-    "bulletinNG-start": "ng serve --project=bulletinNG --hmr=true --port=4200",
+    "start": "ng serve --project=bulletinNG --hmr=true --port=4200",
     "bulletinNG-build-prod": "ng build --project=bulletinNG --configuration production --aot --buildOptimizer=true --output-path=docs/maclasse/ --base-href=/outilsDeClasse/maclasse/",
     "bulletinNG-compodoc": "npx compodoc -p ./projects/bulletinNG/tsconfig.doc.json -d dist/documentation/bulletinNG --language fr-FR",
     "competences-e2e": "ng run competences:cypress-open --watch",
