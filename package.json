@@ -18,7 +18,7 @@
     "bulletinNG-compodoc": "npx compodoc -p ./projects/bulletinNG/tsconfig.doc.json -d dist/documentation/bulletinNG --language fr-FR",
     "competences-e2e": "ng run competences:cypress-open --watch",
     "competences-start": "ng serve --project=competences --hmr=true --port=4201",
-    "competences-build-prod": "ng build --project=competences --configuration production --aot --buildOptimizer=true --output-path=docs/maclasse/ --base-href=/outilsDeClasse/maclasse/",
+    "competences-build-prod": "ng build --project=competences --configuration production --aot --buildOptimizer=true --output-path=docs/competences/ --base-href=/outilsDeClasse/competences/",
     "competences-compodoc": "npx compodoc -p ./projects/competences/tsconfig.doc.json -d dist/documentation/competences --language fr-FR",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
