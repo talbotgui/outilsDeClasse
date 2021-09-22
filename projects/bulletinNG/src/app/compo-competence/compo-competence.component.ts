@@ -110,7 +110,7 @@ export class ComposantCompetenceComponent {
 
   // Pour afficher la popup de sélection/recherche fullText
   afficherPopupFiltre() {
-    const popup = this.dialog.open(DialogCompetenceFullTextComponent, { height: '550px', width: '800px' });
+    const popup = this.dialog.open(DialogCompetenceFullTextComponent, { height: '530px', width: '800px' });
     popup.componentInstance.idCompetenceRacine = this.idCompetenceRacine;
     popup.componentInstance.onSelectionRealisee.subscribe((idCompetence: string) => this.idCompetence = idCompetence);
   }

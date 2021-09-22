@@ -173,6 +173,14 @@ export class SauvegardeService {
     const date = new Date();
     this.dataRepository.getAnneeChargee().dateDerniereSauvegarde = date;
 
+    // Ajout des données de type si manquante (usage d'un fichier de données d'une année précédente)
+    if (!this.dataRepository.getAnneeChargee().mapTypeContact) {
+      this.dataRepository.getAnneeChargee().mapTypeContact = { P: "Père", M: "Mère", S: "Structure", F: "Famille d'accueil", A: "Autre" };
+    }
+    if (!this.dataRepository.getAnneeChargee().mapRaisonAbsence) {
+      this.dataRepository.getAnneeChargee().mapRaisonAbsence = { I: "Inclusion", O: "Orthophoniste", PM: "Psychomotricité", P: "Psychologue", A: "Autre" };
+    }
+
     // Calcul du nom du fichier
     const y = date.getFullYear();
     const mo = (date.getMonth() + 1).toLocaleString('fr-FR', { minimumIntegerDigits: 2 });

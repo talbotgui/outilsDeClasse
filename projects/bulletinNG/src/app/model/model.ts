@@ -26,7 +26,7 @@ export class Contact {
 export class InclusionEleve {
   public ecoleNom?: string; public ecoleAdresse?: string;
   public nomContact?: string; public emailContact?: string; public telContact?: string;
-  public niveau?: string; public enseignant?: string;
+  public niveau?: string; public enseignant?: string; public telephoneEnseignant?: string;
 }
 
 export class AbsenceEleve {
