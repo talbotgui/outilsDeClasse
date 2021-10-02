@@ -304,10 +304,10 @@ export class SauvegardeService {
 
   private getUrlServeurDeDonnees(): string {
     // Sous Chrome, il est préférable d'utiliser l'adresse HTTP pour faire s'afficher le warning du contenu mixte et l'autoriser
-    if (!!(window as any).chrome) {
-      return this.URL_SERVEUR_HTTP;
-    } else {
-      return this.URL_SERVEUR_HTTPS;
-    }
+    // if (!!(window as any).chrome) {
+    // return this.URL_SERVEUR_HTTP;
+    // } else {
+    return this.URL_SERVEUR_HTTPS;
+    // }
   }
 }
