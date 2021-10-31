@@ -1,6 +1,9 @@
 div.actions { text-align: right; }
 
-.mat-grid-tile { overflow: auto!important; }
+/* Pour gérer l'overflow */
+.mat-grid-tile-content { display: block; overflow: auto; }
+
+mat-card { display: inline-block; }
 mat-card-title em { float: right; }
 span.action { float: right; }
 .inputDatePicker { display: none; }
