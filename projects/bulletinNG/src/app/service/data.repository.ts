@@ -72,6 +72,7 @@ export class DataRepository {
           el.absences.forEach((a) => {
             const newA = new model.AbsenceEleve();
             newA.raison = a.raison;
+            newA.frequence = a.frequence;
             newA.heureDebut = a.heureDebut;
             newA.heureFin = a.heureFin;
             newA.jour = a.jour;

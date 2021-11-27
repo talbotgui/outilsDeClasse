@@ -215,6 +215,17 @@
 			</div>
 			<div class="col-2">
 				<mat-form-field appearance="fill">
+					<mat-label>Fréquence</mat-label>
+					<mat-select #inputFrequence="ngModel" [(ngModel)]="absence.frequence" placeholder="Fréquence"
+						name="frequence" [ngModelOptions]="{standalone:true}">
+						<mat-option value=2>Chaque semaine</mat-option>
+						<mat-option value=0>Semaine paire</mat-option>
+						<mat-option value=1>Semaine impaire</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="col-2">
+				<mat-form-field appearance="fill">
 					<mat-label>Début</mat-label>
 					<mat-select #inputDebut="ngModel" [(ngModel)]="absence.heureDebut" name="debut"
 						[ngModelOptions]="{standalone:true}">

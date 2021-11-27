@@ -104,7 +104,10 @@ export class Jdd {
           { type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
         ],
         absences: [
-          { raison: 'O', jour: '2', heureDebut: '8h15', heureFin: '8h15' }
+          { raison: 'I', jour: '2', heureDebut: '8h15', heureFin: '8h15' },
+          { raison: 'O', jour: '2', heureDebut: '8h15', heureFin: '8h15', frequence: 0 },
+          { raison: 'P', jour: '2', heureDebut: '8h15', heureFin: '8h15', frequence: 1 },
+          { raison: 'A', jour: '2', heureDebut: '8h15', heureFin: '8h15', frequence: 2 },
         ],
         statut: '0',
         bilans: 'bla bla bla',

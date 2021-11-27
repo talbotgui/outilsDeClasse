@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -68,7 +69,7 @@ export class TabCahierJournalComponent implements OnInit {
   }
 
   // Un constructeur pour se faire injecter les dépendances
-  constructor(private route: ActivatedRoute, private lectureService: LectureService,
+  constructor(private route: ActivatedRoute, private lectureService: LectureService, private datePipe: DatePipe,
     private journalService: JournalService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   // Appel au service à l'initialisation du composant
@@ -136,7 +137,9 @@ export class TabCahierJournalComponent implements OnInit {
       this.lectureService.getListeEleve().forEach(e => {
         if (e.absences) {
           e.absences.forEach(a => {
-            if (a.jour == this.dateJournal?.getDay()) {
+            const numeroSemaine = parseInt(this.datePipe.transform(this.dateJournal, 'ww') as string);
+            const verifFrequence = (typeof a.frequence === 'undefined' || a.frequence == 2) || (numeroSemaine % 2 == a.frequence);
+            if (a.jour == this.dateJournal?.getDay() && verifFrequence) {
               const raison = a.raison ? this.mapRaisonAbsence?.get(a.raison) : '';
               commentaireJournalParDefaut += '<li>' + e.prenom + ' : ' + raison + ' de ' + a.heureDebut + ' à ' + a.heureFin + '</li>';
             }
