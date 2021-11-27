@@ -1,7 +1,7 @@
 // Les modules Angular importés
 // Gestion des locales et des formats de date pour Angular 5
 // @see https://angular.io/guide/i18n#i18n-pipes
-import { registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localeFr from '@angular/common/locales/fr';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -89,8 +89,10 @@ registerLocaleData(localeFr, 'fr');
     { provide: DateAdapter, useClass: MyDateAdapter },
 
     // Les composants injectables
-    DataRepository, EditionService, JournalService, LectureService, NoteService, SauvegardeService, TacheService
+    DataRepository, EditionService, JournalService, LectureService, NoteService, SauvegardeService, TacheService,
 
+    // le composant de date d'Angular
+    DatePipe
   ],
 
   // Les modules importés

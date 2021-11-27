@@ -30,7 +30,7 @@ export class InclusionEleve {
 }
 
 export class AbsenceEleve {
-  public raison?: string; public jour?: string; public heureDebut?: string; public heureFin?: string;
+  public raison?: string; public jour?: string; public frequence?: number; public heureDebut?: string; public heureFin?: string;
 }
 
 export class Eleve {
