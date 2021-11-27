@@ -13,7 +13,7 @@
     </div>
     <div class="remarques" *ngIf="journal">
         <u>Remarques : </u>
-        <span [innerHTML]="journal.remarque"></span>
+        <span [innerHTML]="remarque"></span>
     </div>
     <table class="tablesorter-blue">
         <thead>
@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <tbody *ngIf="journal">
-            <tr *ngFor="let temp of journal.temps let odd = odd" [class.odd]="odd">
+            <tr *ngFor="let temp of journal.temps let odd = odd" [class.odd]="odd" [class.even]="!odd">
                 <td class="cadre">{{temp.nom}}
                     <br />
                     <br />
