@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as model from '../model/model';
 import { DataRepository } from '../service/data.repository';
@@ -18,9 +19,12 @@ export class TabEditionJournalComponent extends TabAbstractEditionComponent {
   // Données à afficher
   public journal?: model.Journal;
 
+  // Contenu des remarques du journal à afficher (sanitize @see https://angular.io/guide/security#xss)
+  public remarque?: SafeHtml;
+
   // Un constructeur pour se faire injecter les dépendances
   constructor(private routeur: Router, route: ActivatedRoute, editionService: EditionService,
-    private lectureService: LectureService, private dataRepository: DataRepository) {
+    private lectureService: LectureService, private dataRepository: DataRepository, private sanitizer: DomSanitizer) {
     super(route, editionService);
   }
 
@@ -39,7 +43,10 @@ export class TabEditionJournalComponent extends TabAbstractEditionComponent {
     div.remarques { border: solid 1px darkgrey; margin-bottom: 20px; }
     td.competences { font-size: 12px; max-width: 500px; }
     td.cahierJournalZoneEcriture { min-width: 300px; }
-    td span { margin: 0px 15px; }`;
+    td span { margin: 0px 15px; }
+    tr.even { background-color: #d7ebfa93; }
+    tr.odd { background-color: #7d7d8608 }
+    th { height: 35px;font-size: 14;background-color: #CFD8DC;background-image: linear-gradient(to bottom, #f5f5f5, #CFD8DC); }`;
   }
 
   // Initialisation de l'édition
@@ -54,6 +61,9 @@ export class TabEditionJournalComponent extends TabAbstractEditionComponent {
       const journal = this.lectureService.getJournal(this.dateJournal);
       if (journal) {
         this.journal = journal;
+        if (journal.remarque) {
+          this.remarque = this.sanitizer.bypassSecurityTrustHtml(journal.remarque);
+        }
 
         // Préparation des données d'entête
         this.titre = 'Journal du ' + Utils.formatDate(this.dateJournal, true);
