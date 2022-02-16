@@ -15,7 +15,7 @@ export class SauvegardeService {
 
   private readonly DELAI_SAUVEGARDE_AUTOMATIQUE = 300000;
   private readonly DELAI_MISE_EN_AVANT_BOUTON_SAUVEGARDE = 60000;
-  private readonly URL_SERVEUR_HTTPS = 'https://192.168.1.52/download/upload.php';
+  private readonly URL_SERVEUR_HTTPS = 'http://192.168.1.52/download/upload.php';
   private readonly URL_SERVEUR_HTTP = 'http://192.168.1.52/download/upload.php';
   private readonly HEADERS_APPEL_SERVEUR = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 
