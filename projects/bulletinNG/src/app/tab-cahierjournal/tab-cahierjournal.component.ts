@@ -135,7 +135,7 @@ export class TabCahierJournalComponent implements OnInit {
       // Gestion du commentaire de journal par défaut
       let commentaireJournalParDefaut = '';
       this.lectureService.getListeEleve().forEach(e => {
-        if (e.absences) {
+        if (e.statut === model.Eleve.CODE_STATUT_DANS_LA_CLASSE && e.absences) {
           e.absences.forEach(a => {
             const numeroSemaine = parseInt(this.datePipe.transform(this.dateJournal, 'ww') as string);
             const verifFrequence = (typeof a.frequence === 'undefined' || a.frequence == 2) || (numeroSemaine % 2 == a.frequence);
