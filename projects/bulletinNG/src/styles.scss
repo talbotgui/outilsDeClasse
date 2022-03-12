@@ -74,10 +74,12 @@ snack-bar-container.avertissement { background-color: orange; }
 
 /** Multi style ! */
 body.sobre {background-image: none; }
-body.sobre #page { background-color:white; }
+body.sobre #page { background-color:white; opacity: 0.80; }
 body.sobre #entete { background-image:url('./assets/images/entete-fond.png'); }
 body.sobre #entete-titre { color: darkblue; }
 body.sobre .mat-form-field-flex { background-color:white; }
+body.sobre { background-image: url('./assets/images/fond8.jpg'); background-size: cover; }
+
 
 body.dynamique { background-image: url('./assets/images/fond.jpg'); }
 body.dynamique #contenu { opacity: 0.95; background-color: white; }
