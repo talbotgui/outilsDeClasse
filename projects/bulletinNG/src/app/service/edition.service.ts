@@ -14,7 +14,7 @@ export class EditionService {
           <meta charset=\'UTF-8\' />
           <title>` + titre + `</title>
           <style type=\'text/css\' media=\'print\'>
-            tr { page-break-after: always; page-break-inside: avoid; }
+            tr { break-after: always; break-inside: avoid; }
             @page { margin: 10px; }
           </style>
           <style>` + styleCss + `</style>

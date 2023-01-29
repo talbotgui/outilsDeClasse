@@ -48,7 +48,7 @@ export class TabEditionEleveComponent extends TabAbstractEditionComponent {
     div.entete  { float:left; width:200px; }
     div.titre  { float:left; width:600px; text-align: center; }
     div.annee  { float:right; width:200px; text-align: right; padding-top:30px; }
-    div.breakafter { page-break-after: always; }`;
+    div.breakafter { break-after: always; }`;
   }
 
   // Initialisation de l'édition
