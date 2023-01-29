@@ -48,7 +48,7 @@ describe('SauvegardeService', () => {
     // Arrange
     const jdd = ['a', 'b', 'c', 'd'];
     const requestDefinition = (req: HttpRequest<any>) => {
-      return req.url.endsWith('//192.168.1.52/download/upload.php')
+      return req.url.endsWith('//192.168.1.91/download/upload.php')
         && req.body === 'methode=liste'
         && req.method === 'POST';
     };
@@ -66,7 +66,7 @@ describe('SauvegardeService', () => {
     const anneeRetournee = new model.Annee();
     const nomFichier = 'nomDeMonFichier';
     const requestDefinition = (req: HttpRequest<any>) => {
-      return req.url.endsWith('//192.168.1.52/download/upload.php')
+      return req.url.endsWith('//192.168.1.91/download/upload.php')
         && req.body === 'methode=charge&nomFichier=' + nomFichier
         && req.method === 'POST';
     };
@@ -85,7 +85,7 @@ describe('SauvegardeService', () => {
     const annee = Jdd.getAnnee(Jdd.JDD_SIMPLISTE);
     mockito.when(dataRepositoryMock.getAnneeChargee()).thenReturn(annee);
     const requestDefinition = (req: HttpRequest<any>) => {
-      return req.url.endsWith('//192.168.1.52/download/upload.php')
+      return req.url.endsWith('//192.168.1.91/download/upload.php')
         && (req.body + '').indexOf('methode=sauvegarde&nomFichier=') !== -1
         && (req.body + '').indexOf('.json&contenuFichier=') !== -1
         && (req.body + '').indexOf('periodes') !== -1
@@ -150,7 +150,7 @@ describe('SauvegardeService', () => {
   it('getlisteSauvegardesDuServeur hors réseau', () => {
     // Arrange
     const requestDefinition = (req: HttpRequest<any>) => {
-      return req.url.endsWith('//192.168.1.52/download/upload.php');
+      return req.url.endsWith('//192.168.1.91/download/upload.php');
     };
     sauvegardeService.travailleHorsReseau();
     // Act : aucun appel au HTTP normalement
@@ -163,7 +163,7 @@ describe('SauvegardeService', () => {
   it('getlisteSauvegardesDuServeur hors réseau 2', () => {
     // Arrange
     const requestDefinition = (req: HttpRequest<any>) => {
-      return req.url.endsWith('//192.168.1.52/download/upload.php');
+      return req.url.endsWith('//192.168.1.91/download/upload.php');
     };
     sauvegardeService.travailleHorsReseau();
     // Act : aucun appel au HTTP normalement
@@ -176,7 +176,7 @@ describe('SauvegardeService', () => {
   it('sauvegardeAnneeSurServeur hors réseau', () => {
     // Arrange
     const requestDefinition = (req: HttpRequest<any>) => {
-      return req.url.endsWith('//192.168.1.52/download/upload.php');
+      return req.url.endsWith('//192.168.1.91/download/upload.php');
     };
     sauvegardeService.travailleHorsReseau();
     // Act : aucun appel au HTTP normalement
