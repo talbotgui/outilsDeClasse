@@ -29,6 +29,8 @@
 // CSS par défaut d'Angular
 body {
     margin: 0;
+    // pour définir un rendu plus large tel qu'un zoom à 80% le ferait sans changer toutes les CSS de Material
+    zoom: 0.8;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
