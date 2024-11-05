@@ -130,6 +130,9 @@ fieldset.maclasse-formulaire>div {
 /** Au moment de l'impression. */
 @media print {
 
+    /** Pour retirer l'entête et le pied de page générés par le navigateur. */
+    @page { margin: 0; }
+
     /** Pour ne pas couper un fieldset à l'impression. */
     fieldset {
         page-break-inside: avoid;

@@ -1,5 +1,5 @@
 BUG :
- - retirer les entêtes et pied de page à l'impression
+ - 
 
 TODO : 
  - projets :
@@ -17,6 +17,5 @@ TODO :
  - détection de changement pour inhiber la sauvegarde ?
  - création d'un fichier de données
  - aide bien rédigée
- - afficher l'entête et le pied de page de l'école (paramétré dans le fichier)
  - créer une route pour le paramétrage (entête, pied de page, périodes et maps)
 ...
