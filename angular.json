@@ -17,6 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "outputPath": "docs",
+            "baseHref": "outilsDeClasse/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -51,7 +53,7 @@
                 }
               ],
               "outputHashing": "all",
-			  "outputPath": {
+			        "outputPath": {
                 "base": "docs",
                 "browser": ""
               }
