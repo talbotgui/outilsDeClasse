@@ -1,9 +1,0 @@
-<h2 mat-dialog-title>Sélection d'un projet</h2>
-
-<mat-chip-list class="listeProjets" [selectable]="true">
-	<mat-chip *ngFor="let p of projets" (click)="onSelectionProjet(p);">{{p.nom}}</mat-chip>
-</mat-chip-list>
-<br/>
-
-
-<button class="button" (click)="fermer()">Fermer</button>

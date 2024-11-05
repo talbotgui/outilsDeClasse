@@ -1,6 +1,0 @@
-ul { -webkit-padding-start: 0px; }
-.listeResultats { height: 270px; overflow: auto; line-height: 1em; font-size: 1em; }
-.inputFiltre { margin-top: 10px; }
-
-/** Pour traiter le cas des écrans pas assez haut pour afficher le popup */
-.mat-dialog-content { overflow: initial; }
