@@ -155,7 +155,7 @@ export class ChargementService {
         donnees = Object.fromEntries(Object.entries(donnees).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Annee;
 
         // Traitement des notes
-        donnees.notes = donnees.notes.map(note => {
+        donnees.notes = (donnees.notes||[]).map(note => {
 
             // Recréation d'un objet propre
             const listeDesAttributsAsupprimer = ['valeur', 'date', 'commentaire', 'outil', 'constat', 'proposition'];
@@ -193,7 +193,7 @@ export class ChargementService {
         });
 
         // Traitement des journaux
-        donnees.journal.forEach(journal => {
+        (donnees.journal||[]).forEach(journal => {
             journal.temps = journal.temps.map(temps => {
 
                 // Recréation d'un objet propre
@@ -227,7 +227,7 @@ export class ChargementService {
         });
 
         // Traitement des projets
-        donnees.projets = donnees.projets.map(projet => {
+        donnees.projets = (donnees.projets||[]).map(projet => {
 
             // Recréation d'un objet propre
             const listeDesAttributsAsupprimer = ['idCompetences'];
