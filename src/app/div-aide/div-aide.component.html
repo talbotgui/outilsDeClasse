@@ -70,14 +70,29 @@
 
 <!-- PROJET -->
 @else if (donneesChargees && routeActive === '/route-projet') {
+<p>Cet onglet vous permet d'organiser vos projets éducatifs.</p>
+<p>Sans aller jusqu'à décrire une progression, il est possible ici de décrire les compétences que vous travaillerez avec certains élèves de période en période.</p>
 }
 
 <!-- TABLEAU DE BORD -->
 @else if (donneesChargees && routeActive === '/route-tableaudebord') {
+<p>Cet écran permet de travailler sur les compétences de chaque élève, période par période.</p>
+<p>En mode <i>Préparation</i>, l'écran permet d'ajouter toutes les compétences à travailler avec cet élève sur cette période et de saisir le constat et les outils à mettre en oeuvre.</p>
+<p>En mode <i>Evaluation</i>, l'écran permet de renseigner le bulletin scolaire trimestriel d'un élève. Donc, pour chaque compétence, il est possible</p>
+<ul>
+    <li>d'évaluer l'élève (colonne <i>Aquisition</i>)</li>
+    <li>de saisir un commentaire visible dans le bulletin scolaire (colonne <i>Commentaires publiés</i>)</li>
+    <li>de conserver des notes privées (colonne <i>Notes de travail</i>)</li>
+    <li>tout en pouvant consulter le constat et les outils saisis durant la préparation de cette période</li>
+</ul>
+<p>En mode <i>Complet</i>, l'écran affiche toutes les colonnes des tableaux des deux modes précédemment décrits.</p>
 }
 
 <!-- TACHE -->
 @else if (donneesChargees && routeActive === '/route-taches') {
+<p>Cet écran permet d'organiser le travail de l'enseignant sous forme de plusieurs tâches, sachant que chaque tâche peut contenir plusieurs échances différentes.</p>
+<p>A chaque fois qu'une échéance est traitée par l'enseignant, ce dernier coche la case (l'échéance est alors grisée).</p>
+<p>La liste des tâches est ordonnée selon la prochaine échance de chaque tâche.</p>
 }
 
 <!-- Route incohérente-->
