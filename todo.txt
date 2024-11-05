@@ -1,5 +1,13 @@
 BUG :
- - 
+ - ELEVE : mauvaise récupération de la données Eleve.datesESS depuis les vielles données
+ - ELEVE : adapter la taille des textes dans la fiche élève à l'impression
+ - TACHE : pb tri
+ - TACHE : afficher les échéances en noir
+ - journal : suprimer le libellé "Détails du groupe"
+ - journal : réduire la taille de "Bilan / note"
+ - journal : ne pas afficher à l'impression les libellés "compétences", "objectifs", "Consignes" et "Matériel" quand le contenu est vide
+ - journal : réduire la taille à l'impression
+
 
 TODO : 
  - projets :
