@@ -1,0 +1,27 @@
+/** Liste des tâches. */
+.maclasse-taches {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/** Uniquement en mode écran. */
+@media screen {
+
+    /** Tache à largeur fixe. */
+    .maclasse-tache {
+        width: 536px;
+    }
+
+    .mat-mdc-checkbox.mat-mdc-checkbox-disabled label {
+        color: black !important;
+    }
+}
+
+/** A l'impression. */
+@media print {}
+
+/** Liste verticale. */
+.maclasse-echeances {
+    display: flex;
+    flex-direction: column;
+}

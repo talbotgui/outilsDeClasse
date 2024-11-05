@@ -1,0 +1,75 @@
+/* Pour les temps de type RECREATION et TRANSPORT. */
+fieldset.maclasse-transportOuRecreation>legend {
+    background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+}
+
+/* Pour aligner le libellé et la liste des élèves en mode EDITION. */
+div.maclasse-contenucaseeleves {
+    display: flex;
+    line-height: 40px;
+}
+
+/** Pour rendre scrollable la case contenant l'éditeur. */
+.maclasse-caseEditeur {
+    overflow: auto;
+}
+
+/** Pour aligner les titres de temps et les boutons. */
+div.maclasse-titreDeTemps {
+    width: 135px;
+}
+
+/** Pour placer les icones de manière régulière. */
+.maclasse-largeurUnBouton {
+    width: 48px;
+}
+
+/**************************************************************************************
+ * Système de grille avec hauteur dynamique (que mat-grid ne sait pas gérer).  -- DEBUT
+ *************************************************************************************/
+
+div.maclasse-grille {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.maclasse-grille-case {
+    min-height: 30px;
+    line-height: 30px;
+}
+
+div.maclasse-grille-edition div.maclasse-grille-case {
+    min-height: 65px !important;
+    line-height: 40px !important;
+}
+
+div.maclasse-grille-col8 {
+    width: 66%;
+}
+
+div.maclasse-grille-col4 {
+    width: 34%;
+}
+
+// Pour réduire l'espace sous les titres dans les tableaux (pour densifier les informations).
+.maclasse-grille h2 {
+    margin: 0px;
+}
+
+/**************************************************************************************
+ * Système de grille avec hauteur dynamique (que mat-grid ne sait pas gérer).  -- FIN
+ *************************************************************************************/
+
+/** Pour souligner les libellés de données en mode lecture */
+span.maclasse-titre {
+    text-decoration: underline;
+    margin-right: 5px;
+}
+
+/* Réduction de la place prise par le UL*/
+.maclasse-grille-case ul {
+    margin: 0px;
+    margin-bottom: 10px;
+    line-height: 12px;
+    padding-inline: 20px;
+}

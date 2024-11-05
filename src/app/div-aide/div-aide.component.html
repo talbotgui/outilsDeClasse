@@ -1,0 +1,87 @@
+<!-- ACCUEIL -->
+@if (routeActive === '/route-accueil') {
+<h2 class="maclasse-h2">Aide contextuelle pour la page d'accueil</h2>
+<p>Depuis l'onglet <b>Acceuil</b>, seules quelques informations essentielles sont accessibles.</p>
+@if (donneesChargees) {
+<p>Depuis que vous avez chargé les données de votre classe, vous avez accès à tous les onglets permettant de consulter et modifier vos données.</p>
+}
+@else {
+<p>Vous n'avez pas encore chargé de données. La première chose à faire est de créer ou charger vos données depuis, respectivement, les onglets <b>Créer mon année</b> et <b>Charger mon année</b>.</p>
+}
+}
+
+<!-- CHARGER DONNEES-->
+@else if (routeActive === '/route-chargerdonnees') {
+<p>Vous pouvez, dans cet onglet, charger les données de votre classe en cliquant sur le bouton <fa-icon icon="file-upload"></fa-icon> puis sur le bouton <b>Charger le fichier</b>.</p>
+<p>Apparaitront alors les onglets de consultation et modification des données de votre classe.</p>
+}
+
+<!-- CREER DONNEES -->
+@else if (routeActive === '/route-creerdonnees') {
+}
+
+<!-- COMPETENCE -->
+@else if (donneesChargees && routeActive === '/route-competence') {
+<p>Dans cet écran, vous pouvez rechercher une compétence par son nom (après avoir cliqué sur <i>Par mot clef</i>) ou via l'arborescence des compétences (après avoir cliqué sur <i>Par
+        arborescence</i>).</p>
+<p>En plus de la recherche, un arbre affiche toutes les compétences.</p>
+<br>
+<p>A côté de chaque compétence, est disponible l'icône <fa-icon icon="copy"></fa-icon> qui, au clic, copie le libellé complet de la compétence dans le presse-papier (l'équivalent d'un <i>Ctrl+C</i>).
+</p>
+<br>
+<p>Cette page est imprimable (via la fonctionnalité de votre navigateur ou le raccourci <i>Ctrl+P</i>). L'impression contiendra l'arbre de compétence ouvert selon ce que vous avez afficher.</p>
+}
+
+<!-- ELEVE -->
+@else if (donneesChargees && routeActive === '/route-eleve') {
+<p>Cet onglet permet de consulter et modifier les données de vos élèves.</p>
+<p>Après avoir sélectionné un élève en haut de la page, toutes ses informations sont affichées.</p>
+<p>Voici la liste des actions possibles dans la page :.</p>
+<ul>
+    <li><fa-icon icon="pencil"></fa-icon> permet de modifier le mode d'affichage de la page et permettre la modification de la fiche de l'élève sélectionné.</li>
+    <li><fa-icon icon="check"></fa-icon> permet de valider les données saisies et de repasser en mode 'affichage'</li>
+    <li><fa-icon icon="plus"></fa-icon> permet d'ajouter un élément (un élève, un contact dans la fiche de l'élève, un temps d'accompagnement/inclusion, une ligne de cursus scolaire).</li>
+    <li><fa-icon icon="trash"></fa-icon> permet de supprimer un élément</li>
+</ul>
+<br>
+<p>Cette page est imprimable (via la fonctionnalité de votre navigateur ou le raccourci <i>Ctrl+P</i>). L'impression contiendra la fiche 'élève' dans son ensemble sans les boutons d'action (il est
+    préférable de repasser en mode 'affichage' d'abord).</p>
+}
+
+<!-- JOURNAL -->
+@else if (donneesChargees && routeActive === '/route-journal') {
+<p>Cette partie de l'application permet de consulter et modifier votre cachier journal.</p>
+<p>Après avoir sélectionné la date de votre choix, s'affiche votre cahier journal du jour (ou un bouton proposant de le créer).</p>
+<br>
+<p>Cet écran a la particularité d'afficher chaque temps (comprendre "morceau de journée") de manière réduite. Au clic sur le libellé du temps, s'affichent ses détails. Un second clic masque les
+    détails.</p>
+<br>
+<p>Voici la liste des actions possibles dans la page :.</p>
+<ul>
+    <li><fa-icon icon="pencil"></fa-icon> permet de modifier le mode d'affichage de la page et permettre la modification de le cahier journal de la date sélectionnée.</li>
+    <li><fa-icon icon="check"></fa-icon> permet de valider les données saisies et de repasser en mode 'affichage'</li>
+    <li><fa-icon icon="plus"></fa-icon> permet d'ajouter un élément (un temps, un groupe dans le temps, une compétence, ...).</li>
+    <li><fa-icon icon="trash"></fa-icon> permet de supprimer un élément</li>
+</ul>
+<br>
+<p>Cette page est imprimable (via la fonctionnalité de votre navigateur ou le raccourci <i>Ctrl+P</i>). L'impression contiendra le cahier journal dans son ensemble sans les boutons d'action (il est
+    préférable de repasser en mode 'affichage' d'abord).</p>
+}
+
+<!-- PROJET -->
+@else if (donneesChargees && routeActive === '/route-projet') {
+}
+
+<!-- TABLEAU DE BORD -->
+@else if (donneesChargees && routeActive === '/route-tableaudebord') {
+}
+
+<!-- TACHE -->
+@else if (donneesChargees && routeActive === '/route-taches') {
+}
+
+<!-- Route incohérente-->
+@else{
+<p>Vous avez accéder à l'application via un lien vous amenant sur une page de consultation ou de modification des données de votre classe avant d'avoir chargées les données de votre classe.</p>
+<p>Cliquez sur l'onglet <b>Charger mon année</b> pour charger un fichier contenant les données de votre classe.</p>
+}

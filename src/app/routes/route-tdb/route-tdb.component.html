@@ -1,0 +1,173 @@
+@if (periodes.length>0 && eleves.length>0) {
+<fieldset class="maclasse-masquerEnModePrint maclasse-filtres">
+    <legend>Sélection des filtres</legend>
+    <mat-form-field>
+        <mat-label>Mode d'affichage</mat-label>
+        <mat-select placeholder="Mode d'affichage" [(ngModel)]="modeAffichage" (selectionChange)="onChangementFiltre()">
+            <mat-option value=1>Mode préparation</mat-option>
+            <mat-option value=2>Mode évaluation</mat-option>
+            <mat-option value=3>Mode complet</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        @if (modeAffichage==1) {
+        <mat-label>Période à préparer</mat-label>
+        }@else if (modeAffichage==2 || modeAffichage==3) {
+        <mat-label>Période à évaluer</mat-label>
+        }
+        <mat-select placeholder="Période" [(ngModel)]="periodeSelectionnee" (selectionChange)="onChangementFiltre()">
+            @for (p of periodes ; track p.id) {
+            <mat-option [value]="p">{{p.nom}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Elève</mat-label>
+        <mat-select placeholder="Eleve" [(ngModel)]="eleveSelectionne" (selectionChange)="onChangementFiltre()">
+            @for (e of eleves ; track e.id) {
+            <mat-option [value]="e">{{e.prenom}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+</fieldset>
+}
+@else {
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+</p>
+<p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
+}
+
+
+@if (lignes && eleveSelectionne && periodeSelectionnee) {
+<fieldset class="maclasse-formulaire maclasse-couperEnModePrint" (keyup)="onKeyUpSurPage($event)">
+    <legend>
+        <span>Tableau de bord de l'élève {{eleveSelectionne.prenom}} </span>
+        @if (modeAffichage==1) {
+        <span>pour préparer la période {{periodes.indexOf(periodeSelectionnee)+1}}</span>
+        } @else if (modeAffichage==2 || modeAffichage==3) {
+        <span>pour évaluer la période {{periodes.indexOf(periodeSelectionnee)+1}}</span>
+        }
+        @if (modeAffichage==3) {
+        <span> et préparer la période suivante</span>
+        }
+        <button type="button" mat-icon-button class="maclasse-bouton16" matTooltip="Ajouter une compétence" aria-label="Ajouter une compétence" (click)="ajouterUneLigne()">
+            <fa-icon icon="plus"></fa-icon>
+        </button>
+    </legend>
+    <div>
+
+        @for (ligne of lignes ; track ligne.id ; let idx = $index) {
+        <fieldset class="maclasse-formulaire">
+            <legend>
+                <span>{{ligne.libelleCompetenceParente}}</span>
+                @if (indexEnEdition==idx) {
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="indexEnEdition=undefined" matTooltip="Terminer la saisie" aria-label="Terminer la saisie">
+                    <fa-icon icon="check"></fa-icon>
+                </button>
+                }@else {
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="indexEnEdition=idx" matTooltip="Editer cette ligne" aria-label="Editer cette ligne">
+                    <fa-icon icon="pencil" size="xs"></fa-icon>
+                </button>
+                }
+            </legend>
+            <div class="maclasse-table">
+                <div class="maclasse-table-ligne maclasse-table-entete">
+                    <div class="maclasse-table-case maclasse-table-case-bordureDroite" [class.maclasse-table-case-w70]="modeAffichage==1" [class.maclasse-table-case-w40]="modeAffichage==2"
+                        [class.maclasse-table-case-w25]="modeAffichage==3"></div>
+                    @if (modeAffichage!=1) {
+                    <div class="maclasse-table-case maclasse-table-case-w60 maclasse-table-case-bordureDroite">Période évaluée</div>
+                    }
+                    @if (modeAffichage!=2 && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
+                    <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage==1" [class.maclasse-table-case-w15]="modeAffichage!=1">Période
+                        préparée</div>
+                    }
+                </div>
+                <div class="maclasse-table-ligne maclasse-table-entete">
+                    <div class="maclasse-table-case maclasse-table-case-bordureDroite" [class.maclasse-table-case-w70]="modeAffichage==1" [class.maclasse-table-case-w40]="modeAffichage==2"
+                        [class.maclasse-table-case-w25]="modeAffichage==3">Compétence</div>
+                    @if (modeAffichage != 1) {
+                    <div class="maclasse-table-case maclasse-table-case-w15">
+                        Constats/outils de la période précédente
+                    </div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">Aquisition</div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">Commentaires publiés</div>
+                    <div class="maclasse-table-case maclasse-table-case-w15 maclasse-table-case-bordureDroite">Notes de travail</div>
+                    }
+                    @if (modeAffichage != 2 && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
+                    <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage==1" [class.maclasse-table-case-w15]="modeAffichage!=1">
+                        Constats/outils</div>
+                    }
+                </div>
+                @for (sousLigne of ligne.sousLignes ; track sousLigne.id ; let idy = $index) {
+                <div class="maclasse-table-ligne">
+                    <div class="maclasse-table-case" [class.maclasse-table-case-w70]="modeAffichage==1" [class.maclasse-table-case-w40]="modeAffichage==2"
+                        [class.maclasse-table-case-w25]="modeAffichage==3">
+                        <p>{{sousLigne.libelleCompetence}}</p>
+                    </div>
+                    @if (modeAffichage!=1) {
+                    <div class="maclasse-table-case maclasse-table-case-w15">
+                        <p>{{sousLigne.notePeriodeEvaluee?.constatEnPreparation}}</p>
+                    </div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">
+                        @if (indexEnEdition==idx && sousLigne.notePeriodeEvaluee) {
+                        <mat-form-field>
+                            <mat-label>Aquisition</mat-label>
+                            <mat-select placeholder="Aquisition" [(ngModel)]="sousLigne.notePeriodeEvaluee.valeurEvaluation">
+                                @for (entree of mapLibelleNotes | keyvalue ; track entree.key) {
+                                <mat-option [value]="entree.key">{{entree.value}}</mat-option>
+                                }
+                            </mat-select>
+                        </mat-form-field>
+                        }@else {
+                        <p>{{(sousLigne.notePeriodeEvaluee && sousLigne.notePeriodeEvaluee.valeurEvaluation)?mapLibelleNotes[sousLigne.notePeriodeEvaluee.valeurEvaluation]:''}}</p>
+                        }
+                    </div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">
+                        @if (indexEnEdition==idx && sousLigne.notePeriodeEvaluee) {
+                        <mat-form-field class="maclasse-pleinelargeur">
+                            <mat-label>Commentaire publié</mat-label>
+                            <textarea #textarea type="text" placeholder="Mot clef" matInput [(ngModel)]="sousLigne.notePeriodeEvaluee.commentaireEvaluationPublic"></textarea>
+                        </mat-form-field>
+                        }@else {
+                        <p>{{sousLigne.notePeriodeEvaluee?.commentaireEvaluationPublic}}</p>
+                        }
+                    </div>
+                    <div class="maclasse-table-case maclasse-table-case-w15">
+                        @if (indexEnEdition==idx && sousLigne.notePeriodeEvaluee) {
+                        <mat-form-field class="maclasse-pleinelargeur">
+                            <mat-label>Notes de travail</mat-label>
+                            <textarea #textarea type="text" placeholder="Mot clef" matInput [(ngModel)]="sousLigne.notePeriodeEvaluee.commentaireEvaluationPrive"></textarea>
+                        </mat-form-field>
+                        }@else {
+                        <p>{{sousLigne.notePeriodeEvaluee?.commentaireEvaluationPrive}}</p>
+                        }
+                    </div>
+                    }
+                    @if (modeAffichage != 2 && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
+                    <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage==1" [class.maclasse-table-case-w15]="modeAffichage!=1">
+                        @if (indexEnEdition==idx) {
+                        @if (sousLigne.notePeriodePreparee) {
+                        <mat-form-field class="maclasse-pleinelargeur">
+                            <mat-label>Notes de travail</mat-label>
+                            <textarea #textarea type="text" placeholder="Mot clef" matInput [(ngModel)]="sousLigne.notePeriodePreparee.constatEnPreparation"></textarea>
+                        </mat-form-field>
+                        } @else {
+                        <button type="button" mat-icon-button class="maclasse-bouton16" matTooltip="Ajouter une note pour cette période et cette compétence"
+                            aria-label="Ajouter une note pour cette période et cette compétence" (click)="ajouterUneNotePourPreparation(sousLigne)">
+                            <fa-icon icon="plus"></fa-icon>
+                        </button>
+                        }
+                        } @else {
+                        <p>{{sousLigne.notePeriodePreparee?.constatEnPreparation}}</p>
+                        }
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+        </fieldset>
+        }
+
+    </div>
+</fieldset>
+}

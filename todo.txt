@@ -1,0 +1,22 @@
+BUG :
+ - retirer les entêtes et pied de page à l'impression
+
+TODO : 
+ - projets :
+   - à l'ajout d'une compétence sur une période du projet, ajouter la note aux gamins sélectionnés
+   - à la suppression d'une compétence, demander confirmation si une note est commentée ou évaluée
+ - tdb :
+   - switch entre un affichage par domaine ou par projet (afficher en double une compétence présente sur deux projets)
+   - les compétences hors projets terminent dans un fieldset 'Hors projet'
+   - le bouton d'ajout de compétence n'est que dans le 'Hors projet'
+   
+ - au chargement, vérifier la cohérence des données : 
+   -
+ - permettre d'écraser un journal à la duplication d'un journal si le jour cible existe déjà
+ - permettre la création du journal à la duplication d'un temps si le jour cible n'existe pas.
+ - détection de changement pour inhiber la sauvegarde ?
+ - création d'un fichier de données
+ - aide bien rédigée
+ - afficher l'entête et le pied de page de l'école (paramétré dans le fichier)
+ - créer une route pour le paramétrage (entête, pied de page, périodes et maps)
+...

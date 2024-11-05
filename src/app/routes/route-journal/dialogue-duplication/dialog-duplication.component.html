@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Duplication</h2>
+
+<mat-dialog-content>
+    <mat-form-field class="maclasse-pleinelargeur">
+        <mat-label>
+            <span>Duplication</span>
+            @if (!!journal) {
+            <span> du journal du {{journal.date | date:'EEEE dd/MM/yyyy'}} vers le journal du</span>
+            }
+            @if (!!temps) {
+            <span> du temps '{{temps.debut}}-{{temps.fin}}' vers le journal du</span>
+            }
+        </mat-label>
+        <input matInput [matDatepicker]="pickerDateCible" #inputDateCible="ngModel" [(ngModel)]="dateCible">
+        <mat-datepicker-toggle matIconSuffix [for]="pickerDateCible"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDateCible></mat-datepicker>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button type="button" mat-raised-button matTooltip="Annuler" aria-label="Annuler" (click)="annuler()">Annuler</button>
+    <button type="button" mat-raised-button matTooltip="Dupliquer" aria-label="Dupliquer" [disabled]="!dateCible" (click)="dupliquer()">Dupliquer</button>
+</mat-dialog-actions>

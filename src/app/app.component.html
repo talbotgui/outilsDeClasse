@@ -1,0 +1,38 @@
+<!-- Entete -->
+<div div-entete class="maclasse-entete">
+</div>
+
+<!-- Sous l'entête, un sideNav avec le contenu au milieu et l'aide sur le côté-->
+<mat-sidenav-container>
+
+  <!-- Cadre des actions globales-->
+  <div class="maclasse-afficherActions maclasse-masquerEnModePrint">
+
+    <div composant-sauvegarde></div>
+
+    <!-- Ouverture de l'aide-->
+    <button type="button" mat-icon-button (click)="sidenav.open()" matTooltip="Afficher l'aide" aria-label="Afficher l'aide">
+      <fa-icon icon="question-circle"></fa-icon>
+    </button>
+  </div>
+
+  <!-- L'aide sur le côté -->
+  <mat-sidenav #sidenav autoFocus="true" position="end">
+    <!-- Fermeture de l'aide-->
+    <div class="maclasse-afficherActions">
+      <button type="button" mat-icon-button (click)="sidenav.close()" matTooltip="Masquer l'aide" aria-label="Masquer l'aide">
+        <fa-icon icon="question-circle"></fa-icon>
+      </button>
+    </div>
+
+    <!-- Div d'aide-->
+    <div div-aide></div>
+  </mat-sidenav>
+
+  <!-- Le contenu en milieu de page-->
+  <div div-message></div>
+
+  <!-- Le contenu en milieu de page-->
+  <div class="maclasse-contenu" div-contenu></div>
+
+</mat-sidenav-container>

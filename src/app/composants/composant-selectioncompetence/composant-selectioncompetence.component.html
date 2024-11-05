@@ -1,0 +1,66 @@
+@if (donneesChargees) {
+<mat-tab-group>
+
+    <!-- Recherche full text -->
+    <mat-tab label="Par mot clef">
+        <form class="parMotClef">
+            <h3>
+                <span>Recherche textuelle</span>
+                <button type="button" mat-icon-button class="maclasse-bouton16" [cdkCopyToClipboard]="recupererLibelleComplet(true)" [disabled]="textarea.value==''"
+                    matTooltip="Copier le libellé complet" aria-label="Copier le libellé complet">
+                    <fa-icon icon="copy"></fa-icon>
+                </button>
+            </h3>
+            <mat-form-field class="maclasse-pleinelargeur">
+                <mat-label>Mot clef</mat-label>
+                <textarea #textarea type="text" placeholder="Mot clef" matInput [formControl]="controleAutocompletion" [matAutocomplete]="auto"></textarea>
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="afficherOptionCompetenceDansAutocomplete" (optionSelected)="selectionnerCompetenceDepuisAutocompletion($event)">
+                    @for (c of resultatsAutocompletion | async; track c.competence.id) {
+                    <mat-option [value]="c">{{c.competence.text}}</mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </mat-tab>
+
+    <!-- Recherche par arborescence-->
+    <mat-tab label="Par arborescence">
+
+        <!-- Affichage des compétences déjà sélectionnées-->
+        @if (competencesSelectionnees && competencesSelectionnees.length > 0) {
+        <h3>
+            <span>Arborescence de la compétence sélectionnée</span>
+            <button type="button" mat-icon-button class="maclasse-bouton16" [cdkCopyToClipboard]="recupererLibelleComplet(true)" matTooltip="Copier le libellé complet"
+                aria-label="Copier le libellé complet">
+                <fa-icon icon="copy"></fa-icon>
+            </button>
+        </h3>
+        <div>
+            @for (c of competencesSelectionnees ; track c.id; let premier = $first) {
+            @if (!premier) {
+            <span class="maclasse-separateurcompetence">></span>
+            }
+            <span>{{c.text}}</span>
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerCompetence(c)" matTooltip="Retirer cette compétence" aria-label="Retirer cette compétence">
+                <fa-icon icon="trash"></fa-icon>
+            </button>
+            }
+        </div>
+        }
+
+        <!-- Si la dernière compétence sélectionnée a des enfants, SELECT -->
+        @if (competencesEnfantsDisponibles && competencesEnfantsDisponibles.length > 0) {
+        <h3>Sous-compétence(s) disponible(s)</h3>
+        <mat-form-field class="maclasse-pleinelargeur">
+            <mat-label>Competence suivante</mat-label>
+            <mat-select placeholder="Competence suivante" name="competenceSuivante" (selectionChange)="selectionnerCompetenceEnfant($event)">
+                @for (c of competencesEnfantsDisponibles ; track c.id) {
+                <mat-option [value]="c.id">{{c.text}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        }
+
+    </mat-tab>
+</mat-tab-group>
+}

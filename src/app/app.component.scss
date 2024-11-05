@@ -1,0 +1,13 @@
+// Pour afficher le bouton d'aide en haut à droite de l'écran 
+div.maclasse-afficherActions {
+    float: right;
+    // (sans ajouter une scrollbar)
+    margin-right: 10px;
+    // pour aligner les boutons horizontalement
+    display: flex;
+}
+
+// Pour avoir une DIV de contenu suffisamment haute pour que l'aide ne soit pas tassée et qu'elle ne s'affiche pas avec une scrollbar
+div.maclasse-contenu {
+    min-height: 500px;
+}

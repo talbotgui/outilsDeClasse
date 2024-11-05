@@ -1,0 +1,288 @@
+@if (journaux) {
+<fieldset class="maclasse-masquerEnModePrint">
+    <legend>Sélection de la date du journal</legend>
+
+    <button type="button" (click)="changerDate(-7)" mat-raised-button matTooltip="Reculer d'une semaine" aria-label="Reculer d'une semaine">
+        <fa-icon icon="backward-fast"></fa-icon>
+    </button>
+    <button type="button" (click)="changerDate(-1)" mat-raised-button matTooltip="Reculer d'une journée" aria-label="Reculer d'une journée">
+        <fa-icon icon="backward"></fa-icon>
+    </button>
+
+    <mat-form-field>
+        <mat-label>Date du journal</mat-label>
+        <input matInput [matDatepicker]="pickerDateJournal" #inputDateJournal="ngModel" [(ngModel)]="dateJournal" (ngModelChange)="onChangementDateJournal()">
+        <mat-datepicker-toggle matIconSuffix [for]="pickerDateJournal"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDateJournal></mat-datepicker>
+    </mat-form-field>
+
+    <button type="button" (click)="changerDate(1)" mat-raised-button matTooltip="Avancer d'une journée" aria-label="Avancer d'une journée">
+        <fa-icon icon="forward"></fa-icon>
+    </button>
+    <button type="button" (click)="changerDate(7)" mat-raised-button matTooltip="Avancer d'une semaine" aria-label="Avancer d'une semaine">
+        <fa-icon icon="forward-fast"></fa-icon>
+    </button>
+</fieldset>
+}
+@else {
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+</p>
+<p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
+}
+
+<!-- Si une date est sélectionnée -->
+@if (journaux && dateJournal) {
+<fieldset class="maclasse-couperEnModePrint">
+    <legend>
+        Journal du {{dateJournal | date:'EEEE dd/MM/yyyy'}} (semaine {{dateJournal | date:'ww'}})
+        @if (journal) {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="demanderDuplicationJournal()" matTooltip="Dupliquer ce journal à une autre date"
+            aria-label="Dupliquer ce journal à une autre date">
+            <fa-icon icon="clipboard"></fa-icon>
+        </button>
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerJournal()" matTooltip="Supprimer ce journal" aria-label="Supprimer ce journal">
+            <fa-icon icon="trash"></fa-icon>
+        </button>
+        }
+    </legend>
+
+    <!-- Si un journal correspond -->
+    @if (journal) {
+
+    <!-- Remarque de ce journal -->
+    <fieldset class="maclasse-formulaire" (keyup)="onKeyUpSurRemarqueDeJournal($event)">
+        <legend>
+            Remarques
+            @if (!remarqueEnEdition) {
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="remarqueEnEdition=true" matTooltip="Modifier les remarques" aria-label="Modifier les remarques">
+                <fa-icon icon="pencil" size="xs"></fa-icon>
+            </button>
+            } @else {
+            <button type="button" mat-icon-button class="maclasse-bouton16 " (click)="remarqueEnEdition=false" matTooltip="Valider les remarques" aria-label="Valider les remarques">
+                <fa-icon icon="check"></fa-icon>
+            </button>
+            }
+        </legend>
+        @if (remarqueEnEdition) {
+        <angular-editor [config]="configurationWysiwyg" placeholder="Remarque" name="Remarque" [(ngModel)]="journal.remarque"></angular-editor>
+        } @else {
+        <div [innerHTML]="journal.remarque | html"></div>
+        }
+    </fieldset>
+
+    <!-- les temps -->
+    @for (temps of journal.temps ; track temps.id ; let idx = $index) {
+
+    <fieldset class="maclasse-formulaire" [class.maclasse-transportOuRecreation]="temps.type==='transport' || temps.type==='recreation'" (keyup)="onKeyUpSurTempsDeJournal($event)">
+        <legend class="maclasse-legendFlex">
+            @if (temps.type === 'recreation') {
+            <div class="maclasse-titreDeTemps">Récréation</div>
+            } @else if (temps.type === 'transport') {
+            <div class="maclasse-titreDeTemps">Transport</div>
+            } @else if (tempsEnEdition !== idx) {
+            <div class="maclasse-titreDeTemps" (click)="statutsAffichage[idx] = !statutsAffichage[idx]">de {{temps.debut}} à {{temps.fin}}</div>
+            } @else {
+            <mat-form-field class="maclasse-petitelargeur">
+                <mat-label>Début</mat-label>
+                <mat-select #inputTempsDebut="ngModel" [(ngModel)]="temps.debut" placeholder="Début" name="debut">
+                    @for (td of tempsDisponibles ; track td) {
+                    <mat-option [value]="td">{{td}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="maclasse-petitelargeur">
+                <mat-label>Fin</mat-label>
+                <mat-select #inputTempsFin="ngModel" [(ngModel)]="temps.fin" placeholder="Fin" name="fin">
+                    @for (td of tempsDisponibles ; track td) {
+                    @if (!temps.debut || td>temps.debut) {
+                    <mat-option [value]="td">{{td}}</mat-option>
+                    }
+                    }
+                </mat-select>
+            </mat-form-field>
+            }
+            @if (temps.type === 'classe') {
+            @if (tempsEnEdition !== idx) {
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="editerTemps(idx)" matTooltip="Modifier ce temps" aria-label="Modifier ce temps">
+                <fa-icon icon="pencil"></fa-icon>
+            </button>
+            } @else {
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterGroupe(idx)" matTooltip="Ajouter un groupe dans ce temps" aria-label="Ajouter un groupe dans ce temps">
+                <fa-icon icon="users"></fa-icon>
+            </button>
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="validerTemps()" matTooltip="Valider ce temps" aria-label="Valider ce temps">
+                <fa-icon icon="check"></fa-icon>
+            </button>
+            }
+            <span class="maclasse-masquerEnModePrint">|</span>
+            }
+
+            @if (idx !== journal.temps.length-1) {
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="descendreTemps(idx)" matTooltip="Descendre ce temps" aria-label="Descendre ce temps">
+                <fa-icon icon="chevron-circle-down"></fa-icon>
+            </button>
+            } @else {
+            <div class="maclasse-largeurUnBouton"></div>
+            }
+            @if (idx !== 0) {
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="monterTemps(idx)" matTooltip="Monter ce temps" aria-label="Monter ce temps">
+                <fa-icon icon="chevron-circle-up"></fa-icon>
+            </button>
+            }@else {
+            <div class="maclasse-largeurUnBouton"></div>
+            }
+
+            @if (temps.type === 'classe') {
+            <span class="maclasse-masquerEnModePrint">|</span>
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="demanderDuplicationTemps(idx)" matTooltip="Dupliquer ce temps à une autre date"
+                aria-label="Dupliquer ce temps à une autre date">
+                <fa-icon icon="clipboard"></fa-icon>
+            </button>
+            }@else {
+            <div class="maclasse-largeurUnBouton"></div>
+            }
+
+            <span class="maclasse-masquerEnModePrint">|</span>
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(idx, 'classe')" matTooltip="Ajouter un temps en dessous"
+                aria-label="Ajouter un temps en dessous">
+                <fa-icon icon="clock"></fa-icon>
+            </button>
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(idx,'recreation')" matTooltip="Ajouter une récréation en dessous"
+                aria-label="Ajouter une récréation en dessous">
+                <fa-icon icon="gamepad"></fa-icon>
+            </button>
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(idx, 'transport')" matTooltip="Ajouter un temps de transport en dessous"
+                aria-label="Ajouter un temps de transport en dessous">
+                <fa-icon icon="bus"></fa-icon>
+            </button>
+
+            <span class="maclasse-masquerEnModePrint">|</span>
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerTemps(idx)" matTooltip="Supprimer ce temps" aria-label="Supprimer ce temps">
+                <fa-icon icon="trash"></fa-icon>
+            </button>
+        </legend>
+        <div class="maclasse-afficherEnModePrint" [hidden]="!statutsAffichage[idx] && tempsEnEdition !== idx">
+            @if (temps.type === 'classe') {
+
+            <!-- les temps -->
+            @for (groupe of temps.groupes ; track groupe.id ; let jdx = $index) {
+            <fieldset>
+                <legend class="maclasse-legendFlex">
+                    @if (tempsEnEdition !== idx) {
+                    {{groupe.nom}}
+                    } @else {
+                    <mat-form-field class="maclasse-pleinelargeur">
+                        <mat-label>Nom</mat-label>
+                        <input matInput type="text" name="Nom" [(ngModel)]="groupe.nom">
+                    </mat-form-field>
+
+                    <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerGroupe(idx, jdx)" matTooltip="Supprimer ce groupe dans le temps"
+                        aria-label="Supprimer ce groupe dans le temps">
+                        <fa-icon icon="users-slash"></fa-icon>
+                    </button>
+                    }
+                </legend>
+                <div class="maclasse-grille" [class.maclasse-grille-edition]="tempsEnEdition == idx">
+                    <div class="maclasse-grille-col maclasse-grille-col8">
+                        <div class="maclasse-grille-case">
+                            <h2 class="maclasse-h2">Détails du groupe</h2>
+                            <div class="maclasse-contenucaseeleves">
+                                <span class="maclasse-titre">Elèves :&nbsp;</span>
+                                @if (tempsEnEdition !== idx) {
+                                <span>
+                                    @for (eleve of eleves; track eleve.id) {
+                                    @if (groupe.eleves && groupe.eleves.includes(eleve.id)){
+                                    <span class="maclasse-eleve">{{eleve.prenom}}</span>
+                                    }
+                                    }
+                                </span>
+                                } @else {
+                                <mat-chip-listbox aria-label="Sélection d'un élève" selectable="true" multiple="true">
+                                    @for (eleve of eleves; track eleve.id) {
+                                    <mat-chip-option (click)="ajouterRetirerEleveAuGroupeDunTemps(idx,jdx, eleve.id)" [selected]="groupe.eleves && groupe.eleves.includes(eleve.id)">
+                                        {{eleve.prenom}}
+                                    </mat-chip-option>
+                                    }
+                                </mat-chip-listbox>
+                                }
+                            </div>
+                        </div>
+                        <div class="maclasse-grille-case">
+                            <span class="maclasse-titre">Compétences : </span>
+                            @if (tempsEnEdition === idx) {
+                            <button type="button" mat-icon-button class="maclasse-bouton16 maclasse-petiteicone" (click)="demanderAjoutCompetence(groupe)"
+                                matTooltip="Ajouter une compétence à ce groupe" aria-label="Ajouter une compétence à ce groupe">
+                                <fa-icon icon="plus"></fa-icon>
+                            </button>
+                            }
+                            <ul>
+                                @for (idCompetence of groupe.competences ; track idCompetence ; let idx = $index) {
+                                <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence" [affichageMinimal]="false" [iconeAction]="(tempsEnEdition === idx)?'trash':''"
+                                    libelleAction="Supprimer la compétence" (onAction)="supprimerCompetence(groupe, idCompetence)"></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="maclasse-grille-case">
+                            @if (tempsEnEdition !== idx) {
+                            <span class="maclasse-titre">Objectifs :</span>
+                            <span>{{groupe.objectifs}}</span>
+                            } @else {
+                            <mat-form-field class="maclasse-pleinelargeur">
+                                <mat-label>Objectifs</mat-label>
+                                <input matInput type="text" name="Objectifs" [(ngModel)]="groupe.objectifs">
+                            </mat-form-field>
+                            }
+                        </div>
+                        <div class="maclasse-grille-case">
+                            @if (tempsEnEdition !== idx) {
+                            <span class="maclasse-titre">Consignes :</span>
+                            <span>{{groupe.consignes}}</span>
+                            } @else {
+                            <mat-form-field class="maclasse-pleinelargeur">
+                                <mat-label>Consignes</mat-label>
+                                <input matInput type="text" name="Consignes" [(ngModel)]="groupe.consignes">
+                            </mat-form-field>
+                            }
+                        </div>
+                        <div class="maclasse-grille-case">
+                            @if (tempsEnEdition !== idx) {
+                            <span class="maclasse-titre">Matériel :</span>
+                            <span>{{groupe.materiel}}</span>
+                            } @else {
+                            <mat-form-field class="maclasse-pleinelargeur">
+                                <mat-label>Matériel</mat-label>
+                                <input matInput type="text" name="Materiel" [(ngModel)]="groupe.materiel">
+                            </mat-form-field>
+                            }
+                        </div>
+                    </div>
+                    <div class="maclasse-grille-col maclasse-grille-col4">
+                        <div class="maclasse-grille-case maclasse-caseEditeur">
+                            <h2 class="maclasse-h2">Bilan / notes</h2>
+                            @if (tempsEnEdition !== idx) {
+                            <div [innerHTML]="groupe.commentaire | html"></div>
+                            } @else {
+                            <angular-editor [config]="configurationWysiwyg" placeholder="Commentaire" name="Commentaire" [(ngModel)]="groupe.commentaire"></angular-editor>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            }
+            }
+        </div>
+    </fieldset>
+    }
+    }
+
+    <!-- Si aucun journal ne correspond -->
+    @else {
+    <p>
+        Aucun journal à cette date. Voulez-vous en créer un ?
+        <button type="button" class="maclasse-bouton16" (click)="creerJournal()" mat-raised-button matTooltip="Créer un journal pour la date sélectionnée"
+            aria-label="Créer un journal pour la date sélectionnée">OUI</button>
+    </p>
+
+    }
+</fieldset>
+}

@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Sélectionner une compétence</h2>
+
+<mat-dialog-content>
+    <div composant-selectioncompetence (onSelectionDunCompetence)="selectionnerCompetence($event)"></div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button type="button" mat-raised-button matTooltip="Annuler" aria-label="Annuler" (click)="annuler()">Annuler</button>
+    <button type="button" mat-raised-button matTooltip="Valider" aria-label="Valider" (click)="valider()">Valider</button>
+</mat-dialog-actions>

@@ -1,0 +1,24 @@
+<div>
+
+  <!-- Menu -->
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="maclasse-masquerEnModePrint">
+    <a mat-tab-link routerLink="/route-accueil">Accueil</a>
+    @if (donneesDeClasseChargee) {
+    <a mat-tab-link [active]="routeActive == '/route-competence'" routerLink="/route-competence">Compétences</a>
+    <a mat-tab-link [active]="routeActive == '/route-eleve'" routerLink="/route-eleve">Elèves</a>
+    <a mat-tab-link [active]="routeActive == '/route-projet'" routerLink="/route-projet">Projets</a>
+    <a mat-tab-link [active]="routeActive == '/route-journal'" routerLink="/route-journal">Cahier journal</a>
+    <a mat-tab-link [active]="routeActive == '/route-tableaudebord'" routerLink="/route-tableaudebord">Tableau de bord</a>
+    <a mat-tab-link [active]="routeActive == '/route-taches'" routerLink="/route-taches">Tâches</a>
+    }
+    @else {
+    <a mat-tab-link [active]="routeActive == '/route-chargerdonnees'" routerLink="/route-chargerdonnees">Charger mon année</a>
+    <a mat-tab-link [active]="routeActive == '/route-creerdonnees'" routerLink="/route-creerdonnees">Créer mon année</a>
+    }
+  </nav>
+
+  <!-- Routeur avec le contenu -->
+  <mat-tab-nav-panel #tabPanel>
+    <router-outlet></router-outlet>
+  </mat-tab-nav-panel>
+</div>

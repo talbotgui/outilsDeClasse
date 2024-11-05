@@ -1,0 +1,8 @@
+<!-- Les messages d'information globaux -->
+@for (m of messagesAafficher; track m) {
+<div class="maclasse-message maclasse-masquerEnModePrint" [class.maclasse-message-erreur]="m.isErreur" [class.maclasse-message-info]="m.isInformation"
+    [class.maclasse-message-avertissement]="m.isAvertissement">
+    <p [innerHTML]="m.message"></p>
+    <input type="hidden" name="codeEmetteurDuMessage" [value]="m.codeEmetteurDuMessage" />
+</div>
+}

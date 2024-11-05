@@ -1,0 +1,222 @@
+// Pour importer les CSS du WYSIWYG
+@import '@wfpena/angular-wysiwyg/';
+
+/***************
+* Pleine hauteur - DEBUT
+***************/
+@media screen {
+
+    html,
+    body,
+    .maclasse-approot {
+        height: 98%;
+    }
+
+    div.maclasse-entete {
+        height: 40px;
+    }
+
+    mat-sidenav-container {
+        height: calc(100% - 50px);
+    }
+}
+
+/***************
+* Pleine hauteur - FIN
+***************/
+
+
+// CSS par défaut d'Angular
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Revu des tailles de titre - H1
+h1.maclasse-h1 {
+    font-size: 2em;
+}
+
+// Revu des tailles de titre - H2
+h2.maclasse-h2 {
+    font-size: 1.5em;
+}
+
+// Revu des tailles de titre - H3
+h3.maclasse-h3 {
+    font-size: 1.2em;
+}
+
+// Pour des champs de saisie pleine largeur
+mat-form-field.maclasse-pleinelargeur {
+    width: 100%;
+}
+
+// Pour des champs de saisie de largeur réduite
+mat-form-field.maclasse-petitelargeur {
+    width: 100px;
+}
+
+// Les boutons d'action sous forme d'icône ont une couleur bleue
+button.mat-mdc-icon-button {
+    color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+}
+
+// Les boutons Material avec des icônes ne sont pas plus grand que le texte
+.mat-mdc-icon-button.maclasse-bouton16 svg {
+    height: 16px;
+    width: 16px;
+}
+
+// Gain de place sous les champs de saisie
+.mat-mdc-form-field-subscript-wrapper {
+    display: none;
+}
+
+// Pour que toutes les légendes (avec ou sans un bouton) ne bouge pas
+legend {
+    height: 48px;
+    line-height: 48px;
+}
+
+/** Pour que le contenu des cases de tableau soit aligné à gauche. */
+.mat-grid-tile-content {
+    justify-content: start !important;
+}
+
+/** Pour mettre en avant le champ de saisie Material ayant le focus.*/
+mat-form-field.mat-focused {
+    border: solid 3px var(--mdc-protected-button-label-text-color);
+    margin: -3px;
+}
+
+/** Pour mettre en avant le bouton ayant le focus.*/
+button.mdc-icon-button:focus {
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--mdc-protected-button-label-text-color);
+}
+
+/************************************************************
+Pour créer un style d'onglet au niveau des fieldset - DEBUT 
+************************************************************/
+fieldset.maclasse-formulaire {
+    border: none;
+    padding-top: 0px;
+}
+
+fieldset.maclasse-formulaire>legend {
+    border-radius: 10px 10px 0px 0px;
+    /* pour que la couleur de fond soit celle du thème Angular*/
+    background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+    /*pour que le texte soit lisible sur le fond bleu et aussi grand que les icônes*/
+    color: white;
+}
+
+fieldset.maclasse-formulaire>legend>button {
+    color: white;
+}
+
+fieldset.maclasse-formulaire>div {
+    padding-top: 0.35em;
+    border: 1px solid var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+}
+
+/************************************************************
+ Pour créer un style d'onglet au niveau des fieldset - FIN 
+************************************************************/
+
+/** Au moment de l'impression. */
+@media print {
+
+    /** Pour ne pas couper un fieldset à l'impression. */
+    fieldset {
+        page-break-inside: avoid;
+    }
+
+    /** Pour autoriser le découpage du fieldset sur plusieurs pages s'il est trop grand. */
+    fieldset.maclasse-couperEnModePrint {
+        page-break-inside: auto;
+    }
+
+    /** masque l'élément. */
+    .maclasse-masquerEnModePrint,
+    button,
+    .mat-tooltip-panel {
+        display: none !important;
+        visibility: hidden;
+    }
+
+    /** force l'affichage de l'élément. */
+    .maclasse-afficherEnModePrint {
+        display: block !important;
+        visibility: visible;
+    }
+
+    /** Pour le rendu en impression des legend.*/
+    fieldset.maclasse-formulaire>legend {
+        border-radius: 10px 10px 0px 0px;
+        border-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+        color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
+        border: solid thin;
+        border-bottom: none;
+    }
+
+    /** Pour mettre en noir les champs désactivés. */
+    mat-checkbox.mat-mdc-checkbox-disabled {
+        color: black !important;
+    }
+}
+
+/* Pour séparer correctement les compétences sélectionnées. */
+.maclasse-separateurcompetence {
+    color: blue;
+    font-size: 28px;
+    margin-right: 10px;
+}
+
+/* Pour réduire énormément la taille des boutons avec icône et ne pas influer sur la hauteur de la ligne. */
+// Source : https://stackoverflow.com/questions/46531743/change-size-of-mat-icon-button
+.maclasse-petiteicone {
+    width: 24px !important;
+    height: 24px !important;
+    padding: 0px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    &>*[role=img] {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .mat-mdc-button-touch-target {
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+/** Pour ne pas afficher les scrollbar au resize d'un textarea dans le corp d'un popup. */
+.mat-mdc-tab-body-content {
+    overflow: hidden !important;
+}
+
+/** Pour aligner les erreurs de validation de données à gauche. */
+ul.maclasse-texteagauche {
+    text-align: left;
+}
+
+/** Pour les légendes contenant des boutons. */
+legend.maclasse-legendFlex {
+    display: flex;
+}
+
+/* Pour créer une liste d'élèves sans ponctuation. */
+span.maclasse-eleve:not(:first-child) {
+    margin-left: 5px;
+}

@@ -1,0 +1,138 @@
+<!-- Sélection d'un projet -->
+@if (projets) {
+<fieldset class="maclasse-masquerEnModePrint">
+    <legend>Sélection d'un projet de la classe</legend>
+
+    <mat-chip-listbox aria-label="Sélection d'un projet" [selectable]="true">
+        @for (projet of projets; track projet.id) {
+        <mat-chip-option (click)="onSelectionProjet(projet)" [selected]="projet==projetSelectionne">{{projet.nom}}</mat-chip-option>
+        }
+        <mat-chip-option selectable="false" (click)="ajouterUnProjet()">
+            <button type="button" mat-icon-button matTooltip="Ajouter un projet" aria-label="Ajouter un projet"><fa-icon icon="plus"></fa-icon></button>
+        </mat-chip-option>
+    </mat-chip-listbox>
+</fieldset>
+}
+@else {
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+</p>
+<p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
+}
+
+@if (projetSelectionne) {
+<!-- Formulaire - données projet -->
+<fieldset class="maclasse-formulaire">
+    <legend class="maclasse-legendFlex">
+        @if (modeEdition){
+        <mat-form-field>
+            <mat-label>Nom</mat-label>
+            <input matInput type="text" required #inputNom="ngModel" name="nom" [(ngModel)]="projetSelectionne.nom">
+        </mat-form-field>
+        } @else {
+        <span>Projet sélectionné : {{projetSelectionne.nom}}</span>
+        }
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerProjetSelectionne()" matTooltip="Supprimer ce projet" aria-label="Supprimer ce projet">
+            <fa-icon icon="trash"></fa-icon>
+        </button>
+        @if (modeEdition) {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie" aria-label="Terminer la saisie">
+            <fa-icon icon="check"></fa-icon>
+        </button>
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterUnSousProjet()" matTooltip="Ajouter une période" aria-label="Ajouter une période">
+            <fa-icon icon="plus"></fa-icon>
+        </button>
+        } @else {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer ce projet" aria-label="Editer ce projet">
+            <fa-icon icon="pencil" size="xs"></fa-icon>
+        </button>
+        }
+    </legend>
+    <div>
+        <fieldset class="maclasse-formulaire">
+            <legend class="maclasse-legendFlex">Description</legend>
+            <div>
+                @if (modeEdition) {
+                <angular-editor [config]="configurationWysiwyg" placeholder="Description" name="Description" [(ngModel)]="projetSelectionne.description"></angular-editor>
+                } @else {
+                <span [innerHTML]="projetSelectionne.description | html"></span>
+                }
+            </div>
+        </fieldset>
+
+        <fieldset class="maclasse-formulaire">
+            <legend class="maclasse-legendFlex">Elève(s) associé(s) au projet</legend>
+            <div>
+                @if (modeEdition) {
+                <mat-chip-listbox aria-label="Sélection d'un élève" selectable="true" multiple="true">
+                    @for (eleve of eleves; track eleve.id) {
+                    <mat-chip-option (click)="ajouterRetirerEleveAuProjet(eleve.id)" [selected]="projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)">
+                        {{eleve.prenom}}
+                    </mat-chip-option>
+                    }
+                </mat-chip-listbox>
+                } @else {
+                @for (eleve of eleves; track eleve.id) {
+                @if (projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)){
+                <span class="maclasse-eleve">{{eleve.prenom}}</span>
+                }
+                }
+                }
+            </div>
+        </fieldset>
+
+        @for (sousLigne of projetSelectionne.sousProjetParPeriode; track sousLigne.id) {
+        <fieldset class="maclasse-formulaire">
+            <legend class="maclasse-legendFlex">
+                @if (modeEdition) {
+                <mat-form-field>
+                    <mat-label>En période</mat-label>
+                    <mat-select #inputPeriode="ngModel" [(ngModel)]="sousLigne.idPeriode" placeholder="Période" name="Période">
+                        @for (p of periodes ; track p.id) {
+                        <mat-option [value]="p.id">{{p.nom}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                } @else {
+                <span>En {{obtenirLibellePeriode(sousLigne.idPeriode)}}</span>
+                }
+            </legend>
+            <div>
+                <div>
+                    @if (modeEdition) {
+                    <angular-editor [config]="configurationWysiwyg" placeholder="Commentaire" name="Commentaire" [(ngModel)]="sousLigne.commentaire"></angular-editor>
+                    } @else {
+                    <span>Commentaire : </span><span [innerHTML]="sousLigne.commentaire | html"></span>
+                    }
+                </div>
+                <div>
+                    <span>Compétences : </span>
+                    <button type="button" mat-icon-button class="maclasse-bouton16" (click)="demanderAjoutCompetence(sousLigne)" matTooltip="Ajouter une compétence à ce projet pour cette période"
+                        aria-label="Ajouter une compétence à ce projet pour cette période">
+                        <fa-icon icon="plus"></fa-icon>
+                    </button>
+                    <ul>
+                        @for (idCompetence of sousLigne.idCompetences ; track idCompetence ; let idx = $index) {
+                        <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence" [affichageMinimal]="false" [iconeAction]="(modeEdition)?'trash':''"
+                            libelleAction="Supprimer la compétence" (onAction)="supprimerCompetence(sousLigne, idCompetence)"></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </fieldset>
+        }
+
+        <fieldset class="maclasse-formulaire">
+            <legend class="maclasse-legendFlex">Notes du côté éducatif</legend>
+            <div>
+                @if (modeEdition) {
+                <angular-editor [config]="configurationWysiwyg" placeholder="Notes du côté éducatif" name="Notes du côté éducatif" [(ngModel)]="projetSelectionne.notesCoteEducatif"></angular-editor>
+                } @else {
+                <span [innerHTML]="projetSelectionne.notesCoteEducatif | html"></span>
+                }
+            </div>
+        </fieldset>
+    </div>
+</fieldset>
+}
+
+<br />

@@ -1,0 +1,17 @@
+// Personnalisation de l'affichage des messags
+div.maclasse-message {
+    text-align: center;
+}
+
+// Différenciation des messages d'erreur selon leur sévérité
+div.maclasse-message-erreur {
+    color: red;
+}
+
+div.maclasse-message-info {
+    color: green;
+}
+
+div.maclasse-message-avertissement {
+    color: orange;
+}

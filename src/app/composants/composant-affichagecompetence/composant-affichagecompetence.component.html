@@ -1,0 +1,19 @@
+@if (donneesChargees) {
+@for (c of competencesSelectionnees ; track c.id; let premier = $first; let dernier = $last) {
+@if (!premier && !affichageMinimal) {
+<span class="maclasse-separateur">></span>
+}
+@if(!affichageMinimal || dernier){
+<span>{{c.text}}</span>
+}
+}
+<button type="button" mat-icon-button class="maclasse-bouton16 maclasse-petiteicone" [cdkCopyToClipboard]="recupererLibelleComplet()" matTooltip="Copier le libellé complet"
+    aria-label="Copier le libellé complet">
+    <fa-icon icon="copy"></fa-icon>
+</button>
+@if (iconeAction) {
+<button type="button" mat-icon-button class="maclasse-bouton16 maclasse-petiteicone" [matTooltip]="libelleAction" [attr.aria-label]="libelleAction" (click)="declencherAction()">
+    <fa-icon [icon]="iconeAction"></fa-icon>
+</button>
+}
+}

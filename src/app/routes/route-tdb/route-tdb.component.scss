@@ -1,0 +1,70 @@
+/* Pour ajouter de la marge entre les champs de filtrage. */
+.maclasse-filtres mat-form-field {
+    margin-right: 8px;
+}
+
+/* Pour faire une table de données (et pas une grille). */
+.maclasse-table-ligne {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Entete de couleur. */
+.maclasse-table-entete {
+    background-color: var(--mat-option-selected-state-layer-color);
+    text-align: center;
+}
+
+/* Pour center le contenu des cases et mettre des bordures. */
+.maclasse-table-case {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid var(--mat-option-selected-state-layer-color) 1px;
+}
+
+/* Pas de marge autour des p dans les cases. */
+.maclasse-table-case p {
+    margin-block: 0px;
+    text-align: center;
+}
+
+/* Case de tableau de 70% */
+.maclasse-table-case-w70 {
+    width: 70%;
+}
+
+/* Case de tableau de 60% */
+.maclasse-table-case-w60 {
+    width: 60%;
+}
+
+/* Case de tableau de 40% */
+.maclasse-table-case-w40 {
+    width: 40%;
+}
+
+/* Case de tableau de 45% */
+.maclasse-table-case-w45 {
+    width: 45%;
+}
+
+/* Case de tableau de 25% */
+.maclasse-table-case-w25 {
+    width: 25%;
+}
+
+/* Case de tableau de 30% */
+.maclasse-table-case-w30 {
+    width: 30%;
+}
+
+/* Case de tableau de 15% */
+.maclasse-table-case-w15 {
+    width: 15%;
+}
+
+/* Pour ajouter un séparateur dans les entêtes (côté gauche) */
+.maclasse-table-case-bordureDroite {
+    border-right: solid 1px white;
+}
