@@ -217,7 +217,7 @@
                             </button>
                             }
                             <ul>
-                                @for (idCompetence of groupe.competences ; track idCompetence ; let idx = $index) {
+                                @for (idCompetence of groupe.competences ; track idCompetence) {
                                 <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence" [affichageMinimal]="false" [iconeAction]="(tempsEnEdition === idx)?'trash':''"
                                     libelleAction="Supprimer la compétence" (onAction)="supprimerCompetence(groupe, idCompetence)"></li>
                                 }
