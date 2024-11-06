@@ -128,6 +128,12 @@ fieldset.maclasse-formulaire>div {
 /** Au moment de l'impression. */
 @media print {
 
+
+    /** Pour imprimer plus de chose.*/
+    body {
+        zoom: 0.7;
+    }
+    
     /** Pour retirer l'entête et le pied de page générés par le navigateur. */
     @page { margin: 0; }
 

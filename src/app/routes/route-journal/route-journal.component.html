@@ -168,7 +168,7 @@
 
             <!-- les temps -->
             @for (groupe of temps.groupes ; track groupe.id ; let jdx = $index) {
-            <fieldset>
+            <fieldset class="maclasse-formulaire">
                 <legend class="maclasse-legendFlex">
                     @if (tempsEnEdition !== idx) {
                     {{groupe.nom}}
@@ -187,7 +187,6 @@
                 <div class="maclasse-grille" [class.maclasse-grille-edition]="tempsEnEdition == idx">
                     <div class="maclasse-grille-col maclasse-grille-col8">
                         <div class="maclasse-grille-case">
-                            <h2 class="maclasse-h2">Détails du groupe</h2>
                             <div class="maclasse-contenucaseeleves">
                                 <span class="maclasse-titre">Elèves :&nbsp;</span>
                                 @if (tempsEnEdition !== idx) {
@@ -224,7 +223,7 @@
                                 }
                             </ul>
                         </div>
-                        <div class="maclasse-grille-case">
+                        <div class="maclasse-grille-case" [class.maclasse-masquerEnModePrint]="!groupe.objectifs">
                             @if (tempsEnEdition !== idx) {
                             <span class="maclasse-titre">Objectifs :</span>
                             <span>{{groupe.objectifs}}</span>
@@ -235,7 +234,7 @@
                             </mat-form-field>
                             }
                         </div>
-                        <div class="maclasse-grille-case">
+                        <div class="maclasse-grille-case" [class.maclasse-masquerEnModePrint]="!groupe.consignes">
                             @if (tempsEnEdition !== idx) {
                             <span class="maclasse-titre">Consignes :</span>
                             <span>{{groupe.consignes}}</span>
@@ -246,7 +245,7 @@
                             </mat-form-field>
                             }
                         </div>
-                        <div class="maclasse-grille-case">
+                        <div class="maclasse-grille-case" [class.maclasse-masquerEnModePrint]="!groupe.materiel">
                             @if (tempsEnEdition !== idx) {
                             <span class="maclasse-titre">Matériel :</span>
                             <span>{{groupe.materiel}}</span>
@@ -260,7 +259,7 @@
                     </div>
                     <div class="maclasse-grille-col maclasse-grille-col4">
                         <div class="maclasse-grille-case maclasse-caseEditeur">
-                            <h2 class="maclasse-h2">Bilan / notes</h2>
+                            <span class="maclasse-titre">Bilan / notes :</span>
                             @if (tempsEnEdition !== idx) {
                             <div [innerHTML]="groupe.commentaire | html"></div>
                             } @else {
