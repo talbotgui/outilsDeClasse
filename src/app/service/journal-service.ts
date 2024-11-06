@@ -117,6 +117,9 @@ export class JournalService {
         nouveauGroupe.competences = g.competences.slice();
         nouveauGroupe.eleves = g.eleves.slice();
         nouveauGroupe.nom = g.nom;
+        nouveauGroupe.consignes=g.consignes;
+        nouveauGroupe.materiel=g.materiel;
+        nouveauGroupe.objectifs=g.objectifs;
         return nouveauGroupe;
     }
 
@@ -126,9 +129,7 @@ export class JournalService {
         nouveauTemps.debut = t.debut;
         nouveauTemps.fin = t.fin;
         nouveauTemps.type = t.type;
-        if (t.groupes) {
-            nouveauTemps.groupes = t.groupes.map(this.clonerGroupeSurUnTemps);
-        }
+        nouveauTemps.groupes = (t.groupes||[]).map(this.clonerGroupeSurUnTemps);
         return nouveauTemps;
     }
 
@@ -156,12 +157,7 @@ export class JournalService {
         }
 
         journalCible.remarque = 'Duplication du journal du ' + this.dateService.formaterDate(journal.date, true) + '<br/>' + journal.remarque;
-        journalCible.temps = [];
-        if (journal.temps) {
-            for (const t of journal.temps) {
-                journalCible.temps.push(this.clonerTemps(t));
-            }
-        }
+        journalCible.temps=(journal.temps||[]).map(this.clonerTemps);
     }
 
     /** Duplication du temps et ajout au journal de la date cible */
