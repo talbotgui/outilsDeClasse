@@ -195,6 +195,11 @@ export class ChargementService {
         // Traitement des journaux
         (donnees.journal||[]).forEach(journal => {
             journal.temps = journal.temps.map(temps => {
+                
+                // Rien à faire si le temps a déjà des groupes
+                if (temps.groupes && temps.groupes.length>0){
+                    return temps;
+                }
 
                 // Recréation d'un objet propre
                 const listeDesAttributsAsupprimer = ['competences', 'eleves', 'nom'];
@@ -247,6 +252,9 @@ export class ChargementService {
             }
             return nouveauProjet;
         });
+
+        // Ajout du flag pour ne pas repasser dans ce traitement
+        donnees.versionMajeureApplication=2024;
 
         // Renvoi des données
         return donnees;
