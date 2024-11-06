@@ -156,10 +156,12 @@
                 <fa-icon icon="bus"></fa-icon>
             </button>
 
+            @if (journal.temps && journal.temps.length > 1) {
             <span class="maclasse-masquerEnModePrint">|</span>
             <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerTemps(idx)" matTooltip="Supprimer ce temps" aria-label="Supprimer ce temps">
                 <fa-icon icon="trash"></fa-icon>
             </button>
+            }
         </legend>
         <div class="maclasse-afficherEnModePrint" [hidden]="!statutsAffichage[idx] && tempsEnEdition !== idx">
             @if (temps.type === 'classe') {
