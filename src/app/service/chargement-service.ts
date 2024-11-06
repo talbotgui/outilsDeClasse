@@ -93,7 +93,7 @@ export class ChargementService {
                 t.id = t.id ?? ModelUtil.getUID();
                 t.groupes = t.groupes ?? [];
                 t.groupes.forEach(g => g.id = g.id ?? ModelUtil.getUID());
-                t.type = (t.type) ? t.type : 'classe';
+                t.type = t.type || 'classe';
             });
         });
         donnees.notes.forEach(n => {
@@ -196,8 +196,8 @@ export class ChargementService {
         (donnees.journal||[]).forEach(journal => {
             journal.temps = journal.temps.map(temps => {
                 
-                // Rien à faire si le temps a déjà des groupes
-                if (temps.groupes && temps.groupes.length>0){
+                // Rien à faire si le temps a déjà des groupes ou un type
+                if (temps.type || temps.groupes && temps.groupes.length > 0){
                     return temps;
                 }
 
@@ -210,7 +210,7 @@ export class ChargementService {
                 const groupe = new GroupeSurUnTemps();
                 nouveauTemps.groupes.push(groupe);
 
-                nouveauTemps.type = 'classe';
+                nouveauTemps.type =  'classe';
                 const entreeNom = Object.entries(temps).find(entree => entree[0] === 'nom');
                 if (entreeNom && entreeNom[1]) {
                     groupe.nom = entreeNom[1];
