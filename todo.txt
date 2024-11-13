@@ -1,15 +1,13 @@
 BUG :
+ - JOURNAL : pb mm/dd/yyyy dans la saisie du calendrier
  - ELEVE : mauvaise récupération de la données Eleve.datesESS depuis les vielles données
  - ELEVE : adapter la taille des textes dans la fiche élève à l'impression
  - TACHE : pb tri
- - TACHE : afficher les échéances en noir
- - journal : suprimer le libellé "Détails du groupe"
- - journal : réduire la taille de "Bilan / note"
- - journal : ne pas afficher à l'impression les libellés "compétences", "objectifs", "Consignes" et "Matériel" quand le contenu est vide
- - journal : réduire la taille à l'impression
-
+ - TACHE : afficher les échéances non terminées en noir
+ - JOURNAL : à l'impression, éviter le split d'un groupe et non d'un temps
 
 TODO : 
+ - automatiser la création du ZIP avec le serveur HTTP + sa documentation avec un lien de téléchargement et un MI
  - projets :
    - à l'ajout d'une compétence sur une période du projet, ajouter la note aux gamins sélectionnés
    - à la suppression d'une compétence, demander confirmation si une note est commentée ou évaluée

@@ -169,21 +169,62 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
 
     /** Dupliquer le journal sélectionné ou le temps passé en paramètre à une autre date. */
     public demanderDuplicationJournal(): void {
+
+        // Ouverture du popup
         const dialog = this.dialog.open(DialogDuplicationComponent, { minHeight: 600, minWidth: 1000 }).componentInstance;
-        dialog.journaux = this.journaux;
-        dialog.eleves = this.eleves;
-        dialog.mapRaisonAbsence = this.mapRaisonAbsence;
-        dialog.journal = this.journal;
+
+        // Avec les données nécessaires
         dialog.dateCible = this.journal?.date;
+        dialog.journal = this.journal;
+
+        // Et le traitement à réaliser ensuite
+        const sub = dialog.onSelectionDuplication.pipe(
+            tap(dateCible => {
+                if (this.journaux && this.journal) {
+                    // Recherche ou création du journal à cette date
+                    const journalCible = this.journalService.rechercherOuCreerJournal(this.journaux, dateCible, this.eleves, this.mapRaisonAbsence);
+
+                    // Duplication du contenu du journal
+                    if (journalCible) {
+                        this.journalService.dupliquerJournal(this.journal, journalCible);
+                    }
+                }
+            })
+        ).subscribe();
+        super.declarerSouscription(sub);
     }
 
     /** Dupliquer le journal sélectionné ou le temps passé en paramètre à une autre date. */
     public demanderDuplicationTemps(indexTemps: number): void {
         if (indexTemps > -1 && this.journal && this.journal.temps && indexTemps < this.journal.temps.length) {
+
+            // recherche du temps
+            const temps = this.journal.temps[indexTemps];
+
+            // Ouverture du popup
             const dialog = this.dialog.open(DialogDuplicationComponent, { minHeight: 600, minWidth: 1000 }).componentInstance;
-            dialog.journaux = this.journaux;
-            dialog.temps = this.journal.temps[indexTemps];
+
+
+            // Avec les données nécessaires
             dialog.dateCible = this.journal?.date;
+            dialog.temps = temps;
+
+            // Et le traitement à réaliser ensuite
+            const sub = dialog.onSelectionDuplication.pipe(
+                tap(dateCible => {
+                    if (this.journaux && temps) {
+                        // Recherche ou création du journal à cette date
+                        const journalCible = this.journalService.rechercherOuCreerJournal(this.journaux, dateCible, this.eleves, this.mapRaisonAbsence);
+
+                        // Duplication du contenu du journal
+                        if (journalCible) {
+                            this.journalService.dupliquerTemps(temps, journalCible);
+                        }
+                    }
+                })
+            ).subscribe();
+            super.declarerSouscription(sub);
+
         }
     }
 

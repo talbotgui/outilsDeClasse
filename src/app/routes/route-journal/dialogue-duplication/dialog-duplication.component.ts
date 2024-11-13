@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -23,13 +23,8 @@ import { JournalService } from '../../../service/journal-service';
 })
 export class DialogDuplicationComponent extends AbstractComponent {
 
-  /** Liste des journaux chargés */
-  public journaux: Journal[] | undefined;
-
-  /** Donnees de référence : liste des élèves. */
-  public eleves: Eleve[] = []
-  /** Donnees de référence : Map des raisons d'absence. */
-  public mapRaisonAbsence: { [key: string]: string } | undefined;
+  /** Date ciblée */
+  public dateCible: Date | undefined;
 
   /** Journal à dupliquer (optionnel) */
   @Input()
@@ -39,11 +34,12 @@ export class DialogDuplicationComponent extends AbstractComponent {
   @Input()
   public temps: Temps | undefined;
 
-  /** Date ciblée */
-  public dateCible: Date | undefined;
+  /** Sortie à la demande de duplication. */
+  @Output()
+  public onSelectionDuplication = new EventEmitter<Date>();
 
   /** Un constructeur pour se faire injecter les dépendances. */
-  constructor(private journalService: JournalService, private dialogRef: MatDialogRef<DialogDuplicationComponent>) { super(); }
+  constructor(private dialogRef: MatDialogRef<DialogDuplicationComponent>) { super(); }
 
   /** Fermeture de la popup */
   public annuler(): void {
@@ -54,22 +50,11 @@ export class DialogDuplicationComponent extends AbstractComponent {
   public dupliquer(): void {
 
     // Si pas de date ou pas de données, fin
-    if (!this.dateCible || !this.journaux) {
+    if (!this.dateCible) {
       return;
     }
 
-    // Recherche du journal à cette date
-    const journalCible = this.journalService.rechercherOuCreerJournal(this.journaux, this.dateCible, this.eleves, this.mapRaisonAbsence)
-
-    // Si duplication du temps
-    if (this.journal && journalCible) {
-      this.journalService.dupliquerJournal(this.journal, journalCible);
-    }
-
-    // Si duplication de journal
-    else if (this.temps && journalCible) {
-      this.journalService.dupliquerTemps(this.temps, journalCible);
-    }
+    this.onSelectionDuplication.emit(this.dateCible);
 
     this.dialogRef.close();
   }
