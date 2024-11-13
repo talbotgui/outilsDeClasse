@@ -1,6 +1,5 @@
 BUG :
  - JOURNAL : pb mm/dd/yyyy dans la saisie du calendrier
- - ELEVE : mauvaise récupération de la données Eleve.datesESS depuis les vielles données
  - ELEVE : adapter la taille des textes dans la fiche élève à l'impression
  - JOURNAL : à l'impression, éviter le split d'un groupe et non d'un temps
 

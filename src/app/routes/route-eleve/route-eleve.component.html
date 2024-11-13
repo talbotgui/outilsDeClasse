@@ -5,16 +5,19 @@
 
     <mat-chip-listbox aria-label="Sélection d'un élève" [selectable]="true">
         @for (eleve of eleves; track eleve.id) {
-        <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</mat-chip-option>
+        <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne">{{eleve.nom}}
+            {{eleve.prenom}}</mat-chip-option>
         }
         <mat-chip-option selectable="false" (click)="ajouterUnEleve()">
-            <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon icon="plus"></fa-icon></button>
+            <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon
+                    icon="plus"></fa-icon></button>
         </mat-chip-option>
     </mat-chip-listbox>
 </fieldset>
 }
 @else {
-<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable.
+    Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
 </p>
 <p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
 }
@@ -24,15 +27,18 @@
 <fieldset class="maclasse-formulaire">
     <legend>
         <span>Elève sélectionné : {{eleveSelectionne.nom}} {{eleveSelectionne.prenom}}</span>
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerEleveSelectionne()" matTooltip="Supprimer cet élève" aria-label="Supprimer cet élève">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerEleveSelectionne()"
+            matTooltip="Supprimer cet élève" aria-label="Supprimer cet élève">
             <fa-icon icon="trash"></fa-icon>
         </button>
         @if (modeEdition) {
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie" aria-label="Terminer la saisie">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false"
+            matTooltip="Terminer la saisie" aria-label="Terminer la saisie">
             <fa-icon icon="check"></fa-icon>
         </button>
         } @else {
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer cet élève" aria-label="Editer cet élève">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true"
+            matTooltip="Editer cet élève" aria-label="Editer cet élève">
             <fa-icon icon="pencil" size="xs"></fa-icon>
         </button>
         }
@@ -45,23 +51,27 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Prénom</mat-label>
-            <input matInput type="text" required #inputPrenom="ngModel" name="prenom" [(ngModel)]="eleveSelectionne.prenom">
+            <input matInput type="text" required #inputPrenom="ngModel" name="prenom"
+                [(ngModel)]="eleveSelectionne.prenom">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Date de naissance (dd/mm/yyyy)</mat-label>
-            <input matInput [matDatepicker]="pickerDateNaissance" #inputDateNaissance="ngModel" [(ngModel)]="eleveSelectionne.dateNaissance">
+            <input matInput [matDatepicker]="pickerDateNaissance" #inputDateNaissance="ngModel"
+                [(ngModel)]="eleveSelectionne.dateNaissance">
             <mat-datepicker-toggle matIconSuffix [for]="pickerDateNaissance"></mat-datepicker-toggle>
             <mat-datepicker #pickerDateNaissance></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Date d'admission (dd/mm/yyyy)</mat-label>
-            <input matInput [matDatepicker]="pickerDateAdmission" #inputDate="ngModel" [(ngModel)]="eleveSelectionne.dateAdmission">
+            <input matInput [matDatepicker]="pickerDateAdmission" #inputDate="ngModel"
+                [(ngModel)]="eleveSelectionne.dateAdmission">
             <mat-datepicker-toggle matIconSuffix [for]="pickerDateAdmission"></mat-datepicker-toggle>
             <mat-datepicker #pickerDateAdmission></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Statut</mat-label>
-            <mat-select #inputStatutEleve="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut" name="statut">
+            <mat-select #inputStatutEleve="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut"
+                name="statut">
                 @for (entry of mapLibelleStatutEleve | keyvalue ; track entry) {
                 <mat-option [value]="entry.key">{{entry.value}}</mat-option>
                 }
@@ -73,7 +83,8 @@
             <mat-grid-tile>Prénom : {{eleveSelectionne.prenom}}</mat-grid-tile>
             <mat-grid-tile>Date de naissance : {{eleveSelectionne.dateNaissance | date:'dd/MM/yyyy'}}</mat-grid-tile>
             <mat-grid-tile>Date d'admission : {{eleveSelectionne.dateAdmission| date:'dd/MM/yyyy'}}</mat-grid-tile>
-            <mat-grid-tile>Statut : {{eleveSelectionne.statut?mapLibelleStatutEleve[eleveSelectionne.statut]:''}}</mat-grid-tile>
+            <mat-grid-tile>Statut :
+                {{eleveSelectionne.statut?mapLibelleStatutEleve[eleveSelectionne.statut]:''}}</mat-grid-tile>
         </mat-grid-list>
         }
     </div>
@@ -84,7 +95,8 @@
     <legend>
         <span>Contacts</span>
         @if (modeEdition) {
-        <button type="button" mat-icon-button (click)="ajouterUnContact()" matTooltip="Ajouter un contact" aria-label="Ajouter un contact">
+        <button type="button" mat-icon-button (click)="ajouterUnContact()" matTooltip="Ajouter un contact"
+            aria-label="Ajouter un contact">
             <fa-icon icon="plus"></fa-icon>
         </button>
         }
@@ -95,7 +107,8 @@
             <legend>
                 <span>{{contact.nom}}</span>
                 @if (modeEdition) {
-                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerContact(idx)" matTooltip="Supprimer ce contact" aria-label="Supprimer ce contact">
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerContact(idx)"
+                    matTooltip="Supprimer ce contact" aria-label="Supprimer ce contact">
                     <fa-icon icon="trash"></fa-icon>
                 </button>
                 }
@@ -146,16 +159,18 @@
         @if (modeEdition) {
         <mat-form-field>
             <mat-label>Date PPA</mat-label>
-            <textarea matInput [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="dates PPA" rows="6"></textarea>
+            <textarea matInput [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="dates PPA"
+                rows="6"></textarea>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Date ESS</mat-label>
-            <textarea matInput [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="dates ESS" rows="6"></textarea>
+            <textarea matInput [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="dates ESS"
+                rows="6"></textarea>
         </mat-form-field>
         } @else {
         <mat-grid-list cols="2" rowHeight="30px">
             <mat-grid-tile>Date PPA : {{eleveSelectionne.datesPPA}}</mat-grid-tile>
-            <mat-grid-tile>Date ESS : {{eleveSelectionne.datesPPA}}</mat-grid-tile>
+            <mat-grid-tile>Date ESS : {{eleveSelectionne.datesESS}}</mat-grid-tile>
         </mat-grid-list>
         }
     </div>
@@ -196,7 +211,8 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Téléphone Enseignant</mat-label>
-            <input matInput type="text" name="telephoneEnseignant" [(ngModel)]="eleveSelectionne.inclusion.telephoneEnseignant">
+            <input matInput type="text" name="telephoneEnseignant"
+                [(ngModel)]="eleveSelectionne.inclusion.telephoneEnseignant">
         </mat-form-field>
         } @else {
         <mat-grid-list cols="3" rowHeight="30px">
@@ -218,7 +234,8 @@
     <legend>
         <span>Temps d'accompagnement et d'inclusion </span>
         @if (modeEdition) {
-        <button type="button" mat-icon-button (click)="ajouterUneAbsence()" matTooltip="Ajouter une absence" aria-label="Ajouter une absence">
+        <button type="button" mat-icon-button (click)="ajouterUneAbsence()" matTooltip="Ajouter une absence"
+            aria-label="Ajouter une absence">
             <fa-icon icon="plus"></fa-icon>
         </button>
         }
@@ -229,7 +246,8 @@
             <legend>
                 <span>N°{{idx}}</span>
                 @if (modeEdition) {
-                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerAbsence(idx)" matTooltip="Supprimer cette absence" aria-label="Supprimer cette absence">
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerAbsence(idx)"
+                    matTooltip="Supprimer cette absence" aria-label="Supprimer cette absence">
                     <fa-icon icon="trash"></fa-icon>
                 </button>
                 }
@@ -253,7 +271,8 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Fréquence</mat-label>
-                <mat-select #inputFrequence="ngModel" [(ngModel)]="absence.frequence" placeholder="Fréquence" name="frequence">
+                <mat-select #inputFrequence="ngModel" [(ngModel)]="absence.frequence" placeholder="Fréquence"
+                    name="frequence">
                     @for (entry of mapFrequenceAbsence | keyvalue ; track entry) {
                     <mat-option [value]="entry.key">{{entry.value}}</mat-option>
                     }
@@ -300,7 +319,8 @@
             <mat-grid-tile colspan="4">Accompagnement</mat-grid-tile>
             <mat-grid-tile>
                 @if (modeEdition) {
-                <button type="button" mat-icon-button (click)="ajouterCursus()" matTooltip="Ajouter une ligne dans le cursus" aria-label="Ajouter une ligne dans le cursus">
+                <button type="button" mat-icon-button (click)="ajouterCursus()"
+                    matTooltip="Ajouter une ligne dans le cursus" aria-label="Ajouter une ligne dans le cursus">
                     <fa-icon icon="plus"></fa-icon>
                 </button>
                 }
@@ -340,7 +360,8 @@
             </mat-grid-tile>
             <mat-grid-tile>
                 @if (modeEdition) {
-                <button type="button" mat-icon-button (click)="supprimerCursus(idx)" matTooltip="Supprimer cette ligne du cursus" aria-label="Supprimer cette ligne du cursus">
+                <button type="button" mat-icon-button (click)="supprimerCursus(idx)"
+                    matTooltip="Supprimer cette ligne du cursus" aria-label="Supprimer cette ligne du cursus">
                     <fa-icon icon="trash"></fa-icon>
                 </button>
                 }
@@ -355,7 +376,8 @@
     <legend>Bilans</legend>
     <div>
         @if (modeEdition) {
-        <angular-editor [config]="configurationWysiwyg" placeholder="Bilans de cet élève" name="bilans" [(ngModel)]="eleveSelectionne.bilans"></angular-editor>
+        <angular-editor [config]="configurationWysiwyg" placeholder="Bilans de cet élève" name="bilans"
+            [(ngModel)]="eleveSelectionne.bilans"></angular-editor>
         } @else {
         <div [innerHTML]="eleveSelectionne.bilans | html"></div>
         }
