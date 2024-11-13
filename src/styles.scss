@@ -133,9 +133,11 @@ fieldset.maclasse-formulaire>div {
     body {
         zoom: 0.7;
     }
-    
+
     /** Pour retirer l'entête et le pied de page générés par le navigateur. */
-    @page { margin: 0; }
+    @page {
+        margin: 0;
+    }
 
     /** Pour ne pas couper un fieldset à l'impression. */
     fieldset {
@@ -228,4 +230,14 @@ legend.maclasse-legendFlex {
 /* Pour créer une liste d'élèves sans ponctuation. */
 span.maclasse-eleve:not(:first-child) {
     margin-left: 5px;
+}
+
+/** ONGLET TACHE - Pour ne pas griser les checkbox désactivées (à mettre ici sinon pas pris en compte). */
+.mat-mdc-checkbox.tache>div>label {
+    color: black !important;
+}
+
+/** ONGLET TACHE - Pour griser les échéances terminées (à mettre ici sinon pas pris en compte). */
+.mat-mdc-checkbox.tache.termine>div>label {
+    color: var(--mat-checkbox-disabled-label-color) !important;
 }

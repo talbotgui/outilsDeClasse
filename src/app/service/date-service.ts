@@ -40,8 +40,11 @@ export class DateService {
     }
 
     /** Formattage d'un nombre sur 2 chiffres. */
-    private formaterNombre(n: number): string {
-        if (n < 10) {
+    public formaterNombre(n: number | undefined): string {
+        if (!n) {
+            return '';
+        }
+        else if (n < 10) {
             return '0' + n;
         } else {
             return '' + n;

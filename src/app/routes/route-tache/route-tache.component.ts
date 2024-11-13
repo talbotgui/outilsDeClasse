@@ -71,7 +71,6 @@ export class RouteTacheComponent extends AbstractComponent implements OnInit {
           this.taches = donnees.taches;
 
           // Tri des tâches
-          this.taches.forEach(t => this.tacheService.trierEcheancesDuneTache(t));
           this.tacheService.trierTaches(this.taches);
         }
       })
@@ -96,7 +95,6 @@ export class RouteTacheComponent extends AbstractComponent implements OnInit {
     this.idTacheEnEdition = '';
 
     // Tri des tâches
-    this.taches.forEach(t => this.tacheService.trierEcheancesDuneTache(t));
     this.tacheService.trierTaches(this.taches);
   }
 

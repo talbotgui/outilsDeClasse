@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Echeance, Tache } from "../model/model";
+import { DateService } from "./date-service";
 
 @Injectable({ providedIn: 'root' })
 export class TacheService {
 
     /** Constructeur pour injection des dépendances. */
-    constructor() { }
+    constructor(private dateService: DateService) { }
 
 
     /** Ajout d'une tâche */
@@ -40,20 +41,25 @@ export class TacheService {
 
     /** Tri des échéances des tâches. */
     public trierTaches(taches: Tache[] | undefined): void {
+
+        // Tri des échances de chaque tâche en premier lieu
+        (taches || []).forEach(this.trierEcheancesDuneTache.bind(this));
+
+        // Tri des tâches ensuite
         (taches || []).sort((t1, t2) => {
-            if (t1.echeances && t1.echeances[0] && t1.echeances[0].date && t2.echeances && t2.echeances[0] && t2.echeances[0].date) {
-                return t1.echeances[0].date.getTime() - t2.echeances[0].date.getTime();
-            } else {
-                return -1;
-            }
+            const e1 = (t1.echeances && t1.echeances.length > 0) ? t1.echeances[0] : undefined;
+            const e2 = (t2.echeances && t2.echeances.length > 0) ? t2.echeances[0] : undefined;
+            const v1 = e1?.termine + ' ' + e1?.date?.getFullYear() + this.dateService.formaterNombre(e1?.date?.getMonth()) + this.dateService.formaterNombre(e1?.date?.getDate());
+            const v2 = e2?.termine + ' ' + e2?.date?.getFullYear() + this.dateService.formaterNombre(e2?.date?.getMonth()) + this.dateService.formaterNombre(e2?.date?.getDate());
+            return v1.localeCompare(v2);
         });
     }
 
     /** Tri des échéances des tâches. */
-    public trierEcheancesDuneTache(t: Tache): void {
+    private trierEcheancesDuneTache(t: Tache): void {
         t.echeances.sort((e1, e2) => {
-            const v1 = e1.termine + ' ' + e1.date?.getFullYear() + e1.date?.getMonth() + e1.date?.getDay();
-            const v2 = e2.termine + ' ' + e2.date?.getFullYear() + e2.date?.getMonth() + e2.date?.getDay();
+            const v1 = e1.termine + ' ' + e1.date?.getFullYear() + this.dateService.formaterNombre(e1.date?.getMonth()) + this.dateService.formaterNombre(e1.date?.getDate());
+            const v2 = e2.termine + ' ' + e2.date?.getFullYear() + this.dateService.formaterNombre(e2.date?.getMonth()) + this.dateService.formaterNombre(e2.date?.getDate());
             return v1.localeCompare(v2);
         });
     }

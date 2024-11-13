@@ -11,10 +11,6 @@
     .maclasse-tache {
         width: 536px;
     }
-
-    .mat-mdc-checkbox.mat-mdc-checkbox-disabled label {
-        color: black !important;
-    }
 }
 
 /** A l'impression. */
