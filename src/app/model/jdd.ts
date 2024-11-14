@@ -94,7 +94,7 @@ export class Jdd {
                 prenom: 'TOTO_HORS_ECOLE',
                 dateNaissance: new Date('2009-01-01'),
                 contacts: [
-                    { id: 'bouchon-1', type: 'P', nom: 'M. NOM0 PAPA', email: 'papa.nom0@test.com', adressePostale: 'ici ou là-bas' },
+                    { id: 'bouchon-1', type: 'P', nom: 'M. NOM DU PAPA parfois un peu long dans les formulaire', email: 'email.du.papa.nom@avec.un.dns.a.ralonge.com', adressePostale: 'Petite maison dans la prairie au milieu de nulle part' },
                     { id: 'bouchon-2', type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
                 ],
                 absences: [
@@ -106,9 +106,9 @@ export class Jdd {
                 statut: '0',
                 bilans: 'bla bla bla',
                 inclusion: {
-                    id: 'bouchon-7', ecoleNom: 'Ecole du coin', ecoleAdresse: 'Le coin de la rue 999999 Maville',
-                    nomContact: 'Le directeur', emailContact: 'leDirecteur@en.fr', telContact: '0123456789',
-                    niveau: 'CE1', enseignant: 'le meilleur du monde'
+                    id: 'bouchon-7', ecoleNom: 'Nom de l\'écoole du coin', ecoleAdresse: 'Le coin de la rue qui peut parfois être long 999999 Maville',
+                    nomContact: 'Monsieur le directeur de l\'école', emailContact: 'emailDuDirecteurDeLecole@nomDeDomaineAralonge.fr', telContact: '0123456789',
+                    niveau: 'CE1', enseignant: 'le meilleur enseignant du monde évidemment dont le prénom m\'a échappé'
                 },
                 cursus: [
                     {

@@ -24,7 +24,7 @@
 
 @if (eleveSelectionne) {
 <!-- Formulaire - données élève -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUpSurFicheEleve($event)">
     <legend>
         <span>Elève sélectionné : {{eleveSelectionne.nom}} {{eleveSelectionne.prenom}}</span>
         <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerEleveSelectionne()"
@@ -295,7 +295,7 @@
                 </mat-select>
             </mat-form-field>
             } @else {
-            <mat-grid-list cols="3" rowHeight="30px">
+            <mat-grid-list cols="5" rowHeight="15px">
                 <mat-grid-tile>Type : {{absence.raison?mapRaisonAbsence[absence.raison]:''}}</mat-grid-tile>
                 <mat-grid-tile>Jour : {{absence.jour?joursDeLaSemaine.get(absence.jour):''}}</mat-grid-tile>
                 <mat-grid-tile>Fréquence : {{obtenirLibelleFrequence(absence.frequence)}}</mat-grid-tile>
