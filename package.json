@@ -8,7 +8,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "ng serve",
-    "build": "ng build --configuration production --aot --subresource-integrity --base-href=/outilsDeClasse/ && rm -f ./zip/outilsDeClasse/* && cp ./docs/* ./zip/outilsDeClasse/ && tar -zcvf ./docs/serveurLocal.tar.gz ./zip",
+    "build": "ng build --configuration production --aot --subresource-integrity --base-href=/outilsDeClasse/ && rm -f ./zip/outilsDeClasse/* && rm -f ./docs/serveurLocal.tar.gz && cp ./docs/* ./zip/outilsDeClasse/ && tar -zcvf ./docs/serveurLocal.tar.gz ./zip",
     "http": "http-server ./doc/"
   },
   "private": true,
