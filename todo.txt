@@ -1,7 +1,5 @@
 BUG :
- - JOURNAL : pb mm/dd/yyyy dans la saisie du calendrier
  - ELEVE : adapter la taille des textes dans la fiche élève à l'impression
- - JOURNAL : à l'impression, éviter le split d'un groupe et non d'un temps
 
 TODO : 
  - automatiser la création du ZIP avec le serveur HTTP + sa documentation avec un lien de téléchargement et un MI

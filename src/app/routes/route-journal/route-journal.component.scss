@@ -1,3 +1,8 @@
+/* Pour laisser la marge suffisante autour du champs pour les cadres de couleur au focus. */
+mat-form-field.maclasse-saisieDateJournal {
+    margin: 0px 10px;
+}
+
 /* Pour les temps de type RECREATION et TRANSPORT. */
 fieldset.maclasse-transportOuRecreation>legend {
     background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
@@ -14,9 +19,9 @@ div.maclasse-contenucaseeleves {
     overflow: auto;
 }
 
-/** Pour aligner les titres de temps et les boutons. */
-div.maclasse-titreDeTemps {
-    width: 135px;
+/** Pour laisser un espace entre les noms de groupe dans le libellé du temps. */
+div.maclasse-titreDeTemps span:not(:first-child) {
+    margin-left: 10px;
 }
 
 /** Pour placer les icones de manière régulière. */
