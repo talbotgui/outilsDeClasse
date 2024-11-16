@@ -5,10 +5,13 @@
     "url": "https://guillaumetalbot.com"
   },
   "name": "outils-de-classe",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "start": "ng serve",
-    "build": "ng build --configuration production --aot --subresource-integrity --base-href=/outilsDeClasse/ && rm -f ./outilsDeClasse-versionLocale/outilsDeClasse/* && rm -f ./docs/serveurLocal.tar.gz && cp ./docs/* ./outilsDeClasse-versionLocale/outilsDeClasse/ && tar -zcvf ./docs/serveurLocal.tar.gz ./outilsDeClasse-versionLocale",
+    "package": "ng build --configuration production --aot --subresource-integrity --base-href=/outilsDeClasse/",
+    "preparerPourZip": "rm -f ./zip/outilsDeClasse-versionLocale/outilsDeClasse/* && cp ./docs/* ./zip/outilsDeClasse-versionLocale/outilsDeClasse/",
+    "zip": "rm -f ./docs/outils-de-classe_1.0.0.versionLocale.zip && npm-build-zip --source=./zip --destination=./docs/ --name=versionLocale",
+    "build": "npm run package && npm run preparerPourZip && npm run zip",
     "http": "http-server ./doc/"
   },
   "private": true,
@@ -41,6 +44,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "npm-build-zip": "^1.0.4",
     "typescript": "~5.5.2"
   }
 }
