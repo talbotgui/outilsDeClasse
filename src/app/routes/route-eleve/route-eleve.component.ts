@@ -132,6 +132,13 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
         }
     }
 
+    /** Pour valider le formulaire via un CRTL+ENTRER */
+    public onKeyUpSurFicheEleve(event: KeyboardEvent): void {
+        if (!!event.ctrlKey && event.key == "Enter") {
+            this.modeEdition = false;
+        }
+    }
+
     /** Au clic sur un élève, on le sélectionne/désélectionne */
     public onSelectionEleve(eleve: Eleve): void {
         // Si l'élève cliqué est déjà sélectionné, on vide l'élève sélectionné
