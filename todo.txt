@@ -9,11 +9,9 @@ TODO :
    - switch entre un affichage par domaine ou par projet (afficher en double une compétence présente sur deux projets)
    - les compétences hors projets terminent dans un fieldset 'Hors projet'
    - le bouton d'ajout de compétence n'est que dans le 'Hors projet'
-   
+ - demo : gérer un paramètre ?competencesSeulement pour charger et afficher les compétences du jeux de données de démonstration.
  - au chargement, vérifier la cohérence des données : 
    -
- - permettre d'écraser un journal à la duplication d'un journal si le jour cible existe déjà
- - permettre la création du journal à la duplication d'un temps si le jour cible n'existe pas.
  - détection de changement pour inhiber la sauvegarde ?
  - création d'un fichier de données
  - aide bien rédigée
