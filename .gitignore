@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # Contenu du ZIP dynamique
-zip/outilsDeClasse/*
+outilsDeClasse-versionLocale/outilsDeClasse/*

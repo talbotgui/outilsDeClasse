@@ -2,7 +2,6 @@ BUG :
  - ELEVE : adapter la taille des textes dans la fiche élève à l'impression
 
 TODO : 
- - automatiser la création du ZIP avec le serveur HTTP + sa documentation avec un lien de téléchargement et un MI
  - projets :
    - à l'ajout d'une compétence sur une période du projet, ajouter la note aux gamins sélectionnés
    - à la suppression d'une compétence, demander confirmation si une note est commentée ou évaluée
