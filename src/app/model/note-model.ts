@@ -7,7 +7,6 @@ export class Note {
   public id?: string;
   public dateCreation?: Date;
   public idPeriode?: string;
-  public idEleve?: string;
   public idItem?: string;
   public valeurEvaluation?: string;
   public commentaireEvaluationPublic?: string;

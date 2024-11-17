@@ -30,9 +30,14 @@ export class ChargementService {
                 // Si le parse est un succès
                 if (donnees) {
                     // Transcrire les données si elles sont dans un ancien format de données
-                    if (!donneesString.includes('"versionMajeureApplication":2024')) {
-                        donnees = this.transcrireDonnesSiAncienFormat(donnees);
+                    let entreeVersion = Object.entries(donnees).find(entree => entree[0] === 'versionMajeureApplication');
+                    if (!entreeVersion || !entreeVersion[1]) {
+                        donnees = this.transcrireDonnesSiAncienFormat2024(donnees);
                     }
+                    if (donnees.versionMajeureApplication && donnees.versionMajeureApplication < 2024.1) {
+                        donnees = this.transcrireDonnesSiAncienFormat2024v1(donnees);
+                    }
+
                     // recompléter les données si des attributs sont manquants
                     this.completerDonneeSiManquante(donnees);
                     // validation des données
@@ -68,7 +73,6 @@ export class ChargementService {
         donnees.mapLibelleStatutEleve = donnees.mapLibelleStatutEleve ?? {};
         donnees.mapTypeContact = donnees.mapTypeContact ?? {};
         donnees.mapRaisonAbsence = donnees.mapRaisonAbsence ?? {};
-        donnees.notes = donnees.notes ?? [];
         donnees.periodes = donnees.periodes ?? [];
         donnees.projets = donnees.projets ?? [];
         donnees.taches = donnees.taches ?? [];
@@ -78,6 +82,7 @@ export class ChargementService {
         donnees.eleves.forEach(e => {
             e.id = e.id ?? ModelUtil.getUID();
             e.inclusion = e.inclusion ?? new InclusionEleve();
+            e.notes = e.notes ?? [];
             e.contacts = e.contacts ?? [];
             e.absences = e.absences ?? [];
             e.cursus = e.cursus ?? [];
@@ -85,6 +90,10 @@ export class ChargementService {
             e.contacts.forEach(c => c.id = c.id ?? ModelUtil.getUID());
             e.cursus.forEach(c => c.id = c.id ?? ModelUtil.getUID());
             e.absences.forEach(a => a.id = a.id ?? ModelUtil.getUID());
+            e.notes.forEach(n => {
+                n.id = n.id ?? ModelUtil.getUID()
+                n.idsProjets = n.idsProjets ?? [];
+            });
         });
         donnees.journal.forEach(j => {
             j.id = j.id ?? ModelUtil.getUID();
@@ -95,10 +104,6 @@ export class ChargementService {
                 t.groupes.forEach(g => g.id = g.id ?? ModelUtil.getUID());
                 t.type = t.type || 'classe';
             });
-        });
-        donnees.notes.forEach(n => {
-            n.id = n.id ?? ModelUtil.getUID()
-            n.idsProjets = n.idsProjets ?? [];
         });
         donnees.periodes.forEach(p => p.id = p.id ?? ModelUtil.getUID());
         donnees.projets.forEach(p => {
@@ -148,56 +153,60 @@ export class ChargementService {
     }
 
     /**  Si les données sont à un ancien format, ménage et réadaptation.*/
-    private transcrireDonnesSiAncienFormat(donnees: Annee): Annee {
+    private transcrireDonnesSiAncienFormat2024(donnees: Annee): Annee {
+        const message = 'Transcription des données suite à une évolution de l\'application vers la version "2024"';
+        this.contexteService.afficherUnMessageGeneral(new MessageAafficher("transcrireDonnesSiAncienFormat2024", TypeMessageAafficher.Information, message));
 
         // Suppression de données inutiles
         const listeDesAttributsAsupprimer = ['libellesTypeTempsJournal', 'erreursChargement', 'historique'];
         donnees = Object.fromEntries(Object.entries(donnees).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Annee;
 
         // Traitement des notes
-        donnees.notes = (donnees.notes||[]).map(note => {
+        (donnees.eleves || []).forEach(e => {
+            e.notes = (e.notes || []).map(note => {
 
-            // Recréation d'un objet propre
-            const listeDesAttributsAsupprimer = ['valeur', 'date', 'commentaire', 'outil', 'constat', 'proposition'];
-            const nouvelleNote = Object.fromEntries(Object.entries(note).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Note;
+                // Recréation d'un objet propre
+                const listeDesAttributsAsupprimer = ['valeur', 'date', 'commentaire', 'outil', 'constat', 'proposition'];
+                const nouvelleNote = Object.fromEntries(Object.entries(note).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Note;
 
-            const entreeValeur = Object.entries(note).find(entree => entree[0] === 'valeur');
-            if (entreeValeur && entreeValeur[1]) {
-                nouvelleNote.valeurEvaluation = entreeValeur[1];
-            }
-            const entreeCommentaire = Object.entries(note).find(entree => entree[0] === 'commentaire');
-            if (entreeCommentaire && entreeCommentaire[1]) {
-                nouvelleNote.commentaireEvaluationPublic = entreeCommentaire[1];
-            }
-            nouvelleNote.constatEnPreparation = '';
-            const entreeOutils = Object.entries(note).find(entree => entree[0] === 'outil');
-            if (entreeOutils && entreeOutils[1]) {
-                nouvelleNote.constatEnPreparation += ('Outil : ' + entreeOutils[1] + '\n');
-            }
-            const entreeConstat = Object.entries(note).find(entree => entree[0] === 'constat');
-            if (entreeConstat && entreeConstat[1]) {
-                nouvelleNote.constatEnPreparation += ('Constat : ' + entreeConstat[1] + '\n');
-            }
-            const entreeProposition = Object.entries(note).find(entree => entree[0] === 'proposition');
-            if (entreeProposition && entreeProposition[1]) {
-                nouvelleNote.constatEnPreparation += ('Proposition : ' + entreeProposition[1] + '\n');
-            }
-            const entreeDate = Object.entries(note).find(entree => entree[0] === 'date');
-            if (entreeDate && entreeDate[1]) {
-                const periode = donnees?.periodes.find(p => p.debut && p.fin && p.debut <= entreeDate[1] && entreeDate[1] <= p.fin);
-                if (periode) {
-                    nouvelleNote.idPeriode = periode.id;
+                const entreeValeur = Object.entries(note).find(entree => entree[0] === 'valeur');
+                if (entreeValeur && entreeValeur[1]) {
+                    nouvelleNote.valeurEvaluation = entreeValeur[1];
                 }
-            }
-            return nouvelleNote;
+                const entreeCommentaire = Object.entries(note).find(entree => entree[0] === 'commentaire');
+                if (entreeCommentaire && entreeCommentaire[1]) {
+                    nouvelleNote.commentaireEvaluationPublic = entreeCommentaire[1];
+                }
+                nouvelleNote.constatEnPreparation = '';
+                const entreeOutils = Object.entries(note).find(entree => entree[0] === 'outil');
+                if (entreeOutils && entreeOutils[1]) {
+                    nouvelleNote.constatEnPreparation += ('Outil : ' + entreeOutils[1] + '\n');
+                }
+                const entreeConstat = Object.entries(note).find(entree => entree[0] === 'constat');
+                if (entreeConstat && entreeConstat[1]) {
+                    nouvelleNote.constatEnPreparation += ('Constat : ' + entreeConstat[1] + '\n');
+                }
+                const entreeProposition = Object.entries(note).find(entree => entree[0] === 'proposition');
+                if (entreeProposition && entreeProposition[1]) {
+                    nouvelleNote.constatEnPreparation += ('Proposition : ' + entreeProposition[1] + '\n');
+                }
+                const entreeDate = Object.entries(note).find(entree => entree[0] === 'date');
+                if (entreeDate && entreeDate[1]) {
+                    const periode = donnees?.periodes.find(p => p.debut && p.fin && p.debut <= entreeDate[1] && entreeDate[1] <= p.fin);
+                    if (periode) {
+                        nouvelleNote.idPeriode = periode.id;
+                    }
+                }
+                return nouvelleNote;
+            });
         });
 
         // Traitement des journaux
-        (donnees.journal||[]).forEach(journal => {
+        (donnees.journal || []).forEach(journal => {
             journal.temps = journal.temps.map(temps => {
-                
+
                 // Rien à faire si le temps a déjà des groupes ou un type
-                if (temps.type || temps.groupes && temps.groupes.length > 0){
+                if (temps.type || temps.groupes && temps.groupes.length > 0) {
                     return temps;
                 }
 
@@ -210,7 +219,7 @@ export class ChargementService {
                 const groupe = new GroupeSurUnTemps();
                 nouveauTemps.groupes.push(groupe);
 
-                nouveauTemps.type =  'classe';
+                nouveauTemps.type = 'classe';
                 const entreeNom = Object.entries(temps).find(entree => entree[0] === 'nom');
                 if (entreeNom && entreeNom[1]) {
                     groupe.nom = entreeNom[1];
@@ -232,7 +241,7 @@ export class ChargementService {
         });
 
         // Traitement des projets
-        donnees.projets = (donnees.projets||[]).map(projet => {
+        donnees.projets = (donnees.projets || []).map(projet => {
 
             // Recréation d'un objet propre
             const listeDesAttributsAsupprimer = ['idCompetences'];
@@ -254,7 +263,50 @@ export class ChargementService {
         });
 
         // Ajout du flag pour ne pas repasser dans ce traitement
-        donnees.versionMajeureApplication=2024;
+        donnees.versionMajeureApplication = 2024;
+
+        // Renvoi des données
+        return donnees;
+    }
+
+    /**  Si les données sont à un ancien format, ménage et réadaptation.*/
+    private transcrireDonnesSiAncienFormat2024v1(donnees: Annee): Annee {
+        const message = 'Transcription des données suite à une évolution de l\'application vers la version "2024.1"';
+        this.contexteService.afficherUnMessageGeneral(new MessageAafficher("transcrireDonnesSiAncienFormat2024v1", TypeMessageAafficher.Information, message));
+
+        // Extraction des notes
+        const entreeNotes = Object.entries(donnees).find(entree => entree[0] === 'notes');
+
+        // S'il en existe
+        if (entreeNotes && entreeNotes[1]) {
+
+            // Recopie des données en supprimant les notes
+            const listeDesAttributsAsupprimer = ['notes'];
+            donnees = Object.fromEntries(Object.entries(donnees).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Annee;
+
+            // Init des notes dans chaque eleve
+            (donnees.eleves || []).forEach(e => e.notes = e.notes || []);
+
+            // Déplacement des notes présente à la racine du JSON dans les notes de chaque élève en supprimant l'attribut idEleve
+            (entreeNotes[1] as Note[] || []).forEach(note => {
+
+                // Extraction de l'attribut idEleve
+                const entreeIdEleve = Object.entries(note).find(entree => entree[0] === 'idEleve');
+                if (!entreeIdEleve || !entreeIdEleve[1]) {
+                    return;
+                }
+
+                // Recréation d'un objet propre
+                const listeDesAttributsAsupprimer = ['idEleve'];
+                const nouvelleNote = Object.fromEntries(Object.entries(note).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Note;
+
+                // Recherche de l'élève et ajout de sa note
+                donnees.eleves.find(e => e.id === entreeIdEleve[1])?.notes.push(nouvelleNote);
+            });
+        }
+
+        // Ajout du flag pour ne pas repasser dans ce traitement
+        donnees.versionMajeureApplication = 2024.1;
 
         // Renvoi des données
         return donnees;
@@ -315,27 +367,26 @@ export class ChargementService {
                 });
             });
         });
-        donnees.notes.forEach(n => {
-            if (typeof n.idPeriode == undefined || n.idPeriode && !listeIdPeriodes.includes(n.idPeriode)) {
-                listeErreurs.push('Periode "' + n.idPeriode + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
-            }
-            if (typeof n.idEleve == undefined || n.idEleve && !listeIdEleves.includes(n.idEleve)) {
-                listeErreurs.push('Eleve "' + n.idEleve + '" inconnu dans les données mais référencée dans la note "' + n.id + '"');
-            }
-            if (typeof n.idItem == undefined || n.idItem && !listeIdCompetences.includes(n.idItem)) {
-                listeErreurs.push('Compétence "' + n.idItem + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
-            }
-            // donnée optionnelle
-            if (n.valeurEvaluation && !donnees.mapLibelleNotes[n.valeurEvaluation]) {
-                listeErreurs.push('Valeur "' + n.valeurEvaluation + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
-            }
-            // donnée optionnelle
-            if (n.idsProjets) {
-                const idsEnErreur = n.idsProjets.filter(id => !listeIdProjets.includes(id));
-                if (idsEnErreur.length > 0) {
-                    listeErreurs.push('Projet(s) "' + idsEnErreur + '" inconnu(s) dans les données mais référencée dans la note "' + n.id + '"');
+        (donnees.eleves || []).forEach(e => {
+            e.notes.forEach(n => {
+                if (typeof n.idPeriode == undefined || n.idPeriode && !listeIdPeriodes.includes(n.idPeriode)) {
+                    listeErreurs.push('Periode "' + n.idPeriode + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
                 }
-            }
+                if (typeof n.idItem == undefined || n.idItem && !listeIdCompetences.includes(n.idItem)) {
+                    listeErreurs.push('Compétence "' + n.idItem + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
+                }
+                // donnée optionnelle
+                if (n.valeurEvaluation && !donnees.mapLibelleNotes[n.valeurEvaluation]) {
+                    listeErreurs.push('Valeur "' + n.valeurEvaluation + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
+                }
+                // donnée optionnelle
+                if (n.idsProjets) {
+                    const idsEnErreur = n.idsProjets.filter(id => !listeIdProjets.includes(id));
+                    if (idsEnErreur.length > 0) {
+                        listeErreurs.push('Projet(s) "' + idsEnErreur + '" inconnu(s) dans les données mais référencée dans la note "' + n.id + '"');
+                    }
+                }
+            });
         });
         donnees.projets.forEach(p => {
             (p.sousProjetParPeriode || []).forEach(sp => {

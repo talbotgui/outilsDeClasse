@@ -1,7 +1,7 @@
 import { Eleve } from "./eleve-model";
 import { Journal } from "./journal-model";
 import { ModelUtil } from "./model-utils";
-import { Competence, Note } from "./note-model";
+import { Competence } from "./note-model";
 import { Projet } from "./projet-model";
 
 export class AvecIdentifiant {
@@ -21,7 +21,6 @@ export class Annee extends AvecIdentifiant {
   public mapLibelleStatutEleve: { [key: string]: string } = {};
   public mapTypeContact: { [key: string]: string } = {};
   public mapRaisonAbsence: { [key: string]: string } = {};
-  public notes: Note[] = [];
   public periodes: Periode[] = [];
   public projets: Projet[] = [];
   public taches: Tache[] = [];

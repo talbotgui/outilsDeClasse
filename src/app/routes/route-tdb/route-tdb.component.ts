@@ -45,8 +45,6 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     /** Donnees de référence : libellés de note. */
     public mapLibelleNotes: { [key: string]: string } = {};
 
-    /** Donnees manipulées : liste des notes. */
-    private notes: Note[] = [];
     /** Donnees manipulées : liste des lignes du tableau de bord. */
     public lignes: LigneDeTableauDeBord[] = [];
 
@@ -79,7 +77,6 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                 // Copie des données nécessaires
                 this.periodes = donnees?.periodes || [];
                 this.eleves = donnees?.eleves || [];
-                this.notes = donnees?.notes || [];
                 this.competences = donnees?.competences || [];
                 this.competences.forEach(c => this.mapCompetences.set(c.id || '', c));
                 this.mapLibelleNotes = donnees?.mapLibelleNotes || {};
@@ -114,11 +111,12 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         const note = new Note();
         note.dateCreation = new Date();
         note.idPeriode = periodeAutiliser?.id;
-        note.idEleve = this.eleveSelectionne?.id;
         note.idItem = sousLigne.competence?.id;
 
         // Ajout aux notes
-        this.notes.push(note);
+        if (this.eleveSelectionne && this.eleveSelectionne.notes) {
+            this.eleveSelectionne.notes.push(note);
+        }
 
         // Ajout à la sous-ligne (pour ne pas tout recalculer)
         sousLigne.notePeriodePreparee = note;
@@ -132,12 +130,13 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
 
         // A la fermeture, ajout de la compétence (si sélectionnée)
         dialog.afterClosed().subscribe(competence => {
-            const nbNotesAuDebut = this.notes.length;
 
             // Si pas de sélection, c'est fini
-            if (!competence || !this.periodeSelectionnee) {
+            if (!competence || !this.periodeSelectionnee || !this.eleveSelectionne) {
                 return;
             }
+
+            const nbNotesAuDebut = this.eleveSelectionne.notes.length;
 
             // Gestion du mode d'affichage vis-à-vis de la période à modifier
             let indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
@@ -148,21 +147,19 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
             }
 
             // Recherche des notes
-            const noteExistante = this.notes.find(n => n.idItem === competence.id && n.idPeriode === periodeAutiliser.id);
+            const noteExistante = this.eleveSelectionne.notes.find(n => n.idItem === competence.id && n.idPeriode === periodeAutiliser.id);
 
             // création de la note
             if (!noteExistante) {
                 const note = new Note();
                 note.dateCreation = new Date();
                 note.idPeriode = periodeAutiliser.id;
-                note.idEleve = this.eleveSelectionne?.id;
                 note.idItem = competence.id;
-                this.notes.push(note);
-                console.log('note ajoutée :', note);
+                this.eleveSelectionne.notes.push(note);
             }
 
             //  déclenchement du traitement de MaJ des données maintenant que les notes sont ajoutées
-            const nbNotesAjoutees = this.notes.length - nbNotesAuDebut;
+            const nbNotesAjoutees = this.eleveSelectionne.notes.length - nbNotesAuDebut;
             if (nbNotesAjoutees > 0) {
                 const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Information, nbNotesAjoutees + ' notes ajoutées au tableau de bord pour la compétence "' + competence.text + "'.");
                 this.contexteService.afficherUnMessageGeneral(message);
@@ -209,21 +206,18 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         this.lignes = [];
 
         // Si une période est sélectionnée
-        if (this.periodeSelectionnee) {
-
-            // Filtrage des notes de l'élève (car on va boucler deux fois dessus, autant réduire la liste)
-            const notesDeLeleve = this.notes.filter(n => n.idEleve == this.eleveSelectionne?.id);
+        if (this.periodeSelectionnee && this.eleveSelectionne) {
 
             // Création des lignes pour les deux périodes
             if (this.modeAffichage == 1) {
-                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, true, notesDeLeleve);
+                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, true, this.eleveSelectionne.notes);
             } else if (this.modeAffichage == 2) {
-                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, notesDeLeleve);
+                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
             } else {
-                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, notesDeLeleve);
+                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
                 let indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
                 if (indexPeriodeSelectionnee + 1 < this.periodes.length) {
-                    this.creerLignesTableauDeBordPourUnePeriode(this.periodes[indexPeriodeSelectionnee + 1], true, notesDeLeleve);
+                    this.creerLignesTableauDeBordPourUnePeriode(this.periodes[indexPeriodeSelectionnee + 1], true, this.eleveSelectionne.notes);
                 }
             }
 
@@ -293,7 +287,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
             sousLigne.notePeriodeEvaluee = n;
         } else {
             // message de succès
-            const message = new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence ("' + n.idItem + '") et un même élève ("' + n.idEleve + '")');
+            const message = new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence ("' + n.idItem + '") et un même élève ("' + this.eleveSelectionne?.id + '")');
             this.contexteService.afficherUnMessageGeneral(message);
         }
     }
