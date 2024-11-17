@@ -4,7 +4,7 @@ export class Jdd {
 
     // Jeu de données riche
     static JDD_RICHE: Annee = {
-        versionMajeureApplication: 2024,
+        versionMajeureApplication: 2024.1,
         id: 'bouchon-0',
         enteteEdition: 'Académie X<br/>Département X<br/>Circonscription X<br/>École : X<br/>Adresse : X<br/>Téléphone : 0<br/>Courriel : x@x.x',
         enseignant: 'M. Toto',

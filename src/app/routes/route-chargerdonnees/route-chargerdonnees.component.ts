@@ -4,7 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { tap } from 'rxjs';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { ChargementService } from '../../service/chargement-service';
 
@@ -20,7 +22,7 @@ import { ChargementService } from '../../service/chargement-service';
 export class RouteChargerDonneesComponent extends AbstractComponent {
 
     /** Constructeur pour injection des dépendances. */
-    constructor(private chargementService: ChargementService) { super(); }
+    constructor(private chargementService: ChargementService, private router: Router) { super(); }
 
     /**Nom du fichier local sélectionné (vide sinon) */
     public nomFichierLocal = "";
@@ -54,8 +56,14 @@ export class RouteChargerDonneesComponent extends AbstractComponent {
         // Extraction du contenu
         const contenu = e.target['result'];
 
-        // Chargement et sauvegarde
-        const sub = this.chargementService.chargerDonneesDeClasse(contenu).subscribe();
+        // Chargement des données et renvoi vers l'accueil
+        const sub = this.chargementService.chargerDonneesDeClasse(contenu).pipe(
+            tap((ok) => {
+                if (ok) {
+                    this.router.navigate(['route-accueil']);
+                }
+            })
+        ).subscribe();
         super.declarerSouscription(sub);
     }
 }
