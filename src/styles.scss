@@ -73,9 +73,9 @@ button.mat-mdc-icon-button {
     display: none;
 }
 
-// Pour que toutes les légendes (avec ou sans un bouton) ne bouge pas
+// Pour que toutes les légendes (avec ou sans un bouton) ne bouge pas (uniquement sur écran large)
 legend {
-    height: 48px;
+    min-height: 48px;
     line-height: 48px;
 }
 
@@ -220,6 +220,7 @@ ul.maclasse-texteagauche {
 /** Pour les légendes contenant des boutons. */
 legend.maclasse-legendFlex {
     display: flex;
+    flex-flow: wrap;
 }
 
 /* Pour créer une liste d'élèves sans ponctuation. */
@@ -235,4 +236,9 @@ span.maclasse-eleve:not(:first-child) {
 /** ONGLET TACHE - Pour griser les échéances terminées (à mettre ici sinon pas pris en compte). */
 .mat-mdc-checkbox.tache.termine>div>label {
     color: var(--mat-checkbox-disabled-label-color) !important;
+}
+
+/* Pour couper les emails trop long pour la largeur du champ. */
+.maclasse-email {
+    word-break: break-all;
 }

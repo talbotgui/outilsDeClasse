@@ -71,11 +71,14 @@
         </mat-form-field>
         } @else {
         <div class="maclasse-grille">
-            <div class="maclasse-grille-case50"><label>Nom :</label> {{eleveSelectionne.nom}}</div>
-            <div class="maclasse-grille-case50"><label>Prénom :</label> {{eleveSelectionne.prenom}}</div>
-            <div class="maclasse-grille-case33"><label>Date de naissance :</label> {{eleveSelectionne.dateNaissance | date:'dd/MM/yyyy'}}</div>
-            <div class="maclasse-grille-case33"><label>Date d'admission :</label> {{eleveSelectionne.dateAdmission | date:'dd/MM/yyyy'}}</div>
-            <div class="maclasse-grille-case33"><label>Statut :</label> {{eleveSelectionne.statut?mapLibelleStatutEleve[eleveSelectionne.statut]:''}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case50"><label>Nom :</label> {{eleveSelectionne.nom}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case50"><label>Prénom :</label> {{eleveSelectionne.prenom}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case33"><label>Date de naissance :</label> {{eleveSelectionne.dateNaissance | date:'dd/MM/yyyy'}}
+            </div>
+            <div class="maclasse-grille-case maclasse-grille-case33"><label>Date d'admission :</label> {{eleveSelectionne.dateAdmission | date:'dd/MM/yyyy'}}
+            </div>
+            <div class="maclasse-grille-case maclasse-grille-case33"><label>Statut :</label>
+                {{eleveSelectionne.statut?mapLibelleStatutEleve[eleveSelectionne.statut]:''}}</div>
         </div>
         }
     </div>
@@ -131,12 +134,12 @@
                 </mat-form-field>
                 } @else {
                 <div class="maclasse-grille">
-                    <div class="maclasse-grille-case20"><label>Type :</label> {{contact.type?mapTypeContact[contact.type]:''}}</div>
-                    <div class="maclasse-grille-case50"><label>Nom :</label> {{contact.nom}}</div>
-                    <div class="maclasse-grille-case30"><label>Adresse postale :</label> {{contact.adressePostale}}</div>
+                    <div class="maclasse-grille-case maclasse-grille-case20"><label>Type :</label> {{contact.type?mapTypeContact[contact.type]:''}}</div>
+                    <div class="maclasse-grille-case maclasse-grille-case50"><label>Nom :</label> {{contact.nom}}</div>
+                    <div class="maclasse-grille-case maclasse-grille-case30"><label>Adresse postale :</label> {{contact.adressePostale}}</div>
 
-                    <div class="maclasse-grille-case20"><label>Téléphone :</label> {{contact.telephone}}</div>
-                    <div class="maclasse-grille-case70"><label>Email :</label> {{contact.email}}</div>
+                    <div class="maclasse-grille-case maclasse-grille-case20"><label>Téléphone :</label> {{contact.telephone}}</div>
+                    <div class="maclasse-grille-case maclasse-grille-case70 maclasse-email"><label>Email :</label> {{contact.email}}</div>
                 </div>
                 }
             </div>
@@ -160,8 +163,8 @@
         </mat-form-field>
         } @else {
         <div class="maclasse-grille">
-            <div class="maclasse-grille-case50"><label>Date PPA :</label> {{eleveSelectionne.datesPPA}}</div>
-            <div class="maclasse-grille-case50"><label>Date ESS :</label> {{eleveSelectionne.datesESS}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case50"><label>Date PPA :</label> {{eleveSelectionne.datesPPA}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case50"><label>Date ESS :</label> {{eleveSelectionne.datesESS}}</div>
         </div>
         }
     </div>
@@ -206,16 +209,18 @@
         </mat-form-field>
         } @else {
         <div class="maclasse-grille">
-            <div class="maclasse-grille-case30"><label>Nom de l'école :</label> {{eleveSelectionne.inclusion.ecoleNom}}</div>
-            <div class="maclasse-grille-case70"><label>Adresse de l'école :</label> {{eleveSelectionne.inclusion.ecoleAdresse}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case30"><label>Nom de l'école :</label> {{eleveSelectionne.inclusion.ecoleNom}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case70"><label>Adresse de l'école :</label> {{eleveSelectionne.inclusion.ecoleAdresse}}</div>
 
-            <div class="maclasse-grille-case30"><label>Nom du contact :</label> {{eleveSelectionne.inclusion.nomContact}}</div>
-            <div class="maclasse-grille-case40"><label>Email du contact :</label> {{eleveSelectionne.inclusion.emailContact}}</div>
-            <div class="maclasse-grille-case30"><label>Téléphone du contact :</label> {{eleveSelectionne.inclusion.telContact}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case30"><label>Nom du contact :</label> {{eleveSelectionne.inclusion.nomContact}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case40 maclasse-email"><label>Email du contact :</label>
+                {{eleveSelectionne.inclusion.emailContact}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case30"><label>Téléphone du contact :</label> {{eleveSelectionne.inclusion.telContact}}</div>
 
-            <div class="maclasse-grille-case30"><label>Classe :</label> {{eleveSelectionne.inclusion.niveau}}</div>
-            <div class="maclasse-grille-case40"><label>Enseignant(s) :</label> {{eleveSelectionne.inclusion.enseignant}}</div>
-            <div class="maclasse-grille-case30"><label>Téléphone Enseignant :</label> {{eleveSelectionne.inclusion.telephoneEnseignant}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case30"><label>Classe :</label> {{eleveSelectionne.inclusion.niveau}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case40"><label>Enseignant(s) :</label> {{eleveSelectionne.inclusion.enseignant}}</div>
+            <div class="maclasse-grille-case maclasse-grille-case30"><label>Téléphone Enseignant :</label> {{eleveSelectionne.inclusion.telephoneEnseignant}}
+            </div>
         </div>
         }
     </div>
@@ -286,11 +291,11 @@
             </mat-form-field>
             } @else {
             <div class="maclasse-grille">
-                <div class="maclasse-grille-case20"><label>Type :</label> {{absence.raison?mapRaisonAbsence[absence.raison]:''}}</div>
-                <div class="maclasse-grille-case20"><label>Jour :</label> {{absence.jour?joursDeLaSemaine.get(absence.jour):''}}</div>
-                <div class="maclasse-grille-case20"><label>Fréquence :</label> {{obtenirLibelleFrequence(absence.frequence)}}</div>
-                <div class="maclasse-grille-case20"><label>Début :</label> {{absence.heureDebut}}</div>
-                <div class="maclasse-grille-case20"><label>Fin :</label> {{absence.heureFin}}</div>
+                <div class="maclasse-grille-case maclasse-grille-case20"><label>Type :</label> {{absence.raison?mapRaisonAbsence[absence.raison]:''}}</div>
+                <div class="maclasse-grille-case maclasse-grille-case20"><label>Jour :</label> {{absence.jour?joursDeLaSemaine.get(absence.jour):''}}</div>
+                <div class="maclasse-grille-case maclasse-grille-case20"><label>Fréquence :</label> {{obtenirLibelleFrequence(absence.frequence)}}</div>
+                <div class="maclasse-grille-case maclasse-grille-case20"><label>Début :</label> {{absence.heureDebut}}</div>
+                <div class="maclasse-grille-case maclasse-grille-case20"><label>Fin :</label> {{absence.heureFin}}</div>
             </div>
             }
         </fieldset>
@@ -304,10 +309,10 @@
     <div>
         <div class="maclasse-grille">
             <!-- Entête -->
-            <div class="maclasse-grille-case25">Niveau</div>
-            <div class="maclasse-grille-case25">Etablissement</div>
-            <div class="maclasse-grille-case25">Accompagnement</div>
-            <div class="maclasse-grille-case25">
+            <div class="maclasse-grille-case maclasse-grille-case25">Niveau</div>
+            <div class="maclasse-grille-case maclasse-grille-case25">Etablissement</div>
+            <div class="maclasse-grille-case maclasse-grille-case25">Accompagnement</div>
+            <div class="maclasse-grille-case maclasse-grille-case25">
                 @if (modeEdition) {
                 <button type="button" mat-icon-button (click)="ajouterCursus()" matTooltip="Ajouter une ligne dans le cursus"
                     aria-label="Ajouter une ligne dans le cursus">
@@ -318,7 +323,7 @@
 
             <!-- Pour chaque lignes -->
             @for (cur of eleveSelectionne.cursus ; track cur.id ; let idx = $index) {
-            <div class="maclasse-grille-case25">
+            <div class="maclasse-grille-case maclasse-grille-case25">
                 @if (modeEdition) {
                 <mat-form-field class="maclasse-pleinelargeur">
                     <mat-label>Niveau en 09/{{cur.annee}}</mat-label>
@@ -328,7 +333,7 @@
                 <label>Niveau en 09/{{cur.annee}} :</label> {{cur.niveau}}
                 }
             </div>
-            <div class="maclasse-grille-case25">
+            <div class="maclasse-grille-case maclasse-grille-case25">
                 @if (modeEdition) {
                 <mat-form-field class="maclasse-pleinelargeur">
                     <mat-label>Etablissement en 09/{{cur.annee}}</mat-label>
@@ -338,7 +343,7 @@
                 <label>Etablissement en 09/{{cur.annee}} :</label> {{cur.etablissement}}
                 }
             </div>
-            <div class="maclasse-grille-case25">
+            <div class="maclasse-grille-case maclasse-grille-case25">
                 @if (modeEdition) {
                 <mat-form-field class="maclasse-pleinelargeur">
                     <mat-label>Accompagnement en 09/{{cur.annee}}</mat-label>
@@ -348,7 +353,7 @@
                 <label>Accompagnement en 09/{{cur.annee}} :</label> {{cur.accompagnement}}
                 }
             </div>
-            <div class="maclasse-grille-case25">
+            <div class="maclasse-grille-case maclasse-grille-case25">
                 @if (modeEdition) {
                 <button type="button" mat-icon-button (click)="supprimerCursus(idx)" matTooltip="Supprimer cette ligne du cursus"
                     aria-label="Supprimer cette ligne du cursus">

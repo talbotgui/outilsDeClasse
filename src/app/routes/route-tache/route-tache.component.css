@@ -13,11 +13,16 @@
     }
 }
 
-/** A l'impression. */
-@media print {}
-
 /** Liste verticale. */
 .maclasse-echeances {
     display: flex;
     flex-direction: column;
+}
+
+/* Pour un petit coté responsive. */
+@media only screen and (max-width: 600px) {
+    .maclasse-echeance {
+        display: flex;
+        flex-direction: column;
+    }
 }

@@ -68,3 +68,21 @@
 .maclasse-table-case-bordureDroite {
     border-right: solid 1px white;
 }
+
+/***************************************
+* Avertissement écran trop petit - DEBUT
+***************************************/
+div.avertissementSiPetitEcran {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    div.avertissementSiPetitEcran {
+        display: block;
+        color: red;
+    }
+}
+
+/*************************************
+* Avertissement écran trop petit - FIN
+*************************************/

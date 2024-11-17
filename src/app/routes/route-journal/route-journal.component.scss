@@ -3,6 +3,13 @@ mat-form-field.maclasse-saisieDateJournal {
     margin: 0px 10px;
 }
 
+/* Pour un petit coté responsive. */
+@media only screen and (max-width: 600px) {
+    mat-form-field.maclasse-saisieDateJournal {
+        width: 100%;
+    }
+}
+
 /* Pour les temps de type RECREATION et TRANSPORT. */
 fieldset.maclasse-transportOuRecreation>legend {
     background-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
@@ -54,6 +61,17 @@ div.maclasse-grille-col8 {
 
 div.maclasse-grille-col4 {
     width: 34%;
+}
+
+/* Pour un petit coté responsive. */
+@media only screen and (max-width: 600px) {
+    div.maclasse-grille-col {
+        width: 100%;
+    }
+
+    span.maclasse-titre {
+        width: 100%;
+    }
 }
 
 // Pour réduire l'espace sous les titres dans les tableaux (pour densifier les informations).

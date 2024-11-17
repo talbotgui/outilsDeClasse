@@ -51,3 +51,10 @@ div.maclasse-grille-case70 {
 label {
     text-decoration: underline;
 }
+
+/* Pour un petit coté responsive. */
+@media only screen and (max-width: 600px) {
+    .maclasse-grille-case {
+        width: 100% !important;
+    }
+}

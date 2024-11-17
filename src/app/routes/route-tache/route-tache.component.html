@@ -9,8 +9,7 @@
 <fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
     <legend class="maclasse-legendFlex">
         <span>Liste des tâches de la classe.</span>
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTache()"
-            matTooltip="Ajouter une tâche" aria-label="Ajouter une tâche">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTache()" matTooltip="Ajouter une tâche" aria-label="Ajouter une tâche">
             <fa-icon icon="plus" size="xs"></fa-icon>
         </button>
     </legend>
@@ -20,8 +19,8 @@
             <legend>
                 @if (idTacheEnEdition !== tache.id) {
                 <span>{{tache.titre}}</span>
-                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="passerEnEdition(tache.id)"
-                    matTooltip="Editer la tâche" aria-label="Editer la tâche">
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="passerEnEdition(tache.id)" matTooltip="Editer la tâche"
+                    aria-label="Editer la tâche">
                     <fa-icon icon="pencil" size="xs"></fa-icon>
                 </button>
                 } @else {
@@ -29,26 +28,25 @@
                     <mat-label>Titre</mat-label>
                     <input matInput type="text" required #inputNom="ngModel" name="titre" [(ngModel)]="tache.titre">
                 </mat-form-field>
-                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterEcheance(tache)"
-                    matTooltip="Ajouter une échéance" aria-label="Ajouter une échéance">
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterEcheance(tache)" matTooltip="Ajouter une échéance"
+                    aria-label="Ajouter une échéance">
                     <fa-icon icon="plus" size="xs"></fa-icon>
                 </button>
-                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerTache(tache)"
-                    matTooltip="Supprimer la tache" aria-label="Supprimer la tache">
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerTache(tache)" matTooltip="Supprimer la tache"
+                    aria-label="Supprimer la tache">
                     <fa-icon icon="trash" size="xs"></fa-icon>
                 </button>
-                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="passerEnLecture()"
-                    matTooltip="Valider la tâche" aria-label="Valider la tâche">
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="passerEnLecture()" matTooltip="Valider la tâche"
+                    aria-label="Valider la tâche">
                     <fa-icon icon="check" size="xs"></fa-icon>
                 </button>
                 }
             </legend>
             <div class="maclasse-echeances">
                 @for (echeance of tache.echeances; track echeance.id) {
-                <div>
-                    <mat-checkbox [disabled]="idTacheEnEdition !== tache.id" [checked]="echeance.termine"
-                        (change)="echeance.termine = $event.checked" matTooltip="Tâche réalisée"
-                        aria-label="Tâche réalisée" [class.termine]="echeance.termine" class="tache">
+                <div class="maclasse-echeance">
+                    <mat-checkbox [disabled]="idTacheEnEdition !== tache.id" [checked]="echeance.termine" (change)="echeance.termine = $event.checked"
+                        matTooltip="Tâche réalisée" aria-label="Tâche réalisée" [class.termine]="echeance.termine" class="tache">
                         @if (idTacheEnEdition !== tache.id) {
                         <span>{{echeance.date | date:'dd/MM/yyyy'}} </span>
                         <span>{{echeance.nom}}</span>
@@ -57,21 +55,16 @@
                     @if (idTacheEnEdition === tache.id) {
                     <mat-form-field>
                         <mat-label>Date de l'échéance</mat-label>
-                        <input matInput disabled [matDatepicker]="picker" #inputDateNaissance="ngModel"
-                            [(ngModel)]="echeance.date">
-                        <mat-datepicker-toggle matIconSuffix [disabled]="echeance.termine"
-                            [for]="picker"></mat-datepicker-toggle>
+                        <input matInput disabled [matDatepicker]="picker" #inputDateNaissance="ngModel" [(ngModel)]="echeance.date">
+                        <mat-datepicker-toggle matIconSuffix [disabled]="echeance.termine" [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker [disabled]="echeance.termine" startView="year" #picker></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-label>Nom</mat-label>
-                        <input matInput type="text" required #inputNom="ngModel" name="nom" [(ngModel)]="echeance.nom"
-                            [disabled]="echeance.termine">
+                        <input matInput type="text" required #inputNom="ngModel" name="nom" [(ngModel)]="echeance.nom" [disabled]="echeance.termine">
                     </mat-form-field>
-                    <button type="button" mat-icon-button class="maclasse-bouton16"
-                        (click)="supprimerEcheance(tache,echeance)" [disabled]="echeance.termine"
-                        matTooltip="Supprimer l'échéance de cette tache"
-                        aria-label="Supprimer l'échéance de cette tache">
+                    <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerEcheance(tache,echeance)" [disabled]="echeance.termine"
+                        matTooltip="Supprimer l'échéance de cette tache" aria-label="Supprimer l'échéance de cette tache">
                         <fa-icon icon="trash" size="xs"></fa-icon>
                     </button>
                     }
