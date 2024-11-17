@@ -30,7 +30,7 @@ export class DivMessageComponent extends AbstractComponent implements OnInit {
                         // on ajoute le nouveau message
                         this.messagesAafficher.push(message);
                         // et on le masque au bout de 3 secondes
-                        setTimeout(this.retirerMessage.bind(this), 3000, message);
+                        setTimeout(this.retirerMessage.bind(this), 30000, message);
                     }
                     // pour remettre l'utilisateur en haut de la page
                     window.scrollTo(0, 0);
