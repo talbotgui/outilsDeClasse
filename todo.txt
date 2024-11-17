@@ -1,5 +1,6 @@
 BUG :
  - ELEVE : adapter la taille des textes dans la fiche élève à l'impression
+ - supprimer la saisie manuelle dans tous les dates picker
 
 TODO : 
  - général : déplacer la liste à plat de notes dans une structure période/eleve/notes ou directement dans les élèves

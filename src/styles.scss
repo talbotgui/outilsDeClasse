@@ -79,11 +79,6 @@ legend {
     line-height: 48px;
 }
 
-/** Pour que le contenu des cases de tableau soit aligné à gauche. */
-.mat-grid-tile-content {
-    justify-content: start !important;
-}
-
 /** Pour mettre en avant le champ de saisie Material ayant le focus.*/
 mat-form-field.mat-focused {
     border: solid 3px var(--mdc-protected-button-label-text-color);

@@ -94,7 +94,7 @@ export class Jdd {
                 prenom: 'TOTO_HORS_ECOLE',
                 dateNaissance: new Date('2009-01-01'),
                 contacts: [
-                    { id: 'bouchon-1', type: 'P', nom: 'M. NOM DU PAPA parfois un peu long dans les formulaire', email: 'email.du.papa.nom@avec.un.dns.a.ralonge.com', adressePostale: 'Petite maison dans la prairie au milieu de nulle part' },
+                    { id: 'bouchon-1', type: 'P', nom: 'M. NOM DU PAPA parfois un peu long dans les formulaire', email: 'email.du.papa.nom@avec.un.dns.a.ralonge.com', adressePostale: 'Petite maison dans la prairie au milieu de nulle part', telephone: '0612345678' },
                     { id: 'bouchon-2', type: 'M', nom: 'M. NOM0 MAMAN', email: 'maman.nom0@test.com', adressePostale: 'ailleurs' }
                 ],
                 absences: [

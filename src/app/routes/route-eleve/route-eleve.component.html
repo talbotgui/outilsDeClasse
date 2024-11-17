@@ -5,20 +5,17 @@
 
     <mat-chip-listbox aria-label="Sélection d'un élève" [selectable]="true">
         @for (eleve of eleves; track eleve.id) {
-        <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne">{{eleve.nom}}
-            {{eleve.prenom}}</mat-chip-option>
+        <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</mat-chip-option>
         }
         <mat-chip-option selectable="false" (click)="ajouterUnEleve()">
-            <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon
-                    icon="plus"></fa-icon></button>
+            <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon icon="plus"></fa-icon></button>
         </mat-chip-option>
     </mat-chip-listbox>
 </fieldset>
 }
 @else {
-<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable.
-    Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
-</p>
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en
+    retirer tout ce qui suit le caractère #.</p>
 <p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
 }
 
@@ -27,18 +24,17 @@
 <fieldset class="maclasse-formulaire" (keyup)="onKeyUpSurFicheEleve($event)">
     <legend>
         <span>Elève sélectionné : {{eleveSelectionne.nom}} {{eleveSelectionne.prenom}}</span>
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerEleveSelectionne()"
-            matTooltip="Supprimer cet élève" aria-label="Supprimer cet élève">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerEleveSelectionne()" matTooltip="Supprimer cet élève"
+            aria-label="Supprimer cet élève">
             <fa-icon icon="trash"></fa-icon>
         </button>
         @if (modeEdition) {
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false"
-            matTooltip="Terminer la saisie" aria-label="Terminer la saisie">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie"
+            aria-label="Terminer la saisie">
             <fa-icon icon="check"></fa-icon>
         </button>
         } @else {
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true"
-            matTooltip="Editer cet élève" aria-label="Editer cet élève">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer cet élève" aria-label="Editer cet élève">
             <fa-icon icon="pencil" size="xs"></fa-icon>
         </button>
         }
@@ -51,52 +47,46 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Prénom</mat-label>
-            <input matInput type="text" required #inputPrenom="ngModel" name="prenom"
-                [(ngModel)]="eleveSelectionne.prenom">
+            <input matInput type="text" required #inputPrenom="ngModel" name="prenom" [(ngModel)]="eleveSelectionne.prenom">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Date de naissance (dd/mm/yyyy)</mat-label>
-            <input matInput [matDatepicker]="pickerDateNaissance" #inputDateNaissance="ngModel"
-                [(ngModel)]="eleveSelectionne.dateNaissance">
+            <input matInput [matDatepicker]="pickerDateNaissance" #inputDateNaissance="ngModel" [(ngModel)]="eleveSelectionne.dateNaissance">
             <mat-datepicker-toggle matIconSuffix [for]="pickerDateNaissance"></mat-datepicker-toggle>
             <mat-datepicker #pickerDateNaissance></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Date d'admission (dd/mm/yyyy)</mat-label>
-            <input matInput [matDatepicker]="pickerDateAdmission" #inputDate="ngModel"
-                [(ngModel)]="eleveSelectionne.dateAdmission">
+            <input matInput [matDatepicker]="pickerDateAdmission" #inputDate="ngModel" [(ngModel)]="eleveSelectionne.dateAdmission">
             <mat-datepicker-toggle matIconSuffix [for]="pickerDateAdmission"></mat-datepicker-toggle>
             <mat-datepicker #pickerDateAdmission></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Statut</mat-label>
-            <mat-select #inputStatutEleve="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut"
-                name="statut">
+            <mat-select #inputStatutEleve="ngModel" [(ngModel)]="eleveSelectionne.statut" placeholder="Statut" name="statut">
                 @for (entry of mapLibelleStatutEleve | keyvalue ; track entry) {
                 <mat-option [value]="entry.key">{{entry.value}}</mat-option>
                 }
             </mat-select>
         </mat-form-field>
         } @else {
-        <mat-grid-list cols="3" rowHeight="30px">
-            <mat-grid-tile>Nom : {{eleveSelectionne.nom}}</mat-grid-tile>
-            <mat-grid-tile>Prénom : {{eleveSelectionne.prenom}}</mat-grid-tile>
-            <mat-grid-tile>Date de naissance : {{eleveSelectionne.dateNaissance | date:'dd/MM/yyyy'}}</mat-grid-tile>
-            <mat-grid-tile>Date d'admission : {{eleveSelectionne.dateAdmission| date:'dd/MM/yyyy'}}</mat-grid-tile>
-            <mat-grid-tile>Statut :
-                {{eleveSelectionne.statut?mapLibelleStatutEleve[eleveSelectionne.statut]:''}}</mat-grid-tile>
-        </mat-grid-list>
+        <div class="maclasse-grille">
+            <div class="maclasse-grille-case50">Nom : {{eleveSelectionne.nom}}</div>
+            <div class="maclasse-grille-case50">Prénom : {{eleveSelectionne.prenom}}</div>
+            <div class="maclasse-grille-case33">Date de naissance : {{eleveSelectionne.dateNaissance | date:'dd/MM/yyyy'}}</div>
+            <div class="maclasse-grille-case33">Date d'admission : {{eleveSelectionne.dateAdmission | date:'dd/MM/yyyy'}}</div>
+            <div class="maclasse-grille-case33">Statut : {{eleveSelectionne.statut?mapLibelleStatutEleve[eleveSelectionne.statut]:''}}</div>
+        </div>
         }
     </div>
 </fieldset>
 
 <!-- Formulaire - contacts -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire" [class.maclasse-masquerEnModePrint]="!eleveSelectionne.contacts || eleveSelectionne.contacts.length===0">
     <legend>
         <span>Contacts</span>
         @if (modeEdition) {
-        <button type="button" mat-icon-button (click)="ajouterUnContact()" matTooltip="Ajouter un contact"
-            aria-label="Ajouter un contact">
+        <button type="button" mat-icon-button (click)="ajouterUnContact()" matTooltip="Ajouter un contact" aria-label="Ajouter un contact">
             <fa-icon icon="plus"></fa-icon>
         </button>
         }
@@ -107,46 +97,49 @@
             <legend>
                 <span>{{contact.nom}}</span>
                 @if (modeEdition) {
-                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerContact(idx)"
-                    matTooltip="Supprimer ce contact" aria-label="Supprimer ce contact">
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerContact(idx)" matTooltip="Supprimer ce contact"
+                    aria-label="Supprimer ce contact">
                     <fa-icon icon="trash"></fa-icon>
                 </button>
                 }
             </legend>
-            @if (modeEdition) {
-            <mat-form-field>
-                <mat-label>Type</mat-label>
-                <mat-select [(ngModel)]="contact.type" placeholder="Type" name="type">
-                    @for (entry of mapTypeContact | keyvalue ; track entry) {
-                    <mat-option [value]="entry.key">{{entry.value}}</mat-option>
-                    }
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Nom</mat-label>
-                <input matInput name="nom" [(ngModel)]="contact.nom">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input matInput type="email" name="email" [(ngModel)]="contact.email">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Téléphone</mat-label>
-                <input matInput type="telephone" name="telephone" [(ngModel)]="contact.telephone">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Adresse postale</mat-label>
-                <input matInput type="adressePostale" name="adressePostale" [(ngModel)]="contact.adressePostale">
-            </mat-form-field>
-            } @else {
-            <mat-grid-list cols="3" rowHeight="30px">
-                <mat-grid-tile>Type : {{contact.type?mapTypeContact[contact.type]:''}}</mat-grid-tile>
-                <mat-grid-tile>Nom : {{contact.nom}}</mat-grid-tile>
-                <mat-grid-tile>Email : {{contact.email}}</mat-grid-tile>
-                <mat-grid-tile>Téléphone : {{contact.telephone}}</mat-grid-tile>
-                <mat-grid-tile>Adresse postale : {{contact.adressePostale}}</mat-grid-tile>
-            </mat-grid-list>
-            }
+            <div>
+                @if (modeEdition) {
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <mat-select [(ngModel)]="contact.type" placeholder="Type" name="type">
+                        @for (entry of mapTypeContact | keyvalue ; track entry) {
+                        <mat-option [value]="entry.key">{{entry.value}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Nom</mat-label>
+                    <input matInput name="nom" [(ngModel)]="contact.nom">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" name="email" [(ngModel)]="contact.email">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Téléphone</mat-label>
+                    <input matInput type="telephone" name="telephone" [(ngModel)]="contact.telephone">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Adresse postale</mat-label>
+                    <input matInput type="adressePostale" name="adressePostale" [(ngModel)]="contact.adressePostale">
+                </mat-form-field>
+                } @else {
+                <div class="maclasse-grille">
+                    <div class="maclasse-grille-case20">Type : {{contact.type?mapTypeContact[contact.type]:''}}</div>
+                    <div class="maclasse-grille-case50">Nom : {{contact.nom}}</div>
+                    <div class="maclasse-grille-case30">Adresse postale : {{contact.adressePostale}}</div>
+
+                    <div class="maclasse-grille-case20">Téléphone : {{contact.telephone}}</div>
+                    <div class="maclasse-grille-case70">Email : {{contact.email}}</div>
+                </div>
+                }
+            </div>
         </fieldset>
         }
     </div>
@@ -159,25 +152,23 @@
         @if (modeEdition) {
         <mat-form-field>
             <mat-label>Date PPA</mat-label>
-            <textarea matInput [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="dates PPA"
-                rows="6"></textarea>
+            <textarea matInput [(ngModel)]="eleveSelectionne.datesPPA" name="datesPPA" placeholder="dates PPA" rows="6"></textarea>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Date ESS</mat-label>
-            <textarea matInput [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="dates ESS"
-                rows="6"></textarea>
+            <textarea matInput [(ngModel)]="eleveSelectionne.datesESS" name="datesESS" placeholder="dates ESS" rows="6"></textarea>
         </mat-form-field>
         } @else {
-        <mat-grid-list cols="2" rowHeight="30px">
-            <mat-grid-tile>Date PPA : {{eleveSelectionne.datesPPA}}</mat-grid-tile>
-            <mat-grid-tile>Date ESS : {{eleveSelectionne.datesESS}}</mat-grid-tile>
-        </mat-grid-list>
+        <div class="maclasse-grille">
+            <div class="maclasse-grille-case50">Date PPA : {{eleveSelectionne.datesPPA}}</div>
+            <div class="maclasse-grille-case50">Date ESS : {{eleveSelectionne.datesESS}}</div>
+        </div>
         }
     </div>
 </fieldset>
 
 <!-- Formulaire - inclusions -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire" [class.maclasse-masquerEnModePrint]="!eleveSelectionne.inclusion">
     <legend>Inclusion mise en place</legend>
     <div>
         @if (modeEdition) {
@@ -211,31 +202,31 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Téléphone Enseignant</mat-label>
-            <input matInput type="text" name="telephoneEnseignant"
-                [(ngModel)]="eleveSelectionne.inclusion.telephoneEnseignant">
+            <input matInput type="text" name="telephoneEnseignant" [(ngModel)]="eleveSelectionne.inclusion.telephoneEnseignant">
         </mat-form-field>
         } @else {
-        <mat-grid-list cols="3" rowHeight="30px">
-            <mat-grid-tile>Nom de l'école : {{eleveSelectionne.inclusion.ecoleNom}}</mat-grid-tile>
-            <mat-grid-tile colspan="2">Adresse de l'école : {{eleveSelectionne.inclusion.ecoleAdresse}}</mat-grid-tile>
-            <mat-grid-tile>Nom du contact : {{eleveSelectionne.inclusion.nomContact}}</mat-grid-tile>
-            <mat-grid-tile>Email du contact : {{eleveSelectionne.inclusion.emailContact}}</mat-grid-tile>
-            <mat-grid-tile>Téléphone du contact : {{eleveSelectionne.inclusion.telContact}}</mat-grid-tile>
-            <mat-grid-tile>Classe : {{eleveSelectionne.inclusion.niveau}}</mat-grid-tile>
-            <mat-grid-tile>Enseignant(s) : {{eleveSelectionne.inclusion.enseignant}}</mat-grid-tile>
-            <mat-grid-tile>Téléphone Enseignant : {{eleveSelectionne.inclusion.telephoneEnseignant}}</mat-grid-tile>
-        </mat-grid-list>
+        <div class="maclasse-grille">
+            <div class="maclasse-grille-case30">Nom de l'école : {{eleveSelectionne.inclusion.ecoleNom}}</div>
+            <div class="maclasse-grille-case70">Adresse de l'école : {{eleveSelectionne.inclusion.ecoleAdresse}}</div>
+
+            <div class="maclasse-grille-case30">Nom du contact : {{eleveSelectionne.inclusion.nomContact}}</div>
+            <div class="maclasse-grille-case50">Email du contact : {{eleveSelectionne.inclusion.emailContact}}</div>
+            <div class="maclasse-grille-case20">Téléphone du contact : {{eleveSelectionne.inclusion.telContact}}</div>
+
+            <div class="maclasse-grille-case30">Classe : {{eleveSelectionne.inclusion.niveau}}</div>
+            <div class="maclasse-grille-case40">Enseignant(s) : {{eleveSelectionne.inclusion.enseignant}}</div>
+            <div class="maclasse-grille-case30">Téléphone Enseignant : {{eleveSelectionne.inclusion.telephoneEnseignant}}</div>
+        </div>
         }
     </div>
 </fieldset>
 
 <!-- Formulaire - absences -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire" [class.maclasse-masquerEnModePrint]="!eleveSelectionne.absences || eleveSelectionne.absences.length===0">
     <legend>
         <span>Temps d'accompagnement et d'inclusion </span>
         @if (modeEdition) {
-        <button type="button" mat-icon-button (click)="ajouterUneAbsence()" matTooltip="Ajouter une absence"
-            aria-label="Ajouter une absence">
+        <button type="button" mat-icon-button (click)="ajouterUneAbsence()" matTooltip="Ajouter une absence" aria-label="Ajouter une absence">
             <fa-icon icon="plus"></fa-icon>
         </button>
         }
@@ -246,8 +237,8 @@
             <legend>
                 <span>N°{{idx}}</span>
                 @if (modeEdition) {
-                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerAbsence(idx)"
-                    matTooltip="Supprimer cette absence" aria-label="Supprimer cette absence">
+                <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerAbsence(idx)" matTooltip="Supprimer cette absence"
+                    aria-label="Supprimer cette absence">
                     <fa-icon icon="trash"></fa-icon>
                 </button>
                 }
@@ -271,8 +262,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Fréquence</mat-label>
-                <mat-select #inputFrequence="ngModel" [(ngModel)]="absence.frequence" placeholder="Fréquence"
-                    name="frequence">
+                <mat-select #inputFrequence="ngModel" [(ngModel)]="absence.frequence" placeholder="Fréquence" name="frequence">
                     @for (entry of mapFrequenceAbsence | keyvalue ; track entry) {
                     <mat-option [value]="entry.key">{{entry.value}}</mat-option>
                     }
@@ -295,13 +285,13 @@
                 </mat-select>
             </mat-form-field>
             } @else {
-            <mat-grid-list cols="5" rowHeight="15px">
-                <mat-grid-tile>Type : {{absence.raison?mapRaisonAbsence[absence.raison]:''}}</mat-grid-tile>
-                <mat-grid-tile>Jour : {{absence.jour?joursDeLaSemaine.get(absence.jour):''}}</mat-grid-tile>
-                <mat-grid-tile>Fréquence : {{obtenirLibelleFrequence(absence.frequence)}}</mat-grid-tile>
-                <mat-grid-tile>Début : {{absence.heureDebut}}</mat-grid-tile>
-                <mat-grid-tile>Fin : {{absence.heureFin}}</mat-grid-tile>
-            </mat-grid-list>
+            <div class="maclasse-grille">
+                <div class="maclasse-grille-case20">Type : {{absence.raison?mapRaisonAbsence[absence.raison]:''}}</div>
+                <div class="maclasse-grille-case20">Jour : {{absence.jour?joursDeLaSemaine.get(absence.jour):''}}</div>
+                <div class="maclasse-grille-case20">Fréquence : {{obtenirLibelleFrequence(absence.frequence)}}</div>
+                <div class="maclasse-grille-case20">Début : {{absence.heureDebut}}</div>
+                <div class="maclasse-grille-case20">Fin : {{absence.heureFin}}</div>
+            </div>
             }
         </fieldset>
         }
@@ -312,23 +302,23 @@
 <fieldset class="maclasse-formulaire">
     <legend>Cursus scolaire</legend>
     <div>
-        <mat-grid-list cols="12" [rowHeight]="modeEdition?'80px':'30px'">
+        <div class="maclasse-grille">
             <!-- Entête -->
-            <mat-grid-tile colspan="3">Niveau</mat-grid-tile>
-            <mat-grid-tile colspan="4">Etablissement</mat-grid-tile>
-            <mat-grid-tile colspan="4">Accompagnement</mat-grid-tile>
-            <mat-grid-tile>
+            <div class="maclasse-grille-case25">Niveau</div>
+            <div class="maclasse-grille-case25">Etablissement</div>
+            <div class="maclasse-grille-case25">Accompagnement</div>
+            <div class="maclasse-grille-case25">
                 @if (modeEdition) {
-                <button type="button" mat-icon-button (click)="ajouterCursus()"
-                    matTooltip="Ajouter une ligne dans le cursus" aria-label="Ajouter une ligne dans le cursus">
+                <button type="button" mat-icon-button (click)="ajouterCursus()" matTooltip="Ajouter une ligne dans le cursus"
+                    aria-label="Ajouter une ligne dans le cursus">
                     <fa-icon icon="plus"></fa-icon>
                 </button>
                 }
-            </mat-grid-tile>
+            </div>
 
             <!-- Pour chaque lignes -->
             @for (cur of eleveSelectionne.cursus ; track cur.id ; let idx = $index) {
-            <mat-grid-tile colspan="3">
+            <div class="maclasse-grille-case25">
                 @if (modeEdition) {
                 <mat-form-field class="maclasse-pleinelargeur">
                     <mat-label>Niveau en 09/{{cur.annee}}</mat-label>
@@ -337,8 +327,8 @@
                 } @else {
                 Niveau en 09/{{cur.annee}} : {{cur.niveau}}
                 }
-            </mat-grid-tile>
-            <mat-grid-tile colspan="4">
+            </div>
+            <div class="maclasse-grille-case25">
                 @if (modeEdition) {
                 <mat-form-field class="maclasse-pleinelargeur">
                     <mat-label>Etablissement en 09/{{cur.annee}}</mat-label>
@@ -347,8 +337,8 @@
                 } @else {
                 Etablissement en 09/{{cur.annee}} : {{cur.etablissement}}
                 }
-            </mat-grid-tile>
-            <mat-grid-tile colspan="4">
+            </div>
+            <div class="maclasse-grille-case25">
                 @if (modeEdition) {
                 <mat-form-field class="maclasse-pleinelargeur">
                     <mat-label>Accompagnement en 09/{{cur.annee}}</mat-label>
@@ -357,17 +347,17 @@
                 } @else {
                 Accompagnement en 09/{{cur.annee}} : {{cur.accompagnement}}
                 }
-            </mat-grid-tile>
-            <mat-grid-tile>
+            </div>
+            <div class="maclasse-grille-case25">
                 @if (modeEdition) {
-                <button type="button" mat-icon-button (click)="supprimerCursus(idx)"
-                    matTooltip="Supprimer cette ligne du cursus" aria-label="Supprimer cette ligne du cursus">
+                <button type="button" mat-icon-button (click)="supprimerCursus(idx)" matTooltip="Supprimer cette ligne du cursus"
+                    aria-label="Supprimer cette ligne du cursus">
                     <fa-icon icon="trash"></fa-icon>
                 </button>
                 }
-            </mat-grid-tile>
+            </div>
             }
-        </mat-grid-list>
+        </div>
     </div>
 </fieldset>
 
@@ -376,8 +366,7 @@
     <legend>Bilans</legend>
     <div>
         @if (modeEdition) {
-        <angular-editor [config]="configurationWysiwyg" placeholder="Bilans de cet élève" name="bilans"
-            [(ngModel)]="eleveSelectionne.bilans"></angular-editor>
+        <angular-editor [config]="configurationWysiwyg" placeholder="Bilans de cet élève" name="bilans" [(ngModel)]="eleveSelectionne.bilans"></angular-editor>
         } @else {
         <div [innerHTML]="eleveSelectionne.bilans | html"></div>
         }
