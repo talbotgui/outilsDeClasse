@@ -1,0 +1,8 @@
+{
+    "editor.wordWrapColumn": 160,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+    },
+    "html.format.wrapLineLength": 160
+}
