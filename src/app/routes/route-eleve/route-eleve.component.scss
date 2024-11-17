@@ -3,7 +3,9 @@ mat-form-field {
     margin-right: 10px;
 }
 
-/** Grille flex sans colonne. */
+/*******************************
+* GRILLE sans colonne - DEBUT
+*******************************/
 div.maclasse-grille {
     display: flex;
     flex-wrap: wrap;
@@ -39,4 +41,13 @@ div.maclasse-grille-case60 {
 
 div.maclasse-grille-case70 {
     width: calc(70%)
+}
+
+/*******************************
+* GRILLE sans colonne - FIN
+*******************************/
+
+/* Pour souligner les libellés en mode affichage. */
+label {
+    text-decoration: underline;
 }
