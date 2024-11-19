@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
+import { Eleve } from "../model/eleve-model";
 import { Periode } from "../model/model";
+import { CONSTATS_EN_PREPARATION_PAR_DEFAUT, Note } from "../model/note-model";
 import { Projet, SousProjetParPeriode } from "../model/projet-model";
 
 @Injectable({ providedIn: 'root' })
@@ -9,29 +11,73 @@ export class ProjetService {
     constructor() { }
 
     /** Ajout d'une compétence dans le sous-projet */
-    public ajouterCompetence(sousProjet: SousProjetParPeriode, competence: any): void {
-        if (competence !== undefined) {
-            if (!sousProjet.idCompetences) {
-                sousProjet.idCompetences = [];
-            }
-            sousProjet.idCompetences.push(competence.id);
+    public ajouterCompetence(sousProjet: SousProjetParPeriode, idCompetence: string, projet: Projet, eleves: Eleve[]): void {
+        if (!sousProjet.idCompetences) {
+            sousProjet.idCompetences = [];
+        }
+
+        // Ajout de la compétence au sous-projet
+        sousProjet.idCompetences.push(idCompetence);
+
+        // Ajout de notes à tous les élèves liés au projet pour la compétence et pour la période du sousProjet
+        if (sousProjet.idPeriode && projet.idsEleve) {
+            this.ajouterNotesLieesAunProjet(eleves, projet.idsEleve, projet.id, sousProjet.idPeriode, [idCompetence]);
         }
     }
 
-    /** Ajout ou retrait d'un élève à un temps */
-    public ajouterRetirerEleveAuProjet(projetSelectionne: Projet | undefined, idEleve: string): void {
-        if (!projetSelectionne) {
-            return;
+    /** Ajout d'un élève à un temps */
+    public ajouterEleveAuProjet(projet: Projet, idEleve: string, eleves: Eleve[]): void {
+        if (!projet.idsEleve) {
+            projet.idsEleve = [];
         }
-        if (!projetSelectionne.idsEleve) {
-            projetSelectionne.idsEleve = [];
+
+        // Recherche de l'élève dans la liste
+        const index = projet.idsEleve.indexOf(idEleve);
+
+        // S'il n'y est pas
+        if (index === -1) {
+
+            // Ajout de l'élève
+            projet.idsEleve.push(idEleve);
+
+            // Ajout des notes à tous les élèves liés au projet pour les compétences du projet pour chaque période de sousProjet
+            (projet.sousProjetParPeriode || []).forEach(ssProjet => {
+                if (ssProjet.idPeriode && ssProjet.idCompetences) {
+                    this.ajouterNotesLieesAunProjet(eleves, [idEleve], projet.id, ssProjet.idPeriode, ssProjet.idCompetences);
+                }
+            });
         }
-        const index = projetSelectionne.idsEleve.indexOf(idEleve);
-        if (index !== -1) {
-            projetSelectionne.idsEleve.splice(index, 1);
-        } else {
-            projetSelectionne.idsEleve.push(idEleve);
-        }
+    }
+
+    /** Suppression des notes liées à un projet */
+    private ajouterNotesLieesAunProjet(eleves: Eleve[], idsEleve: string[], idProjet: string, idPeriode: string, idsCompetence: string[]) {
+        // pour chaque élève lié au projet
+        eleves.forEach(e => {
+            if (idsEleve?.includes(e.id)) {
+
+                // Pour chaque compétence de la liste
+                idsCompetence.forEach(idCompetence => {
+
+                    // Recherche d'une note avec cette compétence (pour ne jamais avoir de doublon)
+                    let note = e.notes.find(n => n.idItem === idCompetence && n.idPeriode === idPeriode);
+
+                    // Si la note n'existe pas, on la crée et l'ajoute
+                    if (!note) {
+                        note = new Note();
+                        note.idItem = idCompetence;
+                        note.idPeriode = idPeriode;
+                        note.dateCreation = new Date();
+                        note.idsProjets = [];
+                        e.notes.push(note);
+                    }
+
+                    // Ajout de l'id de projet si ce n'est pas déjà fait
+                    if (!note.idsProjets?.includes(idProjet)) {
+                        note.idsProjets?.push(idProjet);
+                    }
+                });
+            }
+        });
     }
 
     /** Ajout d'un projet */
@@ -51,25 +97,113 @@ export class ProjetService {
         projetSelectionne?.sousProjetParPeriode?.push(ssProjet);
     }
 
+    /** Suppression des notes liées à un projet */
+    public rechercherElevesAvecEvaluationPourUneCompetenceEtUnProjet(eleves: Eleve[], projet: Projet, idPeriode: string, idsCompetence: string[]): Eleve[] {
+
+        // pour chaque élève 
+        return eleves.filter(e =>
+            // lié au projet
+            projet.idsEleve?.includes(e.id) &&
+
+            // avec au moins une note
+            0 !== e.notes.filter(n =>
+                //pour la compétence et la période à traiter
+                n.idItem && idsCompetence.includes(n.idItem) && idPeriode === n.idPeriode &&
+                // n'étant lié qu'à ce projet
+                n.idsProjets && n.idsProjets.length === 1 && n.idsProjets[0] === projet.id &&
+                // avec une donnée saisie
+                (n.commentaireEvaluationPrive || n.commentaireEvaluationPublic || n.valeurEvaluation || (n.constatEnPreparation && n.constatEnPreparation != CONSTATS_EN_PREPARATION_PAR_DEFAUT))
+            ).length
+        );
+    }
+
     /** Suppression de la compétence dans le sous-projet */
-    public supprimerCompetence(sousLigne: SousProjetParPeriode, idCompetence: string): void {
-        if (sousLigne && sousLigne.idCompetences) {
-            const index = sousLigne.idCompetences.indexOf(idCompetence);
+    public supprimerCompetence(sousProjet: SousProjetParPeriode, idCompetence: string, projet: Projet, eleves: Eleve[]): void {
+        if (sousProjet && sousProjet.idCompetences && sousProjet.idPeriode && projet.idsEleve) {
+
+            // Suppression de la compétence du sous-projet
+            const index = sousProjet.idCompetences.indexOf(idCompetence);
             if (index !== -1) {
-                sousLigne.idCompetences.splice(index, 1);
+                sousProjet.idCompetences.splice(index, 1);
             }
+
+            // Suppression des notes de tous les élèves liés au projet pour la compétences et pour la période du sousProjet
+            this.supprimerNotesLieesAunProjet(eleves, projet.idsEleve, projet.id, sousProjet.idPeriode, [idCompetence]);
         }
     }
 
+    /** Retrait d'un élève à un temps */
+    public retirerEleveAuProjet(projet: Projet, idEleve: string, eleves: Eleve[]): void {
+        if (!projet.idsEleve) {
+            projet.idsEleve = [];
+        }
+
+        // Recherche de l'élève dans la liste
+        const index = projet.idsEleve.indexOf(idEleve);
+
+        // S'il y est
+        if (index !== -1) {
+
+            // Retrait de l'élève
+            projet.idsEleve.splice(index, 1);
+
+            // Suppression des notes de tous les élèves liés au projet pour toutes les compétences de chaque sous projet et pour la période de chaque sousProjet
+            (projet.sousProjetParPeriode || []).forEach(ssProjet => {
+                if (ssProjet.idPeriode && ssProjet.idCompetences) {
+                    this.supprimerNotesLieesAunProjet(eleves, [idEleve], projet.id, ssProjet.idPeriode, ssProjet.idCompetences);
+                }
+            });
+        }
+    }
+
+    /** Suppression des notes liées à un projet */
+    private supprimerNotesLieesAunProjet(eleves: Eleve[], idsEleve: string[], idProjet: string, idPeriode: string, idsCompetence: string[]) {
+        // pour chaque élève lié au projet
+        eleves.forEach(e => {
+            if (idsEleve?.includes(e.id)) {
+
+                // Suppression des notes 
+                e.notes = e.notes.filter(n => {
+                    // liés aux périodes et compétences passées en paramètre
+                    if (n.idItem && idsCompetence.includes(n.idItem) && idPeriode === n.idPeriode) {
+
+                        // Retrait de l'id de projet
+                        if (n.idsProjets) {
+                            const index = n.idsProjets?.indexOf(idProjet);
+                            if (index > -1) {
+                                n.idsProjets?.splice(index, 1);
+                            }
+                        }
+
+                        // On conserve la note s'il reste au moins un idProjet
+                        return n.idsProjets && n.idsProjets.length > 0;
+                    }
+
+                    // Si la note n'est pas concernée, on la garde
+                    else {
+                        return true;
+                    }
+                });
+            }
+        });
+    }
+
     /** Suppression du projet sélectionné. */
-    public supprimerProjetSelectionne(projetSelectionne: Projet | undefined, projets: Projet[] | undefined): boolean {
-        if (projetSelectionne && projets) {
+    public supprimerProjetSelectionne(projet: Projet | undefined, projets: Projet[] | undefined, eleves: Eleve[]): boolean {
+        if (projet && projets) {
 
             // Suppression du projet
-            const index = projets.indexOf(projetSelectionne);
+            const index = projets.indexOf(projet);
             if (index !== -1) {
                 projets.splice(index, 1);
             }
+
+            // Suppression des notes de tous les élèves liés au projet pour toutes les compétences de chaque sous projet et pour la période de chaque sousProjet
+            (projet.sousProjetParPeriode || []).forEach(ssProjet => {
+                if (ssProjet.idPeriode && ssProjet.idCompetences && projet.idsEleve) {
+                    this.supprimerNotesLieesAunProjet(eleves, projet.idsEleve, projet.id, ssProjet.idPeriode, ssProjet.idCompetences);
+                }
+            });
 
             // MaJ Affichage
             return true;

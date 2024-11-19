@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Attention !!!</h2>
+
+<mat-dialog-content>
+    <p>Cette compétence a déjà fait l'objet d'une évaluation pour les élèves suivants :</p>
+    <ul>
+        @for (eleve of elevesPosantProbleme ; track eleve) {
+        <li>{{eleve.prenom}}</li>
+        }
+    </ul>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button type="button" mat-raised-button matTooltip="Annuler" aria-label="Annuler" (click)="annuler()">Annuler</button>
+    <button type="button" mat-raised-button matTooltip="Valider" aria-label="Valider" (click)="valider()">Valider</button>
+</mat-dialog-actions>

@@ -5,12 +5,10 @@
 
     <mat-chip-listbox aria-label="Sélection d'un projet" [selectable]="true">
         @for (projet of projets; track projet.id) {
-        <mat-chip-option (click)="onSelectionProjet(projet)"
-            [selected]="projet==projetSelectionne">{{projet.nom}}</mat-chip-option>
+        <mat-chip-option (click)="onSelectionProjet(projet)" [selected]="projet==projetSelectionne">{{projet.nom}}</mat-chip-option>
         }
         <mat-chip-option selectable="false" (click)="ajouterUnProjet()">
-            <button type="button" mat-icon-button matTooltip="Ajouter un projet" aria-label="Ajouter un projet"><fa-icon
-                    icon="plus"></fa-icon></button>
+            <button type="button" mat-icon-button matTooltip="Ajouter un projet" aria-label="Ajouter un projet"><fa-icon icon="plus"></fa-icon></button>
         </mat-chip-option>
     </mat-chip-listbox>
 </fieldset>
@@ -23,6 +21,11 @@
 }
 
 @if (projetSelectionne) {
+
+@if (modeEdition){
+<p><b>PETIT RAPPEL :</b> Tout ajout ou retrait d'une compétence ou d'un élève entraine la modification des données du tableau de bord !!</p>
+}
+
 <!-- Formulaire - données projet -->
 <fieldset class="maclasse-formulaire">
     <legend class="maclasse-legendFlex">
@@ -34,22 +37,21 @@
         } @else {
         <span>Projet sélectionné : {{projetSelectionne.nom}}</span>
         }
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerProjetSelectionne()"
-            matTooltip="Supprimer ce projet" aria-label="Supprimer ce projet">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerProjetSelectionne()" matTooltip="Supprimer ce projet"
+            aria-label="Supprimer ce projet">
             <fa-icon icon="trash"></fa-icon>
         </button>
         @if (modeEdition) {
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false"
-            matTooltip="Terminer la saisie" aria-label="Terminer la saisie">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie"
+            aria-label="Terminer la saisie">
             <fa-icon icon="check"></fa-icon>
         </button>
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterUnSousProjet()"
-            matTooltip="Ajouter une période" aria-label="Ajouter une période">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterUnSousProjet()" matTooltip="Ajouter une période"
+            aria-label="Ajouter une période">
             <fa-icon icon="plus"></fa-icon>
         </button>
         } @else {
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true"
-            matTooltip="Editer ce projet" aria-label="Editer ce projet">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer ce projet" aria-label="Editer ce projet">
             <fa-icon icon="pencil" size="xs"></fa-icon>
         </button>
         }
@@ -95,8 +97,7 @@
                 @if (modeEdition) {
                 <mat-form-field>
                     <mat-label>En période</mat-label>
-                    <mat-select #inputPeriode="ngModel" [(ngModel)]="sousLigne.idPeriode" placeholder="Période"
-                        name="Période">
+                    <mat-select #inputPeriode="ngModel" [(ngModel)]="sousLigne.idPeriode" placeholder="Période" name="Période">
                         @for (p of periodes ; track p.id) {
                         <mat-option [value]="p.id">{{p.nom}}</mat-option>
                         }
@@ -118,18 +119,15 @@
                 <div>
                     <span>Compétences : </span>
                     @if (modeEdition) {
-                    <button type="button" mat-icon-button class="maclasse-bouton16"
-                        (click)="demanderAjoutCompetence(sousLigne)"
-                        matTooltip="Ajouter une compétence à ce projet pour cette période"
-                        aria-label="Ajouter une compétence à ce projet pour cette période">
+                    <button type="button" mat-icon-button class="maclasse-bouton16" (click)="demanderAjoutCompetence(sousLigne)"
+                        matTooltip="Ajouter une compétence à ce projet pour cette période" aria-label="Ajouter une compétence à ce projet pour cette période">
                         <fa-icon icon="plus"></fa-icon>
                     </button>
                     }
                     <ul>
                         @for (idCompetence of sousLigne.idCompetences ; track idCompetence ; let idx = $index) {
-                        <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence"
-                            [affichageMinimal]="false" [iconeAction]="(modeEdition)?'trash':''"
-                            libelleAction="Supprimer la compétence"
+                        <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence" [affichageMinimal]="false"
+                            [iconeAction]="(modeEdition)?'trash':''" libelleAction="Supprimer la compétence"
                             (onAction)="supprimerCompetence(sousLigne, idCompetence)"></li>
                         }
                     </ul>
@@ -142,8 +140,8 @@
             <legend class="maclasse-legendFlex">Notes du côté éducatif</legend>
             <div>
                 @if (modeEdition) {
-                <angular-editor [config]="configurationWysiwyg" placeholder="Notes du côté éducatif"
-                    name="Notes du côté éducatif" [(ngModel)]="projetSelectionne.notesCoteEducatif"></angular-editor>
+                <angular-editor [config]="configurationWysiwyg" placeholder="Notes du côté éducatif" name="Notes du côté éducatif"
+                    [(ngModel)]="projetSelectionne.notesCoteEducatif"></angular-editor>
                 } @else {
                 <span [innerHTML]="projetSelectionne.notesCoteEducatif | html"></span>
                 }

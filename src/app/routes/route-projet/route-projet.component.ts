@@ -24,7 +24,7 @@ import { HtmlPipe } from '../../pipes/html.pipe';
 import { ContexteService } from '../../service/contexte-service';
 import { ProjetService } from '../../service/projet-service';
 import { RouteEleveComponent } from '../route-eleve/route-eleve.component';
-
+import { DialogSuppressionCompetenceComponent } from './dialogue-suppression/dialog-suppressioncompetence.component';
 
 @Component({
     selector: 'route-projet', templateUrl: './route-projet.component.html', styleUrl: './route-projet.component.scss',
@@ -65,21 +65,52 @@ export class RouteProjetComponent extends AbstractComponent implements OnInit {
     /** Constructeur pour injection des dépendances. */
     public constructor(private projetService: ProjetService, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private dialog: MatDialog) { super(); }
 
-    /** Ajout d'une compétence dans le sous-projet */
-    public demanderAjoutCompetence(sousProjet: SousProjetParPeriode): void {
-
-        // Ouverture du dialog avec le composant de sélection de compétence
-        const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
-
-        // A la fermeture, ajout de la compétence (si sélectionnée)
-        dialog.afterClosed().subscribe(competence => {
-            this.projetService.ajouterCompetence(sousProjet, competence);
-        });
-    }
-
     /** Ajout ou retrait d'un élève à un temps */
     public ajouterRetirerEleveAuProjet(idEleve: string): void {
-        this.projetService.ajouterRetirerEleveAuProjet(this.projetSelectionne, idEleve);
+        if (this.eleves && this.projetSelectionne && this.projetSelectionne.sousProjetParPeriode) {
+
+            // Ajout de l'élève
+            if (!this.projetSelectionne.idsEleve?.includes(idEleve)) {
+                this.projetService.ajouterEleveAuProjet(this.projetSelectionne, idEleve, this.eleves);
+            }
+
+            // Retrait de l'élève
+            else {
+
+                // Préparation des données nécessaire ensuite
+                const listeEleveAvecUnSeulEleve = this.eleves.filter(e => e.id === idEleve);
+                const periodesUtiliseesDansProjet = this.projetSelectionne.sousProjetParPeriode.map(ssProjet => ssProjet.idPeriode);
+
+                // Rechercher si l'élève a une évaluation pour ce projet
+                const pbTrouve = this.projetSelectionne.sousProjetParPeriode?.filter(ssProjet =>
+                    this.eleves && this.projetSelectionne && ssProjet.idPeriode && ssProjet.idCompetences &&
+                    this.projetService.rechercherElevesAvecEvaluationPourUneCompetenceEtUnProjet(listeEleveAvecUnSeulEleve, this.projetSelectionne, ssProjet.idPeriode, ssProjet.idCompetences).length > 0
+                ).length > 0;
+
+
+                // En cas de problème, popup et suppression que si la confirmation est obtenue
+                if (pbTrouve) {
+
+                    // Ouverture du dialog avec le composant de sélection de compétence
+                    const dialog = this.dialog.open(DialogSuppressionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
+                    dialog.componentInstance.elevesPosantProbleme = listeEleveAvecUnSeulEleve;
+                    dialog.componentInstance.periodes = this.periodes?.filter(p => periodesUtiliseesDansProjet.includes(p.id));
+                    dialog.componentInstance.projet = this.projetSelectionne;
+
+                    // A la fermeture, retrait de l'élève du projet si OK
+                    dialog.afterClosed().subscribe(ok => {
+                        if (ok && this.projetSelectionne && this.eleves) {
+                            this.projetService.retirerEleveAuProjet(this.projetSelectionne, idEleve, this.eleves);
+                        }
+                    });
+                }
+
+                // Sinon, retrait de l'élève du projet
+                else {
+                    this.projetService.retirerEleveAuProjet(this.projetSelectionne, idEleve, this.eleves);
+                }
+            }
+        }
     }
 
     /** Ajout d'un projet */
@@ -97,6 +128,20 @@ export class RouteProjetComponent extends AbstractComponent implements OnInit {
     /** Ajout d'un sous-projet */
     public ajouterUnSousProjet(): void {
         this.projetService.ajouterUnSousProjet(this.projetSelectionne);
+    }
+
+    /** Ajout d'une compétence dans le sous-projet */
+    public demanderAjoutCompetence(sousProjet: SousProjetParPeriode): void {
+
+        // Ouverture du dialog avec le composant de sélection de compétence
+        const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
+
+        // A la fermeture, ajout de la compétence (si sélectionnée)
+        dialog.afterClosed().subscribe(competence => {
+            if (this.projetSelectionne && this.eleves) {
+                this.projetService.ajouterCompetence(sousProjet, competence.id, this.projetSelectionne, this.eleves);
+            }
+        });
     }
 
     /** Au chargement du composant */
@@ -153,13 +198,42 @@ export class RouteProjetComponent extends AbstractComponent implements OnInit {
     }
 
     /** Suppression de la compétence dans le sous-projet */
-    public supprimerCompetence(sousLigne: SousProjetParPeriode, idCompetence: string): void {
-        this.projetService.supprimerCompetence(sousLigne, idCompetence);
+    public supprimerCompetence(sousProjet: SousProjetParPeriode, idCompetence: string): void {
+        if (this.projetSelectionne && this.eleves && sousProjet.idPeriode) {
+
+            // Rechercher des élèves ayant une évaluation pour cette compétence
+            const elevesPosantProbleme = this.projetService.rechercherElevesAvecEvaluationPourUneCompetenceEtUnProjet(this.eleves, this.projetSelectionne, sousProjet.idPeriode, [idCompetence]);
+
+            // En cas de problème, popup et suppression que si la confirmation est obtenue
+            if (elevesPosantProbleme && elevesPosantProbleme.length > 0) {
+
+                // Ouverture du dialog avec le composant de sélection de compétence
+                const dialog = this.dialog.open(DialogSuppressionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
+                dialog.componentInstance.elevesPosantProbleme = elevesPosantProbleme;
+                dialog.componentInstance.periodes = this.periodes?.filter(p => p.id === sousProjet.idPeriode);
+                dialog.componentInstance.projet = this.projetSelectionne;
+
+                // A la fermeture, 
+                dialog.afterClosed().subscribe(ok => {
+                    // si ok
+                    if (ok && this.projetSelectionne && this.eleves) {
+                        // Supprimer la compétence
+                        this.projetService.supprimerCompetence(sousProjet, idCompetence, this.projetSelectionne, this.eleves);
+                    }
+                });
+            }
+
+            // Sinon
+            else {
+                // Supprimer la compétence
+                this.projetService.supprimerCompetence(sousProjet, idCompetence, this.projetSelectionne, this.eleves);
+            }
+        }
     }
 
     /** Suppression du projet sélectionné. */
     public supprimerProjetSelectionne(): void {
-        if (this.projetService.supprimerProjetSelectionne(this.projetSelectionne, this.projets)) {
+        if (this.eleves && this.projetService.supprimerProjetSelectionne(this.projetSelectionne, this.projets, this.eleves)) {
 
             // Désélection du projet
             this.projetSelectionne = undefined;

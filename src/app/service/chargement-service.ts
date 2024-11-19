@@ -287,7 +287,7 @@ export class ChargementService {
             // Init des notes dans chaque eleve
             (donnees.eleves || []).forEach(e => e.notes = e.notes || []);
 
-            // Déplacement des notes présente à la racine du JSON dans les notes de chaque élève en supprimant l'attribut idEleve
+            // Déplacement des notes présente à la racine du JSON dans les notes de chaque élève en supprimant l'attribut idEleve et en ajoutant un idProjet 'ajoutManuel'
             (entreeNotes[1] as Note[] || []).forEach(note => {
 
                 // Extraction de l'attribut idEleve
@@ -305,6 +305,16 @@ export class ChargementService {
             });
         }
 
+        // Ajout du projet 'ajoutManuel' sur les notes sans lien avec un projet
+        (donnees.eleves || []).forEach(e => {
+            e.notes.forEach(n => {
+                // Ajout du projet par défaut
+                if (!n.idsProjets) {
+                    n.idsProjets = ['ajoutManuel'];
+                }
+            });
+        });
+
         // Ajout du flag pour ne pas repasser dans ce traitement
         donnees.versionMajeureApplication = 2024.1;
 
@@ -320,6 +330,7 @@ export class ChargementService {
         const listeIdPeriodes = donnees.periodes.map(p => p.id);
         const listeIdEleves = donnees.eleves.map(e => e.id);
         const listeIdProjets = donnees.projets.map(p => p.id);
+        listeIdProjets.push('ajoutManuel');
 
         // Init de la liste des messages d'erreur
         const listeErreurs: string[] = [];

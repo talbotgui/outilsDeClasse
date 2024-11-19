@@ -1,3 +1,5 @@
+export const CONSTATS_EN_PREPARATION_PAR_DEFAUT = 'Constats : \nOutils : ';
+
 export class Competence {
   public id?: string;
   public text?: string;
@@ -11,6 +13,6 @@ export class Note {
   public valeurEvaluation?: string;
   public commentaireEvaluationPublic?: string;
   public commentaireEvaluationPrive?: string;
-  public constatEnPreparation?: string = 'Constats : \nOutils : ';
+  public constatEnPreparation?: string = CONSTATS_EN_PREPARATION_PAR_DEFAUT;
   public idsProjets?: string[];
 }

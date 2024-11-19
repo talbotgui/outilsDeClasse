@@ -16,6 +16,7 @@ import { Eleve } from '../../model/eleve-model';
 import { MessageAafficher, TypeMessageAafficher } from '../../model/message-model';
 import { Periode } from '../../model/model';
 import { Competence, Note } from '../../model/note-model';
+import { Projet } from '../../model/projet-model';
 import { LigneDeTableauDeBord, SousLigneDeTableauDeBord } from '../../model/tdb-model';
 import { ContexteService } from '../../service/contexte-service';
 
@@ -36,6 +37,8 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
 
     /** Donnees de référence : liste des élèves. */
     public eleves: Eleve[] = [];
+    /** Donnees de référence : liste des projets. */
+    public projets: Projet[] = [];
     /** Donnees de référence : liste des périodes. */
     public periodes: Periode[] = [];
     /** Donnees de référence : liste des périodes. */
@@ -77,6 +80,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                 // Copie des données nécessaires
                 this.periodes = donnees?.periodes || [];
                 this.eleves = donnees?.eleves || [];
+                this.projets = donnees?.projets || [];
                 this.competences = donnees?.competences || [];
                 this.competences.forEach(c => this.mapCompetences.set(c.id || '', c));
                 this.mapLibelleNotes = donnees?.mapLibelleNotes || {};
@@ -112,6 +116,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         note.dateCreation = new Date();
         note.idPeriode = periodeAutiliser?.id;
         note.idItem = sousLigne.competence?.id;
+        note.idsProjets?.push('ajoutManuel');
 
         // Ajout aux notes
         if (this.eleveSelectionne && this.eleveSelectionne.notes) {
@@ -155,6 +160,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                 note.dateCreation = new Date();
                 note.idPeriode = periodeAutiliser.id;
                 note.idItem = competence.id;
+                note.idsProjets?.push('ajoutManuel');
                 this.eleveSelectionne.notes.push(note);
             }
 
@@ -283,8 +289,10 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         // Alimentation des champs en fonction du type de période (évaluée ou préparéek)
         if (periodePreparee && !sousLigne.notePeriodePreparee) {
             sousLigne.notePeriodePreparee = n;
+            sousLigne.referencesProjetPeriodePreparee = this.projets.filter(p => (n.idsProjets || []).includes(p.id));
         } else if (!periodePreparee && !sousLigne.notePeriodeEvaluee) {
             sousLigne.notePeriodeEvaluee = n;
+            sousLigne.referencesProjetPeriodeEvaluee = this.projets.filter(p => (n.idsProjets || []).includes(p.id));
         } else {
             // message de succès
             const message = new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence ("' + n.idItem + '") et un même élève ("' + this.eleveSelectionne?.id + '")');

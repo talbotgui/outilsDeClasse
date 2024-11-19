@@ -4,7 +4,7 @@ export class Jdd {
 
     // Jeu de données riche
     static JDD_RICHE: Annee = {
-        versionMajeureApplication: 2024.1,
+        versionMajeureApplication: 2024,
         id: 'bouchon-0',
         enteteEdition: 'Académie X<br/>Département X<br/>Circonscription X<br/>École : X<br/>Adresse : X<br/>Téléphone : 0<br/>Courriel : x@x.x',
         enseignant: 'M. Toto',
@@ -13,7 +13,7 @@ export class Jdd {
         projets: [
             {
                 id: 'bouchon-p1', nom: 'projet1', description: 'Description globale du <b>projet 1</b>',
-                idsEleve: ['bouchon-hfys3v9z', 'bouchon-evnr1v6a'],
+                idsEleve: ['bouchon-evnr1v6a'],
                 sousProjetParPeriode: [
                     { id: 'bouchon-p1p1', idPeriode: 'bouchon-1', idCompetences: ['bouchon-j1_268', 'bouchon-j1_269'], commentaire: 'comme ceci' },
                     { id: 'bouchon-p1p2', idPeriode: 'bouchon-2', idCompetences: ['bouchon-j1_267', 'bouchon-j1_270'], commentaire: 'comme cela' }
@@ -21,7 +21,7 @@ export class Jdd {
             },
             {
                 id: 'bouchon-p2', nom: 'projet2', description: 'Description globale du <i>projet 2</i>',
-                idsEleve: ['bouchon-rvns1q6a', 'bouchon-lkjsf2d3'],
+                idsEleve: [],
                 sousProjetParPeriode: [
                     { id: 'bouchon-p2p1', idPeriode: 'bouchon-1', idCompetences: ['bouchon-j1_268', 'bouchon-j1_269'], commentaire: 'encore ci' },
                     { id: 'bouchon-p2p2', idPeriode: 'bouchon-2', idCompetences: ['bouchon-j1_267', 'bouchon-j1_270'], commentaire: 'encore ça' }
@@ -198,6 +198,38 @@ export class Jdd {
                 absences: [],
                 inclusion: { id: 'bouchon-10' },
                 notes: [
+                    {
+                        dateCreation: new Date('2016-12-02T00:00:00.000Z'),
+                        idPeriode: 'bouchon-1',
+                        id: 'bouchon-e1nLieep1',
+                        idItem: 'bouchon-j1_268',
+                        constatEnPreparation: 'note lié au projet 1',
+                        idsProjets: ['bouchon-p1']
+                    },
+                    {
+                        dateCreation: new Date('2016-12-02T00:00:00.000Z'),
+                        idPeriode: 'bouchon-1',
+                        id: 'bouchon-e1nLieep2',
+                        idItem: 'bouchon-j1_269',
+                        constatEnPreparation: 'note lié au projet 1',
+                        idsProjets: ['bouchon-p1']
+                    },
+                    {
+                        dateCreation: new Date('2016-12-02T00:00:00.000Z'),
+                        idPeriode: 'bouchon-2',
+                        id: 'bouchon-e1nLieep3',
+                        idItem: 'bouchon-j1_267',
+                        constatEnPreparation: 'note lié au projet 1',
+                        idsProjets: ['bouchon-p1']
+                    },
+                    {
+                        dateCreation: new Date('2016-12-02T00:00:00.000Z'),
+                        idPeriode: 'bouchon-2',
+                        id: 'bouchon-e1nLieep4',
+                        idItem: 'bouchon-j1_270',
+                        constatEnPreparation: 'note lié au projet 1',
+                        idsProjets: ['bouchon-p1']
+                    },
                     {
                         commentaireEvaluationPublic: 'comm bulletin note P1',
                         dateCreation: new Date('2016-09-15T00:00:00.000Z'),

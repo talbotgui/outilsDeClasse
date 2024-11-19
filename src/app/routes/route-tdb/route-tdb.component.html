@@ -141,6 +141,15 @@
                         }@else {
                         <p>{{sousLigne.notePeriodeEvaluee?.commentaireEvaluationPublic}}</p>
                         }
+                        @if (sousLigne.referencesProjetPeriodeEvaluee.length > 0){
+                        &nbsp;
+                        (<span>{{sousLigne.referencesProjetPeriodeEvaluee.length}}</span>
+                        <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
+                        }
+                        @if (sousLigne.notePeriodeEvaluee?.idsProjets?.includes('ajoutManuel')){
+                        &nbsp;
+                        <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
+                        }
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">
                         @if (indexEnEdition==idx && sousLigne.notePeriodeEvaluee) {
@@ -171,6 +180,15 @@
                         }
                         } @else {
                         <p>{{sousLigne.notePeriodePreparee?.constatEnPreparation}}</p>
+                        }
+                        @if (sousLigne.referencesProjetPeriodePreparee.length > 0){
+                        &nbsp;
+                        (<span>{{sousLigne.referencesProjetPeriodePreparee.length}}</span>
+                        <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
+                        }
+                        @if (sousLigne.notePeriodePreparee?.idsProjets?.includes('ajoutManuel')){
+                        &nbsp;
+                        <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
                         }
                     </div>
                     }
