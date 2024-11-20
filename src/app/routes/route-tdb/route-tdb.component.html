@@ -6,7 +6,7 @@
     <legend>Paramètres d'affichage</legend>
     <mat-form-field>
         <mat-label>Mode d'affichage</mat-label>
-        <mat-select placeholder="Mode d'affichage" [(ngModel)]="modeAffichage" (selectionChange)="onChangementFiltre()">
+        <mat-select placeholder="Mode d'affichage" [(ngModel)]="modeAffichage" (selectionChange)="afficherRaffraichirDonnees()">
             <mat-option value=1>Mode préparation</mat-option>
             <mat-option value=2>Mode évaluation</mat-option>
             <mat-option value=3>Mode complet</mat-option>
@@ -18,7 +18,7 @@
         }@else if (modeAffichage=='2' || modeAffichage=='3') {
         <mat-label>Période à évaluer</mat-label>
         }
-        <mat-select placeholder="Période" [(ngModel)]="periodeSelectionnee" (selectionChange)="onChangementFiltre()">
+        <mat-select placeholder="Période" [(ngModel)]="periodeSelectionnee" (selectionChange)="afficherRaffraichirDonnees()">
             @for (p of periodes ; track p.id) {
             <mat-option [value]="p">{{p.nom}}</mat-option>
             }
@@ -26,7 +26,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>Elève</mat-label>
-        <mat-select placeholder="Eleve" [(ngModel)]="eleveSelectionne" (selectionChange)="onChangementFiltre()">
+        <mat-select placeholder="Eleve" [(ngModel)]="eleveSelectionne" (selectionChange)="afficherRaffraichirDonnees()">
             @for (e of eleves ; track e.id) {
             <mat-option [value]="e">{{e.prenom}}</mat-option>
             }
@@ -34,7 +34,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>Groupement par</mat-label>
-        <mat-select placeholder="Groupement par" [(ngModel)]="groupementPar" (selectionChange)="onChangementFiltre()">
+        <mat-select placeholder="Groupement par" [(ngModel)]="groupementPar" (selectionChange)="afficherRaffraichirDonnees()">
             <mat-option value=1>par domaine de compétences</mat-option>
             <mat-option value=2>projet</mat-option>
         </mat-select>

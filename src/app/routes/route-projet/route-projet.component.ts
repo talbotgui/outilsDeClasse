@@ -2,7 +2,7 @@ import { CommonModule, Location } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -14,15 +14,16 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
+import { ROUTE_PROJET } from '../../app.routes';
 import { ComposantAffichageCompetenceComponent } from '../../composants/composant-affichagecompetence/composant-affichagecompetence.component';
 import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
-import { AbstractComponent } from '../../directives/abstract.component';
 import { Eleve } from '../../model/eleve-model';
 import { Periode } from '../../model/model';
 import { Projet, SousProjetParPeriode } from '../../model/projet-model';
 import { HtmlPipe } from '../../pipes/html.pipe';
 import { ContexteService } from '../../service/contexte-service';
 import { ProjetService } from '../../service/projet-service';
+import { AbstractRoute } from '../route';
 import { RouteEleveComponent } from '../route-eleve/route-eleve.component';
 import { DialogSuppressionCompetenceComponent } from './dialogue-suppression/dialog-suppressioncompetence.component';
 
@@ -43,7 +44,7 @@ import { DialogSuppressionCompetenceComponent } from './dialogue-suppression/dia
         ComposantAffichageCompetenceComponent, DialogSelectionCompetenceComponent
     ]
 })
-export class RouteProjetComponent extends AbstractComponent implements OnInit {
+export class RouteProjetComponent extends AbstractRoute {
 
     /** Configuration de l'éditeur */
     public configurationWysiwyg: AngularEditorConfig = RouteEleveComponent.CONFIGURATION_WYSIWYG_PAR_DEFAUT;
@@ -63,7 +64,14 @@ export class RouteProjetComponent extends AbstractComponent implements OnInit {
     public modeEdition: boolean = false;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private projetService: ProjetService, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private dialog: MatDialog) { super(); }
+    public constructor(router: Router, private projetService: ProjetService, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location, private dialog: MatDialog) {
+        super(router);
+    }
+
+    /** @see classe parente */
+    public fournirCodeRoute(): string {
+        return ROUTE_PROJET;
+    }
 
     /** Ajout ou retrait d'un élève à un temps */
     public ajouterRetirerEleveAuProjet(idEleve: string): void {
@@ -144,8 +152,8 @@ export class RouteProjetComponent extends AbstractComponent implements OnInit {
         });
     }
 
-    /** Au chargement du composant */
-    public ngOnInit(): void {
+    /** @see classe parente */
+    public initialiserRoute(): void {
         // Au chargement des données, récupéation des données
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
             tap(donnees => {
@@ -188,6 +196,13 @@ export class RouteProjetComponent extends AbstractComponent implements OnInit {
         else {
             this.projetSelectionne = projet;
         }
+
+        // Refresh des données
+        this.afficherRaffraichirDonnees();
+    }
+
+    /** @see classe parente */
+    public afficherRaffraichirDonnees(): void {
 
         // Tri des lignes par date de début de la période
         this.projetService.trierLignes(this.projetSelectionne, this.periodes);

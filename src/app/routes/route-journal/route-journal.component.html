@@ -2,29 +2,25 @@
 <fieldset class="maclasse-masquerEnModePrint">
     <legend>Sélection de la date du journal</legend>
 
-    <button type="button" (click)="changerDate(-7)" mat-raised-button matTooltip="Reculer d'une semaine"
-        aria-label="Reculer d'une semaine">
+    <button type="button" (click)="changerDate(-7)" mat-raised-button matTooltip="Reculer d'une semaine" aria-label="Reculer d'une semaine">
         <fa-icon icon="backward-fast"></fa-icon>
     </button>
-    <button type="button" (click)="changerDate(-1)" mat-raised-button matTooltip="Reculer d'une journée"
-        aria-label="Reculer d'une journée">
+    <button type="button" (click)="changerDate(-1)" mat-raised-button matTooltip="Reculer d'une journée" aria-label="Reculer d'une journée">
         <fa-icon icon="backward"></fa-icon>
     </button>
 
     <mat-form-field class="maclasse-saisieDateJournal">
         <mat-label>Date du journal</mat-label>
         <input matInput [matDatepicker]="pickerDateJournal" #inputDateJournal="ngModel" [(ngModel)]="dateJournal"
-            (ngModelChange)="onChangementDateJournal()">
+            (ngModelChange)="afficherRaffraichirDonnees()">
         <mat-datepicker-toggle matIconSuffix [for]="pickerDateJournal"></mat-datepicker-toggle>
         <mat-datepicker #pickerDateJournal></mat-datepicker>
     </mat-form-field>
 
-    <button type="button" (click)="changerDate(1)" mat-raised-button matTooltip="Avancer d'une journée"
-        aria-label="Avancer d'une journée">
+    <button type="button" (click)="changerDate(1)" mat-raised-button matTooltip="Avancer d'une journée" aria-label="Avancer d'une journée">
         <fa-icon icon="forward"></fa-icon>
     </button>
-    <button type="button" (click)="changerDate(7)" mat-raised-button matTooltip="Avancer d'une semaine"
-        aria-label="Avancer d'une semaine">
+    <button type="button" (click)="changerDate(7)" mat-raised-button matTooltip="Avancer d'une semaine" aria-label="Avancer d'une semaine">
         <fa-icon icon="forward-fast"></fa-icon>
     </button>
 </fieldset>
@@ -46,13 +42,13 @@
             matTooltip="Dupliquer ce journal à une autre date" aria-label="Dupliquer ce journal à une autre date">
             <fa-icon icon="clipboard"></fa-icon>
         </button>
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerJournal()"
-            matTooltip="Supprimer ce journal" aria-label="Supprimer ce journal">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerJournal()" matTooltip="Supprimer ce journal"
+            aria-label="Supprimer ce journal">
             <fa-icon icon="trash"></fa-icon>
         </button>
         @if (!journal.temps || journal.temps.length==0){
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(-1, 'classe')"
-            matTooltip="Ajouter un premier temps" aria-label="Ajouter un premier temps">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(-1, 'classe')" matTooltip="Ajouter un premier temps"
+            aria-label="Ajouter un premier temps">
             <fa-icon icon="clock"></fa-icon>
         </button>
         }
@@ -67,20 +63,19 @@
         <legend>
             Remarques
             @if (!remarqueEnEdition) {
-            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="remarqueEnEdition=true"
-                matTooltip="Modifier les remarques" aria-label="Modifier les remarques">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="remarqueEnEdition=true" matTooltip="Modifier les remarques"
+                aria-label="Modifier les remarques">
                 <fa-icon icon="pencil" size="xs"></fa-icon>
             </button>
             } @else {
-            <button type="button" mat-icon-button class="maclasse-bouton16 " (click)="remarqueEnEdition=false"
-                matTooltip="Valider les remarques" aria-label="Valider les remarques">
+            <button type="button" mat-icon-button class="maclasse-bouton16 " (click)="remarqueEnEdition=false" matTooltip="Valider les remarques"
+                aria-label="Valider les remarques">
                 <fa-icon icon="check"></fa-icon>
             </button>
             }
         </legend>
         @if (remarqueEnEdition) {
-        <angular-editor [config]="configurationWysiwyg" placeholder="Remarque" name="Remarque"
-            [(ngModel)]="journal.remarque"></angular-editor>
+        <angular-editor [config]="configurationWysiwyg" placeholder="Remarque" name="Remarque" [(ngModel)]="journal.remarque"></angular-editor>
         } @else {
         <div [innerHTML]="journal.remarque | html"></div>
         }
@@ -126,17 +121,17 @@
             }
             @if (temps.type === 'classe') {
             @if (tempsEnEdition !== idx) {
-            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="editerTemps(idx)"
-                matTooltip="Modifier ce temps" aria-label="Modifier ce temps">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="editerTemps(idx)" matTooltip="Modifier ce temps"
+                aria-label="Modifier ce temps">
                 <fa-icon icon="pencil"></fa-icon>
             </button>
             } @else {
-            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterGroupe(idx)"
-                matTooltip="Ajouter un groupe dans ce temps" aria-label="Ajouter un groupe dans ce temps">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterGroupe(idx)" matTooltip="Ajouter un groupe dans ce temps"
+                aria-label="Ajouter un groupe dans ce temps">
                 <fa-icon icon="users"></fa-icon>
             </button>
-            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="validerTemps()"
-                matTooltip="Valider ce temps" aria-label="Valider ce temps">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="validerTemps()" matTooltip="Valider ce temps"
+                aria-label="Valider ce temps">
                 <fa-icon icon="check"></fa-icon>
             </button>
             }
@@ -144,16 +139,16 @@
             }
 
             @if (idx !== journal.temps.length-1) {
-            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="descendreTemps(idx)"
-                matTooltip="Descendre ce temps" aria-label="Descendre ce temps">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="descendreTemps(idx)" matTooltip="Descendre ce temps"
+                aria-label="Descendre ce temps">
                 <fa-icon icon="chevron-circle-down"></fa-icon>
             </button>
             } @else {
             <div class="maclasse-largeurUnBouton"></div>
             }
             @if (idx !== 0) {
-            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="monterTemps(idx)"
-                matTooltip="Monter ce temps" aria-label="Monter ce temps">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="monterTemps(idx)" matTooltip="Monter ce temps"
+                aria-label="Monter ce temps">
                 <fa-icon icon="chevron-circle-up"></fa-icon>
             </button>
             }@else {
@@ -171,25 +166,23 @@
             }
 
             <span class="maclasse-masquerEnModePrint">|</span>
-            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(idx, 'classe')"
-                matTooltip="Ajouter un temps en dessous" aria-label="Ajouter un temps en dessous">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(idx, 'classe')" matTooltip="Ajouter un temps en dessous"
+                aria-label="Ajouter un temps en dessous">
                 <fa-icon icon="clock"></fa-icon>
             </button>
-            <button type="button" mat-icon-button class="maclasse-bouton16"
-                (click)="ajouterTempsApres(idx,'recreation')" matTooltip="Ajouter une récréation en dessous"
-                aria-label="Ajouter une récréation en dessous">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(idx,'recreation')"
+                matTooltip="Ajouter une récréation en dessous" aria-label="Ajouter une récréation en dessous">
                 <fa-icon icon="gamepad"></fa-icon>
             </button>
-            <button type="button" mat-icon-button class="maclasse-bouton16"
-                (click)="ajouterTempsApres(idx, 'transport')" matTooltip="Ajouter un temps de transport en dessous"
-                aria-label="Ajouter un temps de transport en dessous">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(idx, 'transport')"
+                matTooltip="Ajouter un temps de transport en dessous" aria-label="Ajouter un temps de transport en dessous">
                 <fa-icon icon="bus"></fa-icon>
             </button>
 
             @if (journal.temps && journal.temps.length > 1) {
             <span class="maclasse-masquerEnModePrint">|</span>
-            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerTemps(idx)"
-                matTooltip="Supprimer ce temps" aria-label="Supprimer ce temps">
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerTemps(idx)" matTooltip="Supprimer ce temps"
+                aria-label="Supprimer ce temps">
                 <fa-icon icon="trash"></fa-icon>
             </button>
             }
@@ -243,18 +236,15 @@
                         <div class="maclasse-grille-case">
                             <span class="maclasse-titre">Compétences : </span>
                             @if (tempsEnEdition === idx) {
-                            <button type="button" mat-icon-button class="maclasse-bouton16 maclasse-petiteicone"
-                                (click)="demanderAjoutCompetence(groupe)"
-                                matTooltip="Ajouter une compétence à ce groupe"
-                                aria-label="Ajouter une compétence à ce groupe">
+                            <button type="button" mat-icon-button class="maclasse-bouton16 maclasse-petiteicone" (click)="demanderAjoutCompetence(groupe)"
+                                matTooltip="Ajouter une compétence à ce groupe" aria-label="Ajouter une compétence à ce groupe">
                                 <fa-icon icon="plus"></fa-icon>
                             </button>
                             }
                             <ul>
                                 @for (idCompetence of groupe.competences ; track idCompetence) {
-                                <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence"
-                                    [affichageMinimal]="false" [iconeAction]="(tempsEnEdition === idx)?'trash':''"
-                                    libelleAction="Supprimer la compétence"
+                                <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence" [affichageMinimal]="false"
+                                    [iconeAction]="(tempsEnEdition === idx)?'trash':''" libelleAction="Supprimer la compétence"
                                     (onAction)="supprimerCompetence(groupe, idCompetence)"></li>
                                 }
                             </ul>
@@ -317,8 +307,7 @@
     @else {
     <p>
         Aucun journal à cette date. Voulez-vous en créer un ?
-        <button type="button" class="maclasse-bouton16" (click)="creerJournal()" mat-raised-button
-            matTooltip="Créer un journal pour la date sélectionnée"
+        <button type="button" class="maclasse-bouton16" (click)="creerJournal()" mat-raised-button matTooltip="Créer un journal pour la date sélectionnée"
             aria-label="Créer un journal pour la date sélectionnée">OUI</button>
     </p>
 

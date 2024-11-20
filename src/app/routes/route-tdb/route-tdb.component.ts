@@ -1,5 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,8 +10,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { tap } from 'rxjs';
+import { ROUTE_TDB } from '../../app.routes';
 import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
-import { AbstractComponent } from '../../directives/abstract.component';
 import { Eleve } from '../../model/eleve-model';
 import { MessageAafficher, TypeMessageAafficher } from '../../model/message-model';
 import { Periode } from '../../model/model';
@@ -19,6 +19,7 @@ import { Competence, Note } from '../../model/note-model';
 import { Projet } from '../../model/projet-model';
 import { LigneDeTableauDeBord, SousLigneDeTableauDeBord } from '../../model/tdb-model';
 import { ContexteService } from '../../service/contexte-service';
+import { AbstractRoute } from '../route';
 
 @Component({
     selector: 'route-tdb', templateUrl: './route-tdb.component.html', styleUrl: './route-tdb.component.scss',
@@ -33,7 +34,7 @@ import { ContexteService } from '../../service/contexte-service';
         DialogSelectionCompetenceComponent
     ]
 })
-export class RouteTdbComponent extends AbstractComponent implements OnInit {
+export class RouteTdbComponent extends AbstractRoute {
 
     /** Donnees de référence : liste des élèves. */
     public eleves: Eleve[] = [];
@@ -67,17 +68,23 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     private static readonly ID_PROJET_AJOUT_MANUEL = 'ajoutManuel';
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private dialog: MatDialog) {
-        super();
+    public constructor(router: Router, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location, private dialog: MatDialog) {
+        super(router);
     }
 
-    /** Au chargement du composant */
-    public ngOnInit(): void {
+    /** @see classe parente */
+    public fournirCodeRoute(): string {
+        return ROUTE_TDB;
+    }
+
+    /** @see classe parente */
+    public initialiserRoute(): void {
 
         // Récupération du paramètre de date depuis l'URL
         const eleveEnParametreUrl = this.activatedRoute.snapshot.queryParams['eleve'];
         const periodeEnParametreUrl = this.activatedRoute.snapshot.queryParams['periode'];
         const modeAffichageEnParametreUrl = this.activatedRoute.snapshot.queryParams['affichage'];
+        const groupementEnParametreUrl = this.activatedRoute.snapshot.queryParams['grouperPar'];
 
         // Au chargement des données,
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
@@ -95,10 +102,11 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                     this.eleveSelectionne = this.eleves.find(e => e.id === eleveEnParametreUrl);
                     this.periodeSelectionnee = this.periodes.find(e => e.id === periodeEnParametreUrl);
                     this.modeAffichage = modeAffichageEnParametreUrl;
+                    this.groupementPar = groupementEnParametreUrl;
                 }
 
                 //  déclenchement du traitement de MaJ des données maintenant que les filtres sont initialisés
-                this.onChangementFiltre();
+                this.afficherRaffraichirDonnees();
             })
         ).subscribe();
         super.declarerSouscription(sub);
@@ -121,7 +129,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         note.dateCreation = new Date();
         note.idPeriode = periodeAutiliser?.id;
         note.idItem = sousLigne.competence?.id;
-        note.idsProjets?.push(RouteTdbComponent.ID_PROJET_AJOUT_MANUEL);
+        note.idsProjets = [RouteTdbComponent.ID_PROJET_AJOUT_MANUEL];
 
         // Ajout aux notes
         if (this.eleveSelectionne && this.eleveSelectionne.notes) {
@@ -165,7 +173,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                 note.dateCreation = new Date();
                 note.idPeriode = periodeAutiliser.id;
                 note.idItem = competence.id;
-                note.idsProjets?.push(RouteTdbComponent.ID_PROJET_AJOUT_MANUEL);
+                note.idsProjets = [RouteTdbComponent.ID_PROJET_AJOUT_MANUEL];
                 this.eleveSelectionne.notes.push(note);
             }
 
@@ -174,7 +182,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
             if (nbNotesAjoutees > 0) {
                 const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Information, nbNotesAjoutees + ' notes ajoutées au tableau de bord pour la compétence "' + competence.text + "'.");
                 this.contexteService.afficherUnMessageGeneral(message);
-                this.onChangementFiltre();
+                this.afficherRaffraichirDonnees();
             }
 
             // Si pas de note ajoutée, message à l'utilisateur
@@ -361,8 +369,8 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         }
     }
 
-    /** Au changement d'un des filtres. */
-    public onChangementFiltre(): void {
+    /** @see classe parente */
+    public afficherRaffraichirDonnees(): void {
 
         // MaJ de l'URL avec les données de filtrage
         if (this.eleveSelectionne && this.periodeSelectionnee && this.modeAffichage) {

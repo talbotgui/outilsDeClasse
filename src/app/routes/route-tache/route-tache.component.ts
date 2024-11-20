@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -9,13 +9,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs';
+import { ROUTE_TACHE } from '../../app.routes';
 import { ComposantAffichageCompetenceComponent } from '../../composants/composant-affichagecompetence/composant-affichagecompetence.component';
 import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
-import { AbstractComponent } from '../../directives/abstract.component';
 import { Echeance, Tache } from '../../model/model';
 import { ContexteService } from '../../service/contexte-service';
 import { TacheService } from '../../service/tache-service';
+import { AbstractRoute } from '../route';
 
 @Component({
   selector: 'route-tache', templateUrl: './route-tache.component.html', styleUrl: './route-tache.component.scss',
@@ -30,7 +32,7 @@ import { TacheService } from '../../service/tache-service';
     ComposantAffichageCompetenceComponent, DialogSelectionCompetenceComponent
   ]
 })
-export class RouteTacheComponent extends AbstractComponent implements OnInit {
+export class RouteTacheComponent extends AbstractRoute {
 
   /** Flag indiquant que les données sont chargées. */
   public donneesChargees: boolean = false;
@@ -42,7 +44,14 @@ export class RouteTacheComponent extends AbstractComponent implements OnInit {
   public taches: Tache[] = [];
 
   /** Constructeur pour injection des dépendances. */
-  public constructor(private tacheService: TacheService, private contexteService: ContexteService,) { super(); }
+  public constructor(router: Router, private tacheService: TacheService, private contexteService: ContexteService,) {
+    super(router);
+  }
+
+  /** @see classe parente */
+  public fournirCodeRoute(): string {
+    return ROUTE_TACHE;
+  }
 
   /** Ajout d'une tâche */
   public ajouterTache(): void {
@@ -58,8 +67,8 @@ export class RouteTacheComponent extends AbstractComponent implements OnInit {
     this.tacheService.ajouterEcheance(tache);
   }
 
-  /** Au chargement du composant */
-  public ngOnInit(): void {
+  /** @see classe parente */
+  public initialiserRoute(): void {
     // Au chargement des données, récupéation des données
     const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
       tap(donnees => {
@@ -70,12 +79,18 @@ export class RouteTacheComponent extends AbstractComponent implements OnInit {
           this.donneesChargees = true;
           this.taches = donnees.taches;
 
-          // Tri des tâches
-          this.tacheService.trierTaches(this.taches);
+          // Affichage des données
+          this.afficherRaffraichirDonnees();
         }
       })
     ).subscribe();
     super.declarerSouscription(sub);
+  }
+
+  /** @see classe parente */
+  public afficherRaffraichirDonnees(): void {
+    // Tri des tâches
+    this.tacheService.trierTaches(this.taches);
   }
 
   /** Pour valider via un CRTL+ENTRER */

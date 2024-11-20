@@ -2,7 +2,7 @@ import { CommonModule, Location } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -14,12 +14,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
-import { AbstractComponent } from '../../directives/abstract.component';
+import { ROUTE_ELEVE } from '../../app.routes';
 import { Eleve } from '../../model/eleve-model';
 import { ModelUtil } from '../../model/model-utils';
 import { HtmlPipe } from '../../pipes/html.pipe';
 import { ContexteService } from '../../service/contexte-service';
 import { EleveService } from '../../service/eleve-service';
+import { AbstractRoute } from '../route';
 
 
 @Component({
@@ -37,7 +38,7 @@ import { EleveService } from '../../service/eleve-service';
         HtmlPipe
     ]
 })
-export class RouteEleveComponent extends AbstractComponent implements OnInit {
+export class RouteEleveComponent extends AbstractRoute {
 
     /** Configuration de l'éditeur commune pour toute l'application*/
     public static readonly CONFIGURATION_WYSIWYG_PAR_DEFAUT: AngularEditorConfig = {
@@ -79,10 +80,17 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
     public joursDeLaSemaine: Map<number, string> = ModelUtil.creerMapJoursDeLaSemaine();
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private eleveService: EleveService, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) { super(); }
+    public constructor(router: Router, private eleveService: EleveService, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location) {
+        super(router);
+    }
 
-    /** Au chargement du composant */
-    public ngOnInit(): void {
+    /** @see classe parente */
+    public fournirCodeRoute(): string {
+        return ROUTE_ELEVE;
+    }
+
+    /** @see classe parente */
+    public initialiserRoute(): void {
         // Au chargement des données, 
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
             tap(donnees => {
@@ -148,6 +156,13 @@ export class RouteEleveComponent extends AbstractComponent implements OnInit {
         else {
             this.eleveSelectionne = eleve;
         }
+
+        // Refresh des données
+        this.afficherRaffraichirDonnees();
+    }
+
+    /** @see classe parente */
+    public afficherRaffraichirDonnees(): void {
 
         // MaJ de l'URL avec le bon ID d'élève
         const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { id: this.eleveSelectionne?.id } }).toString();

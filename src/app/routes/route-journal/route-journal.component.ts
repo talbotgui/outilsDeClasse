@@ -1,6 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -14,15 +14,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
+import { ROUTE_JOURNAL } from '../../app.routes';
 import { ComposantAffichageCompetenceComponent } from '../../composants/composant-affichagecompetence/composant-affichagecompetence.component';
 import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
-import { AbstractComponent } from '../../directives/abstract.component';
 import { Eleve } from '../../model/eleve-model';
 import { GroupeSurUnTemps, Journal } from '../../model/journal-model';
 import { ModelUtil } from '../../model/model-utils';
 import { HtmlPipe } from '../../pipes/html.pipe';
 import { ContexteService } from '../../service/contexte-service';
 import { JournalService } from '../../service/journal-service';
+import { AbstractRoute } from '../route';
 import { RouteEleveComponent } from '../route-eleve/route-eleve.component';
 import { DialogDuplicationComponent } from './dialogue-duplication/dialog-duplication.component';
 
@@ -43,7 +44,7 @@ import { DialogDuplicationComponent } from './dialogue-duplication/dialog-duplic
         ComposantAffichageCompetenceComponent, DialogSelectionCompetenceComponent
     ]
 })
-export class RouteJournalComponent extends AbstractComponent implements OnInit {
+export class RouteJournalComponent extends AbstractRoute {
 
     /** Configuration de l'éditeur */
     public configurationWysiwyg: AngularEditorConfig = RouteEleveComponent.CONFIGURATION_WYSIWYG_PAR_DEFAUT;
@@ -70,12 +71,17 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
     private mapRaisonAbsence: { [key: string]: string } | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private journalService: JournalService, private dialog: MatDialog) {
-        super();
+    public constructor(router: Router, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location, private journalService: JournalService, private dialog: MatDialog) {
+        super(router);
     }
 
-    /** Au chargement du composant */
-    public ngOnInit(): void {
+    /** @see classe parente */
+    public fournirCodeRoute(): string {
+        return ROUTE_JOURNAL;
+    }
+
+    /** @see classe parente */
+    public initialiserRoute(): void {
 
         // Récupération du paramètre de date depuis l'URL
         const timeEnParametreUrl = this.activatedRoute.snapshot.queryParams['time'];
@@ -86,7 +92,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
             this.dateJournal.setTime(timeEnParametreUrl);
         }
         this.dateJournal.setHours(0, 0, 0, 0);
-        this.onChangementDateJournal();
+        this.afficherRaffraichirDonnees();
 
         // Au chargement des données,
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
@@ -97,7 +103,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
                 this.mapRaisonAbsence = donnees?.mapRaisonAbsence;
 
                 //  déclenchement de la sélection du journal
-                this.onChangementDateJournal();
+                this.afficherRaffraichirDonnees();
             })
         ).subscribe();
         super.declarerSouscription(sub);
@@ -133,7 +139,7 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
             nouvelleDate.setTime(this.dateJournal.getTime() + (delta * 1000 * 3600 * 24) + 3600000);
             nouvelleDate.setHours(0, 0, 0, 0);
             this.dateJournal = nouvelleDate;
-            this.onChangementDateJournal();
+            this.afficherRaffraichirDonnees();
         }
     }
 
@@ -265,8 +271,8 @@ export class RouteJournalComponent extends AbstractComponent implements OnInit {
         }
     }
 
-    /** Au changement de date, on recherche le journal. */
-    public onChangementDateJournal(): void {
+    /** @see classe parente */
+    public afficherRaffraichirDonnees(): void {
         if (this.journaux && this.dateJournal) {
             // Recherche du journal
             this.journal = this.journalService.rechercherJournal(this.journaux, this.dateJournal);
