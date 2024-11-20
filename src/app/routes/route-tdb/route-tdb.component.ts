@@ -56,10 +56,15 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     /** Filtre : période. */
     public periodeSelectionnee: Periode | undefined;
     /** Filtre : Mode d'affichage. */
-    public modeAffichage: number = 1;
+    public modeAffichage: string = "1";
+    /** Filtre : "Groupement par". */
+    public groupementPar: string = "1";
 
     /** Edition : groupe de compétence en cours d'édition */
     public indexEnEdition: number | undefined;
+
+    /** ID du projet utilisé pour les ajouts manuels */
+    private static readonly ID_PROJET_AJOUT_MANUEL = 'ajoutManuel';
 
     /** Constructeur pour injection des dépendances. */
     public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location, private dialog: MatDialog) {
@@ -104,7 +109,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
 
         // Sélection de la période à utiliser pour la nouvelle note
         let periodeAutiliser = this.periodeSelectionnee;
-        if (this.modeAffichage == 3 && this.periodeSelectionnee) {
+        if (this.modeAffichage === "3" && this.periodeSelectionnee) {
             const indexPeriode = this.periodes.indexOf(this.periodeSelectionnee);
             if (indexPeriode + 1 < this.periodes.length) {
                 periodeAutiliser = this.periodes[indexPeriode + 1];
@@ -116,7 +121,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         note.dateCreation = new Date();
         note.idPeriode = periodeAutiliser?.id;
         note.idItem = sousLigne.competence?.id;
-        note.idsProjets?.push('ajoutManuel');
+        note.idsProjets?.push(RouteTdbComponent.ID_PROJET_AJOUT_MANUEL);
 
         // Ajout aux notes
         if (this.eleveSelectionne && this.eleveSelectionne.notes) {
@@ -128,7 +133,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     }
 
     /** Ajout d'une ligne après l'ajout d'une compétence  */
-    public ajouterUneLigne(): void {
+    public ajouterUneLigneManuelle(): void {
 
         // Ouverture du dialog avec le composant de sélection de compétence
         const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
@@ -146,7 +151,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
             // Gestion du mode d'affichage vis-à-vis de la période à modifier
             let indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
             let periodeAutiliser = this.periodeSelectionnee;
-            if (this.modeAffichage == 1 && indexPeriodeSelectionnee + 1 < this.periodes.length) {
+            if (this.modeAffichage === "1" && indexPeriodeSelectionnee + 1 < this.periodes.length) {
                 indexPeriodeSelectionnee++;
                 periodeAutiliser = this.periodes[indexPeriodeSelectionnee];
             }
@@ -160,7 +165,7 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                 note.dateCreation = new Date();
                 note.idPeriode = periodeAutiliser.id;
                 note.idItem = competence.id;
-                note.idsProjets?.push('ajoutManuel');
+                note.idsProjets?.push(RouteTdbComponent.ID_PROJET_AJOUT_MANUEL);
                 this.eleveSelectionne.notes.push(note);
             }
 
@@ -209,21 +214,23 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
 
     /** Création des lignes à partir des notes */
     private creerLignesTdb(): void {
-        this.lignes = [];
+
+        // Initialisation des lignes du tableau
+        this.initialiserLignes();
 
         // Si une période est sélectionnée
         if (this.periodeSelectionnee && this.eleveSelectionne) {
 
             // Création des lignes pour les deux périodes
-            if (this.modeAffichage == 1) {
-                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, true, this.eleveSelectionne.notes);
-            } else if (this.modeAffichage == 2) {
-                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
+            if (this.modeAffichage === "1") {
+                this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, true, this.eleveSelectionne.notes);
+            } else if (this.modeAffichage === "2") {
+                this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
             } else {
-                this.creerLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
+                this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
                 let indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
                 if (indexPeriodeSelectionnee + 1 < this.periodes.length) {
-                    this.creerLignesTableauDeBordPourUnePeriode(this.periodes[indexPeriodeSelectionnee + 1], true, this.eleveSelectionne.notes);
+                    this.creerSousLignesTableauDeBordPourUnePeriode(this.periodes[indexPeriodeSelectionnee + 1], true, this.eleveSelectionne.notes);
                 }
             }
 
@@ -237,44 +244,36 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
                     return 0;
                 }
             }
-            this.lignes.sort((l1, l2) => fonctionTri(l1.libelleCompetenceParente.toUpperCase(), l2.libelleCompetenceParente.toUpperCase()));
+            this.lignes.sort((l1, l2) => fonctionTri(l1.libelleCompetenceParenteOuNomProjet.toUpperCase(), l2.libelleCompetenceParenteOuNomProjet.toUpperCase()));
             this.lignes.forEach(l => l.sousLignes.sort((l1, l2) => fonctionTri(l1.libelleCompetence.toUpperCase(), l2.libelleCompetence.toUpperCase())))
-
-            console.log('lignes :', this.lignes);
         }
     }
 
     /** Création des lignes pour la période fournie. */
-    private creerLignesTableauDeBordPourUnePeriode(periode: Periode, periodePreparee: boolean, notesDeLeleve: Note[]): void {
+    private creerSousLignesTableauDeBordPourUnePeriode(periode: Periode, periodePreparee: boolean, notesDeLeleve: Note[]): void {
         if (!periode) {
             return;
         }
-
-        console.log('creerLignesTableauDeBordPourUnePeriode :', { periode, periodePreparee, notesDeLeleve });
 
         // Pour chaque note 
         notesDeLeleve
             // de la période
             .filter(n => n.idPeriode == periode.id)
             // Création des lignes correspondantes
-            .forEach(n => this.creerLigneTableauDeBordPourUneNote(n, periodePreparee));
-
+            .forEach(n => {
+                // En mode "groupement par projet"
+                if (this.groupementPar === "2") {
+                    this.creerSousLigneTableauDeBordPourUneNoteAvecGroupementParProjet(n, periodePreparee);
+                }
+                // En mode "groupement par domaine"
+                else {
+                    this.creerSousLigneTableauDeBordPourUneNoteAvecGroupementParDomaine(n, periodePreparee);
+                }
+            });
     }
 
-    /** Création d'une ligne à partir d'une note. */
-    private creerLigneTableauDeBordPourUneNote(n: Note, periodePreparee: boolean) {
-        // Recherche des compétences de la note
-        const competenceParente = this.rechercherCompetenceParente(n.idItem);
-
-        // En cas de pb
-        if (!competenceParente) {
-            console.log('PROBLEME car pas de compétence parente pour la note', n);
-            return;
-        }
-
-        // Recherche (ou création) de la ligne pour cette compétence parente
-        const ligne = this.rechercherOuCreerLigne(competenceParente);
-
+    /** Création de la sous-ligne (commune quelque soit le groupement) */
+    private creerSousLigneTableauDeBordPourUneNote(ligne: LigneDeTableauDeBord, n: Note, periodePreparee: boolean) {
         // Recherche (ou création) de la sous-ligne pour cette compétence
         let sousLigne = ligne.sousLignes.find(sl => sl.competence?.id == n.idItem);
         if (!sousLigne) {
@@ -300,14 +299,74 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
         }
     }
 
+    /** Création d'une ligne à partir d'une note. */
+    private creerSousLigneTableauDeBordPourUneNoteAvecGroupementParDomaine(n: Note, periodePreparee: boolean) {
+        // Recherche des compétences de la note
+        const competenceParente = this.rechercherCompetenceParente(n.idItem);
 
+        // En cas de pb
+        if (!competenceParente) {
+            console.log('PROBLEME car pas de compétence parente pour la note', n);
+            return;
+        }
+
+        // Recherche (ou création) de la ligne pour cette compétence parente
+        const ligne = this.rechercherOuCreerLigneParCompetence(competenceParente);
+
+        // Création/complétion de la sous-ligne
+        this.creerSousLigneTableauDeBordPourUneNote(ligne, n, periodePreparee);
+    }
+
+
+    /** Création d'une ligne à partir d'une note. */
+    private creerSousLigneTableauDeBordPourUneNoteAvecGroupementParProjet(n: Note, periodePreparee: boolean) {
+        // Recherche des lignes parentes
+        const lignesDeProjet = this.lignes.filter(l => l.projet && n.idsProjets && n.idsProjets.includes(l.projet.id));
+
+        // En cas de pb
+        if (!lignesDeProjet) {
+            console.log('PROBLEME car pas de ligne de projet pour la note', n);
+            return;
+        }
+
+        // Dans chaque ligne (donc chaque projet)
+        lignesDeProjet.forEach(ligne => {
+            // Création/complétion de la sous-ligne
+            this.creerSousLigneTableauDeBordPourUneNote(ligne, n, periodePreparee);
+        });
+    }
+
+    /** Initialisation des lignes du tableau de bord en fonction du regroupement. */
+    private initialiserLignes(): void {
+        // Si groupement par projet
+        if (this.groupementPar === "2") {
+            // La création des lignes se fait en fonction des projets
+            this.lignes = this.projets.map(p => {
+                const ligne = new LigneDeTableauDeBord();
+                ligne.libelleCompetenceParenteOuNomProjet = p.nom || '';
+                ligne.projet = p;
+                return ligne;
+            });
+            // Plus la ligne d'ajout manuel
+            const ligne = new LigneDeTableauDeBord();
+            ligne.libelleCompetenceParenteOuNomProjet = 'Ajout manuel';
+            ligne.projet = new Projet();
+            ligne.projet.id = RouteTdbComponent.ID_PROJET_AJOUT_MANUEL;
+            this.lignes.push(ligne);
+        }
+        // Sinon
+        else {
+            // La création des lignes se fera pour les domaines nécessaires au moment de la création des lignes
+            this.lignes = [];
+        }
+    }
 
     /** Au changement d'un des filtres. */
     public onChangementFiltre(): void {
 
         // MaJ de l'URL avec les données de filtrage
         if (this.eleveSelectionne && this.periodeSelectionnee && this.modeAffichage) {
-            const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { eleve: this.eleveSelectionne.id, periode: this.periodeSelectionnee.id, affichage: this.modeAffichage } }).toString();
+            const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { eleve: this.eleveSelectionne.id, periode: this.periodeSelectionnee.id, affichage: this.modeAffichage, grouperPar: this.groupementPar } }).toString();
             this.location.go(url);
         }
 
@@ -338,12 +397,12 @@ export class RouteTdbComponent extends AbstractComponent implements OnInit {
     }
 
     /** Recherche ou création d'une ligne */
-    private rechercherOuCreerLigne(competenceParente: Competence): LigneDeTableauDeBord {
+    private rechercherOuCreerLigneParCompetence(competenceParente: Competence): LigneDeTableauDeBord {
         let ligne = this.lignes.find(l => l.competenceParente?.id === competenceParente.id);
         if (!ligne) {
             ligne = new LigneDeTableauDeBord();
             ligne.competenceParente = competenceParente;
-            ligne.libelleCompetenceParente = this.calculerLibelleDeCompetence(ligne.competenceParente);
+            ligne.libelleCompetenceParenteOuNomProjet = this.calculerLibelleDeCompetence(ligne.competenceParente);
             this.lignes.push(ligne);
         }
         return ligne;

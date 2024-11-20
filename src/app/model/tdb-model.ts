@@ -4,7 +4,8 @@ import { Projet } from "./projet-model";
 
 export class LigneDeTableauDeBord extends AvecIdentifiant {
   public competenceParente: Competence | undefined;
-  public libelleCompetenceParente: string = '';
+  public projet: Projet | undefined;
+  public libelleCompetenceParenteOuNomProjet: string = '';
   public sousLignes: SousLigneDeTableauDeBord[] = [];
 }
 export class SousLigneDeTableauDeBord extends AvecIdentifiant {

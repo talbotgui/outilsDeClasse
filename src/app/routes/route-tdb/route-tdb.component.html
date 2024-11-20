@@ -3,7 +3,7 @@
     Attention, sur un petit écran, cet onglet ne s'affiche que très mal. Un tel tableau de données doit être affiché sur un écran plus grand.
 </div>
 <fieldset class="maclasse-masquerEnModePrint maclasse-filtres">
-    <legend>Sélection des filtres</legend>
+    <legend>Paramètres d'affichage</legend>
     <mat-form-field>
         <mat-label>Mode d'affichage</mat-label>
         <mat-select placeholder="Mode d'affichage" [(ngModel)]="modeAffichage" (selectionChange)="onChangementFiltre()">
@@ -13,9 +13,9 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field>
-        @if (modeAffichage==1) {
+        @if (modeAffichage=='1') {
         <mat-label>Période à préparer</mat-label>
-        }@else if (modeAffichage==2 || modeAffichage==3) {
+        }@else if (modeAffichage=='2' || modeAffichage=='3') {
         <mat-label>Période à évaluer</mat-label>
         }
         <mat-select placeholder="Période" [(ngModel)]="periodeSelectionnee" (selectionChange)="onChangementFiltre()">
@@ -32,6 +32,13 @@
             }
         </mat-select>
     </mat-form-field>
+    <mat-form-field>
+        <mat-label>Groupement par</mat-label>
+        <mat-select placeholder="Groupement par" [(ngModel)]="groupementPar" (selectionChange)="onChangementFiltre()">
+            <mat-option value=1>par domaine de compétences</mat-option>
+            <mat-option value=2>projet</mat-option>
+        </mat-select>
+    </mat-form-field>
 </fieldset>
 }
 @else {
@@ -46,16 +53,16 @@
 <fieldset class="maclasse-formulaire maclasse-couperEnModePrint" (keyup)="onKeyUpSurPage($event)">
     <legend>
         <span>Tableau de bord de l'élève {{eleveSelectionne.prenom}} </span>
-        @if (modeAffichage==1) {
+        @if (modeAffichage=='1') {
         <span>pour préparer la période {{periodes.indexOf(periodeSelectionnee)+1}}</span>
-        } @else if (modeAffichage==2 || modeAffichage==3) {
+        } @else if (modeAffichage=='2' || modeAffichage=='3') {
         <span>pour évaluer la période {{periodes.indexOf(periodeSelectionnee)+1}}</span>
         }
-        @if (modeAffichage==3) {
+        @if (modeAffichage=='3') {
         <span> et préparer la période suivante</span>
         }
         <button type="button" mat-icon-button class="maclasse-bouton16" matTooltip="Ajouter une compétence" aria-label="Ajouter une compétence"
-            (click)="ajouterUneLigne()">
+            (click)="ajouterUneLigneManuelle()">
             <fa-icon icon="plus"></fa-icon>
         </button>
     </legend>
@@ -64,7 +71,7 @@
         @for (ligne of lignes ; track ligne.id ; let idx = $index) {
         <fieldset class="maclasse-formulaire">
             <legend>
-                <span>{{ligne.libelleCompetenceParente}}</span>
+                <span>{{ligne.libelleCompetenceParenteOuNomProjet}}</span>
                 @if (indexEnEdition==idx) {
                 <button type="button" mat-icon-button class="maclasse-bouton16" (click)="indexEnEdition=undefined" matTooltip="Terminer la saisie"
                     aria-label="Terminer la saisie">
@@ -79,21 +86,21 @@
             </legend>
             <div class="maclasse-table">
                 <div class="maclasse-table-ligne maclasse-table-entete">
-                    <div class="maclasse-table-case maclasse-table-case-bordureDroite" [class.maclasse-table-case-w70]="modeAffichage==1"
-                        [class.maclasse-table-case-w40]="modeAffichage==2" [class.maclasse-table-case-w25]="modeAffichage==3"></div>
-                    @if (modeAffichage!=1) {
+                    <div class="maclasse-table-case maclasse-table-case-bordureDroite" [class.maclasse-table-case-w70]="modeAffichage=='1'"
+                        [class.maclasse-table-case-w40]="modeAffichage=='2'" [class.maclasse-table-case-w25]="modeAffichage=='3'"></div>
+                    @if (modeAffichage!='1') {
                     <div class="maclasse-table-case maclasse-table-case-w60 maclasse-table-case-bordureDroite">Période évaluée</div>
                     }
-                    @if (modeAffichage!=2 && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
-                    <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage==1" [class.maclasse-table-case-w15]="modeAffichage!=1">
+                    @if (modeAffichage!='2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
+                    <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage=='1'" [class.maclasse-table-case-w15]="modeAffichage!='1'">
                         Période
                         préparée</div>
                     }
                 </div>
                 <div class="maclasse-table-ligne maclasse-table-entete">
-                    <div class="maclasse-table-case maclasse-table-case-bordureDroite" [class.maclasse-table-case-w70]="modeAffichage==1"
-                        [class.maclasse-table-case-w40]="modeAffichage==2" [class.maclasse-table-case-w25]="modeAffichage==3">Compétence</div>
-                    @if (modeAffichage != 1) {
+                    <div class="maclasse-table-case maclasse-table-case-bordureDroite" [class.maclasse-table-case-w70]="modeAffichage=='1'"
+                        [class.maclasse-table-case-w40]="modeAffichage=='2'" [class.maclasse-table-case-w25]="modeAffichage=='3'">Compétence</div>
+                    @if (modeAffichage != '1') {
                     <div class="maclasse-table-case maclasse-table-case-w15">
                         Constats/outils de la période précédente
                     </div>
@@ -101,18 +108,18 @@
                     <div class="maclasse-table-case maclasse-table-case-w15">Commentaires publiés</div>
                     <div class="maclasse-table-case maclasse-table-case-w15 maclasse-table-case-bordureDroite">Notes de travail</div>
                     }
-                    @if (modeAffichage != 2 && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
-                    <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage==1" [class.maclasse-table-case-w15]="modeAffichage!=1">
+                    @if (modeAffichage != '2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
+                    <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage=='1'" [class.maclasse-table-case-w15]="modeAffichage!='1'">
                         Constats/outils</div>
                     }
                 </div>
                 @for (sousLigne of ligne.sousLignes ; track sousLigne.id ; let idy = $index) {
                 <div class="maclasse-table-ligne">
-                    <div class="maclasse-table-case" [class.maclasse-table-case-w70]="modeAffichage==1" [class.maclasse-table-case-w40]="modeAffichage==2"
-                        [class.maclasse-table-case-w25]="modeAffichage==3">
+                    <div class="maclasse-table-case" [class.maclasse-table-case-w70]="modeAffichage=='1'" [class.maclasse-table-case-w40]="modeAffichage=='2'"
+                        [class.maclasse-table-case-w25]="modeAffichage=='3'">
                         <p>{{sousLigne.libelleCompetence}}</p>
                     </div>
-                    @if (modeAffichage!=1) {
+                    @if (modeAffichage!='1') {
                     <div class="maclasse-table-case maclasse-table-case-w15">
                         <p>{{sousLigne.notePeriodeEvaluee?.constatEnPreparation}}</p>
                     </div>
@@ -163,8 +170,8 @@
                         }
                     </div>
                     }
-                    @if (modeAffichage != 2 && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
-                    <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage==1" [class.maclasse-table-case-w15]="modeAffichage!=1">
+                    @if (modeAffichage != '2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
+                    <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage=='1'" [class.maclasse-table-case-w15]="modeAffichage!='1'">
                         @if (indexEnEdition==idx) {
                         @if (sousLigne.notePeriodePreparee) {
                         <mat-form-field class="maclasse-pleinelargeur">
