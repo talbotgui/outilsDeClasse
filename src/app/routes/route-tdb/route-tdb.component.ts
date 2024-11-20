@@ -113,13 +113,22 @@ export class RouteTdbComponent extends AbstractRoute {
     }
 
     /** Méthode d'ajout d'une note dans une sous-ligne pour laquelle la note n'existe pas pour une des deux périodes */
-    public ajouterUneNotePourPreparation(sousLigne: SousLigneDeTableauDeBord): void {
+    public ajouterUneNotePourEvaluation(sousLigne: SousLigneDeTableauDeBord): void {
+        this.ajouterUneNote(sousLigne, true);
+    }
 
+    /** Méthode d'ajout d'une note dans une sous-ligne pour laquelle la note n'existe pas pour une des deux périodes */
+    public ajouterUneNotePourPreparation(sousLigne: SousLigneDeTableauDeBord): void {
+        this.ajouterUneNote(sousLigne, false);
+    }
+
+    /** Méthode d'ajout d'une note dans une sous-ligne pour laquelle la note n'existe pas pour une des deux périodes */
+    private ajouterUneNote(sousLigne: SousLigneDeTableauDeBord, evaluation: boolean): void {
         // Sélection de la période à utiliser pour la nouvelle note
         let periodeAutiliser = this.periodeSelectionnee;
         if (this.modeAffichage === "3" && this.periodeSelectionnee) {
             const indexPeriode = this.periodes.indexOf(this.periodeSelectionnee);
-            if (indexPeriode + 1 < this.periodes.length) {
+            if (!evaluation && indexPeriode + 1 < this.periodes.length) {
                 periodeAutiliser = this.periodes[indexPeriode + 1];
             }
         }
@@ -137,7 +146,11 @@ export class RouteTdbComponent extends AbstractRoute {
         }
 
         // Ajout à la sous-ligne (pour ne pas tout recalculer)
-        sousLigne.notePeriodePreparee = note;
+        if (evaluation) {
+            sousLigne.notePeriodeEvaluee = note;
+        } else {
+            sousLigne.notePeriodePreparee = note;
+        }
     }
 
     /** Ajout d'une ligne après l'ajout d'une compétence  */
@@ -154,8 +167,6 @@ export class RouteTdbComponent extends AbstractRoute {
                 return;
             }
 
-            const nbNotesAuDebut = this.eleveSelectionne.notes.length;
-
             // Gestion du mode d'affichage vis-à-vis de la période à modifier
             let indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
             let periodeAutiliser = this.periodeSelectionnee;
@@ -167,27 +178,27 @@ export class RouteTdbComponent extends AbstractRoute {
             // Recherche des notes
             const noteExistante = this.eleveSelectionne.notes.find(n => n.idItem === competence.id && n.idPeriode === periodeAutiliser.id);
 
-            // création de la note
+            // Si aucune note existante
             if (!noteExistante) {
+                // création de la note
                 const note = new Note();
                 note.dateCreation = new Date();
                 note.idPeriode = periodeAutiliser.id;
                 note.idItem = competence.id;
                 note.idsProjets = [RouteTdbComponent.ID_PROJET_AJOUT_MANUEL];
                 this.eleveSelectionne.notes.push(note);
-            }
 
-            //  déclenchement du traitement de MaJ des données maintenant que les notes sont ajoutées
-            const nbNotesAjoutees = this.eleveSelectionne.notes.length - nbNotesAuDebut;
-            if (nbNotesAjoutees > 0) {
-                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Information, nbNotesAjoutees + ' notes ajoutées au tableau de bord pour la compétence "' + competence.text + "'.");
+                //  déclenchement du traitement de MaJ des données maintenant que les notes sont ajoutées
+                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Information, 'Une note ajoutée au tableau de bord pour la compétence "' + competence.text + "'.");
                 this.contexteService.afficherUnMessageGeneral(message);
                 this.afficherRaffraichirDonnees();
             }
 
-            // Si pas de note ajoutée, message à l'utilisateur
+            // Si note existante, message à l'utilisateur
             else {
-                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Avertissement, 'Aucune note ajoutée au tableau de bord pour la compétence "' + competence.text + "'.");
+                const listeProjets = this.projets.filter(p => noteExistante.idsProjets && noteExistante.idsProjets.includes(p.id)).map(p => p.nom).join(', ');
+                const finMessage = listeProjets ? listeProjets + '" dans les projet(s) : ' + listeProjets + '.' : ' parmis les notes ajoutées manuellement (sans lien avec un projet)';
+                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Avertissement, 'Aucun ajout réalisé car une note existe déjà pour la compétence "' + competence.text + finMessage);
                 this.contexteService.afficherUnMessageGeneral(message);
             }
         });
@@ -281,14 +292,14 @@ export class RouteTdbComponent extends AbstractRoute {
     }
 
     /** Création de la sous-ligne (commune quelque soit le groupement) */
-    private creerSousLigneTableauDeBordPourUneNote(ligne: LigneDeTableauDeBord, n: Note, periodePreparee: boolean) {
+    private creerSousLigneTableauDeBordPourUneNote(ligne: LigneDeTableauDeBord, n: Note, periodePreparee: boolean, niveauDeDepartDuLibelleDeCompetenceDansLaLigne: number) {
         // Recherche (ou création) de la sous-ligne pour cette compétence
         let sousLigne = ligne.sousLignes.find(sl => sl.competence?.id == n.idItem);
         if (!sousLigne) {
             sousLigne = new SousLigneDeTableauDeBord();
             sousLigne.competence = this.rechercherCompetence(n.idItem);
             if (sousLigne.competence) {
-                sousLigne.libelleCompetence = this.calculerLibelleDeCompetence(sousLigne.competence, 3);
+                sousLigne.libelleCompetence = this.calculerLibelleDeCompetence(sousLigne.competence, niveauDeDepartDuLibelleDeCompetenceDansLaLigne);
             }
             ligne.sousLignes.push(sousLigne);
         }
@@ -322,7 +333,7 @@ export class RouteTdbComponent extends AbstractRoute {
         const ligne = this.rechercherOuCreerLigneParCompetence(competenceParente);
 
         // Création/complétion de la sous-ligne
-        this.creerSousLigneTableauDeBordPourUneNote(ligne, n, periodePreparee);
+        this.creerSousLigneTableauDeBordPourUneNote(ligne, n, periodePreparee, 3);
     }
 
 
@@ -340,7 +351,7 @@ export class RouteTdbComponent extends AbstractRoute {
         // Dans chaque ligne (donc chaque projet)
         lignesDeProjet.forEach(ligne => {
             // Création/complétion de la sous-ligne
-            this.creerSousLigneTableauDeBordPourUneNote(ligne, n, periodePreparee);
+            this.creerSousLigneTableauDeBordPourUneNote(ligne, n, periodePreparee, 0);
         });
     }
 
@@ -420,6 +431,43 @@ export class RouteTdbComponent extends AbstractRoute {
     public onKeyUpSurPage(event: KeyboardEvent): void {
         if (!!event.ctrlKey && event.key == "Enter") {
             this.indexEnEdition = undefined;
+        }
+    }
+
+    /** Suppression d'une note */
+    public supprimerUneNote(sousLigne: SousLigneDeTableauDeBord, evaluation: boolean): void {
+
+        // Recherche de la note
+        let noteAsupprimer;
+        if (evaluation) {
+            noteAsupprimer = sousLigne.notePeriodeEvaluee;
+        } else {
+            noteAsupprimer = sousLigne.notePeriodePreparee;
+        }
+
+        // Si la note n'est pas liée au projet 'ajoutManuel', rien à faire
+        if (!noteAsupprimer?.idsProjets || !noteAsupprimer?.idsProjets.includes(RouteTdbComponent.ID_PROJET_AJOUT_MANUEL)) {
+            const message = new MessageAafficher('supprimerUneNote', TypeMessageAafficher.Avertissement, 'Tentative de suppression d\'une note non liée au projet d\'ajout manuel');
+            this.contexteService.afficherUnMessageGeneral(message);
+            return;
+        }
+
+        // Suppression de la mention d'ajoutManuel
+        noteAsupprimer.idsProjets = (noteAsupprimer?.idsProjets || []).filter(id => id !== RouteTdbComponent.ID_PROJET_AJOUT_MANUEL);
+
+        // Si plus de projet associé, 
+        if (this.eleveSelectionne && this.eleveSelectionne.notes && noteAsupprimer.idsProjets.length === 0) {
+            // suppression de la note de la liste eds notes de l'élève
+            const index = this.eleveSelectionne.notes.indexOf(noteAsupprimer);
+            if (index !== -1) {
+                this.eleveSelectionne?.notes.splice(index, 1);
+            }
+            // suppression de la note de la sous-ligne
+            if (evaluation) {
+                sousLigne.notePeriodeEvaluee = undefined;
+            } else {
+                sousLigne.notePeriodePreparee = undefined;
+            }
         }
     }
 }

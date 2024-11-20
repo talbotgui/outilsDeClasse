@@ -124,7 +124,8 @@
                         <p>{{sousLigne.notePeriodeEvaluee?.constatEnPreparation}}</p>
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">
-                        @if (indexEnEdition==idx && sousLigne.notePeriodeEvaluee) {
+                        @if (indexEnEdition==idx) {
+                        @if (sousLigne.notePeriodeEvaluee) {
                         <mat-form-field>
                             <mat-label>Aquisition</mat-label>
                             <mat-select placeholder="Aquisition" [(ngModel)]="sousLigne.notePeriodeEvaluee.valeurEvaluation">
@@ -133,9 +134,30 @@
                                 }
                             </mat-select>
                         </mat-form-field>
-                        }@else {
+                        } @else {
+                        <button type="button" mat-icon-button class="maclasse-bouton16" matTooltip="Ajouter une note pour cette période et cette compétence"
+                            aria-label="Ajouter une note pour cette période et cette compétence" (click)="ajouterUneNotePourEvaluation(sousLigne)">
+                            <fa-icon icon="plus"></fa-icon>
+                        </button>
+                        }
+                        } @else {
                         <p>{{(sousLigne.notePeriodeEvaluee &&
                             sousLigne.notePeriodeEvaluee.valeurEvaluation)?mapLibelleNotes[sousLigne.notePeriodeEvaluee.valeurEvaluation]:''}}</p>
+                        }
+                        @if (sousLigne.referencesProjetPeriodeEvaluee.length > 0){
+                        &nbsp;
+                        (<span>{{sousLigne.referencesProjetPeriodeEvaluee.length}}</span>
+                        <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
+                        }
+                        @if (sousLigne.notePeriodeEvaluee?.idsProjets?.includes('ajoutManuel')){
+                        &nbsp;
+                        <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
+                        @if (indexEnEdition==idx) {
+                        <button type="button" mat-icon-button class="maclasse-bouton16" matTooltip="Supprimer la note" aria-label="Supprimer la note"
+                            (click)="supprimerUneNote(sousLigne, true)">
+                            <fa-icon icon="trash"></fa-icon>
+                        </button>
+                        }
                         }
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">
@@ -147,15 +169,6 @@
                         </mat-form-field>
                         }@else {
                         <p>{{sousLigne.notePeriodeEvaluee?.commentaireEvaluationPublic}}</p>
-                        }
-                        @if (sousLigne.referencesProjetPeriodeEvaluee.length > 0){
-                        &nbsp;
-                        (<span>{{sousLigne.referencesProjetPeriodeEvaluee.length}}</span>
-                        <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
-                        }
-                        @if (sousLigne.notePeriodeEvaluee?.idsProjets?.includes('ajoutManuel')){
-                        &nbsp;
-                        <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
                         }
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">
@@ -196,6 +209,12 @@
                         @if (sousLigne.notePeriodePreparee?.idsProjets?.includes('ajoutManuel')){
                         &nbsp;
                         <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
+                        @if (indexEnEdition==idx) {
+                        <button type="button" mat-icon-button class="maclasse-bouton16" matTooltip="Supprimer la note" aria-label="Supprimer la note"
+                            (click)="supprimerUneNote(sousLigne, false)">
+                            <fa-icon icon="trash"></fa-icon>
+                        </button>
+                        }
                         }
                     </div>
                     }
