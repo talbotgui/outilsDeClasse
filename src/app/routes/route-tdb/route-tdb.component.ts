@@ -57,7 +57,7 @@ export class RouteTdbComponent extends AbstractRoute {
     /** Filtre : période. */
     public periodeSelectionnee: Periode | undefined;
     /** Filtre : Mode d'affichage. */
-    public modeAffichage: string = "1";
+    public modeAffichage: string = "3";
     /** Filtre : "Groupement par". */
     public groupementPar: string = "1";
 
