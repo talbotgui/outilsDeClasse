@@ -19,6 +19,7 @@ import { ComposantAffichageCompetenceComponent } from '../../composants/composan
 import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
 import { Eleve } from '../../model/eleve-model';
 import { Periode } from '../../model/model';
+import { Competence } from '../../model/note-model';
 import { Projet, SousProjetParPeriode } from '../../model/projet-model';
 import { HtmlPipe } from '../../pipes/html.pipe';
 import { ContexteService } from '../../service/contexte-service';
@@ -49,23 +50,34 @@ export class RouteProjetComponent extends AbstractRoute {
     /** Configuration de l'éditeur */
     public configurationWysiwyg: AngularEditorConfig = RouteEleveComponent.CONFIGURATION_WYSIWYG_PAR_DEFAUT;
 
-    /** Liste des projets extraite des données de la classe */
+    /** Référentiel des projets. */
     public projets: Projet[] | undefined;
+    /** Référentiel des périodes. */
+    public periodes: Periode[] | undefined;
+    /** Référentiel des élèves. */
+    public eleves: Eleve[] | undefined;
+    /** Référentiel des compétences. */
+    public competences: Competence[] | undefined;
 
     /** Projet sélectionné */
     public projetSelectionne: Projet | undefined;
-
-    /** Référentiel des périodes */
-    public periodes: Periode[] | undefined;
-    /** Référentiel des élèves */
-    public eleves: Eleve[] | undefined;
-
     /** Flag du mode édition. */
     public modeEdition: boolean = false;
 
     /** Constructeur pour injection des dépendances. */
     public constructor(router: Router, private projetService: ProjetService, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location, private dialog: MatDialog) {
         super(router);
+    }
+
+    /** @see classe parente */
+    public afficherRaffraichirDonnees(): void {
+
+        // Tri des lignes par date de début de la période
+        this.projetService.trierLignes(this.projetSelectionne, this.periodes);
+
+        // MaJ de l'URL avec le bon ID d'élève
+        const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { id: this.projetSelectionne?.id } }).toString();
+        this.location.go(url);
     }
 
     /** @see classe parente */
@@ -85,32 +97,23 @@ export class RouteProjetComponent extends AbstractRoute {
             // Retrait de l'élève
             else {
 
-                // Préparation des données nécessaire ensuite
-                const listeEleveAvecUnSeulEleve = this.eleves.filter(e => e.id === idEleve);
-                const periodesUtiliseesDansProjet = this.projetSelectionne.sousProjetParPeriode.map(ssProjet => ssProjet.idPeriode);
-
-                // Rechercher si l'élève a une évaluation pour ce projet
-                const pbTrouve = this.projetSelectionne.sousProjetParPeriode?.filter(ssProjet =>
-                    this.eleves && this.projetSelectionne && ssProjet.idPeriode && ssProjet.idCompetences &&
-                    this.projetService.rechercherElevesAvecEvaluationPourUneCompetenceEtUnProjet(listeEleveAvecUnSeulEleve, this.projetSelectionne, ssProjet.idPeriode, ssProjet.idCompetences).length > 0
-                ).length > 0;
-
+                // Recherche des sousProjet dont une des compétences est référencée dans les notes de l'élève
+                const pbsTrouves: string[] = [];
+                this.projetSelectionne.sousProjetParPeriode.forEach(ssProjet => {
+                    const periode = this.periodes?.find(p => p.id === ssProjet.idPeriode);
+                    if (this.eleves && this.competences && periode && this.projetSelectionne && ssProjet.idCompetences) {
+                        pbsTrouves.push(...this.projetService.rechercherProblemesPourRetirerCompetenceOuEleveAUnProjet(
+                            { eleves: this.eleves, projet: this.projetSelectionne, competences: this.competences },
+                            [idEleve], periode, ssProjet.idCompetences));
+                    }
+                });
 
                 // En cas de problème, popup et suppression que si la confirmation est obtenue
-                if (pbTrouve) {
+                if (pbsTrouves) {
 
                     // Ouverture du dialog avec le composant de sélection de compétence
                     const dialog = this.dialog.open(DialogSuppressionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
-                    dialog.componentInstance.elevesPosantProbleme = listeEleveAvecUnSeulEleve;
-                    dialog.componentInstance.periodes = this.periodes?.filter(p => periodesUtiliseesDansProjet.includes(p.id));
-                    dialog.componentInstance.projet = this.projetSelectionne;
-
-                    // A la fermeture, retrait de l'élève du projet si OK
-                    dialog.afterClosed().subscribe(ok => {
-                        if (ok && this.projetSelectionne && this.eleves) {
-                            this.projetService.retirerEleveAuProjet(this.projetSelectionne, idEleve, this.eleves);
-                        }
-                    });
+                    dialog.componentInstance.problemes = pbsTrouves;
                 }
 
                 // Sinon, retrait de l'élève du projet
@@ -164,6 +167,7 @@ export class RouteProjetComponent extends AbstractRoute {
                 // Données de reférence
                 this.periodes = donnees?.periodes;
                 this.eleves = donnees?.eleves;
+                this.competences = donnees?.competences;
 
                 // Sélection d'un projet si un paramètre est présent
                 const idProjetSelectionne = this.activatedRoute.snapshot.queryParams['id'];
@@ -201,41 +205,25 @@ export class RouteProjetComponent extends AbstractRoute {
         this.afficherRaffraichirDonnees();
     }
 
-    /** @see classe parente */
-    public afficherRaffraichirDonnees(): void {
-
-        // Tri des lignes par date de début de la période
-        this.projetService.trierLignes(this.projetSelectionne, this.periodes);
-
-        // MaJ de l'URL avec le bon ID d'élève
-        const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { id: this.projetSelectionne?.id } }).toString();
-        this.location.go(url);
-    }
-
     /** Suppression de la compétence dans le sous-projet */
     public supprimerCompetence(sousProjet: SousProjetParPeriode, idCompetence: string): void {
         if (this.projetSelectionne && this.eleves && sousProjet.idPeriode) {
 
-            // Rechercher des élèves ayant une évaluation pour cette compétence
-            const elevesPosantProbleme = this.projetService.rechercherElevesAvecEvaluationPourUneCompetenceEtUnProjet(this.eleves, this.projetSelectionne, sousProjet.idPeriode, [idCompetence]);
+            // Recherche des sousProjet dont une des compétences est référencée dans les notes de l'élève
+            const pbsTrouves: string[] = [];
+            const periode = this.periodes?.find(p => p.id === sousProjet.idPeriode);
+            if (this.eleves && this.competences && periode && this.projetSelectionne && this.projetSelectionne.idsEleve && sousProjet.idCompetences) {
+                pbsTrouves.push(...this.projetService.rechercherProblemesPourRetirerCompetenceOuEleveAUnProjet(
+                    { eleves: this.eleves, projet: this.projetSelectionne, competences: this.competences },
+                    this.projetSelectionne.idsEleve, periode, [idCompetence]));
+            }
 
             // En cas de problème, popup et suppression que si la confirmation est obtenue
-            if (elevesPosantProbleme && elevesPosantProbleme.length > 0) {
+            if (pbsTrouves.length > 0) {
 
                 // Ouverture du dialog avec le composant de sélection de compétence
                 const dialog = this.dialog.open(DialogSuppressionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
-                dialog.componentInstance.elevesPosantProbleme = elevesPosantProbleme;
-                dialog.componentInstance.periodes = this.periodes?.filter(p => p.id === sousProjet.idPeriode);
-                dialog.componentInstance.projet = this.projetSelectionne;
-
-                // A la fermeture, 
-                dialog.afterClosed().subscribe(ok => {
-                    // si ok
-                    if (ok && this.projetSelectionne && this.eleves) {
-                        // Supprimer la compétence
-                        this.projetService.supprimerCompetence(sousProjet, idCompetence, this.projetSelectionne, this.eleves);
-                    }
-                });
+                dialog.componentInstance.problemes = pbsTrouves;
             }
 
             // Sinon
@@ -248,13 +236,39 @@ export class RouteProjetComponent extends AbstractRoute {
 
     /** Suppression du projet sélectionné. */
     public supprimerProjetSelectionne(): void {
-        if (this.eleves && this.projetService.supprimerProjetSelectionne(this.projetSelectionne, this.projets, this.eleves)) {
+        if (this.projetSelectionne && this.projetSelectionne.sousProjetParPeriode && this.eleves) {
 
-            // Désélection du projet
-            this.projetSelectionne = undefined;
+            // Recherche des sousProjet dont une des compétences est référencée dans les notes de l'élève
+            const pbsTrouves: string[] = [];
+            this.projetSelectionne.sousProjetParPeriode.forEach(sousProjet => {
+                const periode = this.periodes?.find(p => p.id === sousProjet.idPeriode);
+                if (this.eleves && this.competences && periode && this.projetSelectionne && this.projetSelectionne.idsEleve && sousProjet.idCompetences) {
+                    pbsTrouves.push(...this.projetService.rechercherProblemesPourRetirerCompetenceOuEleveAUnProjet(
+                        { eleves: this.eleves, projet: this.projetSelectionne, competences: this.competences },
+                        this.projetSelectionne.idsEleve, periode, sousProjet.idCompetences));
+                }
+            });
 
-            // Fin de l'édition
-            this.modeEdition = false;
+            // En cas de problème, popup et suppression que si la confirmation est obtenue
+            if (pbsTrouves.length > 0) {
+
+                // Ouverture du dialog avec le composant de sélection de compétence
+                const dialog = this.dialog.open(DialogSuppressionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
+                dialog.componentInstance.problemes = pbsTrouves;
+            }
+
+            // Sinon
+            else {
+                // Supprimer le projet
+                if (this.projetService.supprimerProjetSelectionne(this.projetSelectionne, this.projets, this.eleves)) {
+
+                    // Désélection du projet
+                    this.projetSelectionne = undefined;
+
+                    // Fin de l'édition
+                    this.modeEdition = false;
+                }
+            }
         }
     }
 }

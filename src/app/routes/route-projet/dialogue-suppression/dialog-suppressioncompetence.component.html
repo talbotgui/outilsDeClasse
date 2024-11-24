@@ -1,15 +1,15 @@
 <h2 mat-dialog-title>Attention !!!</h2>
 
 <mat-dialog-content>
-    <p>Cette compétence a déjà fait l'objet d'une évaluation pour les élèves suivants :</p>
+    <p>Attention, cette action peut poser problème car il existe une (des) note(s) :</p>
     <ul>
-        @for (eleve of elevesPosantProbleme ; track eleve) {
-        <li>{{eleve.prenom}}</li>
+        @for (probleme of problemes ; track probleme) {
+        <li>{{probleme}}</li>
         }
     </ul>
+    <p>Vous pouvez retirer les évaluations (vide ou 'non évaluée') et les commentaires pour retirer ce blocage.</p>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button type="button" mat-raised-button matTooltip="Annuler" aria-label="Annuler" (click)="annuler()">Annuler</button>
-    <button type="button" mat-raised-button matTooltip="Valider" aria-label="Valider" (click)="valider()">Valider</button>
+    <button type="button" mat-raised-button matTooltip="Valider" aria-label="Valider" (click)="fermer()">Fermer</button>
 </mat-dialog-actions>

@@ -4,26 +4,15 @@ BUG :
  - GLOBAL : supprimer les @Input et @Output des dialog et n'utiliser que afterClosed()
 
 TODO : 
- - général : déplacer la liste à plat de notes dans une structure période/idItem, directement dans les élèves
+ - général :
+   - déplacer la liste à plat de notes dans une structure période/idItem, directement dans les élèves
+   - demo : gérer un paramètre ?competencesSeulement pour charger et afficher les compétences du jeux de données de démonstration.
+   - détection de changement pour inhiber la sauvegarde ?
+   - création d'un fichier de données
+   - aide bien rédigée
+   - créer une route pour le paramétrage (entête, pied de page, périodes et maps)
  - projets :
-   x à l'ajout d'une compétence sur une période du projet, ajouter la note aux gamins sélectionnés
-   x à la suppression d'une compétence, demander confirmation si une note est commentée ou évaluée
-   - à la suppression du projet, demander confirmation si une note est commentée ou évaluée
-   - dans le tdb, supprimer le lien avec un projet à partir d'un bouton sur chaque ligne
-   - dans le popup de suppression spécifique aux projet, mettre un lien vers le tdb en mode projet pré-filtré pour chaque élève
    - corriger le cas où la suppression d'un élève est annulée mais que le chip se désélectionne
+   - ctrl+entrer dans le formulaire
  - tdb :
-   x ajouter une icône pour visualiser les compétences liées à un projet et celles manuellement ajoutées
-   - supprimer note depuis le tdb
-   - switch entre un affichage par domaine ou par projet (afficher en double une compétence présente sur deux projets)
-   - les compétences hors projets terminent dans un fieldset 'Hors projet'
-   - le bouton d'ajout de compétence n'est que dans le 'Hors projet'
-   - refresh les données du tdb à l'affichage de la route
- - demo : gérer un paramètre ?competencesSeulement pour charger et afficher les compétences du jeux de données de démonstration.
- - au chargement, vérifier la cohérence des données : 
-   -
- - détection de changement pour inhiber la sauvegarde ?
- - création d'un fichier de données
- - aide bien rédigée
- - créer une route pour le paramétrage (entête, pied de page, périodes et maps)
 ...
