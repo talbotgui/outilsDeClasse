@@ -169,34 +169,46 @@ export class ChargementService {
                 const listeDesAttributsAsupprimer = ['valeur', 'date', 'commentaire', 'outil', 'constat', 'proposition'];
                 const nouvelleNote = Object.fromEntries(Object.entries(note).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Note;
 
-                const entreeValeur = Object.entries(note).find(entree => entree[0] === 'valeur');
-                if (entreeValeur && entreeValeur[1]) {
-                    nouvelleNote.valeurEvaluation = entreeValeur[1];
-                }
-                const entreeCommentaire = Object.entries(note).find(entree => entree[0] === 'commentaire');
-                if (entreeCommentaire && entreeCommentaire[1]) {
-                    nouvelleNote.commentaireEvaluationPublic = entreeCommentaire[1];
-                }
-                nouvelleNote.constatEnPreparation = '';
-                const entreeOutils = Object.entries(note).find(entree => entree[0] === 'outil');
-                if (entreeOutils && entreeOutils[1]) {
-                    nouvelleNote.constatEnPreparation += ('Outil : ' + entreeOutils[1] + '\n');
-                }
-                const entreeConstat = Object.entries(note).find(entree => entree[0] === 'constat');
-                if (entreeConstat && entreeConstat[1]) {
-                    nouvelleNote.constatEnPreparation += ('Constat : ' + entreeConstat[1] + '\n');
-                }
-                const entreeProposition = Object.entries(note).find(entree => entree[0] === 'proposition');
-                if (entreeProposition && entreeProposition[1]) {
-                    nouvelleNote.constatEnPreparation += ('Proposition : ' + entreeProposition[1] + '\n');
-                }
-                const entreeDate = Object.entries(note).find(entree => entree[0] === 'date');
-                if (entreeDate && entreeDate[1]) {
-                    const periode = donnees?.periodes.find(p => p.debut && p.fin && p.debut <= entreeDate[1] && entreeDate[1] <= p.fin);
-                    if (periode) {
-                        nouvelleNote.idPeriode = periode.id;
+                if (!nouvelleNote.valeurEvaluation) {
+                    const entreeValeur = Object.entries(note).find(entree => entree[0] === 'valeur');
+                    if (entreeValeur && entreeValeur[1]) {
+                        nouvelleNote.valeurEvaluation = entreeValeur[1];
                     }
                 }
+
+                if (!nouvelleNote.commentaireEvaluationPublic) {
+                    const entreeCommentaire = Object.entries(note).find(entree => entree[0] === 'commentaire');
+                    if (entreeCommentaire && entreeCommentaire[1]) {
+                        nouvelleNote.commentaireEvaluationPublic = entreeCommentaire[1];
+                    }
+                }
+
+                if (!nouvelleNote.constatEnPreparation) {
+                    nouvelleNote.constatEnPreparation = '';
+                    const entreeOutils = Object.entries(note).find(entree => entree[0] === 'outil');
+                    if (entreeOutils && entreeOutils[1]) {
+                        nouvelleNote.constatEnPreparation += ('Outil : ' + entreeOutils[1] + '\n');
+                    }
+                    const entreeConstat = Object.entries(note).find(entree => entree[0] === 'constat');
+                    if (entreeConstat && entreeConstat[1]) {
+                        nouvelleNote.constatEnPreparation += ('Constat : ' + entreeConstat[1] + '\n');
+                    }
+                    const entreeProposition = Object.entries(note).find(entree => entree[0] === 'proposition');
+                    if (entreeProposition && entreeProposition[1]) {
+                        nouvelleNote.constatEnPreparation += ('Proposition : ' + entreeProposition[1] + '\n');
+                    }
+                }
+
+                if (!nouvelleNote.idPeriode) {
+                    const entreeDate = Object.entries(note).find(entree => entree[0] === 'date');
+                    if (entreeDate && entreeDate[1]) {
+                        const periode = donnees?.periodes.find(p => p.debut && p.fin && p.debut <= entreeDate[1] && entreeDate[1] <= p.fin);
+                        if (periode) {
+                            nouvelleNote.idPeriode = periode.id;
+                        }
+                    }
+                }
+
                 return nouvelleNote;
             });
         });
@@ -220,22 +232,35 @@ export class ChargementService {
                 nouveauTemps.groupes.push(groupe);
 
                 nouveauTemps.type = 'classe';
-                const entreeNom = Object.entries(temps).find(entree => entree[0] === 'nom');
-                if (entreeNom && entreeNom[1]) {
-                    groupe.nom = entreeNom[1];
+
+                if (!groupe.nom) {
+                    const entreeNom = Object.entries(temps).find(entree => entree[0] === 'nom');
+                    if (entreeNom && entreeNom[1]) {
+                        groupe.nom = entreeNom[1];
+                    }
                 }
-                const entreeCommentaire = Object.entries(temps).find(entree => entree[0] === 'commentaire');
-                if (entreeCommentaire && entreeCommentaire[1]) {
-                    groupe.commentaire = entreeCommentaire[1];
+
+                if (!groupe.commentaire) {
+                    const entreeCommentaire = Object.entries(temps).find(entree => entree[0] === 'commentaire');
+                    if (entreeCommentaire && entreeCommentaire[1]) {
+                        groupe.commentaire = entreeCommentaire[1];
+                    }
                 }
-                const entreeEleves = Object.entries(temps).find(entree => entree[0] === 'eleves');
-                if (entreeEleves && entreeEleves[1]) {
-                    groupe.eleves = entreeEleves[1] as string[];
+
+                if (!groupe.eleves) {
+                    const entreeEleves = Object.entries(temps).find(entree => entree[0] === 'eleves');
+                    if (entreeEleves && entreeEleves[1]) {
+                        groupe.eleves = entreeEleves[1] as string[];
+                    }
                 }
-                const entreeCompetences = Object.entries(temps).find(entree => entree[0] === 'competences');
-                if (entreeCompetences && entreeCompetences[1]) {
-                    groupe.competences = entreeCompetences[1] as string[];
+
+                if (!groupe.competences) {
+                    const entreeCompetences = Object.entries(temps).find(entree => entree[0] === 'competences');
+                    if (entreeCompetences && entreeCompetences[1]) {
+                        groupe.competences = entreeCompetences[1] as string[];
+                    }
                 }
+
                 return nouveauTemps;
             });
         });
@@ -252,13 +277,17 @@ export class ChargementService {
             const nouveauSousProjet = new SousProjetParPeriode();
             nouveauProjet.sousProjetParPeriode.push(nouveauSousProjet);
 
-            const entreeCompetences = Object.entries(projet).find(entree => entree[0] === 'idCompetences');
-            if (entreeCompetences && entreeCompetences[1]) {
-                nouveauSousProjet.idCompetences = entreeCompetences[1] as string[];
+            if (!nouveauSousProjet.idCompetences) {
+                const entreeCompetences = Object.entries(projet).find(entree => entree[0] === 'idCompetences');
+                if (entreeCompetences && entreeCompetences[1]) {
+                    nouveauSousProjet.idCompetences = entreeCompetences[1] as string[];
+                }
             }
-            if (donnees && donnees.periodes) {
+
+            if (!nouveauSousProjet.idPeriode && donnees && donnees.periodes) {
                 nouveauSousProjet.idPeriode = donnees?.periodes[0].id;
             }
+
             return nouveauProjet;
         });
 
