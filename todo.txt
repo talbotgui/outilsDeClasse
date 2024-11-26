@@ -14,7 +14,6 @@ TODO :
    - aide bien rédigée
    - créer une route pour le paramétrage (entête, pied de page, périodes et maps)
  - projets :
-   - corriger le cas où la suppression d'un élève est annulée mais que le chip se désélectionne
    - ctrl+entrer dans le formulaire
  - tdb :
 ...

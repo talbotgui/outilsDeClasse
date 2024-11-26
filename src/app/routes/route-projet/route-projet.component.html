@@ -73,14 +73,17 @@
             <legend class="maclasse-legendFlex">Elève(s) associé(s) au projet</legend>
             <div>
                 @if (modeEdition) {
-                <mat-chip-listbox aria-label="Sélection d'un élève" selectable="true" multiple="true">
+                <div class="maclasse-listeEleves">
                     @for (eleve of eleves; track eleve.id) {
-                    <mat-chip-option (click)="ajouterRetirerEleveAuProjet(eleve.id)"
-                        [selected]="projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)">
+                    <div [class.maclasse-eleveSelectionne]="projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)"
+                        (click)="ajouterRetirerEleveAuProjet(eleve.id)">
+                        @if (projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)) {
+                        <fa-icon icon="check"></fa-icon>
+                        }
                         {{eleve.prenom}}
-                    </mat-chip-option>
+                    </div>
                     }
-                </mat-chip-listbox>
+                </div>
                 } @else {
                 @for (eleve of eleves; track eleve.id) {
                 @if (projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)){
