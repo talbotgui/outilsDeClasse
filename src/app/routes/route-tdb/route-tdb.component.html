@@ -146,18 +146,21 @@
                         }
                         @if (sousLigne.referencesProjetPeriodeEvaluee.length > 0){
                         &nbsp;
-                        (<span>{{sousLigne.referencesProjetPeriodeEvaluee.length}}</span>
-                        <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
+                        <span class="maclasse-enUneLigne">
+                            (<span>{{sousLigne.referencesProjetPeriodeEvaluee.length}}</span>
+                            <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
+                        </span>
                         }
                         @if (sousLigne.notePeriodeEvaluee?.idsProjets?.includes('ajoutManuel')){
                         &nbsp;
                         <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
+                        }
                         @if (indexEnEdition==idx) {
+                        &nbsp;
                         <button type="button" mat-icon-button class="maclasse-bouton16" matTooltip="Supprimer la note" aria-label="Supprimer la note"
                             (click)="supprimerUneNote(sousLigne, true)">
                             <fa-icon icon="trash"></fa-icon>
                         </button>
-                        }
                         }
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">

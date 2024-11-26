@@ -445,29 +445,15 @@ export class RouteTdbComponent extends AbstractRoute {
             noteAsupprimer = sousLigne.notePeriodePreparee;
         }
 
-        // Si la note n'est pas liée au projet 'ajoutManuel', rien à faire
-        if (!noteAsupprimer?.idsProjets || !noteAsupprimer?.idsProjets.includes(RouteTdbComponent.ID_PROJET_AJOUT_MANUEL)) {
-            const message = new MessageAafficher('supprimerUneNote', TypeMessageAafficher.Avertissement, 'Tentative de suppression d\'une note non liée au projet d\'ajout manuel');
-            this.contexteService.afficherUnMessageGeneral(message);
-            return;
-        }
-
-        // Suppression de la mention d'ajoutManuel
-        noteAsupprimer.idsProjets = (noteAsupprimer?.idsProjets || []).filter(id => id !== RouteTdbComponent.ID_PROJET_AJOUT_MANUEL);
-
-        // Si plus de projet associé, 
-        if (this.eleveSelectionne && this.eleveSelectionne.notes && noteAsupprimer.idsProjets.length === 0) {
+        if (this.eleveSelectionne && this.eleveSelectionne.notes && noteAsupprimer) {
             // suppression de la note de la liste eds notes de l'élève
             const index = this.eleveSelectionne.notes.indexOf(noteAsupprimer);
             if (index !== -1) {
                 this.eleveSelectionne?.notes.splice(index, 1);
             }
-            // suppression de la note de la sous-ligne
-            if (evaluation) {
-                sousLigne.notePeriodeEvaluee = undefined;
-            } else {
-                sousLigne.notePeriodePreparee = undefined;
-            }
+
+            // refresh des données
+            this.creerLignesTdb();
         }
     }
 }

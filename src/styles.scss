@@ -242,3 +242,8 @@ span.maclasse-eleve:not(:first-child) {
 .maclasse-email {
     word-break: break-all;
 }
+
+/* Pour garder un libellé sur une seule ligne. */
+.maclasse-enUneLigne {
+    white-space: nowrap;
+}

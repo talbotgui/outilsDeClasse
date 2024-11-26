@@ -109,7 +109,7 @@ export class RouteProjetComponent extends AbstractRoute {
                 });
 
                 // En cas de problème, popup et suppression que si la confirmation est obtenue
-                if (pbsTrouves) {
+                if (pbsTrouves.length > 0) {
 
                     // Ouverture du dialog avec le composant de sélection de compétence
                     const dialog = this.dialog.open(DialogSuppressionCompetenceComponent, { minHeight: 600, minWidth: 1000 });

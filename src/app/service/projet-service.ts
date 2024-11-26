@@ -102,7 +102,7 @@ export class ProjetService {
 
         // Eleves à traiter
         let elevesAtraiter;
-        if (idsEleve && idsEleve.length > 1) {
+        if (idsEleve && idsEleve.length > 0) {
             elevesAtraiter = reference.eleves.filter(e => idsEleve.includes(e.id));
         } else {
             elevesAtraiter = reference.eleves.filter(e => (reference.projet.idsEleve || []).includes(e.id));
