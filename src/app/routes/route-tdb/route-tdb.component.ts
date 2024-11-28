@@ -173,7 +173,7 @@ export class RouteTdbComponent extends AbstractRoute {
         const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000, autoFocus: 'textarea' });
 
         // A la fermeture, ajout de la compétence (si sélectionnée)
-        dialog.afterClosed().subscribe(competence => {
+        const sub = dialog.afterClosed().subscribe(competence => {
 
             // Si pas de sélection, c'est fini
             if (!competence || !this.periodeSelectionnee || !this.eleveSelectionne) {
@@ -215,6 +215,7 @@ export class RouteTdbComponent extends AbstractRoute {
                 this.contexteService.afficherUnMessageGeneral(message);
             }
         });
+        super.declarerSouscription(sub);
     }
 
     /** Recherche de l'ascendance d'une compétence */

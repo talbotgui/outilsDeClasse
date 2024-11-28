@@ -163,30 +163,31 @@ export class RouteJournalComponent extends AbstractRoute {
         const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000, autoFocus: 'textarea' });
 
         // A la fermeture, ajout de la compétence (si sélectionnée)
-        dialog.afterClosed().subscribe(competence => {
-            if (competence !== undefined) {
+        const sub = dialog.afterClosed().subscribe(competence => {
+            if (competence) {
                 if (!groupe.competences) {
                     groupe.competences = [];
                 }
                 groupe.competences.push(competence.id);
             }
         });
+        super.declarerSouscription(sub);
     }
 
     /** Dupliquer le journal sélectionné ou le temps passé en paramètre à une autre date. */
     public demanderDuplicationJournal(): void {
 
         // Ouverture du popup
-        const dialog = this.dialog.open(DialogDuplicationComponent, { minHeight: 600, minWidth: 1000 }).componentInstance;
+        const dialog = this.dialog.open(DialogDuplicationComponent, { minHeight: 600, minWidth: 1000 });
 
         // Avec les données nécessaires
-        dialog.dateCible = this.journal?.date;
-        dialog.journal = this.journal;
+        dialog.componentInstance.dateCible = this.journal?.date;
+        dialog.componentInstance.journal = this.journal;
 
         // Et le traitement à réaliser ensuite
-        const sub = dialog.onSelectionDuplication.pipe(
+        const sub = dialog.afterClosed().pipe(
             tap(dateCible => {
-                if (this.journaux && this.journal) {
+                if (dateCible && this.journaux && this.journal) {
                     // Recherche ou création du journal à cette date
                     const journalCible = this.journalService.rechercherOuCreerJournal(this.journaux, dateCible, this.eleves, this.mapRaisonAbsence);
 
@@ -208,17 +209,16 @@ export class RouteJournalComponent extends AbstractRoute {
             const temps = this.journal.temps[indexTemps];
 
             // Ouverture du popup
-            const dialog = this.dialog.open(DialogDuplicationComponent, { minHeight: 600, minWidth: 1000 }).componentInstance;
-
+            const dialog = this.dialog.open(DialogDuplicationComponent, { minHeight: 600, minWidth: 1000 });
 
             // Avec les données nécessaires
-            dialog.dateCible = this.journal?.date;
-            dialog.temps = temps;
+            dialog.componentInstance.dateCible = this.journal?.date;
+            dialog.componentInstance.temps = temps;
 
             // Et le traitement à réaliser ensuite
-            const sub = dialog.onSelectionDuplication.pipe(
+            const sub = dialog.afterClosed().pipe(
                 tap(dateCible => {
-                    if (this.journaux && temps) {
+                    if (dateCible && this.journaux && temps) {
                         // Recherche ou création du journal à cette date
                         const journalCible = this.journalService.rechercherOuCreerJournal(this.journaux, dateCible, this.eleves, this.mapRaisonAbsence);
 

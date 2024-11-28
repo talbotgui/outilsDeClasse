@@ -30,6 +30,13 @@ export class DialogSelectionCompetenceComponent extends AbstractComponent {
     this.dialogRef.close();
   }
 
+  /** Pour valider le formulaire via un CRTL+ENTRER */
+  public onKeyUp(event: KeyboardEvent): void {
+    if (!!event.ctrlKey && event.key == "Enter") {
+      this.valider();
+    }
+  }
+
   /** Sélection */
   public selectionnerCompetence(competence: any): void {
     this.competenceSelectionnee = competence;

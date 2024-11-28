@@ -1,7 +1,5 @@
 BUG :
- - ELEVE : adapter la taille des textes dans la fiche élève à l'impression
  - GLOBAL : supprimer la saisie manuelle dans tous les dates picker
- - GLOBAL : supprimer les @Input et @Output des dialog et n'utiliser que afterClosed()
 
 TODO : 
  - général :
@@ -12,7 +10,4 @@ TODO :
    - création d'un fichier de données
    - aide bien rédigée
    - créer une route pour le paramétrage (entête, pied de page, périodes et maps)
- - projets :
-   - ctrl+entrer dans le formulaire
- - tdb :
 ...

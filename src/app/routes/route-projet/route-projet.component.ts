@@ -149,11 +149,12 @@ export class RouteProjetComponent extends AbstractRoute {
         const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000, autoFocus: 'textarea' });
 
         // A la fermeture, ajout de la compétence (si sélectionnée)
-        dialog.afterClosed().subscribe(competence => {
-            if (this.projetSelectionne && this.eleves) {
+        const sub = dialog.afterClosed().subscribe(competence => {
+            if (competence && this.projetSelectionne && this.eleves) {
                 this.projetService.ajouterCompetence(sousProjet, competence.id, this.projetSelectionne, this.eleves);
             }
         });
+        super.declarerSouscription(sub);
     }
 
     /** @see classe parente */

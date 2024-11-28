@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Duplication</h2>
 
-<mat-dialog-content>
+<mat-dialog-content (keyup)="onKeyUp($event)">
     <mat-form-field class="maclasse-pleinelargeur">
         <mat-label>
             <span>Duplication</span>

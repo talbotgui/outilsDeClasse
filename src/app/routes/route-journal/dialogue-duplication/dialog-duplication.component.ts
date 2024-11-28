@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -8,9 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AbstractComponent } from '../../../directives/abstract.component';
-import { Eleve } from '../../../model/eleve-model';
 import { Journal, Temps } from '../../../model/journal-model';
-import { JournalService } from '../../../service/journal-service';
 
 @Component({
   selector: 'dialog-duplication', templateUrl: './dialog-duplication.component.html',
@@ -27,15 +25,12 @@ export class DialogDuplicationComponent extends AbstractComponent {
   public dateCible: Date | undefined;
 
   /** Journal à dupliquer (optionnel) */
-  @Input()
   public journal: Journal | undefined;
 
   /** Temps à dupliquer (optionnel) */
-  @Input()
   public temps: Temps | undefined;
 
   /** Sortie à la demande de duplication. */
-  @Output()
   public onSelectionDuplication = new EventEmitter<Date>();
 
   /** Un constructeur pour se faire injecter les dépendances. */
@@ -54,8 +49,13 @@ export class DialogDuplicationComponent extends AbstractComponent {
       return;
     }
 
-    this.onSelectionDuplication.emit(this.dateCible);
+    this.dialogRef.close(this.dateCible);
+  }
 
-    this.dialogRef.close();
+  /** Pour valider le formulaire via un CRTL+ENTRER */
+  public onKeyUp(event: KeyboardEvent): void {
+    if (!!event.ctrlKey && event.key == "Enter") {
+      this.dupliquer();
+    }
   }
 }
