@@ -112,6 +112,19 @@ export class RouteTdbComponent extends AbstractRoute {
         super.declarerSouscription(sub);
     }
 
+    /** @see classe parente */
+    public afficherRaffraichirDonnees(): void {
+
+        // MaJ de l'URL avec les données de filtrage
+        if (this.eleveSelectionne && this.periodeSelectionnee && this.modeAffichage) {
+            const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { eleve: this.eleveSelectionne.id, periode: this.periodeSelectionnee.id, affichage: this.modeAffichage, grouperPar: this.groupementPar } }).toString();
+            this.location.go(url);
+        }
+
+        // Créer lignes du tdb
+        this.creerLignesTdb();
+    }
+
     /** Méthode d'ajout d'une note dans une sous-ligne pour laquelle la note n'existe pas pour une des deux périodes */
     public ajouterUneNotePourEvaluation(sousLigne: SousLigneDeTableauDeBord): void {
         this.ajouterUneNote(sousLigne, true);
@@ -380,17 +393,9 @@ export class RouteTdbComponent extends AbstractRoute {
         }
     }
 
-    /** @see classe parente */
-    public afficherRaffraichirDonnees(): void {
-
-        // MaJ de l'URL avec les données de filtrage
-        if (this.eleveSelectionne && this.periodeSelectionnee && this.modeAffichage) {
-            const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { eleve: this.eleveSelectionne.id, periode: this.periodeSelectionnee.id, affichage: this.modeAffichage, grouperPar: this.groupementPar } }).toString();
-            this.location.go(url);
-        }
-
-        // Créer lignes du tdb
-        this.creerLignesTdb();
+    /** Pour valider le formulaire via un CRTL+ENTRER */
+    protected passerEnModeLecture(): void {
+        this.indexEnEdition = undefined;
     }
 
     /** Méthode de recherche dans les données de référence. */
@@ -425,13 +430,6 @@ export class RouteTdbComponent extends AbstractRoute {
             this.lignes.push(ligne);
         }
         return ligne;
-    }
-
-    /** Pour valider un temps directement via un CRTL+ENTRER */
-    public onKeyUpSurPage(event: KeyboardEvent): void {
-        if (!!event.ctrlKey && event.key == "Enter") {
-            this.indexEnEdition = undefined;
-        }
     }
 
     /** Suppression d'une note */

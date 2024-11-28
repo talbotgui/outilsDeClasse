@@ -21,7 +21,7 @@
 
 @if (eleveSelectionne) {
 <!-- Formulaire - données élève -->
-<fieldset class="maclasse-formulaire" (keyup)="onKeyUpSurFicheEleve($event)">
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
     <legend>
         <span>Elève sélectionné : {{eleveSelectionne.nom}} {{eleveSelectionne.prenom}}</span>
         <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerEleveSelectionne()" matTooltip="Supprimer cet élève"

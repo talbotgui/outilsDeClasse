@@ -294,12 +294,11 @@ export class RouteJournalComponent extends AbstractRoute {
         }
     }
 
-    /** Pour valider les remarques directement via un CRTL+ENTRER */
-    public onKeyUpSurRemarqueDeJournal(event: KeyboardEvent): void {
-        if (!!event.ctrlKey && event.key == "Enter") {
-            this.remarqueEnEdition = false;
-        }
+    /** Pour valider le formulaire via un CRTL+ENTRER */
+    protected passerEnModeLecture(): void {
+        this.remarqueEnEdition = false;
     }
+
 
     /** Suppression d'une compétence. */
     public supprimerCompetence(groupe: GroupeSurUnTemps, idCompetence: string): void {

@@ -50,7 +50,7 @@
 
 
 @if (lignes && eleveSelectionne && periodeSelectionnee) {
-<fieldset class="maclasse-formulaire maclasse-couperEnModePrint" (keyup)="onKeyUpSurPage($event)">
+<fieldset class="maclasse-formulaire maclasse-couperEnModePrint" (keyup)="onKeyUp($event)">
     <legend>
         <span>Tableau de bord de l'élève {{eleveSelectionne.prenom}} </span>
         @if (modeAffichage=='1') {

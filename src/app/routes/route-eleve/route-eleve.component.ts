@@ -140,10 +140,8 @@ export class RouteEleveComponent extends AbstractRoute {
     }
 
     /** Pour valider le formulaire via un CRTL+ENTRER */
-    public onKeyUpSurFicheEleve(event: KeyboardEvent): void {
-        if (!!event.ctrlKey && event.key == "Enter") {
-            this.modeEdition = false;
-        }
+    protected passerEnModeLecture(): void {
+        this.modeEdition = false;
     }
 
     /** Au clic sur un élève, on le sélectionne/désélectionne */

@@ -206,6 +206,11 @@ export class RouteProjetComponent extends AbstractRoute {
         this.afficherRaffraichirDonnees();
     }
 
+    /** Pour valider le formulaire via un CRTL+ENTRER */
+    protected passerEnModeLecture(): void {
+        this.modeEdition = false;
+    }
+
     /** Suppression de la compétence dans le sous-projet */
     public supprimerCompetence(sousProjet: SousProjetParPeriode, idCompetence: string): void {
         if (this.projetSelectionne && this.eleves && sousProjet.idPeriode) {

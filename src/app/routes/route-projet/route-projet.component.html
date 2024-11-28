@@ -27,7 +27,7 @@
 }
 
 <!-- Formulaire - données projet -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
     <legend class="maclasse-legendFlex">
         @if (modeEdition){
         <mat-form-field>

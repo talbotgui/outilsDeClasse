@@ -93,11 +93,9 @@ export class RouteTacheComponent extends AbstractRoute {
     this.tacheService.trierTaches(this.taches);
   }
 
-  /** Pour valider via un CRTL+ENTRER */
-  public onKeyUp(event: KeyboardEvent): void {
-    if (!!event.ctrlKey && event.key == "Enter") {
-      this.passerEnLecture();
-    }
+  /** Pour valider le formulaire via un CRTL+ENTRER */
+  protected passerEnModeLecture(): void {
+    this.passerEnLecture();
   }
 
   /** Passer en édition */

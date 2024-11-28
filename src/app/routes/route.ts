@@ -18,6 +18,14 @@ export abstract class AbstractRoute extends AbstractComponent implements OnInit 
     /** Fonction implémentée par les routes du projet pour s'initialiser. */
     public abstract initialiserRoute(): void;
 
+    /** Pour valider le formulaire via un CRTL+ENTRER */
+    protected abstract passerEnModeLecture(): void;
+    public onKeyUp(event: KeyboardEvent): void {
+        if (!!event.ctrlKey && event.key == "Enter") {
+            this.passerEnModeLecture();
+        }
+    }
+
     /** Au chargement du composant */
     public ngOnInit(): void {
 
