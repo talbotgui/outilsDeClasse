@@ -160,7 +160,7 @@ export class RouteJournalComponent extends AbstractRoute {
     public demanderAjoutCompetence(groupe: GroupeSurUnTemps): void {
 
         // Ouverture du dialog avec le composant de sélection de compétence
-        const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000 });
+        const dialog = this.dialog.open(DialogSelectionCompetenceComponent, { minHeight: 600, minWidth: 1000, autoFocus: 'textarea' });
 
         // A la fermeture, ajout de la compétence (si sélectionnée)
         dialog.afterClosed().subscribe(competence => {

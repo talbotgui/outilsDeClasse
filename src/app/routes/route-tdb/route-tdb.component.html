@@ -167,7 +167,7 @@
                         @if (indexEnEdition==idx && sousLigne.notePeriodeEvaluee) {
                         <mat-form-field class="maclasse-pleinelargeur">
                             <mat-label>Commentaire publié</mat-label>
-                            <textarea #textarea type="text" placeholder="Mot clef" matInput
+                            <textarea type="text" placeholder="Mot clef" matInput
                                 [(ngModel)]="sousLigne.notePeriodeEvaluee.commentaireEvaluationPublic"></textarea>
                         </mat-form-field>
                         }@else {
@@ -178,7 +178,7 @@
                         @if (indexEnEdition==idx && sousLigne.notePeriodeEvaluee) {
                         <mat-form-field class="maclasse-pleinelargeur">
                             <mat-label>Notes de travail</mat-label>
-                            <textarea #textarea type="text" placeholder="Mot clef" matInput
+                            <textarea type="text" placeholder="Mot clef" matInput
                                 [(ngModel)]="sousLigne.notePeriodeEvaluee.commentaireEvaluationPrive"></textarea>
                         </mat-form-field>
                         }@else {
@@ -192,8 +192,7 @@
                         @if (sousLigne.notePeriodePreparee) {
                         <mat-form-field class="maclasse-pleinelargeur">
                             <mat-label>Notes de travail</mat-label>
-                            <textarea #textarea type="text" placeholder="Mot clef" matInput
-                                [(ngModel)]="sousLigne.notePeriodePreparee.constatEnPreparation"></textarea>
+                            <textarea type="text" placeholder="Mot clef" matInput [(ngModel)]="sousLigne.notePeriodePreparee.constatEnPreparation"></textarea>
                         </mat-form-field>
                         } @else {
                         <button type="button" mat-icon-button class="maclasse-bouton16" matTooltip="Ajouter une note pour cette période et cette compétence"

@@ -12,8 +12,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { ROUTE_TACHE } from '../../app.routes';
-import { ComposantAffichageCompetenceComponent } from '../../composants/composant-affichagecompetence/composant-affichagecompetence.component';
-import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
 import { Echeance, Tache } from '../../model/model';
 import { ContexteService } from '../../service/contexte-service';
 import { TacheService } from '../../service/tache-service';
@@ -27,9 +25,7 @@ import { AbstractRoute } from '../route';
     // Matérial
     ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatCheckboxModule, MatDatepickerModule,
     // FontAwesome
-    FontAwesomeModule,
-    // Composant applicatif
-    ComposantAffichageCompetenceComponent, DialogSelectionCompetenceComponent
+    FontAwesomeModule
   ]
 })
 export class RouteTacheComponent extends AbstractRoute {

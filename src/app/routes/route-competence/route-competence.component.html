@@ -1,6 +1,7 @@
 <!-- Si pas de données -->
 @if (!flagCompetencesChargees) {
-<p>Vous ne devriez pas tenter d'accéder à cette onglet de l' application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l' application sans avoir chargé de données au préalable. Vérifiez votre lien ou votre favori pour en
+    retirer tout ce qui suit le caractère #.
 </p>
 <p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
 }
@@ -11,7 +12,7 @@
 <!-- Sélecteur de compétence -->
 <fieldset class="maclasse-formulaire maclasse-masquerEnModePrint">
     <legend>Sélection d'une compétence</legend>
-    <div composant-selectioncompetence (onSelectionDunCompetence)="selectionnerCompetence($event)"></div>
+    <div composant-selectioncompetence (onSelectionDuneCompetence)="selectionnerCompetence($event)"></div>
 </fieldset>
 
 <!-- Toutes les compétences-->
@@ -22,12 +23,13 @@
 
             <!-- Feuille -->
             <mat-tree-node *matTreeNodeDef="let c">
-                <button type="button" matTreeNodeToggle mat-icon-button class="maclasse-bouton16" matTooltip="Afficher/masquer cette branche" aria-label="Afficher/masquer cette branche">
+                <button type="button" matTreeNodeToggle mat-icon-button class="maclasse-bouton16" matTooltip="Afficher/masquer cette branche"
+                    aria-label="Afficher/masquer cette branche">
                     <fa-icon icon="dot-circle"></fa-icon>
                 </button>
                 <span>{{c.text}}</span>
-                <button type="button" mat-icon-button class="maclasse-bouton16" [cdkCopyToClipboard]="c.calculerLibelleComplet()" matTooltip="Copier le libellé complet"
-                    aria-label="Copier le libellé complet">
+                <button type="button" mat-icon-button class="maclasse-bouton16" [cdkCopyToClipboard]="c.calculerLibelleComplet()"
+                    matTooltip="Copier le libellé complet" aria-label="Copier le libellé complet">
                     <fa-icon icon="copy"></fa-icon>
                 </button>
             </mat-tree-node>
@@ -36,13 +38,13 @@
             <mat-nested-tree-node *matTreeNodeDef="let c; when: estUneCompetenceParente" [cdkTreeNodeTypeaheadLabel]="c.text">
 
                 <div class="mat-tree-node maclasse-ligneArbre">
-                    <button type="button" matTreeNodeToggle mat-icon-button class="maclasse-bouton16 maclasse-afficherEnModePrint" matTooltip="Afficher/masquer cette branche"
-                        aria-label="Afficher/masquer cette branche">
+                    <button type="button" matTreeNodeToggle mat-icon-button class="maclasse-bouton16 maclasse-afficherEnModePrint"
+                        matTooltip="Afficher/masquer cette branche" aria-label="Afficher/masquer cette branche">
                         <fa-icon [icon]="treeControl.isExpanded(c) ? 'minus' : 'plus'"></fa-icon>
                     </button>
                     <span>{{c.text}}</span>
-                    <button type="button" mat-icon-button class="maclasse-bouton16" [cdkCopyToClipboard]="c.calculerLibelleComplet()" matTooltip="Copier le libellé complet"
-                        aria-label="Copier le libellé complet">
+                    <button type="button" mat-icon-button class="maclasse-bouton16" [cdkCopyToClipboard]="c.calculerLibelleComplet()"
+                        matTooltip="Copier le libellé complet" aria-label="Copier le libellé complet">
                         <fa-icon icon="copy"></fa-icon>
                     </button>
                 </div>

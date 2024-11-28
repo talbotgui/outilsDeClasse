@@ -31,7 +31,6 @@ import { ContexteService } from '../../service/contexte-service';
 })
 export class ComposantSelectionCompetenceComponent extends AbstractComponent implements OnInit {
 
-
     /** Flag indiquant que les données sont chargées. */
     public donneesChargees = false;
 
@@ -49,7 +48,7 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
 
     /** Sortie à la sélection d'une compétence*/
     @Output()
-    public onSelectionDunCompetence = new EventEmitter<Competence>();
+    public onSelectionDuneCompetence = new EventEmitter<Competence>();
 
     /** Liste des résulat de l'autocomplétion*/
     public resultatsAutocompletion: Observable<OptionCompetence[]> | undefined;
@@ -125,14 +124,14 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
     /** Envoi d'un évènement de sélection depuis l'arborescence */
     private selectionnerCompetenceDepuisArborescence(): void {
         if (this.competencesSelectionnees) {
-            this.onSelectionDunCompetence.emit(this.competencesSelectionnees[this.competencesSelectionnees.length - 1]);
+            this.onSelectionDuneCompetence.emit(this.competencesSelectionnees[this.competencesSelectionnees.length - 1]);
         }
     }
 
     /** Envoi d'un évènement de sélection depuis l'autocompletion */
     public selectionnerCompetenceDepuisAutocompletion(event: MatAutocompleteSelectedEvent): void {
         if (event.option) {
-            this.onSelectionDunCompetence.emit((event.option.value as OptionCompetence).competence);
+            this.onSelectionDuneCompetence.emit((event.option.value as OptionCompetence).competence);
         }
     }
 

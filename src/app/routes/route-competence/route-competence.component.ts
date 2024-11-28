@@ -10,11 +10,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { ComposantSelectionCompetenceComponent } from '../../composants/composant-selectioncompetence/composant-selectioncompetence.component';
 import { AbstractComponent } from '../../directives/abstract.component';
 import { NoeudCompetence } from '../../model/arbre-model';
 import { Annee } from '../../model/model';
-import { Competence } from '../../model/note-model';
 import { ContexteService } from '../../service/contexte-service';
 
 @Component({
@@ -27,9 +25,7 @@ import { ContexteService } from '../../service/contexte-service';
         // FontAwesome
         FontAwesomeModule,
         // Pour le copier/coller
-        ClipboardModule,
-        // Composant de l'application
-        ComposantSelectionCompetenceComponent
+        ClipboardModule
     ]
 })
 export class RouteCompetenceComponent extends AbstractComponent implements OnInit {
@@ -109,7 +105,7 @@ export class RouteCompetenceComponent extends AbstractComponent implements OnIni
     }
 
     /** A la sélection d'un compétence dans le sélecteur de compétence. */
-    public selectionnerCompetence(competence: Competence): void {
+    public selectionnerCompetence(competence: any): void {
 
         // Collapse total
         this.treeControl.collapseAll();

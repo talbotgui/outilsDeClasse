@@ -6,7 +6,6 @@ BUG :
 TODO : 
  - général :
    - mettre en place une garde sur les routes et supprimer les messages présents dans les routes quand les données ne sont pas chargées
-   - focus sur l'input à l'affichage du popup de sélection d'une compétence
    - déplacer la liste à plat de notes dans une structure période/idItem, directement dans les élèves
    - demo : gérer un paramètre ?competencesSeulement pour charger et afficher les compétences du jeux de données de démonstration.
    - détection de changement pour inhiber la sauvegarde ?
