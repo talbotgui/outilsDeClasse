@@ -246,3 +246,8 @@ span.maclasse-eleve:not(:first-child) {
 .maclasse-enUneLigne {
     white-space: nowrap;
 }
+
+/** Pour centrer du texte. */
+.maclasse-texteCentre {
+    text-align: center;
+}

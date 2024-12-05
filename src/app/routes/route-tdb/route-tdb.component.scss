@@ -72,12 +72,12 @@
 /***************************************
 * Avertissement écran trop petit - DEBUT
 ***************************************/
-div.avertissementSiPetitEcran {
+div.maclasse-avertissementSiPetitEcran {
     display: none;
 }
 
 @media only screen and (max-width: 600px) {
-    div.avertissementSiPetitEcran {
+    div.maclasse-avertissementSiPetitEcran {
         display: block;
         color: red;
     }
@@ -86,3 +86,37 @@ div.avertissementSiPetitEcran {
 /*************************************
 * Avertissement écran trop petit - FIN
 *************************************/
+
+/* Pour éliminer la scrollbar horizontale. */
+div.maclasse-pleineLargeurSansBarre {
+    width: 98%;
+    margin-left: 1px;
+    overflow: hidden;
+}
+
+/* Pour éliminer les doubles bordures */
+table.maclasse-lsu {
+    border-collapse: collapse;
+}
+
+table.maclasse-lsu td,
+th {
+    /* Pour aérer le tableau. */
+    padding: 2px;
+    /* Pour la grille. */
+    border: solid 1px;
+}
+
+/* Rotation des entêtes du LSU */
+th.maclasse-rotationLsu {
+    white-space: nowrap;
+    -webkit-writing-mode: vertical-rl;
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+/* Pour contenir la rotation des entêtes du LSU */
+tr.maclasse-enteteLsu {
+    height: 90px;
+}

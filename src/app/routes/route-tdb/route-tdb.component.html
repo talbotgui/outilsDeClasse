@@ -1,5 +1,5 @@
 @if (periodes.length>0 && eleves.length>0) {
-<div class="avertissementSiPetitEcran">
+<div class="maclasse-avertissementSiPetitEcran">
     Attention, sur un petit écran, cet onglet ne s'affiche que très mal. Un tel tableau de données doit être affiché sur un écran plus grand.
 </div>
 <fieldset class="maclasse-masquerEnModePrint maclasse-filtres">
@@ -10,13 +10,16 @@
             <mat-option value=1>Mode préparation</mat-option>
             <mat-option value=2>Mode évaluation</mat-option>
             <mat-option value=3>Mode complet</mat-option>
+            <mat-option value=4>Mode bulletin/LSU</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field>
         @if (modeAffichage=='1') {
         <mat-label>Période à préparer</mat-label>
-        }@else if (modeAffichage=='2' || modeAffichage=='3') {
+        } @else if (modeAffichage=='2' || modeAffichage=='3') {
         <mat-label>Période à évaluer</mat-label>
+        } @else if (modeAffichage=='4') {
+        <mat-label>Période à éditer/imprimer</mat-label>
         }
         <mat-select placeholder="Période" [(ngModel)]="periodeSelectionnee" (selectionChange)="afficherRaffraichirDonnees()">
             @for (p of periodes ; track p.id) {
@@ -32,6 +35,7 @@
             }
         </mat-select>
     </mat-form-field>
+    @if (modeAffichage!='4') {
     <mat-form-field>
         <mat-label>Groupement par</mat-label>
         <mat-select placeholder="Groupement par" [(ngModel)]="groupementPar" (selectionChange)="afficherRaffraichirDonnees()">
@@ -39,6 +43,7 @@
             <mat-option value=2>projet</mat-option>
         </mat-select>
     </mat-form-field>
+    }
 </fieldset>
 }
 @else {
@@ -50,6 +55,7 @@
 
 
 @if (lignes && eleveSelectionne && periodeSelectionnee) {
+@if (modeAffichage!='4') {
 <fieldset class="maclasse-formulaire maclasse-couperEnModePrint" (keyup)="onKeyUp($event)">
     <legend>
         <span>Tableau de bord de l'élève {{eleveSelectionne.prenom}} </span>
@@ -225,7 +231,41 @@
             </div>
         </fieldset>
         }
-
     </div>
 </fieldset>
+}
+
+@else {
+<h3> LSU de l'élève {{eleveSelectionne.prenom}} {{eleveSelectionne.nom}} pour la période {{periodes.indexOf(periodeSelectionnee)+1}}</h3>
+<div class="maclasse-pleineLargeurSansBarre maclasse-couperEnModePrint">
+    <table class="maclasse-lsu">
+        <tr class="maclasse-enteteLsu">
+            <th>Domaine</th>
+            <th>Compétence</th>
+            <th>Commentaire</th>
+            @for (entree of mapLibelleNotes | keyvalue ; track entree.key) {
+            <th class="maclasse-rotationLsu">{{entree.value}}</th>
+            }
+        </tr>
+        @for (ligne of lignes ; track ligne.id ; let idx = $index) {
+        @for (sousLigne of ligne.sousLignes ; track sousLigne.id ; let idy = $index) {
+        <tr>
+            @if (idy==0) {
+            <td [rowSpan]="ligne.sousLignes.length"><span>{{ligne.libelleCompetenceParenteOuNomProjet}}</span></td>
+            }
+            <td>{{sousLigne.libelleCompetence}}</td>
+            <td>{{sousLigne.notePeriodeEvaluee?.commentaireEvaluationPublic}}</td>
+            @for (entree of mapLibelleNotes | keyvalue ; track entree.key) {
+            <td class="maclasse-texteCentre">
+                @if (entree.key == sousLigne.notePeriodeEvaluee?.valeurEvaluation){
+                <span>X</span>
+                }
+            </td>
+            }
+        </tr>
+        }
+        }
+    </table>
+</div>
+}
 }
