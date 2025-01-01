@@ -57,99 +57,93 @@
         }
     </legend>
     <div>
-        <fieldset class="maclasse-formulaire">
-            <legend class="maclasse-legendFlex">Description</legend>
-            <div>
-                @if (modeEdition) {
-                <angular-editor [config]="configurationWysiwyg" placeholder="Description" name="Description"
-                    [(ngModel)]="projetSelectionne.description"></angular-editor>
-                } @else {
-                <span [innerHTML]="projetSelectionne.description | html"></span>
-                }
-            </div>
-        </fieldset>
-
-        <fieldset class="maclasse-formulaire">
-            <legend class="maclasse-legendFlex">Elève(s) associé(s) au projet</legend>
-            <div>
-                @if (modeEdition) {
-                <div class="maclasse-listeEleves">
-                    @for (eleve of eleves; track eleve.id) {
-                    <div [class.maclasse-eleveSelectionne]="projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)"
-                        (click)="ajouterRetirerEleveAuProjet(eleve.id)">
-                        @if (projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)) {
-                        <fa-icon icon="check"></fa-icon>
-                        }
-                        {{eleve.prenom}}
-                    </div>
-                    }
-                </div>
-                } @else {
-                @for (eleve of eleves; track eleve.id) {
-                @if (projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)){
-                <span class="maclasse-eleve">{{eleve.prenom}}</span>
-                }
-                }
-                }
-            </div>
-        </fieldset>
-
-        @for (sousLigne of projetSelectionne.sousProjetParPeriode; track sousLigne.id) {
-        <fieldset class="maclasse-formulaire">
-            <legend class="maclasse-legendFlex">
-                @if (modeEdition) {
-                <mat-form-field>
-                    <mat-label>En période</mat-label>
-                    <mat-select #inputPeriode="ngModel" [(ngModel)]="sousLigne.idPeriode" placeholder="Période" name="Période">
-                        @for (p of periodes ; track p.id) {
-                        <mat-option [value]="p.id">{{p.nom}}</mat-option>
-                        }
-                    </mat-select>
-                </mat-form-field>
-                } @else {
-                <span>En {{obtenirLibellePeriode(sousLigne.idPeriode)}}</span>
-                }
-            </legend>
-            <div>
-                <div>
-                    @if (modeEdition) {
-                    <angular-editor [config]="configurationWysiwyg" placeholder="Commentaire" name="Commentaire"
-                        [(ngModel)]="sousLigne.commentaire"></angular-editor>
-                    } @else {
-                    <span>Commentaire : </span><span [innerHTML]="sousLigne.commentaire | html"></span>
-                    }
-                </div>
-                <div>
-                    <span>Compétences : </span>
-                    @if (modeEdition) {
-                    <button type="button" mat-icon-button class="maclasse-bouton16" (click)="demanderAjoutCompetence(sousLigne)"
-                        matTooltip="Ajouter une compétence à ce projet pour cette période" aria-label="Ajouter une compétence à ce projet pour cette période">
-                        <fa-icon icon="plus"></fa-icon>
-                    </button>
-                    }
-                    <ul>
-                        @for (idCompetence of sousLigne.idCompetences ; track idCompetence ; let idx = $index) {
-                        <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence" [affichageMinimal]="false"
-                            [iconeAction]="(modeEdition)?'trash':''" libelleAction="Supprimer la compétence"
-                            (onAction)="supprimerCompetence(sousLigne, idCompetence)"></li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </fieldset>
+        <label>Description :</label>
+        @if (modeEdition) {
+        <angular-editor [config]="configurationWysiwyg" placeholder="Description" name="Description"
+            [(ngModel)]="projetSelectionne.description"></angular-editor>
+        } @else {
+        <span [innerHTML]="projetSelectionne.description | html"></span>
         }
+    </div>
+</fieldset>
 
-        <fieldset class="maclasse-formulaire">
-            <legend class="maclasse-legendFlex">Notes du côté éducatif</legend>
-            <div>
-                @if (modeEdition) {
-                <angular-editor [config]="configurationWysiwyg" placeholder="Notes du côté éducatif" name="Notes du côté éducatif"
-                    [(ngModel)]="projetSelectionne.notesCoteEducatif"></angular-editor>
-                } @else {
-                <span [innerHTML]="projetSelectionne.notesCoteEducatif | html"></span>
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
+    <legend class="maclasse-legendFlex">Elève(s) associé(s) au projet</legend>
+    <div>
+        @if (modeEdition) {
+        <div class="maclasse-listeEleves">
+            @for (eleve of eleves; track eleve.id) {
+            <div [class.maclasse-eleveSelectionne]="projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)"
+                (click)="ajouterRetirerEleveAuProjet(eleve.id)">
+                @if (projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)) {
+                <fa-icon icon="check"></fa-icon>
                 }
+                {{eleve.prenom}}
             </div>
-        </fieldset>
+            }
+        </div>
+        } @else {
+        @for (eleve of eleves; track eleve.id) {
+        @if (projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)){
+        <span class="maclasse-eleve">{{eleve.prenom}}</span>
+        }
+        }
+        }
+    </div>
+</fieldset>
+
+@for (sousLigne of projetSelectionne.sousProjetParPeriode; track sousLigne.id) {
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
+    <legend class="maclasse-legendFlex">
+        @if (modeEdition) {
+        <mat-form-field>
+            <mat-label>En période</mat-label>
+            <mat-select #inputPeriode="ngModel" [(ngModel)]="sousLigne.idPeriode" placeholder="Période" name="Période">
+                @for (p of periodes ; track p.id) {
+                <mat-option [value]="p.id">{{p.nom}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        } @else {
+        <span>En {{obtenirLibellePeriode(sousLigne.idPeriode)}}</span>
+        }
+    </legend>
+    <div>
+        <div>
+            @if (modeEdition) {
+            <angular-editor [config]="configurationWysiwyg" placeholder="Commentaire" name="Commentaire" [(ngModel)]="sousLigne.commentaire"></angular-editor>
+            } @else {
+            <span>Commentaire : </span><span [innerHTML]="sousLigne.commentaire | html"></span>
+            }
+        </div>
+        <div>
+            <span>Compétences : </span>
+            @if (modeEdition) {
+            <button type="button" mat-icon-button class="maclasse-bouton16" (click)="demanderAjoutCompetence(sousLigne)"
+                matTooltip="Ajouter une compétence à ce projet pour cette période" aria-label="Ajouter une compétence à ce projet pour cette période">
+                <fa-icon icon="plus"></fa-icon>
+            </button>
+            }
+            <ul>
+                @for (idCompetence of sousLigne.idCompetences ; track idCompetence ; let idx = $index) {
+                <li composant-affichagecompetence [idCompetenceSelectionnee]="idCompetence" [affichageMinimal]="false" [iconeAction]="(modeEdition)?'trash':''"
+                    libelleAction="Supprimer la compétence" (onAction)="supprimerCompetence(sousLigne, idCompetence)"></li>
+                }
+            </ul>
+        </div>
+    </div>
+</fieldset>
+}
+
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
+    <legend class="maclasse-legendFlex">Notes du côté éducatif</legend>
+    <div>
+        @if (modeEdition) {
+        <angular-editor [config]="configurationWysiwyg" placeholder="Notes du côté éducatif" name="Notes du côté éducatif"
+            [(ngModel)]="projetSelectionne.notesCoteEducatif"></angular-editor>
+        } @else {
+        <span [innerHTML]="projetSelectionne.notesCoteEducatif | html"></span>
+        }
     </div>
 </fieldset>
 }

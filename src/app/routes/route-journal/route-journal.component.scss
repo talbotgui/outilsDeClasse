@@ -36,6 +36,16 @@ div.maclasse-titreDeTemps span:not(:first-child) {
     width: 48px;
 }
 
+/* Pour masquer la légende du groupe s'il est seul dans le temps */
+fieldset.maclasse-unSeulGroupe legend {
+    display: none;
+}
+
+/* Pour masquer la border du fieldset du groupe s'il est seul dans le temps */
+fieldset.maclasse-formulaire.maclasse-unSeulGroupe>div {
+    border: none !important
+}
+
 /**************************************************************************************
  * Système de grille avec hauteur dynamique (que mat-grid ne sait pas gérer).  -- DEBUT
  *************************************************************************************/

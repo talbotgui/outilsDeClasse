@@ -192,7 +192,7 @@
 
             <!-- les temps -->
             @for (groupe of temps.groupes ; track groupe.id ; let jdx = $index) {
-            <fieldset class="maclasse-formulaire">
+            <fieldset class="maclasse-formulaire" [class.maclasse-unSeulGroupe]="temps.groupes.length===1">
                 <legend class="maclasse-legendFlex">
                     @if (tempsEnEdition !== idx) {
                     {{groupe.nom}}
