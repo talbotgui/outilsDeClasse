@@ -86,6 +86,7 @@ export class ChargementService {
             e.contacts = e.contacts ?? [];
             e.absences = e.absences ?? [];
             e.cursus = e.cursus ?? [];
+            e.commentairesDePeriode = e.commentairesDePeriode ?? [];
             e.inclusion.id = e.inclusion.id ?? ModelUtil.getUID();
             e.contacts.forEach(c => c.id = c.id ?? ModelUtil.getUID());
             e.cursus.forEach(c => c.id = c.id ?? ModelUtil.getUID());
@@ -94,6 +95,7 @@ export class ChargementService {
                 n.id = n.id ?? ModelUtil.getUID()
                 n.idsProjets = n.idsProjets ?? [];
             });
+            e.commentairesDePeriode.forEach(c => c.id = c.id ?? ModelUtil.getUID());
         });
         donnees.journal.forEach(j => {
             j.id = j.id ?? ModelUtil.getUID();
@@ -425,6 +427,11 @@ export class ChargementService {
                     if (idsEnErreur.length > 0) {
                         listeErreurs.push('Projet(s) "' + idsEnErreur + '" inconnu(s) dans les données mais référencée dans la note "' + n.id + '"');
                     }
+                }
+            });
+            e.commentairesDePeriode.forEach(c => {
+                if (typeof c.idPeriode == undefined || c.idPeriode && !listeIdPeriodes.includes(c.idPeriode)) {
+                    listeErreurs.push('Periode "' + c.idPeriode + '" inconnue dans les données mais référencée dans la commentaire de période "' + c.id + '"');
                 }
             });
         });

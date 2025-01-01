@@ -12,7 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { tap } from 'rxjs';
 import { ROUTE_TDB } from '../../app.routes';
 import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
-import { Eleve } from '../../model/eleve-model';
+import { CommentaireDePeriode, Eleve } from '../../model/eleve-model';
 import { MessageAafficher, TypeMessageAafficher } from '../../model/message-model';
 import { Periode } from '../../model/model';
 import { Competence, Note } from '../../model/note-model';
@@ -63,6 +63,28 @@ export class RouteTdbComponent extends AbstractRoute {
 
     /** Edition : groupe de compétence en cours d'édition */
     public indexEnEdition: number | undefined;
+
+    /** Edition : commentaire de l'élève pour la période en cours d'édition */
+    public get commentaireDeLaPeriode(): CommentaireDePeriode | undefined {
+        // Au cas où
+        if (!this.eleveSelectionne || !this.periodeSelectionnee) {
+            return undefined;
+        }
+        // Dans les conditions nomonales
+        else {
+            // Recherche du commentaire pour la période
+            let commentaire = this.eleveSelectionne.commentairesDePeriode.find(c => c.idPeriode == this.periodeSelectionnee?.id);
+
+            // Création si inexistant
+            if (!commentaire) {
+                commentaire = new CommentaireDePeriode();
+                commentaire.idPeriode = this.periodeSelectionnee.id;
+            }
+
+            // Renvoi
+            return commentaire;
+        }
+    }
 
     /** ID du projet utilisé pour les ajouts manuels */
     private static readonly ID_PROJET_AJOUT_MANUEL = 'ajoutManuel';
