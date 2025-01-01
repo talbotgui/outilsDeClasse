@@ -9,7 +9,7 @@
   "scripts": {
     "start": "ng serve",
     "package": "ng build --configuration production --aot --subresource-integrity --base-href=/outilsDeClasse/",
-    "preparerPourZip": "rm -f ./zip/outilsDeClasse-versionLocale/outilsDeClasse/* && cp ./docs/* ./zip/outilsDeClasse-versionLocale/outilsDeClasse/",
+    "preparerPourZip": "rm -f ./zip/outilsDeClasse-versionLocale/outilsDeClasse/* && cp -r ./docs/* ./zip/outilsDeClasse-versionLocale/outilsDeClasse/",
     "zip": "rm -f ./docs/outils-de-classe_1.0.0.versionLocale.zip && npm-build-zip --source=./zip --destination=./docs/ --name=versionLocale",
     "build": "npm run package && npm run preparerPourZip && npm run zip",
     "http": "http-server ./doc/"
