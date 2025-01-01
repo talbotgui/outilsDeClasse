@@ -172,6 +172,11 @@ fieldset.maclasse-formulaire>div {
     mat-checkbox.mat-mdc-checkbox-disabled {
         color: black !important;
     }
+
+    /** Pour les entêtes fournis dans le JSON. */
+    div.maclasse-afficherAdroite {
+        float: right;
+    }
 }
 
 /* Pour séparer correctement les compétences sélectionnées. */
