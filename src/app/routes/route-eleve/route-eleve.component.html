@@ -85,7 +85,8 @@
 </fieldset>
 
 <!-- Formulaire - contacts -->
-<fieldset class="maclasse-formulaire" [class.maclasse-masquerEnModePrint]="!eleveSelectionne.contacts || eleveSelectionne.contacts.length===0">
+<fieldset class="maclasse-formulaire" [class.maclasse-masquerEnModePrint]="!eleveSelectionne.contacts || eleveSelectionne.contacts.length===0"
+    (keyup)="onKeyUp($event)">
     <legend>
         <span>Contacts</span>
         @if (modeEdition) {
@@ -149,7 +150,7 @@
 </fieldset>
 
 <!-- Formulaire - dates de bilan -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
     <legend>Date de bilans (PPI et ESS)</legend>
     <div>
         @if (modeEdition) {
@@ -171,7 +172,7 @@
 </fieldset>
 
 <!-- Formulaire - inclusions -->
-<fieldset class="maclasse-formulaire" [class.maclasse-masquerEnModePrint]="!eleveSelectionne.inclusion">
+<fieldset class="maclasse-formulaire" [class.maclasse-masquerEnModePrint]="!eleveSelectionne.inclusion" (keyup)="onKeyUp($event)">
     <legend>Inclusion mise en place</legend>
     <div>
         @if (modeEdition) {
@@ -227,7 +228,8 @@
 </fieldset>
 
 <!-- Formulaire - absences -->
-<fieldset class="maclasse-formulaire" [class.maclasse-masquerEnModePrint]="!eleveSelectionne.absences || eleveSelectionne.absences.length===0">
+<fieldset class="maclasse-formulaire" [class.maclasse-masquerEnModePrint]="!eleveSelectionne.absences || eleveSelectionne.absences.length===0"
+    (keyup)="onKeyUp($event)">
     <legend>
         <span>Temps d'accompagnement et d'inclusion </span>
         @if (modeEdition) {
@@ -304,7 +306,7 @@
 </fieldset>
 
 <!-- Formulaire - Cursus scolaire -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
     <legend>Cursus scolaire</legend>
     <div>
         <div class="maclasse-grille">
@@ -367,7 +369,7 @@
 </fieldset>
 
 <!-- Formulaire - Bilans -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
     <legend>Bilans</legend>
     <div>
         @if (modeEdition) {
