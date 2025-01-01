@@ -1,9 +1,9 @@
-/** Pour ne pas avoir d'espace avant le UL. */
+/* Pour ne pas avoir d'espace avant le UL. */
 ul {
     margin-block-start: 0px;
 }
 
-/** Affichage de la liste des élèves - DEBUT */
+/* Affichage de la liste des élèves - DEBUT */
 div.maclasse-listeEleves {
     display: flex;
     flex-direction: row;
@@ -16,9 +16,9 @@ div.maclasse-listeEleves>div {
     border-radius: var(--mdc-chip-container-shape-radius);
 }
 
-/** Affichage de la liste des élèves - FIN */
+/* Affichage de la liste des élèves - FIN */
 
-/** Mise en avant d'un élève sélectionné. */
+/* Mise en avant d'un élève sélectionné. */
 div.maclasse-eleveSelectionne {
     background-color: var(--mdc-chip-elevated-selected-container-color, var(--mat-app-secondary-container));
 }

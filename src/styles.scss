@@ -79,13 +79,13 @@ legend {
     line-height: 48px;
 }
 
-/** Pour mettre en avant le champ de saisie Material ayant le focus.*/
+/* Pour mettre en avant le champ de saisie Material ayant le focus.*/
 mat-form-field.mat-focused {
     border: solid 3px var(--mdc-protected-button-label-text-color);
     margin: -3px;
 }
 
-/** Pour mettre en avant le bouton ayant le focus.*/
+/* Pour mettre en avant le bouton ayant le focus.*/
 button.mdc-icon-button:focus {
     background: rgba(255, 255, 255, 0.5);
     color: var(--mdc-protected-button-label-text-color);
@@ -120,32 +120,32 @@ fieldset.maclasse-formulaire>div {
  Pour créer un style d'onglet au niveau des fieldset - FIN 
 ************************************************************/
 
-/** Au moment de l'impression. */
+/* Au moment de l'impression. */
 @media print {
 
 
-    /** Pour imprimer plus de chose.*/
+    /* Pour imprimer plus de chose.*/
     body {
         zoom: 0.7;
         margin: 1cm;
     }
 
-    /** Pour retirer l'entête et le pied de page générés par le navigateur. */
+    /* Pour retirer l'entête et le pied de page générés par le navigateur. */
     @page {
         margin: 0;
     }
 
-    /** Pour ne pas couper un fieldset à l'impression. */
+    /* Pour ne pas couper un fieldset à l'impression. */
     fieldset {
         page-break-inside: avoid;
     }
 
-    /** Pour autoriser le découpage du fieldset sur plusieurs pages s'il est trop grand. */
+    /* Pour autoriser le découpage du fieldset sur plusieurs pages s'il est trop grand. */
     fieldset.maclasse-couperEnModePrint {
         page-break-inside: auto;
     }
 
-    /** masque l'élément. */
+    /* masque l'élément. */
     .maclasse-masquerEnModePrint,
     button,
     .mat-tooltip-panel {
@@ -153,13 +153,13 @@ fieldset.maclasse-formulaire>div {
         visibility: hidden;
     }
 
-    /** force l'affichage de l'élément. */
+    /* force l'affichage de l'élément. */
     .maclasse-afficherEnModePrint {
         display: block !important;
         visibility: visible;
     }
 
-    /** Pour le rendu en impression des legend.*/
+    /* Pour le rendu en impression des legend.*/
     fieldset.maclasse-formulaire>legend {
         border-radius: 10px 10px 0px 0px;
         border-color: var(--mdc-protected-button-label-text-color, var(--mat-app-primary));
@@ -168,12 +168,12 @@ fieldset.maclasse-formulaire>div {
         border-bottom: none;
     }
 
-    /** Pour mettre en noir les champs désactivés. */
+    /* Pour mettre en noir les champs désactivés. */
     mat-checkbox.mat-mdc-checkbox-disabled {
         color: black !important;
     }
 
-    /** Pour les entêtes fournis dans le JSON. */
+    /* Pour les entêtes fournis dans le JSON. */
     div.maclasse-afficherAdroite {
         float: right;
     }
@@ -213,17 +213,17 @@ fieldset.maclasse-formulaire>div {
     }
 }
 
-/** Pour ne pas afficher les scrollbar au resize d'un textarea dans le corp d'un popup. */
+/* Pour ne pas afficher les scrollbar au resize d'un textarea dans le corp d'un popup. */
 .mat-mdc-tab-body-content {
     overflow: hidden !important;
 }
 
-/** Pour aligner les erreurs de validation de données à gauche. */
+/* Pour aligner les erreurs de validation de données à gauche. */
 ul.maclasse-texteagauche {
     text-align: left;
 }
 
-/** Pour les légendes contenant des boutons. */
+/* Pour les légendes contenant des boutons. */
 legend.maclasse-legendFlex {
     display: flex;
 }
@@ -233,12 +233,12 @@ span.maclasse-eleve:not(:first-child) {
     margin-left: 5px;
 }
 
-/** ONGLET TACHE - Pour ne pas griser les checkbox désactivées (à mettre ici sinon pas pris en compte). */
+/* ONGLET TACHE - Pour ne pas griser les checkbox désactivées (à mettre ici sinon pas pris en compte). */
 .mat-mdc-checkbox.tache>div>label {
     color: black !important;
 }
 
-/** ONGLET TACHE - Pour griser les échéances terminées (à mettre ici sinon pas pris en compte). */
+/* ONGLET TACHE - Pour griser les échéances terminées (à mettre ici sinon pas pris en compte). */
 .mat-mdc-checkbox.tache.termine>div>label {
     color: var(--mat-checkbox-disabled-label-color) !important;
 }
@@ -253,7 +253,7 @@ span.maclasse-eleve:not(:first-child) {
     white-space: nowrap;
 }
 
-/** Pour centrer du texte. */
+/* Pour centrer du texte. */
 .maclasse-texteCentre {
     text-align: center;
 }

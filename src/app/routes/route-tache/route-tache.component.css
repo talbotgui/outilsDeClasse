@@ -1,19 +1,19 @@
-/** Liste des tâches. */
+/* Liste des tâches. */
 .maclasse-taches {
     display: flex;
     flex-wrap: wrap;
 }
 
-/** Uniquement en mode écran. */
+/* Uniquement en mode écran. */
 @media screen {
 
-    /** Tache à largeur fixe. */
+    /* Tache à largeur fixe. */
     .maclasse-tache {
         width: 536px;
     }
 }
 
-/** Liste verticale. */
+/* Liste verticale. */
 .maclasse-echeances {
     display: flex;
     flex-direction: column;

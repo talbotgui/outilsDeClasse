@@ -21,17 +21,17 @@ div.maclasse-contenucaseeleves {
     line-height: 40px;
 }
 
-/** Pour rendre scrollable la case contenant l'éditeur. */
+/* Pour rendre scrollable la case contenant l'éditeur. */
 .maclasse-caseEditeur {
     overflow: auto;
 }
 
-/** Pour laisser un espace entre les noms de groupe dans le libellé du temps. */
+/* Pour laisser un espace entre les noms de groupe dans le libellé du temps. */
 div.maclasse-titreDeTemps span:not(:first-child) {
     margin-left: 10px;
 }
 
-/** Pour placer les icones de manière régulière. */
+/* Pour placer les icones de manière régulière. */
 .maclasse-largeurUnBouton {
     width: 48px;
 }
@@ -93,7 +93,7 @@ div.maclasse-grille-col4 {
  * Système de grille avec hauteur dynamique (que mat-grid ne sait pas gérer).  -- FIN
  *************************************************************************************/
 
-/** Pour souligner les libellés de données en mode lecture */
+/* Pour souligner les libellés de données en mode lecture */
 span.maclasse-titre {
     text-decoration: underline;
     margin-right: 5px;
