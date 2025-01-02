@@ -65,26 +65,7 @@ export class RouteTdbComponent extends AbstractRoute {
     public indexEnEdition: number | undefined;
 
     /** Edition : commentaire de l'élève pour la période en cours d'édition */
-    public get commentaireDeLaPeriode(): CommentaireDePeriode | undefined {
-        // Au cas où
-        if (!this.eleveSelectionne || !this.periodeSelectionnee) {
-            return undefined;
-        }
-        // Dans les conditions nomonales
-        else {
-            // Recherche du commentaire pour la période
-            let commentaire = this.eleveSelectionne.commentairesDePeriode.find(c => c.idPeriode == this.periodeSelectionnee?.id);
-
-            // Création si inexistant
-            if (!commentaire) {
-                commentaire = new CommentaireDePeriode();
-                commentaire.idPeriode = this.periodeSelectionnee.id;
-            }
-
-            // Renvoi
-            return commentaire;
-        }
-    }
+    public commentaireDeLaPeriode: CommentaireDePeriode | undefined;
 
     /** ID du projet utilisé pour les ajouts manuels */
     private static readonly ID_PROJET_AJOUT_MANUEL = 'ajoutManuel';
@@ -143,8 +124,34 @@ export class RouteTdbComponent extends AbstractRoute {
             this.location.go(url);
         }
 
+        // MaJ du commentaire de la période
+        this.afficherCommentaireDeLaPeriode();
+
         // Créer lignes du tdb
         this.creerLignesTdb();
+    }
+
+    /** Sélectionner le commentaire de la bonne période (ou en créer un si besoin) */
+    private afficherCommentaireDeLaPeriode() {
+        // Au cas où
+        if (!this.eleveSelectionne || !this.periodeSelectionnee) {
+            this.commentaireDeLaPeriode = undefined;
+        }
+        // Dans les conditions nomonales
+        else {
+            // Recherche du commentaire pour la période
+            let commentaire = this.eleveSelectionne.commentairesDePeriode.find(c => c.idPeriode == this.periodeSelectionnee?.id);
+
+            // Création si inexistant
+            if (!commentaire) {
+                commentaire = new CommentaireDePeriode();
+                commentaire.idPeriode = this.periodeSelectionnee.id;
+                this.eleveSelectionne.commentairesDePeriode.push(commentaire);
+            }
+
+            // Renvoi
+            this.commentaireDeLaPeriode = commentaire;
+        }
     }
 
     /** Méthode d'ajout d'une note dans une sous-ligne pour laquelle la note n'existe pas pour une des deux périodes */
