@@ -5,11 +5,11 @@ export class Projet extends AvecIdentifiant {
   public description?: string;
   public notesCoteEducatif?: string;
   public idsEleve?: string[];
-  public sousProjetParPeriode?: SousProjetParPeriode[];
+  public sousProjetParPeriode?: SousProjetParPeriode[] = [];
 }
 
 export class SousProjetParPeriode extends AvecIdentifiant {
   public idPeriode?: string;
   public commentaire?: string;
-  public idCompetences?: string[];
+  public idCompetences?: string[] = [];
 }

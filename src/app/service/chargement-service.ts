@@ -115,6 +115,7 @@ export class ChargementService {
                 sp.id = sp.id ?? ModelUtil.getUID();
                 sp.idCompetences = sp.idCompetences ?? [];
             });
+            p.idsEleve = p.idsEleve ?? [];
         });
         donnees.taches.forEach(t => {
             t.id = t.id ?? ModelUtil.getUID();

@@ -14,5 +14,5 @@ export class Note {
   public commentaireEvaluationPublic?: string;
   public commentaireEvaluationPrive?: string;
   public constatEnPreparation?: string = CONSTATS_EN_PREPARATION_PAR_DEFAUT;
-  public idsProjets?: string[];
+  public idsProjets?: string[] = [];
 }
