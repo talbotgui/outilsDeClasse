@@ -94,9 +94,12 @@
             } @else if (tempsEnEdition !== idx) {
             <div class="maclasse-titreDeTemps" (click)="statutsAffichage[idx] = !statutsAffichage[idx]">
                 <span>de {{temps.debut}} à {{temps.fin}}</span>
-                @for (groupe of temps.groupes ; track groupe.id) {
-                <span>-</span>
+                <span>Groupes :</span>
+                @for (groupe of temps.groupes ; track groupe.id ; let dernier = $last) {
                 <span>{{groupe.nom}}</span>
+                @if (!dernier){
+                <span>, </span>
+                }
                 }
             </div>
             } @else {
@@ -192,7 +195,7 @@
 
             <!-- les temps -->
             @for (groupe of temps.groupes ; track groupe.id ; let jdx = $index) {
-            <fieldset class="maclasse-formulaire" [class.maclasse-unSeulGroupe]="temps.groupes.length===1">
+            <fieldset class="maclasse-formulaire">
                 <legend class="maclasse-legendFlex">
                     @if (tempsEnEdition !== idx) {
                     {{groupe.nom}}
