@@ -159,6 +159,15 @@ export class ProjetService {
         }
     }
 
+    /** Suppression d'une période de projet. */
+    public supprimerPeriodeDeProjet(projetSelectionne: Projet, periodeDeProjet: SousProjetParPeriode): void {
+        if (projetSelectionne && projetSelectionne.sousProjetParPeriode) {
+            const index = projetSelectionne.sousProjetParPeriode.indexOf(periodeDeProjet);
+            projetSelectionne.sousProjetParPeriode.splice(index, 1);
+        }
+
+    }
+
     /** Suppression du projet sélectionné. */
     public supprimerProjetSelectionne(projet: Projet | undefined, projets: Projet[] | undefined, eleves: Eleve[]): boolean {
         if (projet && projets) {
