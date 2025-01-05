@@ -165,14 +165,16 @@
                         }
                         @if (sousLigne.referencesProjetPeriodeEvaluee.length > 0){
                         &nbsp;
-                        <span class="maclasse-enUneLigne">
+                        <span class="maclasse-enUneLigne maclasse-masquerEnModePrint">
                             (<span>{{sousLigne.referencesProjetPeriodeEvaluee.length}}</span>
                             <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
                         </span>
                         }
                         @if (sousLigne.notePeriodeEvaluee?.idsProjets?.includes('ajoutManuel')){
-                        &nbsp;
-                        <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
+                        <div class="maclasse-masquerEnModePrint">
+                            &nbsp;
+                            <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
+                        </div>
                         }
                         @if (indexEnEdition==idx) {
                         &nbsp;
@@ -223,13 +225,17 @@
                         <p>{{sousLigne.notePeriodePreparee?.constatEnPreparation}}</p>
                         }
                         @if (sousLigne.referencesProjetPeriodePreparee.length > 0){
-                        &nbsp;
-                        (<span>{{sousLigne.referencesProjetPeriodePreparee.length}}</span>
-                        <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
+                        <div class="maclasse-masquerEnModePrint">
+                            &nbsp;
+                            (<span>{{sousLigne.referencesProjetPeriodePreparee.length}}</span>
+                            <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
+                        </div>
                         }
                         @if (sousLigne.notePeriodePreparee?.idsProjets?.includes('ajoutManuel')){
-                        &nbsp;
-                        <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
+                        <div class="maclasse-masquerEnModePrint">
+                            &nbsp;
+                            <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
+                        </div>
                         @if (indexEnEdition==idx) {
                         <button type="button" mat-icon-button class="maclasse-bouton16" matTooltip="Supprimer la note" aria-label="Supprimer la note"
                             (click)="supprimerUneNote(sousLigne, false)">
