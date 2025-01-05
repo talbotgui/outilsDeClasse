@@ -16,6 +16,11 @@ export class ProjetService {
             sousProjet.idCompetences = [];
         }
 
+        // Pour éviter les doublons
+        if (sousProjet.idCompetences.includes(idCompetence)) {
+            return;
+        }
+
         // Ajout de la compétence au sous-projet
         sousProjet.idCompetences.push(idCompetence);
 
