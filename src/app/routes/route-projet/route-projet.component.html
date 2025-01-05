@@ -104,6 +104,10 @@
                 }
             </mat-select>
         </mat-form-field>
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerPeriodeSelectionne(sousLigne)" matTooltip="Supprimer cette période"
+            aria-label="Supprimer cette période">
+            <fa-icon icon="trash"></fa-icon>
+        </button>
         } @else {
         <span>En {{obtenirLibellePeriode(sousLigne.idPeriode)}}</span>
         }

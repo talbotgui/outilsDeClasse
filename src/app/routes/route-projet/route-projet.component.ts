@@ -241,6 +241,14 @@ export class RouteProjetComponent extends AbstractRoute {
         }
     }
 
+    /** Supprimer la période du projet */
+    public supprimerPeriodeSelectionne(periodeDeProjet: SousProjetParPeriode): void {
+        if (this.projetSelectionne && this.projetSelectionne.sousProjetParPeriode) {
+            const index = this.projetSelectionne.sousProjetParPeriode.indexOf(periodeDeProjet);
+            this.projetSelectionne.sousProjetParPeriode.splice(index, 1);
+        }
+    }
+
     /** Suppression du projet sélectionné. */
     public supprimerProjetSelectionne(): void {
         if (this.projetSelectionne && this.projetSelectionne.sousProjetParPeriode && this.eleves) {
