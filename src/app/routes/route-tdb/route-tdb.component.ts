@@ -286,7 +286,7 @@ export class RouteTdbComponent extends AbstractRoute {
             // Création des lignes pour les deux périodes
             if (this.modeAffichage === "1") {
                 this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, true, this.eleveSelectionne.notes);
-            } else if (this.modeAffichage === "2") {
+            } else if (this.modeAffichage === "2" || this.modeAffichage === "4") {
                 this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
             } else {
                 this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
