@@ -177,6 +177,11 @@ fieldset.maclasse-formulaire>div {
     div.maclasse-afficherAdroite {
         float: right;
     }
+
+    /* Pour les entêtes fournis dans le JSON. */
+    div.maclasse-afficherAgauche {
+        float: left;
+    }
 }
 
 /* Pour séparer correctement les compétences sélectionnées. */
