@@ -174,12 +174,19 @@ fieldset.maclasse-formulaire>div {
     }
 
     /* Pour les entêtes fournis dans le JSON. */
-    div.maclasse-afficherAdroite {
+    .maclasse-afficherAdroite {
         float: right;
     }
 
     /* Pour les entêtes fournis dans le JSON. */
-    div.maclasse-afficherAgauche {
+    .maclasse-afficherAdroiteViaPosition {
+        right: 0;
+        position: relative;
+        text-align: right;
+    }
+
+    /* Pour les entêtes fournis dans le JSON. */
+    .maclasse-afficherAgauche {
         float: left;
     }
 }
