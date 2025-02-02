@@ -1,4 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,17 +10,20 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
 import { ROUTE_TDB } from '../../app.routes';
 import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
-import { CommentaireDePeriode, Eleve } from '../../model/eleve-model';
+import { CommentaireEtParcoursDePeriode, Eleve } from '../../model/eleve-model';
 import { MessageAafficher, TypeMessageAafficher } from '../../model/message-model';
 import { Periode } from '../../model/model';
 import { Competence, Note } from '../../model/note-model';
 import { Projet } from '../../model/projet-model';
 import { LigneDeTableauDeBord, SousLigneDeTableauDeBord } from '../../model/tdb-model';
+import { HtmlPipe } from '../../pipes/html.pipe';
 import { ContexteService } from '../../service/contexte-service';
 import { AbstractRoute } from '../route';
+import { RouteEleveComponent } from '../route-eleve/route-eleve.component';
 
 @Component({
     selector: 'route-tdb', templateUrl: './route-tdb.component.html', styleUrl: './route-tdb.component.scss',
@@ -30,11 +34,16 @@ import { AbstractRoute } from '../route';
         FontAwesomeModule,
         // Matérial
         ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatSelectModule,
-        // Composant applicatif
-        DialogSelectionCompetenceComponent
+        // Pour l'éditeur WYSIWYG
+        HttpClientModule, AngularEditorModule,
+        // Pipes
+        HtmlPipe
     ]
 })
 export class RouteTdbComponent extends AbstractRoute {
+
+    /** Configuration de l'éditeur */
+    public configurationWysiwyg: AngularEditorConfig = RouteEleveComponent.CONFIGURATION_WYSIWYG_PAR_DEFAUT;
 
     /** Donnees de référence : liste des élèves. */
     public eleves: Eleve[] = [];
@@ -65,7 +74,10 @@ export class RouteTdbComponent extends AbstractRoute {
     public indexEnEdition: number | undefined;
 
     /** Edition : commentaire de l'élève pour la période en cours d'édition */
-    public commentaireDeLaPeriode: CommentaireDePeriode | undefined;
+    public commentaireDeLaPeriode: CommentaireEtParcoursDePeriode | undefined;
+
+    /** Edition : parcours de l'élève pour la période en cours d'édition */
+    public parcoursDeLaPeriode: CommentaireEtParcoursDePeriode | undefined;
 
     /** ID du projet utilisé pour les ajouts manuels */
     private static readonly ID_PROJET_AJOUT_MANUEL = 'ajoutManuel';
@@ -125,32 +137,42 @@ export class RouteTdbComponent extends AbstractRoute {
         }
 
         // MaJ du commentaire de la période
-        this.afficherCommentaireDeLaPeriode();
+        this.afficherCommentaireEtParcoursDeLaPeriode();
 
         // Créer lignes du tdb
         this.creerLignesTdb();
     }
 
     /** Sélectionner le commentaire de la bonne période (ou en créer un si besoin) */
-    private afficherCommentaireDeLaPeriode() {
+    private afficherCommentaireEtParcoursDeLaPeriode() {
         // Au cas où
         if (!this.eleveSelectionne || !this.periodeSelectionnee) {
             this.commentaireDeLaPeriode = undefined;
+            this.parcoursDeLaPeriode = undefined;
         }
-        // Dans les conditions nomonales
+        // Dans les conditions nominales
         else {
             // Recherche du commentaire pour la période
             let commentaire = this.eleveSelectionne.commentairesDePeriode.find(c => c.idPeriode == this.periodeSelectionnee?.id);
+            let parcours = this.eleveSelectionne.parcoursDePeriode.find(c => c.idPeriode == this.periodeSelectionnee?.id);
 
             // Création si inexistant
             if (!commentaire) {
-                commentaire = new CommentaireDePeriode();
+                commentaire = new CommentaireEtParcoursDePeriode();
                 commentaire.idPeriode = this.periodeSelectionnee.id;
                 this.eleveSelectionne.commentairesDePeriode.push(commentaire);
+            }
+            // Création si inexistant
+            if (!parcours) {
+                parcours = new CommentaireEtParcoursDePeriode();
+                parcours.commentaire = 'Parcours citoyen : <br/><br/>Parcours d\'éducation artistique et culturelle : <br/><br/>Parcours éducatif de santé :';
+                parcours.idPeriode = this.periodeSelectionnee.id;
+                this.eleveSelectionne.parcoursDePeriode.push(parcours);
             }
 
             // Renvoi
             this.commentaireDeLaPeriode = commentaire;
+            this.parcoursDeLaPeriode = parcours;
         }
     }
 

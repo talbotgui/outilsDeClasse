@@ -75,14 +75,21 @@
     <div>
 
         <fieldset class="maclasse-formulaire">
-            <legend>Commentaire global de la période</legend>
+            <legend>Appréciation générale sur la progression de l'élève</legend>
             <div>
                 @if (commentaireDeLaPeriode) {
-                <mat-form-field class="maclasse-pleinelargeur">
-                    <mat-label>Commentaire global de la période</mat-label>
-                    <textarea #textarea type="text" rows="4" placeholder="Commentaire global de la période" matInput
-                        [(ngModel)]="commentaireDeLaPeriode.commentaire"></textarea>
-                </mat-form-field>
+                <angular-editor [config]="configurationWysiwyg" placeholder="Appréciation générale sur la progression de l'élève" name="commentaire"
+                    [(ngModel)]="commentaireDeLaPeriode.commentaire"></angular-editor>
+                }
+            </div>
+        </fieldset>
+
+        <fieldset class="maclasse-formulaire">
+            <legend>Parcours éducatifs : Projet(s) mis en oeuvre dans l'année</legend>
+            <div>
+                @if (parcoursDeLaPeriode) {
+                <angular-editor [config]="configurationWysiwyg" placeholder="Parcours éducatifs : Projet(s) mis en oeuvre dans l'année" name="commentaire"
+                    [(ngModel)]="parcoursDeLaPeriode.commentaire"></angular-editor>
                 }
             </div>
         </fieldset>
@@ -255,7 +262,15 @@
 }
 
 @else {
-<h3> LSU de l'élève {{eleveSelectionne.prenom}} {{eleveSelectionne.nom}} pour la période {{periodes.indexOf(periodeSelectionnee)+1}}</h3>
+<div class="maclasse-titrelsu">
+    <h3>
+        Bilan des acquis scolaires de l'élève {{eleveSelectionne.prenom}} {{eleveSelectionne.nom}} né(e) le {{eleveSelectionne.dateNaissance |
+        date:'dd/MM/yyyy'}}
+        <br />
+        Période {{periodes.indexOf(periodeSelectionnee)+1}} - du {{periodeSelectionnee.debut | date:'dd/MM/yyyy'}} au {{periodeSelectionnee.fin
+        | date:'dd/MM/yyyy'}}
+    </h3>
+</div>
 <div class="maclasse-pleineLargeurSansBarre maclasse-couperEnModePrint">
     <table class="maclasse-lsu">
         <tr class="maclasse-enteteLsu">
@@ -263,7 +278,7 @@
             <th>Compétence</th>
             <th>Commentaire</th>
             @for (entree of mapLibelleNotes | keyvalue ; track entree.key) {
-            <th class="maclasse-rotationLsu">{{entree.value}}</th>
+            <th [class]="'maclasse-rotationLsu maclasse-colonneNote' + entree.key">{{entree.value}}</th>
             }
         </tr>
         @for (ligne of lignes ; track ligne.id ; let idx = $index) {
@@ -275,7 +290,7 @@
             <td>{{sousLigne.libelleCompetence}}</td>
             <td>{{sousLigne.notePeriodeEvaluee?.commentaireEvaluationPublic}}</td>
             @for (entree of mapLibelleNotes | keyvalue ; track entree.key) {
-            <td class="maclasse-texteCentre">
+            <td [class]="'maclasse-texteCentre maclasse-colonneNote' + entree.key">
                 @if (entree.key == sousLigne.notePeriodeEvaluee?.valeurEvaluation){
                 <span>X</span>
                 }
@@ -286,7 +301,31 @@
         }
     </table>
     <br />
-    <div class="maclasse-commentaireDePeriodeDansLsu">{{commentaireDeLaPeriode?.commentaire}}</div>
+    <div class="maclasse-titreDeCommentaireOuParcoursDePeriodeDansLsu">Parcours éducatifs : Projet(s) mis en oeuvre dans l'année</div>
+    <div class="maclasse-commentaireDePeriodeDansLsu" [innerHTML]="parcoursDeLaPeriode?.commentaire | html"> </div>
+    <br />
+    <div class="maclasse-titreDeCommentaireOuParcoursDePeriodeDansLsu">Appréciation générale sur la progression de l'élève</div>
+    <div class="maclasse-parcoursDePeriodeDansLsu">
+        <span>Appréciation personnelle de l'enseignant(e) :</span>
+        <br /><br />
+        <div class="maclasse-afficherAgauche" [innerHTML]="commentaireDeLaPeriode?.commentaire | html"></div>
+        <div class="maclasse-afficherAdroite">
+            <span>Le ____/____/________</span>
+            <br />
+            <span>Signature de l'enseignant(e)</span>
+        </div>
+    </div>
+    <br />
+    <div class="maclasse-titreDeCommentaireOuParcoursDePeriodeDansLsu">Communication avec les familles</div>
+    <div class="maclasse-parcoursDePeriodeDansLsu">
+        <span>Visa des parents ou du responsable légal :</span>
+        <br /><br />
+        <div class="maclasse-afficherAdroite">
+            <span>Pris connaissance le : ____/____/________</span>
+            <br />
+            <span>Signatures</span>
+        </div>
+    </div>
 </div>
 }
 }

@@ -21,7 +21,8 @@ export class Eleve extends AvecIdentifiant {
   public absences: AbsenceEleve[] = [];
   public cursus: CursusEleve[] = [];
   public notes: Note[] = [];
-  public commentairesDePeriode: CommentaireDePeriode[] = [];
+  public commentairesDePeriode: CommentaireEtParcoursDePeriode[] = [];
+  public parcoursDePeriode: CommentaireEtParcoursDePeriode[] = [];
 }
 export class CursusEleve extends AvecIdentifiant {
   public annee: number = 0;
@@ -53,7 +54,7 @@ export class AbsenceEleve extends AvecIdentifiant {
   public heureDebut?: string;
   public heureFin?: string;
 }
-export class CommentaireDePeriode extends AvecIdentifiant {
+export class CommentaireEtParcoursDePeriode extends AvecIdentifiant {
   public commentaire?: string;
   public idPeriode?: string;
 }

@@ -147,7 +147,8 @@ export class Jdd {
                 datesPPA: 'ppa',
                 datesESS: 'ess',
                 notes: [],
-                commentairesDePeriode: []
+                commentairesDePeriode: [],
+                parcoursDePeriode: []
             },
             {
                 id: 'bouchon-evnr1v6a',
@@ -361,7 +362,8 @@ export class Jdd {
                     { id: 'cc2', idPeriode: 'bouchon-2', commentaire: 'Bravo pour cette période 2!' },
                     { id: 'cc3', idPeriode: 'bouchon-3', commentaire: 'Bravo pour cette période 3!' },
                     { id: 'cc4', idPeriode: 'bouchon-4', commentaire: 'Bravo pour cette période 4!' }
-                ]
+                ],
+                parcoursDePeriode: []
             },
             {
                 id: 'bouchon-rvns1q6a',
@@ -432,7 +434,8 @@ export class Jdd {
                         constatEnPreparation: 'consta Prépa P1 e2n2'
                     }
                 ],
-                commentairesDePeriode: []
+                commentairesDePeriode: [],
+                parcoursDePeriode: []
             },
             {
                 id: 'bouchon-lkjsf2d3',
@@ -484,7 +487,8 @@ export class Jdd {
                 absences: [],
                 inclusion: { id: 'bouchon-16', },
                 notes: [],
-                commentairesDePeriode: []
+                commentairesDePeriode: [],
+                parcoursDePeriode: []
             }
         ],
         competences: [

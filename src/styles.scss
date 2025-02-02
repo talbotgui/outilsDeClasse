@@ -173,10 +173,6 @@ fieldset.maclasse-formulaire>div {
         color: black !important;
     }
 
-    /* Pour les entêtes fournis dans le JSON. */
-    .maclasse-afficherAdroite {
-        float: right;
-    }
 
     /* Pour les entêtes fournis dans le JSON. */
     .maclasse-afficherAdroiteViaPosition {
@@ -185,10 +181,16 @@ fieldset.maclasse-formulaire>div {
         text-align: right;
     }
 
-    /* Pour les entêtes fournis dans le JSON. */
-    .maclasse-afficherAgauche {
-        float: left;
-    }
+}
+
+/* Classes utilitaires. */
+.maclasse-afficherAdroite {
+    float: right;
+}
+
+/* Classes utilitaires. */
+.maclasse-afficherAgauche {
+    float: left;
 }
 
 /* Pour séparer correctement les compétences sélectionnées. */
