@@ -25,9 +25,8 @@
 * Pleine hauteur - FIN
 ***************/
 
-
-// CSS par défaut d'Angular
 body {
+    // CSS par défaut d'Angular
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -132,11 +131,16 @@ fieldset.maclasse-formulaire>div {
 
     /* Pour retirer l'entête et le pied de page générés par le navigateur. */
     @page {
-        margin: 0;
+        margin: 5px 0px 5px 0px;
     }
 
     /* Pour ne pas couper un fieldset à l'impression. */
     fieldset {
+        page-break-inside: avoid;
+    }
+
+    /* Pour ne pas couper un div à l'impression. */
+    div.maclasse-nePasCouperEnModePrint {
         page-break-inside: avoid;
     }
 

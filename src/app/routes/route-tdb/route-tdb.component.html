@@ -128,7 +128,7 @@
                         [class.maclasse-table-case-w40]="modeAffichage=='2'" [class.maclasse-table-case-w25]="modeAffichage=='3'">Compétence</div>
                     @if (modeAffichage != '1') {
                     <div class="maclasse-table-case maclasse-table-case-w15">
-                        Constats/outils de la période précédente
+                        Constats/outils de la période
                     </div>
                     <div class="maclasse-table-case maclasse-table-case-w15">Aquisition</div>
                     <div class="maclasse-table-case maclasse-table-case-w15">Commentaires publiés</div>
@@ -301,29 +301,35 @@
         }
     </table>
     <br />
-    <div class="maclasse-titreDeCommentaireOuParcoursDePeriodeDansLsu">Parcours éducatifs : Projet(s) mis en oeuvre dans l'année</div>
-    <div class="maclasse-commentaireDePeriodeDansLsu" [innerHTML]="parcoursDeLaPeriode?.commentaire | html"> </div>
+    <div class="maclasse-nePasCouperEnModePrint">
+        <div class="maclasse-titreDeCommentaireOuParcoursDePeriodeDansLsu">Parcours éducatifs : Projet(s) mis en oeuvre dans l'année</div>
+        <div class="maclasse-commentaireDePeriodeDansLsu" [innerHTML]="parcoursDeLaPeriode?.commentaire | html"> </div>
+    </div>
     <br />
-    <div class="maclasse-titreDeCommentaireOuParcoursDePeriodeDansLsu">Appréciation générale sur la progression de l'élève</div>
-    <div class="maclasse-parcoursDePeriodeDansLsu">
-        <span>Appréciation personnelle de l'enseignant(e) :</span>
-        <br /><br />
-        <div class="maclasse-afficherAgauche" [innerHTML]="commentaireDeLaPeriode?.commentaire | html"></div>
-        <div class="maclasse-afficherAdroite">
-            <span>Le ____/____/________</span>
-            <br />
-            <span>Signature de l'enseignant(e)</span>
+    <div class="maclasse-nePasCouperEnModePrint">
+        <div class="maclasse-titreDeCommentaireOuParcoursDePeriodeDansLsu">Appréciation générale sur la progression de l'élève</div>
+        <div class="maclasse-parcoursDePeriodeDansLsu">
+            <span>Appréciation personnelle de l'enseignant(e) :</span>
+            <br /><br />
+            <div class="maclasse-afficherAgauche" [innerHTML]="commentaireDeLaPeriode?.commentaire | html"></div>
+            <div class="maclasse-afficherAdroite">
+                <span>Le ____/____/________</span>
+                <br />
+                <span>Signature de l'enseignant(e)</span>
+            </div>
         </div>
     </div>
     <br />
-    <div class="maclasse-titreDeCommentaireOuParcoursDePeriodeDansLsu">Communication avec les familles</div>
-    <div class="maclasse-parcoursDePeriodeDansLsu">
-        <span>Visa des parents ou du responsable légal :</span>
-        <br /><br />
-        <div class="maclasse-afficherAdroite">
-            <span>Pris connaissance le : ____/____/________</span>
-            <br />
-            <span>Signatures</span>
+    <div class="maclasse-nePasCouperEnModePrint">
+        <div class="maclasse-titreDeCommentaireOuParcoursDePeriodeDansLsu">Communication avec les familles</div>
+        <div class="maclasse-parcoursDePeriodeDansLsu">
+            <span>Visa des parents ou du responsable légal :</span>
+            <br /><br />
+            <div class="maclasse-afficherAdroite">
+                <span>Pris connaissance le : ____/____/________</span>
+                <br />
+                <span>Signatures</span>
+            </div>
         </div>
     </div>
 </div>
