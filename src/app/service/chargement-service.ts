@@ -87,6 +87,7 @@ export class ChargementService {
             e.absences = e.absences ?? [];
             e.cursus = e.cursus ?? [];
             e.commentairesDePeriode = e.commentairesDePeriode ?? [];
+            e.parcoursDePeriode = e.parcoursDePeriode ?? [];
             e.inclusion.id = e.inclusion.id ?? ModelUtil.getUID();
             e.contacts.forEach(c => c.id = c.id ?? ModelUtil.getUID());
             e.cursus.forEach(c => c.id = c.id ?? ModelUtil.getUID());
@@ -96,6 +97,7 @@ export class ChargementService {
                 n.idsProjets = n.idsProjets ?? [];
             });
             e.commentairesDePeriode.forEach(c => c.id = c.id ?? ModelUtil.getUID());
+            e.parcoursDePeriode.forEach(c => c.id = c.id ?? ModelUtil.getUID());
         });
         donnees.journal.forEach(j => {
             j.id = j.id ?? ModelUtil.getUID();
@@ -432,7 +434,12 @@ export class ChargementService {
             });
             e.commentairesDePeriode.forEach(c => {
                 if (typeof c.idPeriode == undefined || c.idPeriode && !listeIdPeriodes.includes(c.idPeriode)) {
-                    listeErreurs.push('Periode "' + c.idPeriode + '" inconnue dans les données mais référencée dans la commentaire de période "' + c.id + '"');
+                    listeErreurs.push('Periode "' + c.idPeriode + '" inconnue dans les données mais référencée dans le commentaire de période "' + c.id + '"');
+                }
+            });
+            e.parcoursDePeriode.forEach(p => {
+                if (typeof p.idPeriode == undefined || p.idPeriode && !listeIdPeriodes.includes(p.idPeriode)) {
+                    listeErreurs.push('Periode "' + p.idPeriode + '" inconnue dans les données mais référencée dans le parcours de période "' + p.id + '"');
                 }
             });
         });
