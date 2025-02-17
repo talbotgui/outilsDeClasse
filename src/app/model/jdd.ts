@@ -1,6 +1,38 @@
 import { Annee } from "./model";
 
 export class Jdd {
+    static ajouterDesErreurAuJdd(annee: Annee) {
+        // problème E1
+        annee.eleves[1].commentairesDePeriode[0].idPeriode = 'mauvaisIdPeriode';
+        // problème E2
+        annee.eleves[1].parcoursDePeriode[0].idPeriode = 'mauvaisIdPeriode';
+
+        // problème J1
+        annee.journal[1].temps[0].groupes[0].eleves.push('mauvaisIdEleve');
+        // problème J2
+        annee.journal[1].temps[0].groupes[0].competences.push('mauvaisIdCompetence');
+
+        // problème N1
+        annee.eleves[1].notes[1].idPeriode = 'mauvaisIdPeriode';
+        // problème N2 + PRO5
+        annee.eleves[1].notes[1].idItem = 'mauvaisIdCompetence';
+        // problème N3
+        annee.eleves[1].notes[1].valeurEvaluation = 'mauvaiseValeurEvaluation';
+        // problème N4
+        annee.eleves[1].notes[0].idsProjets?.push('mauvaisIdProjet');
+
+        // problème P1
+        annee.periodes.push({ id: 'periodeMauvaise1', debut: new Date('2017-02-27T00:00:00.000Z'), fin: undefined, nom: 'Période mal renseignée' });
+        // problème P2
+        annee.periodes.push({ id: 'periodeMauvaise2', debut: new Date('2017-02-28T00:00:00.000Z'), fin: new Date('2017-04-09T00:00:00.000Z'), nom: 'Période mal renseignée' });
+
+        // problème PRO1 et PRO2
+        annee.projets[0].sousProjetParPeriode?.push({ id: 'bouchon-p1p2', idPeriode: 'mauvaisIdPeriode', idCompetences: ['mauvaisIdCompetence'], commentaire: 'comme cela' });
+        // problème PRO3
+        annee.projets[0].idsEleve?.push('mauvaisIdEleve');
+        // problème PRO4
+        annee.eleves[1].notes[1].idsProjets = [];
+    }
 
     // Jeu de données riche
     static JDD_RICHE: Annee = {
@@ -363,7 +395,9 @@ export class Jdd {
                     { id: 'cc3', idPeriode: 'bouchon-3', commentaire: 'Bravo pour cette période 3!' },
                     { id: 'cc4', idPeriode: 'bouchon-4', commentaire: 'Bravo pour cette période 4!' }
                 ],
-                parcoursDePeriode: []
+                parcoursDePeriode: [
+                    { id: 'cp1', idPeriode: 'bouchon-1', commentaire: 'Bravo pour cette période 1!' }
+                ]
             },
             {
                 id: 'bouchon-rvns1q6a',

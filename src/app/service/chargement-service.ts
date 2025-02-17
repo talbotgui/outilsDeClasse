@@ -8,6 +8,7 @@ import { ModelUtil } from "../model/model-utils";
 import { Note } from "../model/note-model";
 import { Projet, SousProjetParPeriode } from "../model/projet-model";
 import { ContexteService } from "./contexte-service";
+import { ProblemeService } from "./probleme-service";
 
 @Injectable({ providedIn: 'root' })
 export class ChargementService {
@@ -15,7 +16,7 @@ export class ChargementService {
     private static readonly FORMAT_DATE_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d*)?Z$/;
 
     /** Constructeur pour injection des dépendances. */
-    constructor(private contexteService: ContexteService) { }
+    constructor(private contexteService: ContexteService, private problemeService: ProblemeService) { }
 
     /**
      * Chargement du contenu d'un fichier JSON de données de classe.
@@ -41,9 +42,7 @@ export class ChargementService {
                     // recompléter les données si des attributs sont manquants
                     this.completerDonneeSiManquante(donnees);
                     // validation des données
-                    if (!this.validerDonnees(donnees)) {
-                        return false;
-                    }
+                    this.problemeService.analyserDonnees(donnees)
                     // sauvegarde des données dans le contexte
                     this.contexteService.sauvegarderDonnesDeClasseChargee(donnees);
                     // message de succès
@@ -360,111 +359,4 @@ export class ChargementService {
         return donnees;
     }
 
-    /** Validation des références de données (FK au sein du JSON). */
-    private validerDonnees(donnees: Annee): boolean {
-
-        // Déclaration des listes d'ID des objets référencés dans d'autres objets
-        const listeIdCompetences = donnees.competences.map(c => c.id);
-        const listeIdPeriodes = donnees.periodes.map(p => p.id);
-        const listeIdEleves = donnees.eleves.map(e => e.id);
-        const listeIdProjets = donnees.projets.map(p => p.id);
-        listeIdProjets.push('ajoutManuel');
-
-        // Init de la liste des messages d'erreur
-        const listeErreurs: string[] = [];
-
-        // Validation des dates de période
-        if (donnees.periodes) {
-            donnees.periodes.forEach(p => {
-                if (!p.debut || !p.fin) {
-                    listeErreurs.push('La période "' + p.id + '" a une date manquante.');
-                } else {
-                    const idChevauchements = donnees.periodes.filter(pp =>
-                        // Si toutes les dates sont là
-                        pp.debut && pp.fin && p.debut && p.fin &&
-                        // Si les ID sont bien différents
-                        pp.id != p.id &&
-                        // Si la date de début ou de fin est comprise dans l'autre période
-                        ((pp.debut < p.debut && p.debut < pp.fin) || (pp.fin < p.debut && p.fin < pp.fin))
-                    ).map(p => p.id);
-                    if (idChevauchements.length > 0) {
-                        listeErreurs.push('La(es) période(s) "' + idChevauchements + '" chevauche(nt) la période "' + p.id + '".');
-                    }
-                }
-            });
-        } else {
-            listeErreurs.push('Aucune période définie dans vos données. Elles sont obligatoires et essentielles');
-        }
-
-        // Tri des périodes (au cas où)
-        donnees.periodes.sort((p1, p2) => (p1.debut && p2.debut) ? p1.debut.getTime() - p2.debut.getTime() : -1);
-
-        // Validation des références dans les données
-        donnees.journal.forEach(j => {
-            j.temps.forEach(t => {
-                t.groupes.forEach(g => {
-                    g.eleves.forEach(e => {
-                        if (typeof e == undefined || !listeIdEleves.includes(e)) {
-                            listeErreurs.push('Eleve "' + e + '" inconnu dans les données mais référencée dans la journal "' + j.id + '"');
-                        }
-                    });
-                    g.competences.forEach(c => {
-                        if (typeof c == undefined || !listeIdCompetences.includes(c)) {
-                            listeErreurs.push('Compétence "' + c + '" inconnue dans les données mais référencée dans la journal "' + j.id + '"');
-                        }
-                    });
-                });
-            });
-        });
-        (donnees.eleves || []).forEach(e => {
-            e.notes.forEach(n => {
-                if (typeof n.idPeriode == undefined || n.idPeriode && !listeIdPeriodes.includes(n.idPeriode)) {
-                    listeErreurs.push('Periode "' + n.idPeriode + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
-                }
-                if (typeof n.idItem == undefined || n.idItem && !listeIdCompetences.includes(n.idItem)) {
-                    listeErreurs.push('Compétence "' + n.idItem + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
-                }
-                // donnée optionnelle
-                if (n.valeurEvaluation && !donnees.mapLibelleNotes[n.valeurEvaluation]) {
-                    listeErreurs.push('Valeur "' + n.valeurEvaluation + '" inconnue dans les données mais référencée dans la note "' + n.id + '"');
-                }
-                // donnée optionnelle
-                if (n.idsProjets) {
-                    const idsEnErreur = n.idsProjets.filter(id => !listeIdProjets.includes(id));
-                    if (idsEnErreur.length > 0) {
-                        listeErreurs.push('Projet(s) "' + idsEnErreur + '" inconnu(s) dans les données mais référencée dans la note "' + n.id + '"');
-                    }
-                }
-            });
-            e.commentairesDePeriode.forEach(c => {
-                if (typeof c.idPeriode == undefined || c.idPeriode && !listeIdPeriodes.includes(c.idPeriode)) {
-                    listeErreurs.push('Periode "' + c.idPeriode + '" inconnue dans les données mais référencée dans le commentaire de période "' + c.id + '"');
-                }
-            });
-            e.parcoursDePeriode.forEach(p => {
-                if (typeof p.idPeriode == undefined || p.idPeriode && !listeIdPeriodes.includes(p.idPeriode)) {
-                    listeErreurs.push('Periode "' + p.idPeriode + '" inconnue dans les données mais référencée dans le parcours de période "' + p.id + '"');
-                }
-            });
-        });
-        donnees.projets.forEach(p => {
-            (p.sousProjetParPeriode || []).forEach(sp => {
-                if (typeof sp.idPeriode == undefined || sp.idPeriode && !listeIdPeriodes.includes(sp.idPeriode)) {
-                    listeErreurs.push('Periode "' + sp.idPeriode + '" inconnue dans les données mais référencée dans le projet "' + p.nom + '"');
-                }
-                (sp.idCompetences || []).forEach(c => {
-                    if (typeof c == undefined || !listeIdCompetences.includes(c)) {
-                        listeErreurs.push('Compétence "' + c + '" inconnue dans les données mais référencée dans le projet "' + p.nom + '"');
-                    }
-                });
-            });
-        });
-
-        // Gestion de la liste des messages
-        if (listeErreurs.length > 0) {
-            const message = listeErreurs.length + ' erreurs dans les données chargées :<ul class="maclasse-texteagauche"><li>' + listeErreurs.join('</li><li>') + '</li></ul>';
-            this.contexteService.afficherUnMessageGeneral(new MessageAafficher("validerDonnees", TypeMessageAafficher.Erreur, message));
-        }
-        return listeErreurs.length == 0;
-    }
 }

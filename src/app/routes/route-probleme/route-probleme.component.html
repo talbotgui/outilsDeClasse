@@ -1,0 +1,31 @@
+@if (problemes && problemes.length > 0) {
+
+<p>{{problemes.length}} problème(s) ont été détecté(s) dans les données chargées. Vous pouvez utiliser les boutons ci-dessous pour les corriger.</p>
+
+<div class="maclasse-table">
+    <div class="maclasse-table-ligne maclasse-table-entete">
+        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w70">
+            <p>Description de l'erreur</p>
+        </div>
+        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30">
+            <p>Action corrective</p>
+        </div>
+    </div>
+    @for(pb of problemes; track pb.id){
+    <div class="maclasse-table-ligne">
+        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w70">
+            <p>{{pb.code}} - {{pb.libelle}}</p>
+        </div>
+        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30">
+        </div>
+    </div>
+    }
+</div>
+
+}
+@else {
+<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable.
+    Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
+</p>
+<p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
+}

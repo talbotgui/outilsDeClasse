@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { tap } from 'rxjs';
 import { AbstractComponent } from '../directives/abstract.component';
 import { ContexteService } from '../service/contexte-service';
@@ -14,14 +14,17 @@ import { ContexteService } from '../service/contexte-service';
   selector: '[div-contenu]', templateUrl: './div-contenu.component.html',
   standalone: true, imports: [
     // Pour les routes
-    RouterOutlet, CommonModule, RouterLink, RouterLinkActive,
+    RouterOutlet, CommonModule, RouterLink,
     // Pour les composants Material
     MatTabsModule, MatSidenavModule, MatButtonModule, MatTooltipModule]
 })
 export class DivContenuComponent extends AbstractComponent implements OnInit {
 
-  /** Flag indiquant que le menu peut être complètement affiché car les données sont chargées */
+  /** Flag indiquant que le menu peut être complètement affiché car les données sont chargées. */
   public donneesDeClasseChargee = false;
+
+  /** Flag indiquant que le menu dédié aux problèmes peut être affiché. */
+  public problemesDetectes = false;
 
   /** Route active à un instant T */
   public routeActive: string | undefined;
@@ -33,7 +36,7 @@ export class DivContenuComponent extends AbstractComponent implements OnInit {
   public ngOnInit(): void {
     // Si des données sont chargées, 
     const sub1 = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
-      //l'état est conservé
+      // le fait que les données sont chargées est conservé
       tap(donnees => this.donneesDeClasseChargee = !!donnees)
     ).subscribe();
     super.declarerSouscription(sub1);
@@ -57,5 +60,12 @@ export class DivContenuComponent extends AbstractComponent implements OnInit {
       })
     ).subscribe();
     super.declarerSouscription(sub2);
+
+    // Si des problèmes sont détectés, 
+    const sub3 = this.contexteService.obtenirUnObservableDeDetectionDeProblemeDansLesDonnees().pipe(
+      // le fait que des problèmes soient détectés est conservé
+      tap(problemes => this.problemesDetectes = !!problemes)
+    ).subscribe();
+    super.declarerSouscription(sub3);
   }
 }

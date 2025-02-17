@@ -29,7 +29,9 @@ export class BouchonService extends AbstractComponent {
         this.unJeuDeDonneesBouchonneEstCharge = true
 
         // un jeu de données est chargé par défaut
-        const sub = this.chargementService.chargerDonneesDeClasse(JSON.stringify(Jdd.JDD_RICHE)).subscribe();
+        const annee = Jdd.JDD_RICHE;
+        Jdd.ajouterDesErreurAuJdd(annee);
+        const sub = this.chargementService.chargerDonneesDeClasse(JSON.stringify(annee)).subscribe();
         super.declarerSouscription(sub);
 
         // Un message est affiché

@@ -10,6 +10,9 @@
     <a mat-tab-link [active]="routeActive == '/route-journal'" routerLink="/route-journal">Cahier journal</a>
     <a mat-tab-link [active]="routeActive == '/route-tableaudebord'" routerLink="/route-tableaudebord">Tableau de bord</a>
     <a mat-tab-link [active]="routeActive == '/route-taches'" routerLink="/route-taches">Tâches</a>
+    @if (problemesDetectes) {
+    <a mat-tab-link [active]="routeActive == '/route-problemes'" routerLink="/route-problemes">Problèmes</a>
+    }
     }
     @else {
     <a mat-tab-link [active]="routeActive == '/route-chargerdonnees'" routerLink="/route-chargerdonnees">Charger mon année</a>
