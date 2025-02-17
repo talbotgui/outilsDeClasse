@@ -94,7 +94,11 @@ export class ChargementService {
             e.absences.forEach(a => a.id = a.id ?? ModelUtil.getUID());
             e.notes.forEach(n => {
                 n.id = n.id ?? ModelUtil.getUID()
-                n.idsProjets = n.idsProjets ?? [];
+                // Rattrapage si donnée manquante
+                n.idsProjets = n.idsProjets ?? ["ajoutManuel"];
+                if (n.idsProjets.length === 0) {
+                    n.idsProjets.push("ajoutManuel");
+                }
             });
             e.commentairesDePeriode.forEach(c => c.id = c.id ?? ModelUtil.getUID());
             e.parcoursDePeriode.forEach(c => c.id = c.id ?? ModelUtil.getUID());
