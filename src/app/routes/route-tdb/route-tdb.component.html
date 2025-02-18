@@ -112,10 +112,11 @@
             </legend>
             <div class="maclasse-table">
                 <div class="maclasse-table-ligne maclasse-table-entete">
-                    <div class="maclasse-table-case maclasse-table-case-bordureDroite" [class.maclasse-table-case-w70]="modeAffichage=='1'"
-                        [class.maclasse-table-case-w40]="modeAffichage=='2'" [class.maclasse-table-case-w25]="modeAffichage=='3'"></div>
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-bordureDroite"
+                        [class.maclasse-table-case-w70]="modeAffichage=='1'" [class.maclasse-table-case-w40]="modeAffichage=='2'"
+                        [class.maclasse-table-case-w25]="modeAffichage=='3'"></div>
                     @if (modeAffichage!='1') {
-                    <div class="maclasse-table-case maclasse-table-case-w60 maclasse-table-case-bordureDroite">Période évaluée</div>
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w60 maclasse-table-case-bordureDroite">Période évaluée</div>
                     }
                     @if (modeAffichage!='2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
                     <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage=='1'" [class.maclasse-table-case-w15]="modeAffichage!='1'">
@@ -124,15 +125,16 @@
                     }
                 </div>
                 <div class="maclasse-table-ligne maclasse-table-entete">
-                    <div class="maclasse-table-case maclasse-table-case-bordureDroite" [class.maclasse-table-case-w70]="modeAffichage=='1'"
-                        [class.maclasse-table-case-w40]="modeAffichage=='2'" [class.maclasse-table-case-w25]="modeAffichage=='3'">Compétence</div>
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-bordureDroite"
+                        [class.maclasse-table-case-w70]="modeAffichage=='1'" [class.maclasse-table-case-w40]="modeAffichage=='2'"
+                        [class.maclasse-table-case-w25]="modeAffichage=='3'">Compétence</div>
                     @if (modeAffichage != '1') {
-                    <div class="maclasse-table-case maclasse-table-case-w15">
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15">
                         Constats/outils de la période
                     </div>
-                    <div class="maclasse-table-case maclasse-table-case-w15">Aquisition</div>
-                    <div class="maclasse-table-case maclasse-table-case-w15">Commentaires publiés</div>
-                    <div class="maclasse-table-case maclasse-table-case-w15 maclasse-table-case-bordureDroite">Notes de travail</div>
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15">Aquisition</div>
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15">Commentaires publiés</div>
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15 maclasse-table-case-bordureDroite">Notes de travail</div>
                     }
                     @if (modeAffichage != '2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
                     <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage=='1'" [class.maclasse-table-case-w15]="modeAffichage!='1'">
@@ -146,10 +148,10 @@
                         <p>{{sousLigne.libelleCompetence}}</p>
                     </div>
                     @if (modeAffichage!='1') {
-                    <div class="maclasse-table-case maclasse-table-case-w15">
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15">
                         <p>{{sousLigne.notePeriodeEvaluee?.constatEnPreparation}}</p>
                     </div>
-                    <div class="maclasse-table-case maclasse-table-case-w15">
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15">
                         @if (indexEnEdition==idx) {
                         @if (sousLigne.notePeriodeEvaluee) {
                         <mat-form-field>
@@ -191,7 +193,7 @@
                         </button>
                         }
                     </div>
-                    <div class="maclasse-table-case maclasse-table-case-w15">
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15">
                         @if (indexEnEdition==idx && sousLigne.notePeriodeEvaluee) {
                         <mat-form-field class="maclasse-pleinelargeur">
                             <mat-label>Commentaire publié</mat-label>
@@ -202,7 +204,7 @@
                         <p>{{sousLigne.notePeriodeEvaluee?.commentaireEvaluationPublic}}</p>
                         }
                     </div>
-                    <div class="maclasse-table-case maclasse-table-case-w15">
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15">
                         @if (indexEnEdition==idx && sousLigne.notePeriodeEvaluee) {
                         <mat-form-field class="maclasse-pleinelargeur">
                             <mat-label>Notes de travail</mat-label>

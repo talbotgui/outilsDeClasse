@@ -197,6 +197,12 @@ fieldset.maclasse-formulaire>div {
     float: left;
 }
 
+/* Classes utilitaires. */
+.maclasse-afficherFlex {
+    display: flex;
+}
+
+
 /* Pour séparer correctement les compétences sélectionnées. */
 .maclasse-separateurcompetence {
     color: blue;
@@ -276,6 +282,15 @@ span.maclasse-eleve:not(:first-child) {
     text-align: center;
 }
 
+/* Pour générer de l'espace */
+.maclasse-padding5 {
+    padding: 5px;
+}
+
+/* Pour générer de l'espace */
+.maclasse-pleineHauteur {
+    height: 100%;
+}
 
 /* Pour faire une table de données (et pas une grille). */
 .maclasse-table-ligne {
@@ -291,7 +306,6 @@ span.maclasse-eleve:not(:first-child) {
 
 /* Pour center le contenu des cases et mettre des bordures. */
 .maclasse-table-case {
-    display: flex;
     justify-content: center;
     align-items: center;
     border: solid var(--mat-option-selected-state-layer-color) 1px;

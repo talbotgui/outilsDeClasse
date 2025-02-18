@@ -1,20 +1,21 @@
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
 import { ROUTE_PROBLEME } from '../../app.routes';
+import { Annee } from '../../model/model';
 import { Probleme } from '../../model/probleme-model';
 import { ContexteService } from '../../service/contexte-service';
+import { ProblemeService } from '../../service/probleme-service';
 import { AbstractRoute } from '../route';
 
 @Component({
@@ -35,8 +36,11 @@ export class RouteProblemeComponent extends AbstractRoute {
     /** Liste des problèmes à traiter */
     public problemes: Probleme[] = [];
 
+    /** Données de l'année à traiter */
+    public donnees: Annee | undefined;
+
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location, private dialog: MatDialog) {
+    public constructor(router: Router, private contexteService: ContexteService, private problemeService: ProblemeService) {
         super(router);
     }
 
@@ -44,7 +48,17 @@ export class RouteProblemeComponent extends AbstractRoute {
     public afficherRaffraichirDonnees(): void {
 
         // Si des problèmes sont détectés, 
-        const sub1 = this.contexteService.obtenirUnObservableDeDetectionDeProblemeDansLesDonnees().pipe(
+        const sub1 = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
+            tap(donnees => {
+                if (donnees) {
+                    this.donnees = donnees;
+                }
+            })
+        ).subscribe();
+        super.declarerSouscription(sub1);
+
+        // Si des problèmes sont détectés, 
+        const sub2 = this.contexteService.obtenirUnObservableDeDetectionDeProblemeDansLesDonnees().pipe(
             // le fait que des problèmes soient détectés est conservé
             tap(problemes => {
                 if (problemes) {
@@ -52,7 +66,7 @@ export class RouteProblemeComponent extends AbstractRoute {
                 }
             })
         ).subscribe();
-        super.declarerSouscription(sub1);
+        super.declarerSouscription(sub2);
     }
 
     /** @see classe parente */
@@ -62,9 +76,25 @@ export class RouteProblemeComponent extends AbstractRoute {
 
     /** @see classe parente */
     public initialiserRoute(): void {
+        // rien à faire ici
     }
 
     /** @see classe parente */
     protected override passerEnModeLecture(): void {
+        // rien à faire ici
+    }
+
+    /** Au clic sur le bouton de correction */
+    public corrigerProbleme(pb: Probleme): void {
+        if (this.donnees) {
+            this.problemeService.corrigerProbleme(this.donnees, pb);
+        }
+    }
+
+    /** Relancer l'analyse */
+    public relancerAnalyse(): void {
+        if (this.donnees) {
+            this.problemeService.analyserDonnees(this.donnees);
+        }
     }
 }

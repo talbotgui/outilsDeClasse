@@ -1,22 +1,49 @@
 @if (problemes && problemes.length > 0) {
 
-<p>{{problemes.length}} problème(s) ont été détecté(s) dans les données chargées. Vous pouvez utiliser les boutons ci-dessous pour les corriger.</p>
+<p>
+    <button type="button" mat-raised-button (click)="relancerAnalyse()">
+        Analyser à nouveau
+    </button>
+    {{problemes.length}} problème(s) ont été détecté(s) dans les données chargées. Vous pouvez utiliser les boutons ci-dessous pour les corriger.
+</p>
 
 <div class="maclasse-table">
     <div class="maclasse-table-ligne maclasse-table-entete">
-        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w70">
+        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w70 maclasse-padding5">
             <p>Description de l'erreur</p>
         </div>
-        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30">
+        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30 maclasse-padding5">
             <p>Action corrective</p>
         </div>
     </div>
-    @for(pb of problemes; track pb.id){
+    @for (pb of problemes; track pb.id) {
     <div class="maclasse-table-ligne">
-        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w70">
-            <p>{{pb.code}} - {{pb.libelle}}</p>
+        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w70 maclasse-padding5">
+            @if (pb.details && pb.details.length > 0) {
+            <div class="maclasse-afficherAdroite maclasse-pleineHauteur">
+                <button type="button" mat-raised-button (click)="pb.detailsAffiches=!pb.detailsAffiches">
+                    {{pb.detailsAffiches?'Masquer ':'Afficher'}} les détails
+                </button>
+            </div>
+            }
+            <p>
+                <span>{{pb.libelle}}</span>
+            </p>
+            @if (pb.details && pb.details.length > 0 && pb.detailsAffiches) {
+            @for (detail of pb.details; track detail){
+            <p>{{detail}}</p>
+            }
+            }
         </div>
-        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30">
+        <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30 maclasse-texteCentre maclasse-padding5">
+            @if (pb.estCorrigeableAutomatiquement()) {
+            <button type="button" [disabled]="pb.resolu" mat-raised-button [matTooltip]="pb.recupererLibelleAutiliser()"
+                [attr.aria-label]="pb.recupererLibelleAutiliser()" (click)="corrigerProbleme(pb)">
+                {{pb.recupererLibelleAutiliser()}}
+            </button>
+            } @else {
+            {{ pb.recupererLibelleAutiliser() }}
+            }
         </div>
     </div>
     }
