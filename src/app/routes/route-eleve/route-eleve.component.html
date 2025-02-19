@@ -5,7 +5,9 @@
 
     <mat-chip-listbox aria-label="Sélection d'un élève" [selectable]="true">
         @for (eleve of eleves; track eleve.id) {
-        <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne">{{eleve.nom}} {{eleve.prenom}}</mat-chip-option>
+        <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne" [class.maclasse-texteBarre]="eleve.statut==='0'">
+            {{eleve.nom}} {{eleve.prenom}}
+        </mat-chip-option>
         }
         <mat-chip-option selectable="false" (click)="ajouterUnEleve()">
             <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon icon="plus"></fa-icon></button>

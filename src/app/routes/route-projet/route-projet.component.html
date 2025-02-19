@@ -72,7 +72,7 @@
                 @if (projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)) {
                 <fa-icon icon="check"></fa-icon>
                 }
-                {{eleve.prenom}}
+                <span [class.maclasse-texteBarre]="eleve.statut==='0'">{{eleve.prenom}}</span>
             </div>
             }
         </div>

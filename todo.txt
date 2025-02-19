@@ -1,5 +1,5 @@
 BUG :
- - GLOBAL : filtrer les élèves hors-établissement dans l'onglet JOURNAL (masqué) et dans les autres (barré mais actif)
+ - 
 
 TODO : 
  - élèves : créer un bouton pour copier la liste des élèves ("nom prénom dateNaissance \n")

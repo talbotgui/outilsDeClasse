@@ -222,7 +222,7 @@
                                 <mat-chip-listbox aria-label="Sélection d'un élève" selectable="true" multiple="true">
                                     @for (eleve of eleves; track eleve.id) {
                                     <mat-chip-option (click)="ajouterRetirerEleveAuGroupeDunTemps(idx,jdx, eleve.id)"
-                                        [selected]="groupe.eleves && groupe.eleves.includes(eleve.id)">
+                                        [selected]="groupe.eleves && groupe.eleves.includes(eleve.id)" [class.maclasse-texteBarre]="eleve.statut==='0'">
                                         {{eleve.prenom}}
                                     </mat-chip-option>
                                     }

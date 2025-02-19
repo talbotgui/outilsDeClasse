@@ -287,6 +287,11 @@ span.maclasse-eleve:not(:first-child) {
     padding: 5px;
 }
 
+/* Pour rayer un libellé (à ne pas utiliser pour désactiver un bouton). */
+.maclasse-texteBarre {
+    text-decoration: line-through;
+}
+
 /* Pour générer de l'espace */
 .maclasse-pleineHauteur {
     height: 100%;

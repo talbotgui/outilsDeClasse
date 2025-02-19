@@ -21,4 +21,5 @@ div.maclasse-listeEleves>div {
 /* Mise en avant d'un élève sélectionné. */
 div.maclasse-eleveSelectionne {
     background-color: var(--mdc-chip-elevated-selected-container-color, var(--mat-app-secondary-container));
+    border: none !important;
 }

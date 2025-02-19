@@ -31,7 +31,7 @@
         <mat-label>Elève</mat-label>
         <mat-select placeholder="Eleve" [(ngModel)]="eleveSelectionne" (selectionChange)="afficherRaffraichirDonnees()">
             @for (e of eleves ; track e.id) {
-            <mat-option [value]="e">{{e.prenom}}</mat-option>
+            <mat-option [value]="e" [class.maclasse-texteBarre]="e.statut==='0'">{{e.prenom}}</mat-option>
             }
         </mat-select>
     </mat-form-field>
