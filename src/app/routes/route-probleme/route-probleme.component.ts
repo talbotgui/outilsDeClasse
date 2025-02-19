@@ -34,7 +34,7 @@ import { AbstractRoute } from '../route';
 export class RouteProblemeComponent extends AbstractRoute {
 
     /** Liste des problèmes à traiter */
-    public problemes: Probleme[] = [];
+    public problemes: Probleme[] | undefined;
 
     /** Données de l'année à traiter */
     public donnees: Annee | undefined;
@@ -77,7 +77,7 @@ export class RouteProblemeComponent extends AbstractRoute {
         const sub2 = this.contexteService.obtenirUnObservableDeDetectionDeProblemeDansLesDonnees().pipe(
             // le fait que des problèmes soient détectés est conservé
             tap(problemes => {
-                if (problemes) {
+                if (problemes !== undefined) {
                     this.problemes = problemes;
                 }
             })

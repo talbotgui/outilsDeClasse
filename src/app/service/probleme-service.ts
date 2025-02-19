@@ -24,13 +24,14 @@ export class ProblemeService {
         // Analyse des données des projets et recherche des notes associées (présentes et projet bien référencé)
         this.analyserLesProjets(donnees, problemes);
 
+        // Tri des problèmes
+        problemes.sort((a, b) => (a.code + a.libelle).localeCompare(b.code + b.libelle));
+
+        // Publication de la liste des problèmes
+        this.contexteService.declarerDesProblemesDeDonnees(problemes);
+
         // Si des problèmes sont détectés
         if (problemes.length > 0) {
-            // Tri des problèmes
-            problemes.sort((a, b) => (a.code + a.libelle).localeCompare(b.code + b.libelle));
-
-            // Publication de la liste des problèmes
-            this.contexteService.declarerDesProblemesDeDonnees(problemes);
 
             // Ajout d'un message
             this.contexteService.afficherUnMessageGeneral(new MessageAafficher('analyserDonnees', TypeMessageAafficher.Avertissement, 'Le fichier de données contient ' + problemes.length + ' problèmes. Utilisez l\'onglet \'Problèmes\' pour les résoudre.'));

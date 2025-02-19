@@ -30,7 +30,11 @@ export class BouchonService extends AbstractComponent {
 
         // un jeu de données est chargé par défaut
         const annee = Jdd.JDD_RICHE;
-        Jdd.ajouterDesErreurAuJdd(annee);
+
+        // Pour ajouter un cas de chaque type d'erreur possible
+        // Jdd.ajouterDesErreurAuJdd(annee);
+
+
         const sub = this.chargementService.chargerDonneesDeClasse(JSON.stringify(annee)).subscribe();
         super.declarerSouscription(sub);
 
