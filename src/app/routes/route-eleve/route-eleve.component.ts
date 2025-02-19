@@ -1,4 +1,4 @@
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule, DatePipe, Location } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -36,7 +36,7 @@ import { AbstractRoute } from '../route';
         // Pour l'éditeur WYSIWYG
         HttpClientModule, AngularEditorModule,
         // Pipes
-        HtmlPipe
+        HtmlPipe, DatePipe
     ]
 })
 export class RouteEleveComponent extends AbstractRoute {

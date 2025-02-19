@@ -1,18 +1,19 @@
 <!-- Sélection d'un élève -->
 @if (eleves) {
-<fieldset class="maclasse-masquerEnModePrint">
+<fieldset class="maclasse-formulaire maclasse-masquerEnModePrint">
     <legend>Sélection d'un élève de la classe</legend>
-
-    <mat-chip-listbox aria-label="Sélection d'un élève" [selectable]="true">
-        @for (eleve of eleves; track eleve.id) {
-        <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne" [class.maclasse-texteBarre]="eleve.statut==='0'">
-            {{eleve.nom}} {{eleve.prenom}}
-        </mat-chip-option>
-        }
-        <mat-chip-option selectable="false" (click)="ajouterUnEleve()">
-            <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon icon="plus"></fa-icon></button>
-        </mat-chip-option>
-    </mat-chip-listbox>
+    <div>
+        <mat-chip-listbox aria-label="Sélection d'un élève" [selectable]="true">
+            @for (eleve of eleves; track eleve.id) {
+            <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne" [class.maclasse-texteBarre]="eleve.statut==='0'">
+                {{eleve.nom}} {{eleve.prenom}}
+            </mat-chip-option>
+            }
+            <mat-chip-option selectable="false" (click)="ajouterUnEleve()">
+                <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon icon="plus"></fa-icon></button>
+            </mat-chip-option>
+        </mat-chip-listbox>
+    </div>
 </fieldset>
 }
 
@@ -378,4 +379,35 @@
 </fieldset>
 }
 
+<!-- Edition de liste d'élèves -->
+@else {
+<fieldset class="maclasse-formulaire">
+    <legend>Liste des élèves de la classe</legend>
+    <div>
+        <p class="maclasse-masquerEnModePrint">Si aucun élève n'est sélectionné, ce tableau les listant est disponible à l'impression.</p>
+        <br />
+        <div class="maclasse-table">
+            <div class="maclasse-table-ligne maclasse-table-entete">
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30 maclasse-padding5">
+                    <p>Nom</p>
+                </div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30 maclasse-padding5">
+                    <p>Prénom</p>
+                </div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w40 maclasse-padding5">
+                    <p>Date de naissance</p>
+                </div>
+            </div>
+            @for (eleve of eleves; track eleve.id) {
+            <div class="maclasse-table-ligne">
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30 maclasse-padding5">{{eleve.nom}}</div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30 maclasse-padding5">{{eleve.prenom}}</div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w40 maclasse-padding5">{{eleve.dateNaissance | date:
+                    'dd/MM/yyyy'}}</div>
+            </div>
+            }
+        </div>
+    </div>
+</fieldset>
+}
 <br />

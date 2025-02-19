@@ -1,16 +1,18 @@
 <!-- Sélection d'un projet -->
 @if (projets) {
-<fieldset class="maclasse-masquerEnModePrint">
+<fieldset class="maclasse-formulaire maclasse-masquerEnModePrint">
     <legend>Sélection d'un projet de la classe</legend>
 
-    <mat-chip-listbox aria-label="Sélection d'un projet" [selectable]="true">
-        @for (projet of projets; track projet.id) {
-        <mat-chip-option (click)="onSelectionProjet(projet)" [selected]="projet==projetSelectionne">{{projet.nom}}</mat-chip-option>
-        }
-        <mat-chip-option selectable="false" (click)="ajouterUnProjet()">
-            <button type="button" mat-icon-button matTooltip="Ajouter un projet" aria-label="Ajouter un projet"><fa-icon icon="plus"></fa-icon></button>
-        </mat-chip-option>
-    </mat-chip-listbox>
+    <div>
+        <mat-chip-listbox aria-label="Sélection d'un projet" [selectable]="true">
+            @for (projet of projets; track projet.id) {
+            <mat-chip-option (click)="onSelectionProjet(projet)" [selected]="projet==projetSelectionne">{{projet.nom}}</mat-chip-option>
+            }
+            <mat-chip-option selectable="false" (click)="ajouterUnProjet()">
+                <button type="button" mat-icon-button matTooltip="Ajouter un projet" aria-label="Ajouter un projet"><fa-icon icon="plus"></fa-icon></button>
+            </mat-chip-option>
+        </mat-chip-listbox>
+    </div>
 </fieldset>
 }
 
@@ -142,6 +144,34 @@
         } @else {
         <span [innerHTML]="projetSelectionne.notesCoteEducatif | html"></span>
         }
+    </div>
+</fieldset>
+}
+
+<!-- Edition de liste des projets -->
+@else {
+<fieldset class="maclasse-formulaire">
+    <legend>Liste des projets de l'année</legend>
+    <div>
+        <p class="maclasse-masquerEnModePrint">Si aucun projet n'est sélectionné, ce tableau les listant est disponible à l'impression.</p>
+        <br />
+        <div class="maclasse-table">
+            <div class="maclasse-table-ligne maclasse-table-entete">
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30 maclasse-padding5">
+                    <p>Nom</p>
+                </div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w70 maclasse-padding5">
+                    <p>Description</p>
+                </div>
+            </div>
+            @for (projet of projets; track projet.id) {
+            <div class="maclasse-table-ligne">
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w30 maclasse-padding5">{{projet.nom}}</div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w70 maclasse-padding5"><span
+                        [innerHTML]="projet.description | html"></span></div>
+            </div>
+            }
+        </div>
     </div>
 </fieldset>
 }
