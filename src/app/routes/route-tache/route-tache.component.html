@@ -55,7 +55,7 @@
                     @if (idTacheEnEdition === tache.id) {
                     <mat-form-field>
                         <mat-label>Date de l'échéance</mat-label>
-                        <input matInput disabled [matDatepicker]="picker" #inputDateNaissance="ngModel" [(ngModel)]="echeance.date">
+                        <input matInput disabled [matDatepicker]="picker" #inputDateNaissance="ngModel" [(ngModel)]="echeance.date" readonly>
                         <mat-datepicker-toggle matIconSuffix [disabled]="echeance.termine" [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker [disabled]="echeance.termine" startView="year" #picker></mat-datepicker>
                     </mat-form-field>

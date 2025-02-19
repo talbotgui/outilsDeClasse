@@ -51,13 +51,13 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Date de naissance (dd/mm/yyyy)</mat-label>
-            <input matInput [matDatepicker]="pickerDateNaissance" #inputDateNaissance="ngModel" [(ngModel)]="eleveSelectionne.dateNaissance">
+            <input matInput [matDatepicker]="pickerDateNaissance" #inputDateNaissance="ngModel" [(ngModel)]="eleveSelectionne.dateNaissance" readonly>
             <mat-datepicker-toggle matIconSuffix [for]="pickerDateNaissance"></mat-datepicker-toggle>
             <mat-datepicker #pickerDateNaissance></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
             <mat-label>Date d'admission (dd/mm/yyyy)</mat-label>
-            <input matInput [matDatepicker]="pickerDateAdmission" #inputDate="ngModel" [(ngModel)]="eleveSelectionne.dateAdmission">
+            <input matInput [matDatepicker]="pickerDateAdmission" #inputDate="ngModel" [(ngModel)]="eleveSelectionne.dateAdmission" readonly>
             <mat-datepicker-toggle matIconSuffix [for]="pickerDateAdmission"></mat-datepicker-toggle>
             <mat-datepicker #pickerDateAdmission></mat-datepicker>
         </mat-form-field>

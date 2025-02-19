@@ -11,8 +11,8 @@
 
     <mat-form-field class="maclasse-saisieDateJournal">
         <mat-label>Date du journal</mat-label>
-        <input matInput [matDatepicker]="pickerDateJournal" #inputDateJournal="ngModel" [(ngModel)]="dateJournal"
-            (ngModelChange)="afficherRaffraichirDonnees()">
+        <input matInput [matDatepicker]="pickerDateJournal" #inputDateJournal="ngModel" [(ngModel)]="dateJournal" (ngModelChange)="afficherRaffraichirDonnees()"
+            readonly>
         <mat-datepicker-toggle matIconSuffix [for]="pickerDateJournal"></mat-datepicker-toggle>
         <mat-datepicker #pickerDateJournal></mat-datepicker>
     </mat-form-field>

@@ -11,7 +11,7 @@
             <span> du temps '{{temps.debut}}-{{temps.fin}}' vers le journal du</span>
             }
         </mat-label>
-        <input matInput [matDatepicker]="pickerDateCible" #inputDateCible="ngModel" [(ngModel)]="dateCible">
+        <input matInput [matDatepicker]="pickerDateCible" #inputDateCible="ngModel" [(ngModel)]="dateCible" readonly>
         <mat-datepicker-toggle matIconSuffix [for]="pickerDateCible"></mat-datepicker-toggle>
         <mat-datepicker #pickerDateCible></mat-datepicker>
     </mat-form-field>
