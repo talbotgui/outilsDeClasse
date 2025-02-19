@@ -21,6 +21,7 @@ import { Competence, Note } from '../../model/note-model';
 import { Projet } from '../../model/projet-model';
 import { LigneDeTableauDeBord, SousLigneDeTableauDeBord } from '../../model/tdb-model';
 import { HtmlPipe } from '../../pipes/html.pipe';
+import { BouchonService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { AbstractRoute } from '../route';
 import { RouteEleveComponent } from '../route-eleve/route-eleve.component';
@@ -85,8 +86,9 @@ export class RouteTdbComponent extends AbstractRoute {
     private static readonly ID_PROJET_AJOUT_MANUEL = 'ajoutManuel';
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location, private dialog: MatDialog) {
-        super(router);
+    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService,
+        private contexteService: ContexteService, private dialog: MatDialog) {
+        super(router, activatedRoute, location, bouchonService);
     }
 
     /** @see classe parente */
@@ -133,10 +135,7 @@ export class RouteTdbComponent extends AbstractRoute {
     public afficherRaffraichirDonnees(): void {
 
         // MaJ de l'URL avec les données de filtrage
-        if (this.eleveSelectionne && this.periodeSelectionnee && this.modeAffichage) {
-            const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { eleve: this.eleveSelectionne.id, periode: this.periodeSelectionnee.id, affichage: this.modeAffichage, grouperPar: this.groupementPar } }).toString();
-            this.location.go(url);
-        }
+        this.mettreAjourUrl({ eleve: this.eleveSelectionne?.id, periode: this.periodeSelectionnee?.id, affichage: this.modeAffichage, grouperPar: this.groupementPar });
 
         // MaJ du commentaire de la période
         this.afficherCommentaireEtParcoursDeLaPeriode();

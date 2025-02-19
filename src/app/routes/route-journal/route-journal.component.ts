@@ -21,6 +21,7 @@ import { Eleve } from '../../model/eleve-model';
 import { GroupeSurUnTemps, Journal } from '../../model/journal-model';
 import { ModelUtil } from '../../model/model-utils';
 import { HtmlPipe } from '../../pipes/html.pipe';
+import { BouchonService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { JournalService } from '../../service/journal-service';
 import { AbstractRoute } from '../route';
@@ -41,7 +42,7 @@ import { DialogDuplicationComponent } from './dialogue-duplication/dialog-duplic
         // Pipes
         HtmlPipe,
         // Composant applicatif
-        ComposantAffichageCompetenceComponent, DialogSelectionCompetenceComponent
+        ComposantAffichageCompetenceComponent
     ]
 })
 export class RouteJournalComponent extends AbstractRoute {
@@ -71,8 +72,9 @@ export class RouteJournalComponent extends AbstractRoute {
     private mapRaisonAbsence: { [key: string]: string } | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location, private journalService: JournalService, private dialog: MatDialog) {
-        super(router);
+    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService,
+        private contexteService: ContexteService, private journalService: JournalService, private dialog: MatDialog) {
+        super(router, activatedRoute, location, bouchonService);
     }
 
     /** @see classe parente */
@@ -280,11 +282,10 @@ export class RouteJournalComponent extends AbstractRoute {
             if (this.journal && this.journal.temps) {
                 this.statutsAffichage = this.journal.temps.map(t => false);
             }
-
-            // MaJ de l'URL avec la date
-            const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { time: this.dateJournal.getTime() } }).toString();
-            this.location.go(url);
         }
+
+        // MaJ de l'URL avec la date
+        this.mettreAjourUrl({ time: this.dateJournal?.getTime() });
     }
 
     /** Pour valider un temps directement via un CRTL+ENTRER */

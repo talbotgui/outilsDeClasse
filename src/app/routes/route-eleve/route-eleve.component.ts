@@ -18,6 +18,7 @@ import { ROUTE_ELEVE } from '../../app.routes';
 import { Eleve } from '../../model/eleve-model';
 import { ModelUtil } from '../../model/model-utils';
 import { HtmlPipe } from '../../pipes/html.pipe';
+import { BouchonService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { EleveService } from '../../service/eleve-service';
 import { AbstractRoute } from '../route';
@@ -80,8 +81,8 @@ export class RouteEleveComponent extends AbstractRoute {
     public joursDeLaSemaine: Map<number, string> = ModelUtil.creerMapJoursDeLaSemaine();
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private eleveService: EleveService, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location) {
-        super(router);
+    public constructor(router: Router, private eleveService: EleveService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService) {
+        super(router, activatedRoute, location, bouchonService);
     }
 
     /** @see classe parente */
@@ -163,8 +164,7 @@ export class RouteEleveComponent extends AbstractRoute {
     public afficherRaffraichirDonnees(): void {
 
         // MaJ de l'URL avec le bon ID d'élève
-        const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { id: this.eleveSelectionne?.id } }).toString();
-        this.location.go(url);
+        this.mettreAjourUrl({ id: this.eleveSelectionne?.id });
     }
 
     /** Retrait du contact de la liste. */

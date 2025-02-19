@@ -10,6 +10,10 @@ import { RouteTacheComponent } from './routes/route-tache/route-tache.component'
 import { RouteTdbComponent } from './routes/route-tdb/route-tdb.component';
 
 /** Code des routes du projet */
+export const ROUTE_ACCUEIL = 'route-accueil';
+export const ROUTE_CHARGER = 'route-chargerdonnees';
+export const ROUTE_CREER = 'route-creerdonnees';
+export const ROUTE_COMPETENCE = 'route-competence';
 export const ROUTE_ELEVE = 'route-eleve';
 export const ROUTE_JOURNAL = 'route-journal';
 export const ROUTE_PROBLEME = 'route-problemes';
@@ -20,18 +24,15 @@ export const ROUTE_TDB = 'route-tableaudebord';
 /** Liste des routes possibles dans l'application.  */
 export const routes: Routes = [
     // pour rediriger par défaut sur le dashboard
-    { path: '', redirectTo: '/route-accueil', pathMatch: 'full' },
-    { path: 'route-accueil', component: RouteAccueilComponent },
-    { path: 'route-chargerdonnees', component: RouteChargerDonneesComponent },
-    { path: 'route-creerdonnees', component: RouteAccueilComponent },
-    { path: 'route-competence', component: RouteCompetenceComponent },
+    { path: '', redirectTo: '/' + ROUTE_ACCUEIL, pathMatch: 'full' },
+    { path: ROUTE_ACCUEIL, component: RouteAccueilComponent },
+    { path: ROUTE_CHARGER, component: RouteChargerDonneesComponent },
+    { path: ROUTE_CREER, component: RouteAccueilComponent },
+    { path: ROUTE_COMPETENCE, component: RouteCompetenceComponent },
     { path: ROUTE_ELEVE, component: RouteEleveComponent },
     { path: ROUTE_JOURNAL, component: RouteJournalComponent },
     { path: ROUTE_PROJET, component: RouteProjetComponent },
     { path: ROUTE_TDB, component: RouteTdbComponent },
     { path: ROUTE_TACHE, component: RouteTacheComponent },
     { path: ROUTE_PROBLEME, component: RouteProblemeComponent }
-    // { path: 'tab-editionppi/:idEleve/:idPeriode', component: RouteAccueilComponent },
-    // { path: 'tab-editionbilan/:idEleve/:idPeriode', component: RouteAccueilComponent },
-    // { path: 'tab-nouvelleAnnee', component: RouteAccueilComponent },
 ];

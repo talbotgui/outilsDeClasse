@@ -3,17 +3,19 @@ import { CommonModule, Location } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { AbstractComponent } from '../../directives/abstract.component';
+import { ROUTE_COMPETENCE } from '../../app.routes';
 import { NoeudCompetence } from '../../model/arbre-model';
 import { Annee } from '../../model/model';
+import { BouchonService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
+import { AbstractRoute } from '../route';
 
 @Component({
     selector: 'route-competence', templateUrl: './route-competence.component.html', styleUrl: './route-competence.component.scss',
@@ -28,7 +30,7 @@ import { ContexteService } from '../../service/contexte-service';
         ClipboardModule
     ]
 })
-export class RouteCompetenceComponent extends AbstractComponent implements OnInit {
+export class RouteCompetenceComponent extends AbstractRoute {
 
     /** Source de données de l'arbre (mode 'nested nodes' car moins de code TS et donc plus simple). */
     public dataSource = new MatTreeNestedDataSource<NoeudCompetence>();
@@ -43,10 +45,12 @@ export class RouteCompetenceComponent extends AbstractComponent implements OnIni
     public treeControl = new NestedTreeControl<NoeudCompetence>(n => n.noeudsEnfant);
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private router: Router, private location: Location) { super(); }
+    public constructor(private contexteService: ContexteService, activatedRoute: ActivatedRoute, router: Router, location: Location, bouchonService: BouchonService) {
+        super(router, activatedRoute, location, bouchonService);
+    }
 
-    /** Au chargement du composant */
-    public ngOnInit(): void {
+    /** @see classe parente */
+    public initialiserRoute(): void {
 
         // Au chargement des données, récupéation de  la liste des élèves
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
@@ -56,6 +60,23 @@ export class RouteCompetenceComponent extends AbstractComponent implements OnIni
             })
         ).subscribe();
         super.declarerSouscription(sub);
+    }
+
+    /** @see classe parente */
+    public override afficherRaffraichirDonnees(): void {
+
+        // MaJ de l'URL avec le bon ID d'élève
+        this.mettreAjourUrl({});
+    }
+
+    /** @see classe parente */
+    public override fournirCodeRoute(): string {
+        return ROUTE_COMPETENCE;
+    }
+
+    /** @see classe parente */
+    protected override passerEnModeLecture(): void {
+        // rien à faire
     }
 
     /** Création de la structure de données pour l'arbre */

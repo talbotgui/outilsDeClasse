@@ -23,6 +23,7 @@ import { Periode } from '../../model/model';
 import { Competence } from '../../model/note-model';
 import { Projet, SousProjetParPeriode } from '../../model/projet-model';
 import { HtmlPipe } from '../../pipes/html.pipe';
+import { BouchonService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { ProjetService } from '../../service/projet-service';
 import { AbstractRoute } from '../route';
@@ -66,8 +67,9 @@ export class RouteProjetComponent extends AbstractRoute {
     public modeEdition: boolean = false;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private projetService: ProjetService, private contexteService: ContexteService, private activatedRoute: ActivatedRoute, private location: Location, private dialog: MatDialog) {
-        super(router);
+    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService,
+        private dialog: MatDialog, private projetService: ProjetService, private contexteService: ContexteService) {
+        super(router, activatedRoute, location, bouchonService);
     }
 
     /** @see classe parente */
@@ -77,8 +79,7 @@ export class RouteProjetComponent extends AbstractRoute {
         this.projetService.trierLignes(this.projetSelectionne, this.periodes);
 
         // MaJ de l'URL avec le bon ID d'élève
-        const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: { id: this.projetSelectionne?.id } }).toString();
-        this.location.go(url);
+        this.mettreAjourUrl({ id: this.projetSelectionne?.id });
     }
 
     /** @see classe parente */

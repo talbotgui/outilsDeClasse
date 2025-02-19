@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { Component } from '@angular/core';
@@ -9,10 +9,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { ROUTE_TACHE } from '../../app.routes';
 import { Echeance, Tache } from '../../model/model';
+import { BouchonService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { TacheService } from '../../service/tache-service';
 import { AbstractRoute } from '../route';
@@ -40,8 +41,8 @@ export class RouteTacheComponent extends AbstractRoute {
   public taches: Tache[] = [];
 
   /** Constructeur pour injection des dépendances. */
-  public constructor(router: Router, private tacheService: TacheService, private contexteService: ContexteService,) {
-    super(router);
+  public constructor(router: Router, private tacheService: TacheService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService) {
+    super(router, activatedRoute, location, bouchonService);
   }
 
   /** @see classe parente */
@@ -87,6 +88,8 @@ export class RouteTacheComponent extends AbstractRoute {
   public afficherRaffraichirDonnees(): void {
     // Tri des tâches
     this.tacheService.trierTaches(this.taches);
+    // Uniquement mettre à jour l'URL
+    this.mettreAjourUrl({});
   }
 
   /** Pour valider le formulaire via un CRTL+ENTRER */

@@ -17,7 +17,7 @@ export class BouchonService extends AbstractComponent {
 
         // Pour accéder à l'objet WINDOW (qui est propre à un navigateur), il faut utiliser afterNextRender dans un constructeur
         afterNextRender(() => {
-            if (window.location.href.indexOf('bouchon') !== -1) {
+            if (window.location.href.indexOf('demonstration') !== -1) {
                 this.chargerUnBouchon();
             }
         });

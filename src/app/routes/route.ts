@@ -1,13 +1,15 @@
+import { Location } from '@angular/common';
 import { Directive, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { AbstractComponent } from '../directives/abstract.component';
+import { BouchonService } from '../service/bouchon-service';
 
 @Directive()
 export abstract class AbstractRoute extends AbstractComponent implements OnInit {
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(protected router: Router) { super(); }
+    public constructor(protected router: Router, protected activatedRoute: ActivatedRoute, protected location: Location, private bouchonService: BouchonService) { super(); }
 
     /** Fonction implémentée par les routes du projet pour déclencher le refresh des données à l'affichage de l'onglet. */
     public abstract afficherRaffraichirDonnees(): void;
@@ -55,5 +57,17 @@ export abstract class AbstractRoute extends AbstractComponent implements OnInit 
             })
         ).subscribe();
         super.declarerSouscription(sub);
+    }
+
+    /** Mise à jour de l'URL pour revenir à la page avec les bonnes données après le rechargement de la page. */
+    protected mettreAjourUrl(parametres: Params) {
+        // Ajout du flag de démonstration si le mode est actif
+        if (this.bouchonService.unJeuDeDonneesBouchonneEstCharge) {
+            parametres['demonstration'] = 'true';
+        }
+
+        // MaJ URL
+        const url = this.router.createUrlTree([], { relativeTo: this.activatedRoute, queryParams: parametres }).toString();
+        this.location.go(url);
     }
 }
