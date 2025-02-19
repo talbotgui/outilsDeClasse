@@ -116,11 +116,13 @@
                         [class.maclasse-table-case-w70]="modeAffichage=='1'" [class.maclasse-table-case-w40]="modeAffichage=='2'"
                         [class.maclasse-table-case-w25]="modeAffichage=='3'"></div>
                     @if (modeAffichage!='1') {
-                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w60 maclasse-table-case-bordureDroite">Période évaluée</div>
+                    <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w60 maclasse-table-case-bordureDroite">
+                        {{libellePeriodeEvaluee}}
+                    </div>
                     }
                     @if (modeAffichage!='2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
                     <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage=='1'" [class.maclasse-table-case-w15]="modeAffichage!='1'">
-                        Période préparée
+                        {{libellePeriodePreparee}}
                     </div>
                     }
                 </div>

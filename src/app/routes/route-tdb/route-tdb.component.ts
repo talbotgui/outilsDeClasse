@@ -60,6 +60,10 @@ export class RouteTdbComponent extends AbstractRoute {
 
     /** Donnees manipulées : liste des lignes du tableau de bord. */
     public lignes: LigneDeTableauDeBord[] = [];
+    /** Libellé de la période évaluée */
+    public libellePeriodeEvaluee = '';
+    /** Libellé de la période préparée */
+    public libellePeriodePreparee = '';
 
     /** Filtre : élève. */
     public eleveSelectionne: Eleve | undefined;
@@ -72,10 +76,8 @@ export class RouteTdbComponent extends AbstractRoute {
 
     /** Edition : groupe de compétence en cours d'édition */
     public indexEnEdition: number | undefined;
-
     /** Edition : commentaire de l'élève pour la période en cours d'édition */
     public commentaireDeLaPeriode: CommentaireEtParcoursDePeriode | undefined;
-
     /** Edition : parcours de l'élève pour la période en cours d'édition */
     public parcoursDeLaPeriode: CommentaireEtParcoursDePeriode | undefined;
 
@@ -337,6 +339,13 @@ export class RouteTdbComponent extends AbstractRoute {
     private creerSousLignesTableauDeBordPourUnePeriode(periode: Periode, periodePreparee: boolean, notesDeLeleve: Note[]): void {
         if (!periode) {
             return;
+        }
+
+        // Maj libellés dans le tableau
+        if (periodePreparee) {
+            this.libellePeriodePreparee = periode.nom || '';
+        } else {
+            this.libellePeriodeEvaluee = periode.nom || '';
         }
 
         // Pour chaque note 
