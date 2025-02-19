@@ -1,7 +1,10 @@
 @if (donneesChargees) {
-<button type="button" mat-icon-button [class.maclasse-sauvegardeArretee]="!activationSauvegarde" (click)="activerDesactiverSauvegarde()" matTooltip="Sauvegarder les données"
-    aria-label="Sauvegarder les données">
+<button type="button" mat-icon-button [class.maclasse-sauvegardeArretee]="!activationSauvegarde" (click)="activerDesactiverSauvegarde()"
+    matTooltip="Sauvegarder les données" aria-label="Sauvegarder les données">
     <fa-icon icon="floppy-disk"></fa-icon>
+</button>
+<button type="button" mat-icon-button (click)="demarrerImpression()" matTooltip="Imprimer le contenu de la page" aria-label="Sauvegarder les données">
+    <fa-icon icon="print"></fa-icon>
 </button>
 }
 

@@ -41,7 +41,7 @@ export class ComposantSauvegardeComponent extends AbstractComponent implements O
         afterNextRender(() => {
             // Toutes les 5mn
             const sub = interval(ComposantSauvegardeComponent.DELAI_SAUVEGARDE).pipe(
-                mergeMap(()=>this.declencherSauvegarde())
+                mergeMap(() => this.declencherSauvegarde())
             ).subscribe();
             super.declarerSouscription(sub);
         });
@@ -70,19 +70,19 @@ export class ComposantSauvegardeComponent extends AbstractComponent implements O
         this.activationSauvegarde = !this.activationSauvegarde;
 
         // A l'activation de la sauvegarde, se déclenche une sauvegarde immédiate (en plus des futures sauvegardes au bout de qq mn)
-        if (this.activationSauvegarde){
+        if (this.activationSauvegarde) {
             const sub = this.declencherSauvegarde().subscribe();
             super.declarerSouscription(sub);
         }
     }
 
     /** Déclenchement de la sauvegarde. */
-    public declencherSauvegarde():Observable<any> {
+    public declencherSauvegarde(): Observable<any> {
         // si les données sont chargées et la sauvegarde active
         if (this.donneesChargees && this.activationSauvegarde) {
             // génération du JSON
             return this.chargementService.genererContenuJsonPourSauvegarde().pipe(
-                
+
                 // s'il n'est pas vide
                 filter(json => json !== ''),
                 // création d'un BLOB et déclenchement du téléchargement
@@ -99,5 +99,10 @@ export class ComposantSauvegardeComponent extends AbstractComponent implements O
         } else {
             return of();
         }
+    }
+
+    /** Lancement de l'impression de la page courante. */
+    public demarrerImpression(): void {
+        window.print();
     }
 }
