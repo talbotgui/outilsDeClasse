@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ROUTER_GUARD } from './routes/garde/route-guarde';
 import { RouteAccueilComponent } from './routes/route-accueil/route-accueil.component';
 import { RouteChargerDonneesComponent } from './routes/route-chargerdonnees/route-chargerdonnees.component';
 import { RouteCompetenceComponent } from './routes/route-competence/route-competence.component';
@@ -27,12 +28,12 @@ export const routes: Routes = [
     { path: '', redirectTo: '/' + ROUTE_ACCUEIL, pathMatch: 'full' },
     { path: ROUTE_ACCUEIL, component: RouteAccueilComponent },
     { path: ROUTE_CHARGER, component: RouteChargerDonneesComponent },
-    { path: ROUTE_CREER, component: RouteAccueilComponent },
-    { path: ROUTE_COMPETENCE, component: RouteCompetenceComponent },
-    { path: ROUTE_ELEVE, component: RouteEleveComponent },
-    { path: ROUTE_JOURNAL, component: RouteJournalComponent },
-    { path: ROUTE_PROJET, component: RouteProjetComponent },
-    { path: ROUTE_TDB, component: RouteTdbComponent },
-    { path: ROUTE_TACHE, component: RouteTacheComponent },
-    { path: ROUTE_PROBLEME, component: RouteProblemeComponent }
+    { path: ROUTE_CREER, component: RouteAccueilComponent, canActivate: [ROUTER_GUARD] },
+    { path: ROUTE_COMPETENCE, component: RouteCompetenceComponent, canActivate: [ROUTER_GUARD] },
+    { path: ROUTE_ELEVE, component: RouteEleveComponent, canActivate: [ROUTER_GUARD] },
+    { path: ROUTE_JOURNAL, component: RouteJournalComponent, canActivate: [ROUTER_GUARD] },
+    { path: ROUTE_PROJET, component: RouteProjetComponent, canActivate: [ROUTER_GUARD] },
+    { path: ROUTE_TDB, component: RouteTdbComponent, canActivate: [ROUTER_GUARD] },
+    { path: ROUTE_TACHE, component: RouteTacheComponent, canActivate: [ROUTER_GUARD] },
+    { path: ROUTE_PROBLEME, component: RouteProblemeComponent, canActivate: [ROUTER_GUARD] }
 ];

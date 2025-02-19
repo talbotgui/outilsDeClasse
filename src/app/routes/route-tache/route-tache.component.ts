@@ -31,9 +31,6 @@ import { AbstractRoute } from '../route';
 })
 export class RouteTacheComponent extends AbstractRoute {
 
-  /** Flag indiquant que les données sont chargées. */
-  public donneesChargees: boolean = false;
-
   /** Id de la tache en cours d'édition. */
   public idTacheEnEdition = '';
 
@@ -73,7 +70,6 @@ export class RouteTacheComponent extends AbstractRoute {
         // Si les données sont disponibles
         if (donnees && donnees.taches) {
           // Récupération des données à manipuler
-          this.donneesChargees = true;
           this.taches = donnees.taches;
 
           // Affichage des données

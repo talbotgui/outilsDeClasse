@@ -1,11 +1,4 @@
-@if (problemes === undefined) {
-<p>Vous ne devriez pas tenter d'accéder à cette onglet de l'application sans avoir chargé de données au préalable.
-    Vérifiez votre lien ou votre favori pour en retirer tout ce qui suit le caractère #.
-</p>
-<p>Vous êtes invité à cliquer sur l'onglet <b>Charger mon année</b></p>
-}
-
-@else {
+@if (problemes) {
 <p>
     <button type="button" mat-raised-button (click)="relancerAnalyse()">
         Analyser à nouveau

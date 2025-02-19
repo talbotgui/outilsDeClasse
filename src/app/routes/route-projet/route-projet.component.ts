@@ -44,7 +44,7 @@ import { DialogSuppressionCompetenceComponent } from './dialogue-suppression/dia
         // Pipes
         HtmlPipe,
         // Composant applicatif
-        ComposantAffichageCompetenceComponent, DialogSelectionCompetenceComponent
+        ComposantAffichageCompetenceComponent
     ]
 })
 export class RouteProjetComponent extends AbstractRoute {

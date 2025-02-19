@@ -35,9 +35,6 @@ export class RouteCompetenceComponent extends AbstractRoute {
     /** Source de données de l'arbre (mode 'nested nodes' car moins de code TS et donc plus simple). */
     public dataSource = new MatTreeNestedDataSource<NoeudCompetence>();
 
-    /** Competences chargées. */
-    public flagCompetencesChargees = false;
-
     /** Données chargées dans le datasource mais sous forme de map */
     private mapNoeuds = new Map<string, NoeudCompetence>();
 
@@ -114,9 +111,6 @@ export class RouteCompetenceComponent extends AbstractRoute {
                     }
                 }
             });
-
-            // Pour indiquer que les données sont chargées
-            this.flagCompetencesChargees = true;
         }
     }
 
