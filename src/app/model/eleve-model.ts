@@ -1,5 +1,5 @@
-import { AvecIdentifiant } from "./model";
-import { Note } from "./note-model";
+import { AvecIdentifiant } from './model';
+import { Note } from './note-model';
 
 export class Eleve extends AvecIdentifiant {
   static readonly CODE_STATUT_DANS_LA_CLASSE = '2';

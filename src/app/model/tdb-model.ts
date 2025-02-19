@@ -1,6 +1,6 @@
-import { AvecIdentifiant } from "./model";
-import { Competence, Note } from "./note-model";
-import { Projet } from "./projet-model";
+import { AvecIdentifiant } from './model';
+import { Competence, Note } from './note-model';
+import { Projet } from './projet-model';
 
 export class LigneDeTableauDeBord extends AvecIdentifiant {
   public competenceParente: Competence | undefined;

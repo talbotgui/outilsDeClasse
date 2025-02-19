@@ -1,9 +1,9 @@
-import { afterNextRender, Injectable } from "@angular/core";
-import { AbstractComponent } from "../directives/abstract.component";
-import { Jdd } from "../model/jdd";
-import { MessageAafficher, TypeMessageAafficher } from "../model/message-model";
-import { ChargementService } from "./chargement-service";
-import { ContexteService } from "./contexte-service";
+import { afterNextRender, Injectable } from '@angular/core';
+import { AbstractComponent } from '../directives/abstract.component';
+import { Jdd } from '../model/jdd';
+import { MessageAafficher, TypeMessageAafficher } from '../model/message-model';
+import { ChargementService } from './chargement-service';
+import { ContexteService } from './contexte-service';
 
 @Injectable({ providedIn: 'root' })
 export class BouchonService extends AbstractComponent {
@@ -17,7 +17,7 @@ export class BouchonService extends AbstractComponent {
 
         // Pour accéder à l'objet WINDOW (qui est propre à un navigateur), il faut utiliser afterNextRender dans un constructeur
         afterNextRender(() => {
-            if (window.location.href.indexOf("bouchon") !== -1) {
+            if (window.location.href.indexOf('bouchon') !== -1) {
                 this.chargerUnBouchon();
             }
         });
@@ -35,6 +35,6 @@ export class BouchonService extends AbstractComponent {
         super.declarerSouscription(sub);
 
         // Un message est affiché
-        this.contexteService.afficherUnMessageGeneral(new MessageAafficher("AppComponent", TypeMessageAafficher.Information, "Jeu de données BOUCHON1 chargé"));
+        this.contexteService.afficherUnMessageGeneral(new MessageAafficher('AppComponent', TypeMessageAafficher.Information, 'Jeu de données BOUCHON1 chargé'));
     }
 }

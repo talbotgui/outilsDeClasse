@@ -96,7 +96,7 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
     private calculerLibelleCompletDuneCompetence(competence: Competence): string {
         let libelle = '';
         let comp: Competence | undefined = competence;
-        while (comp && comp.parent !== "#") {
+        while (comp && comp.parent !== '#') {
             libelle = comp.text + ' > ' + libelle;
             comp = this.competences.find(c => c.id == comp?.parent);
         }

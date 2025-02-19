@@ -1,10 +1,10 @@
-import { DatePipe } from "@angular/common";
-import { Injectable } from "@angular/core";
-import { Eleve } from "../model/eleve-model";
-import { GroupeSurUnTemps, Journal, Temps } from "../model/journal-model";
-import { MessageAafficher, TypeMessageAafficher } from "../model/message-model";
-import { ContexteService } from "./contexte-service";
-import { DateService } from "./date-service";
+import { DatePipe } from '@angular/common';
+import { Injectable } from '@angular/core';
+import { Eleve } from '../model/eleve-model';
+import { GroupeSurUnTemps, Journal, Temps } from '../model/journal-model';
+import { MessageAafficher, TypeMessageAafficher } from '../model/message-model';
+import { ContexteService } from './contexte-service';
+import { DateService } from './date-service';
 
 @Injectable({ providedIn: 'root' })
 export class JournalService {
@@ -145,7 +145,7 @@ export class JournalService {
     public dupliquerJournal(journal: Journal, journalCible: Journal): void {
         // Si le journal n'est pas vide, on ne peut pas dupliquer
         if (journalCible.temps && journalCible.temps.length > 0) {
-            const message = new MessageAafficher("dupliquerJournal", TypeMessageAafficher.Avertissement, "Des temps sont présents dans le journal du " + this.dateService.formaterDate(journal.date, true) + '.');
+            const message = new MessageAafficher('dupliquerJournal', TypeMessageAafficher.Avertissement, 'Des temps sont présents dans le journal du ' + this.dateService.formaterDate(journal.date, true) + '.');
             this.contexteService.afficherUnMessageGeneral(message);
             return;
         }

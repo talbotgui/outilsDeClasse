@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { Echeance, Tache } from "../model/model";
-import { DateService } from "./date-service";
+import { Injectable } from '@angular/core';
+import { Echeance, Tache } from '../model/model';
+import { DateService } from './date-service';
 
 @Injectable({ providedIn: 'root' })
 export class TacheService {

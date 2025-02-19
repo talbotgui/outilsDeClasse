@@ -25,7 +25,7 @@ export class RouteChargerDonneesComponent extends AbstractComponent {
     constructor(private chargementService: ChargementService, private router: Router) { super(); }
 
     /**Nom du fichier local sélectionné (vide sinon) */
-    public nomFichierLocal = "";
+    public nomFichierLocal = '';
 
     /** A la sélection d'un fichier via upload */
     public onSelectFichierLocal(event: Event): void {

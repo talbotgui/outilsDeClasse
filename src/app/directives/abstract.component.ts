@@ -1,5 +1,5 @@
-import { Directive, OnDestroy } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Directive, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 /**
  * Classe abstraite pour tout composant voulant gérer correctement les souscriptions et notamment leur destruction quand le composant Angular est détruit.

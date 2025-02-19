@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, BaseRouteReuseStrategy, DetachedRouteHandle } from "@angular/router";
+import { ActivatedRouteSnapshot, BaseRouteReuseStrategy, DetachedRouteHandle } from '@angular/router';
 
 /** 
  * Stratégie de conservation/réutilisation des composants associés au routeur Angular. 

@@ -83,7 +83,7 @@ export class ComposantAffichageCompetenceComponent extends AbstractComponent imp
         let comp: Competence | undefined = this.competences.find(c => c.id == this.idCompetenceSelectionnee);
 
         // Recherche des autres
-        while (comp && comp.parent !== "#") {
+        while (comp && comp.parent !== '#') {
             this.competencesSelectionnees.push(comp);
             comp = this.competences.find(c => c.id == comp?.parent);
         }

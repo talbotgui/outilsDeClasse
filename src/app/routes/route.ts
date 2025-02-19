@@ -1,7 +1,7 @@
-import { Directive, OnInit } from "@angular/core";
-import { NavigationEnd, Router } from "@angular/router";
-import { tap } from "rxjs";
-import { AbstractComponent } from "../directives/abstract.component";
+import { Directive, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { tap } from 'rxjs';
+import { AbstractComponent } from '../directives/abstract.component';
 
 @Directive()
 export abstract class AbstractRoute extends AbstractComponent implements OnInit {
@@ -21,7 +21,7 @@ export abstract class AbstractRoute extends AbstractComponent implements OnInit 
     /** Pour valider le formulaire via un CRTL+ENTRER */
     protected abstract passerEnModeLecture(): void;
     public onKeyUp(event: KeyboardEvent): void {
-        if (!!event.ctrlKey && event.key == "Enter") {
+        if (!!event.ctrlKey && event.key == 'Enter') {
             this.passerEnModeLecture();
         }
     }

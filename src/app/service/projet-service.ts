@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { Eleve } from "../model/eleve-model";
-import { Periode } from "../model/model";
-import { Competence, CONSTATS_EN_PREPARATION_PAR_DEFAUT, Note } from "../model/note-model";
-import { Projet, SousProjetParPeriode } from "../model/projet-model";
+import { Injectable } from '@angular/core';
+import { Eleve } from '../model/eleve-model';
+import { Periode } from '../model/model';
+import { Competence, CONSTATS_EN_PREPARATION_PAR_DEFAUT, Note } from '../model/note-model';
+import { Projet, SousProjetParPeriode } from '../model/projet-model';
 
 @Injectable({ providedIn: 'root' })
 export class ProjetService {
@@ -127,7 +127,7 @@ export class ProjetService {
                 (n.commentaireEvaluationPrive || n.commentaireEvaluationPublic || (n.valeurEvaluation && n.valeurEvaluation != 'n') || (n.constatEnPreparation && n.constatEnPreparation != CONSTATS_EN_PREPARATION_PAR_DEFAUT))
             ).forEach(n => {
                 const competence = reference.competences.find(c => c.id === n.idItem);
-                problemes.push('en période "' + periode.nom + '", pour l\'élève ' + e.prenom + ' et la compétence "' + competence?.text + '"');
+                problemes.push('en période \'' + periode.nom + '\', pour l\'élève ' + e.prenom + ' et la compétence \'' + competence?.text + '\'');
             })
         );
 

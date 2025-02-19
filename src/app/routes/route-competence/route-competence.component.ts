@@ -30,7 +30,7 @@ import { ContexteService } from '../../service/contexte-service';
 })
 export class RouteCompetenceComponent extends AbstractComponent implements OnInit {
 
-    /** Source de données de l'arbre (mode "nested nodes" car moins de code TS et donc plus simple). */
+    /** Source de données de l'arbre (mode 'nested nodes' car moins de code TS et donc plus simple). */
     public dataSource = new MatTreeNestedDataSource<NoeudCompetence>();
 
     /** Competences chargées. */
@@ -60,7 +60,7 @@ export class RouteCompetenceComponent extends AbstractComponent implements OnIni
 
     /** Création de la structure de données pour l'arbre */
     private creerDataSourceArbre(donnees: Annee | undefined) {
-        // Initialisation de la liste des noeuds "racine"
+        // Initialisation de la liste des noeuds 'racine'
         const noeudsRacine: NoeudCompetence[] = [];
         this.dataSource.data = noeudsRacine;
 

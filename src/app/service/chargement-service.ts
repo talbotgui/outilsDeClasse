@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { map, Observable, of, tap } from "rxjs";
-import { InclusionEleve } from "../model/eleve-model";
-import { GroupeSurUnTemps, Temps } from "../model/journal-model";
-import { MessageAafficher, TypeMessageAafficher } from "../model/message-model";
-import { Annee } from "../model/model";
-import { ModelUtil } from "../model/model-utils";
-import { Note } from "../model/note-model";
-import { Projet, SousProjetParPeriode } from "../model/projet-model";
-import { ContexteService } from "./contexte-service";
-import { ProblemeService } from "./probleme-service";
+import { Injectable } from '@angular/core';
+import { map, Observable, of, tap } from 'rxjs';
+import { InclusionEleve } from '../model/eleve-model';
+import { GroupeSurUnTemps, Temps } from '../model/journal-model';
+import { MessageAafficher, TypeMessageAafficher } from '../model/message-model';
+import { Annee } from '../model/model';
+import { ModelUtil } from '../model/model-utils';
+import { Note } from '../model/note-model';
+import { Projet, SousProjetParPeriode } from '../model/projet-model';
+import { ContexteService } from './contexte-service';
+import { ProblemeService } from './probleme-service';
 
 @Injectable({ providedIn: 'root' })
 export class ChargementService {
@@ -46,14 +46,14 @@ export class ChargementService {
                     // sauvegarde des données dans le contexte
                     this.contexteService.sauvegarderDonnesDeClasseChargee(donnees);
                     // message de succès
-                    this.contexteService.afficherUnMessageGeneral(new MessageAafficher("chargerDonneesDeClasse", TypeMessageAafficher.Information, "Le fichier de données est correctement chargé."));
+                    this.contexteService.afficherUnMessageGeneral(new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Information, 'Le fichier de données est correctement chargé.'));
                     // renvoi OK
                     return true;
                 }
                 // sinon
                 else {
                     //Message d'erreur
-                    this.contexteService.afficherUnMessageGeneral(new MessageAafficher("chargerDonneesDeClasse", TypeMessageAafficher.Erreur, "Erreur durant l'analyse du contenu du fichier. Est-ce bien un fichier de données de l'application MaClasse ?"));
+                    this.contexteService.afficherUnMessageGeneral(new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Erreur, 'Erreur durant l\'analyse du contenu du fichier. Est-ce bien un fichier de données de l\'application MaClasse ?'));
                     // renvoi KO
                     return false;
                 }
@@ -94,9 +94,9 @@ export class ChargementService {
             e.notes.forEach(n => {
                 n.id = n.id ?? ModelUtil.getUID()
                 // Rattrapage si donnée manquante
-                n.idsProjets = n.idsProjets ?? ["ajoutManuel"];
+                n.idsProjets = n.idsProjets ?? ['ajoutManuel'];
                 if (n.idsProjets.length === 0) {
-                    n.idsProjets.push("ajoutManuel");
+                    n.idsProjets.push('ajoutManuel');
                 }
             });
             e.commentairesDePeriode.forEach(c => c.id = c.id ?? ModelUtil.getUID());
@@ -145,7 +145,7 @@ export class ChargementService {
 
         // Fonction traitant les dates dans le JSON
         const parseIsoDateStrToDate = (key: string, value: any) => {
-            if (typeof value === "string" && ChargementService.FORMAT_DATE_ISO.test(value)) {
+            if (typeof value === 'string' && ChargementService.FORMAT_DATE_ISO.test(value)) {
                 return new Date(value);
             }
             return value
@@ -162,8 +162,8 @@ export class ChargementService {
 
     /**  Si les données sont à un ancien format, ménage et réadaptation.*/
     private transcrireDonnesSiAncienFormat2024(donnees: Annee): Annee {
-        const message = 'Transcription des données suite à une évolution de l\'application vers la version "2024"';
-        this.contexteService.afficherUnMessageGeneral(new MessageAafficher("transcrireDonnesSiAncienFormat2024", TypeMessageAafficher.Information, message));
+        const message = 'Transcription des données suite à une évolution de l\'application vers la version \'2024\'';
+        this.contexteService.afficherUnMessageGeneral(new MessageAafficher('transcrireDonnesSiAncienFormat2024', TypeMessageAafficher.Information, message));
 
         // Suppression de données inutiles
         const listeDesAttributsAsupprimer = ['libellesTypeTempsJournal', 'erreursChargement', 'historique'];
@@ -308,8 +308,8 @@ export class ChargementService {
 
     /**  Si les données sont à un ancien format, ménage et réadaptation.*/
     private transcrireDonnesSiAncienFormat2024v1(donnees: Annee): Annee {
-        const message = 'Transcription des données suite à une évolution de l\'application vers la version "2024.1"';
-        this.contexteService.afficherUnMessageGeneral(new MessageAafficher("transcrireDonnesSiAncienFormat2024v1", TypeMessageAafficher.Information, message));
+        const message = 'Transcription des données suite à une évolution de l\'application vers la version \'2024.1\'';
+        this.contexteService.afficherUnMessageGeneral(new MessageAafficher('transcrireDonnesSiAncienFormat2024v1', TypeMessageAafficher.Information, message));
 
         // Extraction des notes
         const entreeNotes = Object.entries(donnees).find(entree => entree[0] === 'notes');

@@ -66,9 +66,9 @@ export class RouteTdbComponent extends AbstractRoute {
     /** Filtre : période. */
     public periodeSelectionnee: Periode | undefined;
     /** Filtre : Mode d'affichage. */
-    public modeAffichage: string = "3";
-    /** Filtre : "Groupement par". */
-    public groupementPar: string = "1";
+    public modeAffichage: string = '3';
+    /** Filtre : 'Groupement par'. */
+    public groupementPar: string = '1';
 
     /** Edition : groupe de compétence en cours d'édition */
     public indexEnEdition: number | undefined;
@@ -190,7 +190,7 @@ export class RouteTdbComponent extends AbstractRoute {
     private ajouterUneNote(sousLigne: SousLigneDeTableauDeBord, evaluation: boolean): void {
         // Sélection de la période à utiliser pour la nouvelle note
         let periodeAutiliser = this.periodeSelectionnee;
-        if (this.modeAffichage === "3" && this.periodeSelectionnee) {
+        if (this.modeAffichage === '3' && this.periodeSelectionnee) {
             const indexPeriode = this.periodes.indexOf(this.periodeSelectionnee);
             if (!evaluation && indexPeriode + 1 < this.periodes.length) {
                 periodeAutiliser = this.periodes[indexPeriode + 1];
@@ -234,7 +234,7 @@ export class RouteTdbComponent extends AbstractRoute {
             // Gestion du mode d'affichage vis-à-vis de la période à modifier
             let indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
             let periodeAutiliser = this.periodeSelectionnee;
-            if (this.modeAffichage === "1" && indexPeriodeSelectionnee + 1 < this.periodes.length) {
+            if (this.modeAffichage === '1' && indexPeriodeSelectionnee + 1 < this.periodes.length) {
                 indexPeriodeSelectionnee++;
                 periodeAutiliser = this.periodes[indexPeriodeSelectionnee];
             }
@@ -253,7 +253,7 @@ export class RouteTdbComponent extends AbstractRoute {
                 this.eleveSelectionne.notes.push(note);
 
                 //  déclenchement du traitement de MaJ des données maintenant que les notes sont ajoutées
-                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Information, 'Une note ajoutée au tableau de bord pour la compétence "' + competence.text + "'.");
+                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Information, 'Une note ajoutée au tableau de bord pour la compétence \'' + competence.text + '\'.');
                 this.contexteService.afficherUnMessageGeneral(message);
                 this.afficherRaffraichirDonnees();
             }
@@ -261,8 +261,8 @@ export class RouteTdbComponent extends AbstractRoute {
             // Si note existante, message à l'utilisateur
             else {
                 const listeProjets = this.projets.filter(p => noteExistante.idsProjets && noteExistante.idsProjets.includes(p.id)).map(p => p.nom).join(', ');
-                const finMessage = listeProjets ? listeProjets + '" dans les projet(s) : ' + listeProjets + '.' : ' parmis les notes ajoutées manuellement (sans lien avec un projet)';
-                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Avertissement, 'Aucun ajout réalisé car une note existe déjà pour la compétence "' + competence.text + finMessage);
+                const finMessage = listeProjets ? listeProjets + '\' dans les projet(s) : ' + listeProjets + '.' : ' parmis les notes ajoutées manuellement (sans lien avec un projet)';
+                const message = new MessageAafficher('ajouterUneLigne', TypeMessageAafficher.Avertissement, 'Aucun ajout réalisé car une note existe déjà pour la compétence ' + competence.text + finMessage);
                 this.contexteService.afficherUnMessageGeneral(message);
             }
         });
@@ -306,9 +306,9 @@ export class RouteTdbComponent extends AbstractRoute {
         if (this.periodeSelectionnee && this.eleveSelectionne) {
 
             // Création des lignes pour les deux périodes
-            if (this.modeAffichage === "1") {
+            if (this.modeAffichage === '1') {
                 this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, true, this.eleveSelectionne.notes);
-            } else if (this.modeAffichage === "2" || this.modeAffichage === "4") {
+            } else if (this.modeAffichage === '2' || this.modeAffichage === '4') {
                 this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
             } else {
                 this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
@@ -345,11 +345,11 @@ export class RouteTdbComponent extends AbstractRoute {
             .filter(n => n.idPeriode == periode.id)
             // Création des lignes correspondantes
             .forEach(n => {
-                // En mode "groupement par projet"
-                if (this.groupementPar === "2") {
+                // En mode 'groupement par projet'
+                if (this.groupementPar === '2') {
                     this.creerSousLigneTableauDeBordPourUneNoteAvecGroupementParProjet(n, periodePreparee);
                 }
-                // En mode "groupement par domaine"
+                // En mode 'groupement par domaine'
                 else {
                     this.creerSousLigneTableauDeBordPourUneNoteAvecGroupementParDomaine(n, periodePreparee);
                 }
@@ -378,7 +378,7 @@ export class RouteTdbComponent extends AbstractRoute {
             sousLigne.referencesProjetPeriodeEvaluee = this.projets.filter(p => (n.idsProjets || []).includes(p.id));
         } else {
             // message de succès
-            const message = new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence ("' + n.idItem + '") et un même élève ("' + this.eleveSelectionne?.id + '")');
+            const message = new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence (\'' + n.idItem + '\') et un même élève (\'' + this.eleveSelectionne?.id + '\')');
             this.contexteService.afficherUnMessageGeneral(message);
         }
     }
@@ -423,7 +423,7 @@ export class RouteTdbComponent extends AbstractRoute {
     /** Initialisation des lignes du tableau de bord en fonction du regroupement. */
     private initialiserLignes(): void {
         // Si groupement par projet
-        if (this.groupementPar === "2") {
+        if (this.groupementPar === '2') {
             // La création des lignes se fait en fonction des projets
             this.lignes = this.projets.map(p => {
                 const ligne = new LigneDeTableauDeBord();

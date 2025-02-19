@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractComponent } from '../directives/abstract.component';
-import { ContexteService } from '../service/contexte-service';
 import { tap } from 'rxjs';
+import { AbstractComponent } from '../directives/abstract.component';
 import { HtmlPipe } from '../pipes/html.pipe';
+import { ContexteService } from '../service/contexte-service';
 
 @Component({
     selector: '[div-entete]', templateUrl: './div-entete.component.html', styleUrl: './div-entete.component.scss',
@@ -11,10 +11,10 @@ import { HtmlPipe } from '../pipes/html.pipe';
         HtmlPipe
     ]
 })
-export class DivEnteteComponent  extends AbstractComponent implements OnInit {
+export class DivEnteteComponent extends AbstractComponent implements OnInit {
 
     /** Entête à afficher directement dans l'application */
-    public entete="<h1 class=\"maclasse-h1 maclasse-titreApplication\">Application de gestion de ma classe</h1>";
+    public entete = '<h1 class="maclasse-h1 maclasse-titreApplication">Application de gestion de ma classe</h1>';
 
     /** Constructeur pour injection des dépendances. */
     public constructor(private contexteService: ContexteService) { super(); }
@@ -26,7 +26,7 @@ export class DivEnteteComponent  extends AbstractComponent implements OnInit {
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
             tap(donnees => {
                 if (donnees && donnees.enteteEdition) {
-                    this.entete=donnees.enteteEdition;
+                    this.entete = donnees.enteteEdition;
                 }
             })
         ).subscribe();

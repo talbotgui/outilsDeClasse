@@ -1,10 +1,10 @@
-import { DatePipe } from "@angular/common";
-import { Injectable } from "@angular/core";
-import { MessageAafficher, TypeMessageAafficher } from "../model/message-model";
-import { Annee } from "../model/model";
-import { Note } from "../model/note-model";
-import { Probleme, ProblemeAvecCorrectionAutomatique, ProblemeAvecCorrectionManuelle } from "../model/probleme-model";
-import { ContexteService } from "./contexte-service";
+import { DatePipe } from '@angular/common';
+import { Injectable } from '@angular/core';
+import { MessageAafficher, TypeMessageAafficher } from '../model/message-model';
+import { Annee } from '../model/model';
+import { Note } from '../model/note-model';
+import { Probleme, ProblemeAvecCorrectionAutomatique, ProblemeAvecCorrectionManuelle } from '../model/probleme-model';
+import { ContexteService } from './contexte-service';
 
 @Injectable({ providedIn: 'root' })
 export class ProblemeService {
@@ -104,7 +104,7 @@ export class ProblemeService {
         if (donnees.periodes) {
             donnees.periodes.forEach(p => {
                 if (!p.debut || !p.fin) {
-                    const libelle = 'La période "' + p.nom + '" a une date manquante.';
+                    const libelle = 'La période \'' + p.nom + '\' a une date manquante.';
                     const explications = 'Utilisez le menu PARAMETRAGE pour corriger cette donnée';
                     problemes.push(new ProblemeAvecCorrectionManuelle('P1', libelle, [], explications));
                 } else {
@@ -117,7 +117,7 @@ export class ProblemeService {
                         ((pp.debut < p.debut && p.debut < pp.fin) || (pp.fin < p.debut && p.fin < pp.fin))
                     ).map(p => p.id);
                     if (idChevauchements.length > 0) {
-                        const libelle = 'La période "' + p.nom + '" chevauche la(es) période(s) "' + idChevauchements + '".';
+                        const libelle = 'La période \'' + p.nom + '\' chevauche la(es) période(s) \'' + idChevauchements + '\'.';
                         const details = ['Attention à bien respecter les dates des périodes fournies par l\'état sur le site Service-Public.gouv.fr'];
                         const explications = 'Utilisez le menu PARAMETRAGE pour corriger cette donnée';
                         problemes.push(new ProblemeAvecCorrectionManuelle('P2', libelle, details, explications));
@@ -196,7 +196,7 @@ export class ProblemeService {
             });
             e.commentairesDePeriode.forEach(c => {
                 if (typeof c.idPeriode == undefined || c.idPeriode && !listeIdPeriodes.includes(c.idPeriode)) {
-                    const libelle = 'Dans les données de \'' + e.prenom + '\', une période inconnue "' + c.idPeriode + '" est référencée dans un commentaire de période';
+                    const libelle = 'Dans les données de \'' + e.prenom + '\', une période inconnue \'' + c.idPeriode + '\' est référencée dans un commentaire de période';
                     const details = ['Elève : ' + e.prenom + ' ' + e.nom, 'Commentaire : ' + c.commentaire];
                     const libelleBouton = 'Supprimer le commentaire de période';
                     problemes.push(new ProblemeAvecCorrectionAutomatique('E1', libelle, details, libelleBouton, [e.id, c.id]));
@@ -204,7 +204,7 @@ export class ProblemeService {
             });
             e.parcoursDePeriode.forEach(p => {
                 if (typeof p.idPeriode == undefined || p.idPeriode && !listeIdPeriodes.includes(p.idPeriode)) {
-                    const libelle = 'Dans les données de \'' + e.prenom + '\', une période inconnue "' + p.idPeriode + '" est référencée dans un parcours';
+                    const libelle = 'Dans les données de \'' + e.prenom + '\', une période inconnue \'' + p.idPeriode + '\' est référencée dans un parcours';
                     const details = ['Elève : ' + e.prenom + ' ' + e.nom, 'Parcours : ' + p.commentaire];
                     const libelleBouton = 'Supprimer le parcours de période';
                     problemes.push(new ProblemeAvecCorrectionAutomatique('E2', libelle, details, libelleBouton, [e.id, p.id]));
@@ -214,7 +214,7 @@ export class ProblemeService {
         donnees.projets.forEach(p => {
             (p.sousProjetParPeriode || []).forEach(sp => {
                 if (typeof sp.idPeriode == undefined || sp.idPeriode && !listeIdPeriodes.includes(sp.idPeriode)) {
-                    const libelle = 'Dans le projet "' + p.nom + '", un sous-projet référence la période "' + sp.idPeriode + '" inconnue.';
+                    const libelle = 'Dans le projet \'' + p.nom + '\', un sous-projet référence la période \'' + sp.idPeriode + '\' inconnue.';
                     const libelleBouton = 'Supprimer le sous-projet';
                     problemes.push(new ProblemeAvecCorrectionAutomatique('PRO1', libelle, [], libelleBouton, [p.id, sp.id]));
                 }

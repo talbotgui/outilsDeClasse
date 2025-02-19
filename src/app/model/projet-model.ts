@@ -1,4 +1,4 @@
-import { AvecIdentifiant } from "./model";
+import { AvecIdentifiant } from './model';
 
 export class Projet extends AvecIdentifiant {
   public nom?: string;

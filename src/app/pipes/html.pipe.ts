@@ -1,7 +1,7 @@
-import { Pipe, SecurityContext } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
+import { Pipe, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
-@Pipe({ name: "html", standalone: true, })
+@Pipe({ name: 'html', standalone: true, })
 export class HtmlPipe {
 
     /** Constructeur pour injection des dépendances. */

@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
-import { MessageAafficher } from "../model/message-model";
-import { Annee } from "../model/model";
-import { Probleme } from "../model/probleme-model";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { MessageAafficher } from '../model/message-model';
+import { Annee } from '../model/model';
+import { Probleme } from '../model/probleme-model';
 
 @Injectable({ providedIn: 'root' })
 export class ContexteService {

@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { AbsenceEleve, ContactEleve, CursusEleve, Eleve } from "../model/eleve-model";
+import { Injectable } from '@angular/core';
+import { AbsenceEleve, ContactEleve, CursusEleve, Eleve } from '../model/eleve-model';
 
 @Injectable({ providedIn: 'root' })
 export class EleveService {
@@ -54,7 +54,7 @@ export class EleveService {
             if (eleve.dateNaissance instanceof Date) {
                 anneeSuivante = eleve.dateNaissance.getFullYear();
             } else {
-                anneeSuivante = parseInt(("" + eleve.dateNaissance).substring(0, 4));
+                anneeSuivante = parseInt(('' + eleve.dateNaissance).substring(0, 4));
             }
         }
 

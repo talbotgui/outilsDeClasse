@@ -54,7 +54,7 @@ export class DialogDuplicationComponent extends AbstractComponent {
 
   /** Pour valider le formulaire via un CRTL+ENTRER */
   public onKeyUp(event: KeyboardEvent): void {
-    if (!!event.ctrlKey && event.key == "Enter") {
+    if (!!event.ctrlKey && event.key == 'Enter') {
       this.dupliquer();
     }
   }

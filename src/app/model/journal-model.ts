@@ -1,4 +1,4 @@
-import { AvecIdentifiant } from "./model";
+import { AvecIdentifiant } from './model';
 
 export class Journal extends AvecIdentifiant {
     public date: Date | undefined;

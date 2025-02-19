@@ -1,8 +1,8 @@
-import { Eleve } from "./eleve-model";
-import { Journal } from "./journal-model";
-import { ModelUtil } from "./model-utils";
-import { Competence } from "./note-model";
-import { Projet } from "./projet-model";
+import { Eleve } from './eleve-model';
+import { Journal } from './journal-model';
+import { ModelUtil } from './model-utils';
+import { Competence } from './note-model';
+import { Projet } from './projet-model';
 
 export class AvecIdentifiant {
   public id: string = ModelUtil.getUID();

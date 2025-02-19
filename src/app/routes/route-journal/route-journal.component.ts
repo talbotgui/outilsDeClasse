@@ -289,7 +289,7 @@ export class RouteJournalComponent extends AbstractRoute {
 
     /** Pour valider un temps directement via un CRTL+ENTRER */
     public onKeyUpSurTempsDeJournal(event: KeyboardEvent): void {
-        if (!!event.ctrlKey && event.key == "Enter") {
+        if (!!event.ctrlKey && event.key == 'Enter') {
             this.validerTemps();
         }
     }

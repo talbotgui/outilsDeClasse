@@ -1,4 +1,4 @@
-import { Competence } from "./note-model";
+import { Competence } from './note-model';
 
 /** Modèle de données utilisé pour l'arbre de compétence. */
 export class NoeudCompetence {
