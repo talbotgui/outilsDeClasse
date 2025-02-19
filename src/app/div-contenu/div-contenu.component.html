@@ -1,24 +1,58 @@
 <div>
 
-  <!-- Menu -->
+
+  <!-- Menu de niveau 1 -->
   <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="maclasse-masquerEnModePrint">
-    <a mat-tab-link routerLink="/route-accueil">Accueil</a>
-    @if (donneesDeClasseChargee) {
+
+    <!-- Accueil tjs en niveau 1 -->
+    <a mat-tab-link (click)="afficherMenuNiveau2=false" routerLink="/route-accueil">Accueil</a>
+
+    <!-- Si pas de données chargées, tout est dans le niveau 1 -->
+    @if (!donneesDeClasseChargee) {
+    <a mat-tab-link (click)="afficherMenuNiveau2=false" [active]="routeActive == '/route-chargerdonnees'" routerLink="/route-chargerdonnees">
+      Charger mon année
+    </a>
+    <a mat-tab-link (click)="afficherMenuNiveau2=false" [active]="routeActive == '/route-creerdonnees'" routerLink="/route-creerdonnees">
+      Créer mon année
+
+    </a>
+    }
+
+    <!-- Si des données sont chargées, utilisation du niveau 2 -->
+    @else {
+    <a mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'ORGA'" [active]="menuNiveau1 == 'ORGA'">
+      Organiser mon année
+    </a>
+    <a mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'QUOTIDIEN'" [active]="menuNiveau1 == 'QUOTIDIEN'">
+      Préparer mon quotidien
+
+    </a>
+
+    <!-- Si des problèmes sont détectées, les problèmes s'affichent -->
+    @if (problemesDetectes) {
+    <a mat-tab-link (click)="afficherMenuNiveau2=false" [active]="routeActive == '/route-problemes'" routerLink="/route-problemes">
+      Problèmes
+    </a>
+    }
+    }
+  </nav>
+
+  <!-- Menu de niveau 2 -->
+  @if (afficherMenuNiveau2){
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="maclasse-masquerEnModePrint">
+    @if (menuNiveau1 == 'ORGA') {
     <a mat-tab-link [active]="routeActive == '/route-competence'" routerLink="/route-competence">Compétences</a>
     <a mat-tab-link [active]="routeActive == '/route-eleve'" routerLink="/route-eleve">Elèves</a>
     <a mat-tab-link [active]="routeActive == '/route-projet'" routerLink="/route-projet">Projets</a>
+    }
+    @else if (menuNiveau1 == 'QUOTIDIEN') {
     <a mat-tab-link [active]="routeActive == '/route-journal'" routerLink="/route-journal">Cahier journal</a>
     <a mat-tab-link [active]="routeActive == '/route-tableaudebord'" routerLink="/route-tableaudebord">Tableau de bord</a>
     <a mat-tab-link [active]="routeActive == '/route-taches'" routerLink="/route-taches">Tâches</a>
-    @if (problemesDetectes) {
-    <a mat-tab-link [active]="routeActive == '/route-problemes'" routerLink="/route-problemes">Problèmes</a>
     }
-    }
-    @else {
-    <a mat-tab-link [active]="routeActive == '/route-chargerdonnees'" routerLink="/route-chargerdonnees">Charger mon année</a>
-    <a mat-tab-link [active]="routeActive == '/route-creerdonnees'" routerLink="/route-creerdonnees">Créer mon année</a>
-    }
+
   </nav>
+  }
 
   <!-- Routeur avec le contenu -->
   <mat-tab-nav-panel #tabPanel>

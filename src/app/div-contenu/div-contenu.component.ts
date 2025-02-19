@@ -22,9 +22,12 @@ export class DivContenuComponent extends AbstractComponent implements OnInit {
 
   /** Flag indiquant que le menu peut être complètement affiché car les données sont chargées. */
   public donneesDeClasseChargee = false;
-
   /** Flag indiquant que le menu dédié aux problèmes peut être affiché. */
   public problemesDetectes = false;
+
+  /** ID du menu de niveau 1 */
+  public menuNiveau1 = '';
+  public afficherMenuNiveau2 = false;
 
   /** Route active à un instant T */
   public routeActive: string | undefined;
