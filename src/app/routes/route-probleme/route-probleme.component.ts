@@ -46,6 +46,22 @@ export class RouteProblemeComponent extends AbstractRoute {
 
     /** @see classe parente */
     public afficherRaffraichirDonnees(): void {
+    }
+
+    /** Au clic sur le bouton de correction */
+    public corrigerProbleme(pb: Probleme): void {
+        if (this.donnees) {
+            this.problemeService.corrigerProbleme(this.donnees, pb);
+        }
+    }
+
+    /** @see classe parente */
+    public fournirCodeRoute(): string {
+        return ROUTE_PROBLEME;
+    }
+
+    /** @see classe parente */
+    public initialiserRoute(): void {
 
         // Si des problèmes sont détectés, 
         const sub1 = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
@@ -70,25 +86,8 @@ export class RouteProblemeComponent extends AbstractRoute {
     }
 
     /** @see classe parente */
-    public fournirCodeRoute(): string {
-        return ROUTE_PROBLEME;
-    }
-
-    /** @see classe parente */
-    public initialiserRoute(): void {
-        // rien à faire ici
-    }
-
-    /** @see classe parente */
     protected override passerEnModeLecture(): void {
         // rien à faire ici
-    }
-
-    /** Au clic sur le bouton de correction */
-    public corrigerProbleme(pb: Probleme): void {
-        if (this.donnees) {
-            this.problemeService.corrigerProbleme(this.donnees, pb);
-        }
     }
 
     /** Relancer l'analyse */
