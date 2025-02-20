@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of, tap } from 'rxjs';
+import { map, mergeMap, Observable, of, tap } from 'rxjs';
 import { InclusionEleve } from '../model/eleve-model';
 import { GroupeSurUnTemps, Temps } from '../model/journal-model';
 import { MessageAafficher, TypeMessageAafficher } from '../model/message-model';
@@ -7,6 +7,7 @@ import { Annee } from '../model/model';
 import { ModelUtil } from '../model/model-utils';
 import { Note } from '../model/note-model';
 import { Projet, SousProjetParPeriode } from '../model/projet-model';
+import { ChiffrementService } from './chiffrement-service';
 import { ContexteService } from './contexte-service';
 import { ProblemeService } from './probleme-service';
 
@@ -17,7 +18,7 @@ export class ChargementService {
     private static readonly FORMAT_DATE_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d*)?Z$/;
 
     /** Constructeur pour injection des dépendances. */
-    constructor(private contexteService: ContexteService, private problemeService: ProblemeService) { }
+    constructor(private chiffrementService: ChiffrementService, private contexteService: ContexteService, private problemeService: ProblemeService) { }
 
     /**
      * Chargement du contenu d'un fichier JSON de données de classe.
@@ -25,6 +26,18 @@ export class ChargementService {
      * @return un observable indiquant le résultat du traitement
      */
     public chargerDonneesDeClasse(donneesString: string): Observable<boolean> {
+
+        const mdp = 'monMotDePasse';
+
+        console.log('Donnee chiffree : ' + donneesString.length);
+
+        this.chiffrementService.chiffrer(donneesString, mdp).pipe(
+            tap(donneesChiffree => console.log('Donnee chiffree', donneesChiffree)),
+            mergeMap(donneesChiffree => this.chiffrementService.dechiffrer(donneesChiffree, mdp)),
+            tap(donneesDechiffree => console.log('Donnee identique ? ', donneesDechiffree === donneesString)),
+
+        ).subscribe();
+
 
         // Parse de la string fournie
         return this.parserFichierJson(donneesString).pipe(
