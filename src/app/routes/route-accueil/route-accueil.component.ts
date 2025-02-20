@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ROUTE_ACCUEIL } from '../../app.routes';
-import { BouchonService } from '../../service/bouchon-service';
+import { DemonstrationService } from '../../service/bouchon-service';
 import { AbstractRoute } from '../route';
 
 @Component({
@@ -16,7 +16,7 @@ import { AbstractRoute } from '../route';
 export class RouteAccueilComponent extends AbstractRoute {
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(activatedRoute: ActivatedRoute, router: Router, location: Location, bouchonService: BouchonService) {
+    public constructor(activatedRoute: ActivatedRoute, router: Router, location: Location, bouchonService: DemonstrationService) {
         super(router, activatedRoute, location, bouchonService);
     }
 

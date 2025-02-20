@@ -14,7 +14,7 @@ import { tap } from 'rxjs';
 import { ROUTE_PROBLEME } from '../../app.routes';
 import { Annee } from '../../model/model';
 import { Probleme } from '../../model/probleme-model';
-import { BouchonService } from '../../service/bouchon-service';
+import { DemonstrationService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { ProblemeService } from '../../service/probleme-service';
 import { AbstractRoute } from '../route';
@@ -41,7 +41,7 @@ export class RouteProblemeComponent extends AbstractRoute {
     public donnees: Annee | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private contexteService: ContexteService, private problemeService: ProblemeService, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService) {
+    public constructor(router: Router, private contexteService: ContexteService, private problemeService: ProblemeService, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService) {
         super(router, activatedRoute, location, bouchonService);
     }
 

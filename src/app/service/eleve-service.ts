@@ -62,17 +62,17 @@ export class EleveService {
         return anneeSuivante;
     }
 
-    /** Retrait du contact de la liste. */
-    public supprimerContact(eleveSelectionne: Eleve | undefined, noContact: number): void {
-        if (eleveSelectionne && eleveSelectionne.contacts && eleveSelectionne.contacts.length > noContact) {
-            eleveSelectionne.contacts.splice(noContact, 1);
-        }
-    }
-
     /** Retrait de l'absence de la liste. */
     public supprimerAbsence(eleveSelectionne: Eleve | undefined, noAbsence: number): void {
         if (eleveSelectionne && eleveSelectionne.absences && eleveSelectionne.absences.length > noAbsence) {
             eleveSelectionne.absences.splice(noAbsence, 1);
+        }
+    }
+
+    /** Retrait du contact de la liste. */
+    public supprimerContact(eleveSelectionne: Eleve | undefined, noContact: number): void {
+        if (eleveSelectionne && eleveSelectionne.contacts && eleveSelectionne.contacts.length > noContact) {
+            eleveSelectionne.contacts.splice(noContact, 1);
         }
     }
 

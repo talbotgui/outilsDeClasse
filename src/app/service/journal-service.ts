@@ -75,6 +75,29 @@ export class JournalService {
         return false;
     }
 
+    /** Fonction de manipulation de données */
+    private clonerGroupeSurUnTemps(g: GroupeSurUnTemps): GroupeSurUnTemps {
+        const nouveauGroupe = new GroupeSurUnTemps();
+        nouveauGroupe.commentaire = g.commentaire;
+        nouveauGroupe.competences = g.competences.slice();
+        nouveauGroupe.eleves = g.eleves.slice();
+        nouveauGroupe.nom = g.nom;
+        nouveauGroupe.consignes = g.consignes;
+        nouveauGroupe.materiel = g.materiel;
+        nouveauGroupe.objectifs = g.objectifs;
+        return nouveauGroupe;
+    }
+
+    /** Fonction de manipulation de données */
+    private clonerTemps(t: Temps): Temps {
+        const nouveauTemps = new Temps();
+        nouveauTemps.debut = t.debut;
+        nouveauTemps.fin = t.fin;
+        nouveauTemps.type = t.type;
+        nouveauTemps.groupes = (t.groupes || []).map(this.clonerGroupeSurUnTemps.bind(this));
+        return nouveauTemps;
+    }
+
     /** Création d'un journal */
     private creerJournal(dateJournal: Date, eleves: Eleve[] | undefined, mapRaisonAbsence: { [key: string]: string } | undefined): Journal {
 
@@ -102,29 +125,6 @@ export class JournalService {
         nouveauJournal.remarque = commentaireJournalParDefaut;
 
         return nouveauJournal;
-    }
-
-    /** Fonction de manipulation de données */
-    private clonerGroupeSurUnTemps(g: GroupeSurUnTemps): GroupeSurUnTemps {
-        const nouveauGroupe = new GroupeSurUnTemps();
-        nouveauGroupe.commentaire = g.commentaire;
-        nouveauGroupe.competences = g.competences.slice();
-        nouveauGroupe.eleves = g.eleves.slice();
-        nouveauGroupe.nom = g.nom;
-        nouveauGroupe.consignes = g.consignes;
-        nouveauGroupe.materiel = g.materiel;
-        nouveauGroupe.objectifs = g.objectifs;
-        return nouveauGroupe;
-    }
-
-    /** Fonction de manipulation de données */
-    private clonerTemps(t: Temps): Temps {
-        const nouveauTemps = new Temps();
-        nouveauTemps.debut = t.debut;
-        nouveauTemps.fin = t.fin;
-        nouveauTemps.type = t.type;
-        nouveauTemps.groupes = (t.groupes || []).map(this.clonerGroupeSurUnTemps.bind(this));
-        return nouveauTemps;
     }
 
     /** Déplacer un temps dans le journal */

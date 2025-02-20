@@ -8,7 +8,6 @@ export class TacheService {
     /** Constructeur pour injection des dépendances. */
     constructor(private dateService: DateService) { }
 
-
     /** Ajout d'une tâche */
     public ajouterTache(taches: Tache[]): Tache {
         // Création d'une tâche

@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { ROUTE_TACHE } from '../../app.routes';
 import { Echeance, Tache } from '../../model/model';
-import { BouchonService } from '../../service/bouchon-service';
+import { DemonstrationService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { TacheService } from '../../service/tache-service';
 import { AbstractRoute } from '../route';
@@ -38,7 +38,7 @@ export class RouteTacheComponent extends AbstractRoute {
   public taches: Tache[] = [];
 
   /** Constructeur pour injection des dépendances. */
-  public constructor(router: Router, private tacheService: TacheService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService) {
+  public constructor(router: Router, private tacheService: TacheService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService) {
     super(router, activatedRoute, location, bouchonService);
   }
 

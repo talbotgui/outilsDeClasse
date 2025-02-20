@@ -13,7 +13,7 @@ import { tap } from 'rxjs';
 import { ROUTE_COMPETENCE } from '../../app.routes';
 import { NoeudCompetence } from '../../model/arbre-model';
 import { Annee } from '../../model/model';
-import { BouchonService } from '../../service/bouchon-service';
+import { DemonstrationService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { AbstractRoute } from '../route';
 
@@ -42,7 +42,7 @@ export class RouteCompetenceComponent extends AbstractRoute {
     public treeControl = new NestedTreeControl<NoeudCompetence>(n => n.noeudsEnfant);
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, activatedRoute: ActivatedRoute, router: Router, location: Location, bouchonService: BouchonService) {
+    public constructor(private contexteService: ContexteService, activatedRoute: ActivatedRoute, router: Router, location: Location, bouchonService: DemonstrationService) {
         super(router, activatedRoute, location, bouchonService);
     }
 

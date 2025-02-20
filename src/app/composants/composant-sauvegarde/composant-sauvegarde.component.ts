@@ -4,7 +4,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { filter, interval, mergeMap, Observable, of, tap } from 'rxjs';
 import { AbstractComponent } from '../../directives/abstract.component';
-import { BouchonService } from '../../service/bouchon-service';
+import { DemonstrationService } from '../../service/bouchon-service';
 import { ChargementService } from '../../service/chargement-service';
 import { ContexteService } from '../../service/contexte-service';
 import { DateService } from '../../service/date-service';
@@ -34,7 +34,7 @@ export class ComposantSauvegardeComponent extends AbstractComponent implements O
     public lienTelechargement: ElementRef<HTMLAnchorElement> | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private chargementService: ChargementService, private bouchonService: BouchonService, private dateService: DateService) {
+    public constructor(private contexteService: ContexteService, private chargementService: ChargementService, private bouchonService: DemonstrationService, private dateService: DateService) {
         super();
 
         // L'usage de 'window' étant interdit en dehors d'un 'afterNextRender' lui-même interdit en dehors d'un constructeur
@@ -58,7 +58,7 @@ export class ComposantSauvegardeComponent extends AbstractComponent implements O
                     this.donneesChargees = true;
 
                     // Si un jdd a été chargé, la sauvegarde est désactivée par défaut
-                    this.activationSauvegarde = !this.bouchonService.unJeuDeDonneesBouchonneEstCharge;
+                    this.activationSauvegarde = !this.bouchonService.unJeuDeDonneesDeDemonstrationEstCharge;
                 }
             })
         ).subscribe();

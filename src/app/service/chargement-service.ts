@@ -13,6 +13,7 @@ import { ProblemeService } from './probleme-service';
 @Injectable({ providedIn: 'root' })
 export class ChargementService {
 
+    /** Pattern de format de date. */
     private static readonly FORMAT_DATE_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d*)?Z$/;
 
     /** Constructeur pour injection des dépendances. */

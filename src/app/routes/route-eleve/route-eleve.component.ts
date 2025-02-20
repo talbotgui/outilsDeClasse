@@ -18,7 +18,7 @@ import { ROUTE_ELEVE } from '../../app.routes';
 import { Eleve } from '../../model/eleve-model';
 import { ModelUtil } from '../../model/model-utils';
 import { HtmlPipe } from '../../pipes/html.pipe';
-import { BouchonService } from '../../service/bouchon-service';
+import { DemonstrationService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { EleveService } from '../../service/eleve-service';
 import { AbstractRoute } from '../route';
@@ -81,7 +81,7 @@ export class RouteEleveComponent extends AbstractRoute {
     public joursDeLaSemaine: Map<number, string> = ModelUtil.creerMapJoursDeLaSemaine();
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private eleveService: EleveService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService) {
+    public constructor(router: Router, private eleveService: EleveService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService) {
         super(router, activatedRoute, location, bouchonService);
     }
 

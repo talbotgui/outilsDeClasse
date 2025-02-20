@@ -23,7 +23,7 @@ import { Periode } from '../../model/model';
 import { Competence } from '../../model/note-model';
 import { Projet, SousProjetParPeriode } from '../../model/projet-model';
 import { HtmlPipe } from '../../pipes/html.pipe';
-import { BouchonService } from '../../service/bouchon-service';
+import { DemonstrationService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { ProjetService } from '../../service/projet-service';
 import { AbstractRoute } from '../route';
@@ -67,7 +67,7 @@ export class RouteProjetComponent extends AbstractRoute {
     public modeEdition: boolean = false;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService,
+    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService,
         private dialog: MatDialog, private projetService: ProjetService, private contexteService: ContexteService) {
         super(router, activatedRoute, location, bouchonService);
     }
@@ -129,7 +129,7 @@ export class RouteProjetComponent extends AbstractRoute {
     /** Ajout d'un projet */
     public ajouterUnProjet(): void {
         // Création du projet
-        const nouveauProjet = this.projetService.ajouterUnProjet(this.projets);
+        const nouveauProjet = this.projetService.ajouterNouveauProjet(this.projets);
 
         // Sélection du projet
         this.onSelectionProjet(nouveauProjet);
@@ -140,7 +140,7 @@ export class RouteProjetComponent extends AbstractRoute {
 
     /** Ajout d'un sous-projet */
     public ajouterUnSousProjet(): void {
-        this.projetService.ajouterUnSousProjet(this.projetSelectionne);
+        this.projetService.ajouterSousProjet(this.projetSelectionne);
     }
 
     /** Ajout d'une compétence dans le sous-projet */

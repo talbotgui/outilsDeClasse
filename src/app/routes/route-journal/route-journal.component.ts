@@ -21,7 +21,7 @@ import { Eleve } from '../../model/eleve-model';
 import { GroupeSurUnTemps, Journal } from '../../model/journal-model';
 import { ModelUtil } from '../../model/model-utils';
 import { HtmlPipe } from '../../pipes/html.pipe';
-import { BouchonService } from '../../service/bouchon-service';
+import { DemonstrationService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { JournalService } from '../../service/journal-service';
 import { AbstractRoute } from '../route';
@@ -72,7 +72,7 @@ export class RouteJournalComponent extends AbstractRoute {
     private mapRaisonAbsence: { [key: string]: string } | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: BouchonService,
+    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService,
         private contexteService: ContexteService, private journalService: JournalService, private dialog: MatDialog) {
         super(router, activatedRoute, location, bouchonService);
     }

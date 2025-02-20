@@ -86,7 +86,7 @@ export class ProjetService {
     }
 
     /** Ajout d'un projet */
-    public ajouterUnProjet(projets: Projet[] | undefined): Projet {
+    public ajouterNouveauProjet(projets: Projet[] | undefined): Projet {
         // Création du projet
         const nouveauProjet = new Projet();
         projets?.push(nouveauProjet);
@@ -96,7 +96,7 @@ export class ProjetService {
     }
 
     /** Ajout d'un sous-projet */
-    public ajouterUnSousProjet(projetSelectionne: Projet | undefined): void {
+    public ajouterSousProjet(projetSelectionne: Projet | undefined): void {
         // Création du sous-projet
         const ssProjet = new SousProjetParPeriode();
         projetSelectionne?.sousProjetParPeriode?.push(ssProjet);
@@ -170,7 +170,6 @@ export class ProjetService {
             const index = projetSelectionne.sousProjetParPeriode.indexOf(periodeDeProjet);
             projetSelectionne.sousProjetParPeriode.splice(index, 1);
         }
-
     }
 
     /** Suppression du projet sélectionné. */
