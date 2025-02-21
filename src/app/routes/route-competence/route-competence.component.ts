@@ -42,8 +42,8 @@ export class RouteCompetenceComponent extends AbstractRoute {
     public treeControl = new NestedTreeControl<NoeudCompetence>(n => n.noeudsEnfant);
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, activatedRoute: ActivatedRoute, router: Router, location: Location, bouchonService: DemonstrationService) {
-        super(router, activatedRoute, location, bouchonService);
+    public constructor(private contexteService: ContexteService, activatedRoute: ActivatedRoute, router: Router, location: Location, demonstrationService: DemonstrationService) {
+        super(router, activatedRoute, location, demonstrationService);
     }
 
     /** @see classe parente */

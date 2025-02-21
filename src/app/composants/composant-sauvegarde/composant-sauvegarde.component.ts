@@ -34,7 +34,7 @@ export class ComposantSauvegardeComponent extends AbstractComponent implements O
     public lienTelechargement: ElementRef<HTMLAnchorElement> | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(private contexteService: ContexteService, private chargementService: ChargementService, private bouchonService: DemonstrationService, private dateService: DateService) {
+    public constructor(private contexteService: ContexteService, private chargementService: ChargementService, private demonstrationService: DemonstrationService, private dateService: DateService) {
         super();
 
         // L'usage de 'window' étant interdit en dehors d'un 'afterNextRender' lui-même interdit en dehors d'un constructeur
@@ -58,7 +58,7 @@ export class ComposantSauvegardeComponent extends AbstractComponent implements O
                     this.donneesChargees = true;
 
                     // Si un jdd a été chargé, la sauvegarde est désactivée par défaut
-                    this.activationSauvegarde = !this.bouchonService.unJeuDeDonneesDeDemonstrationEstCharge;
+                    this.activationSauvegarde = !this.demonstrationService.unJeuDeDonneesDeDemonstrationEstCharge;
                 }
             })
         ).subscribe();

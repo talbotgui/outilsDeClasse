@@ -41,8 +41,8 @@ export class RouteProblemeComponent extends AbstractRoute {
     public donnees: Annee | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private contexteService: ContexteService, private problemeService: ProblemeService, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService) {
-        super(router, activatedRoute, location, bouchonService);
+    public constructor(router: Router, private contexteService: ContexteService, private problemeService: ProblemeService, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService) {
+        super(router, activatedRoute, location, demonstrationService);
     }
 
     /** @see classe parente */

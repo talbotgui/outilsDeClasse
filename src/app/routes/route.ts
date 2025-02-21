@@ -9,7 +9,7 @@ import { DemonstrationService } from '../service/bouchon-service';
 export abstract class AbstractRoute extends AbstractComponent implements OnInit {
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(protected router: Router, protected activatedRoute: ActivatedRoute, protected location: Location, protected bouchonService: DemonstrationService) { super(); }
+    public constructor(protected router: Router, protected activatedRoute: ActivatedRoute, protected location: Location, protected demonstrationService: DemonstrationService) { super(); }
 
     /** Fonction implémentée par les routes du projet pour déclencher le refresh des données à l'affichage de l'onglet. */
     public abstract afficherRaffraichirDonnees(): void;
@@ -62,7 +62,7 @@ export abstract class AbstractRoute extends AbstractComponent implements OnInit 
     /** Mise à jour de l'URL pour revenir à la page avec les bonnes données après le rechargement de la page. */
     protected mettreAjourUrl(parametres: Params) {
         // Ajout du flag de démonstration si le mode est actif
-        if (this.bouchonService.unJeuDeDonneesDeDemonstrationEstCharge) {
+        if (this.demonstrationService.unJeuDeDonneesDeDemonstrationEstCharge) {
             parametres['demonstration'] = 'true';
         }
 

@@ -72,9 +72,9 @@ export class RouteJournalComponent extends AbstractRoute {
     private mapRaisonAbsence: { [key: string]: string } | undefined;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService,
+    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService,
         private contexteService: ContexteService, private journalService: JournalService, private dialog: MatDialog) {
-        super(router, activatedRoute, location, bouchonService);
+        super(router, activatedRoute, location, demonstrationService);
     }
 
     /** @see classe parente */

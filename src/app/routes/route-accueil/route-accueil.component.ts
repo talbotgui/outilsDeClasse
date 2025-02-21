@@ -19,15 +19,15 @@ export class RouteAccueilComponent extends AbstractRoute {
     public unJeuDeDonneesDeDemonstrationEstCharge = false;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(activatedRoute: ActivatedRoute, router: Router, location: Location, bouchonService: DemonstrationService) {
-        super(router, activatedRoute, location, bouchonService);
+    public constructor(activatedRoute: ActivatedRoute, router: Router, location: Location, demonstrationService: DemonstrationService) {
+        super(router, activatedRoute, location, demonstrationService);
     }
 
     /** @see classe parente */
     public override afficherRaffraichirDonnees(): void {
 
         // Sauvegarde du flag indiquant qu'un JDD de démonstration est chargé
-        this.unJeuDeDonneesDeDemonstrationEstCharge = this.bouchonService.unJeuDeDonneesDeDemonstrationEstCharge;
+        this.unJeuDeDonneesDeDemonstrationEstCharge = this.demonstrationService.unJeuDeDonneesDeDemonstrationEstCharge;
 
         // MaJ de l'URL
         this.mettreAjourUrl({});

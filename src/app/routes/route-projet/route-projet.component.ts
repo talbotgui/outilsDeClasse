@@ -67,9 +67,9 @@ export class RouteProjetComponent extends AbstractRoute {
     public modeEdition: boolean = false;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService,
+    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService,
         private dialog: MatDialog, private projetService: ProjetService, private contexteService: ContexteService) {
-        super(router, activatedRoute, location, bouchonService);
+        super(router, activatedRoute, location, demonstrationService);
     }
 
     /** @see classe parente */

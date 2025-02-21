@@ -81,8 +81,8 @@ export class RouteEleveComponent extends AbstractRoute {
     public joursDeLaSemaine: Map<number, string> = ModelUtil.creerMapJoursDeLaSemaine();
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private eleveService: EleveService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService) {
-        super(router, activatedRoute, location, bouchonService);
+    public constructor(router: Router, private eleveService: EleveService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService) {
+        super(router, activatedRoute, location, demonstrationService);
     }
 
     /** @see classe parente */

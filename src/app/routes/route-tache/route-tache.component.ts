@@ -38,8 +38,8 @@ export class RouteTacheComponent extends AbstractRoute {
   public taches: Tache[] = [];
 
   /** Constructeur pour injection des dépendances. */
-  public constructor(router: Router, private tacheService: TacheService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService) {
-    super(router, activatedRoute, location, bouchonService);
+  public constructor(router: Router, private tacheService: TacheService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService) {
+    super(router, activatedRoute, location, demonstrationService);
   }
 
   /** @see classe parente */

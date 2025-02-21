@@ -86,9 +86,9 @@ export class RouteTdbComponent extends AbstractRoute {
     private static readonly ID_PROJET_AJOUT_MANUEL = 'ajoutManuel';
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, bouchonService: DemonstrationService,
+    public constructor(router: Router, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService,
         private contexteService: ContexteService, private dialog: MatDialog) {
-        super(router, activatedRoute, location, bouchonService);
+        super(router, activatedRoute, location, demonstrationService);
     }
 
     /** @see classe parente */
