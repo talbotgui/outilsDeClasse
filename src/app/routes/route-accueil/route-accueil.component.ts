@@ -15,6 +15,9 @@ import { AbstractRoute } from '../route';
 })
 export class RouteAccueilComponent extends AbstractRoute {
 
+    /** Flag indiquant qu'un JDD de démonstration est chargé. */
+    public unJeuDeDonneesDeDemonstrationEstCharge = false;
+
     /** Constructeur pour injection des dépendances. */
     public constructor(activatedRoute: ActivatedRoute, router: Router, location: Location, bouchonService: DemonstrationService) {
         super(router, activatedRoute, location, bouchonService);
@@ -23,7 +26,10 @@ export class RouteAccueilComponent extends AbstractRoute {
     /** @see classe parente */
     public override afficherRaffraichirDonnees(): void {
 
-        // MaJ de l'URL avec le bon ID d'élève
+        // Sauvegarde du flag indiquant qu'un JDD de démonstration est chargé
+        this.unJeuDeDonneesDeDemonstrationEstCharge = this.bouchonService.unJeuDeDonneesDeDemonstrationEstCharge;
+
+        // MaJ de l'URL
         this.mettreAjourUrl({});
     }
 
