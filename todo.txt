@@ -3,9 +3,9 @@ BUG :
 
 TODO : 
  - général :
+   - créer une route pour le paramétrage (periodes, mapLibelleNotes, mapLibelleStatutEleve, mapTypeContact, mapRaisonAbsence)
    - demo : gérer un paramètre ?competencesSeulement pour charger et afficher les compétences du jeux de données de démonstration.
    - détection de changement pour inhiber la sauvegarde ?
    - route de création d'un fichier de données
    - aide bien rédigée
-   - créer une route pour le paramétrage (entête, pied de page, périodes et maps)
-...
+   - remove donnees.enseignant, donnees.cycleNiveau et donnees.anneeScolaire

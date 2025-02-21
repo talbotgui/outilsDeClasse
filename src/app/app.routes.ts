@@ -5,6 +5,7 @@ import { RouteChargerDonneesComponent } from './routes/route-chargerdonnees/rout
 import { RouteCompetenceComponent } from './routes/route-competence/route-competence.component';
 import { RouteEleveComponent } from './routes/route-eleve/route-eleve.component';
 import { RouteJournalComponent } from './routes/route-journal/route-journal.component';
+import { RouteParametrageComponent } from './routes/route-parametrage/route-parametrage.component';
 import { RouteProblemeComponent } from './routes/route-probleme/route-probleme.component';
 import { RouteProjetComponent } from './routes/route-projet/route-projet.component';
 import { RouteTacheComponent } from './routes/route-tache/route-tache.component';
@@ -17,6 +18,7 @@ export const ROUTE_CREER = 'route-creerdonnees';
 export const ROUTE_COMPETENCE = 'route-competence';
 export const ROUTE_ELEVE = 'route-eleve';
 export const ROUTE_JOURNAL = 'route-journal';
+export const ROUTE_PARAMETRAGE = 'route-parametrage';
 export const ROUTE_PROBLEME = 'route-problemes';
 export const ROUTE_PROJET = 'route-projet';
 export const ROUTE_TACHE = 'route-taches';
@@ -32,8 +34,9 @@ export const routes: Routes = [
     { path: ROUTE_COMPETENCE, component: RouteCompetenceComponent, canActivate: [ROUTER_GUARD] },
     { path: ROUTE_ELEVE, component: RouteEleveComponent, canActivate: [ROUTER_GUARD] },
     { path: ROUTE_JOURNAL, component: RouteJournalComponent, canActivate: [ROUTER_GUARD] },
+    { path: ROUTE_PARAMETRAGE, component: RouteParametrageComponent, canActivate: [ROUTER_GUARD] },
+    { path: ROUTE_PROBLEME, component: RouteProblemeComponent, canActivate: [ROUTER_GUARD] },
     { path: ROUTE_PROJET, component: RouteProjetComponent, canActivate: [ROUTER_GUARD] },
     { path: ROUTE_TDB, component: RouteTdbComponent, canActivate: [ROUTER_GUARD] },
     { path: ROUTE_TACHE, component: RouteTacheComponent, canActivate: [ROUTER_GUARD] },
-    { path: ROUTE_PROBLEME, component: RouteProblemeComponent, canActivate: [ROUTER_GUARD] }
 ];

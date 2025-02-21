@@ -1,0 +1,24 @@
+@if (donnees) {
+
+<!-- Formulaire - sécurité -->
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
+    <legend>Sécurité du fichier de sauvegarde</legend>
+    <div>
+        <mat-form-field>
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="text" required #inputNom="ngModel" name="nom" [(ngModel)]="donnees.motDePasse">
+        </mat-form-field>
+    </div>
+</fieldset>
+
+<!-- Formulaire - entête -->
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
+    <legend>Données d'entête et d'édition</legend>
+    <div>
+        <angular-editor [config]="configurationWysiwyg" placeholder="Entête d'édition" name="enteteEdition"
+            [(ngModel)]="donnees.enteteEdition"></angular-editor>
+    </div>
+</fieldset>
+
+}
+<br />

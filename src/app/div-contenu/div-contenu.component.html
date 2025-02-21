@@ -25,7 +25,9 @@
     </a>
     <a mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'QUOTIDIEN'" [active]="menuNiveau1 == 'QUOTIDIEN'">
       Préparer mon quotidien
-
+    </a>
+    <a mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'PARAMETRAGE'" [active]="menuNiveau1 == 'PARAMETRAGE'">
+      Paramétrage & administration
     </a>
 
     <!-- Si des problèmes sont détectées, les problèmes s'affichent -->
@@ -49,6 +51,9 @@
     <a mat-tab-link [active]="routeActive == '/route-journal'" routerLink="/route-journal">Cahier journal</a>
     <a mat-tab-link [active]="routeActive == '/route-tableaudebord'" routerLink="/route-tableaudebord">Tableau de bord</a>
     <a mat-tab-link [active]="routeActive == '/route-taches'" routerLink="/route-taches">Tâches</a>
+    }
+    @else if (menuNiveau1 == 'PARAMETRAGE') {
+    <a mat-tab-link [active]="routeActive == '/route-parametrage'" routerLink="/route-parametrage">Paramétrage de l'année en cours</a>
     }
 
   </nav>

@@ -176,15 +176,13 @@ fieldset.maclasse-formulaire>div {
     mat-checkbox.mat-mdc-checkbox-disabled {
         color: black !important;
     }
+}
 
-
-    /* Pour les entêtes fournis dans le JSON. */
-    .maclasse-afficherAdroiteViaPosition {
-        right: 0;
-        position: relative;
-        text-align: right;
-    }
-
+/* Pour les entêtes fournis dans le JSON. */
+.maclasse-afficherAdroiteViaPosition {
+    right: 0;
+    position: relative;
+    text-align: right;
 }
 
 /* Classes utilitaires. */
