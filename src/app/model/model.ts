@@ -8,6 +8,7 @@ export class AvecIdentifiant {
   public id: string = ModelUtil.getUID();
 }
 export class Annee extends AvecIdentifiant {
+  public motDePasse?: string;
   public versionMajeureApplication?: number;
   public anneeScolaire?: string;
   public competences: Competence[] = [];

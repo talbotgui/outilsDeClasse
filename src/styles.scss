@@ -287,6 +287,11 @@ span.maclasse-eleve:not(:first-child) {
     padding: 5px;
 }
 
+/* Pour définir le curseur */
+.maclasse-cliquable {
+    cursor: pointer;
+}
+
 /* Pour rayer un libellé (à ne pas utiliser pour désactiver un bouton). */
 .maclasse-texteBarre {
     text-decoration: line-through;

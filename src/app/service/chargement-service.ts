@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, mergeMap, Observable, of, tap } from 'rxjs';
+import { catchError, map, mergeMap, Observable, of, tap } from 'rxjs';
 import { InclusionEleve } from '../model/eleve-model';
 import { GroupeSurUnTemps, Temps } from '../model/journal-model';
 import { MessageAafficher, TypeMessageAafficher } from '../model/message-model';
@@ -17,30 +17,41 @@ export class ChargementService {
     /** Pattern de format de date. */
     private static readonly FORMAT_DATE_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d*)?Z$/;
 
+    /** Décodeur. */
+    private decodeur = new TextDecoder();
+
     /** Constructeur pour injection des dépendances. */
     constructor(private chiffrementService: ChiffrementService, private contexteService: ContexteService, private problemeService: ProblemeService) { }
 
     /**
      * Chargement du contenu d'un fichier JSON de données de classe.
      * @param contenu Les données JSON sous forme de string ou un ZIP contenant les données chiffrées.
+     * @param motDePasse Mot de passe de déchiffrement.
      * @return un observable indiquant le résultat du traitement
      */
-    public chargerDonneesDeClasse(contenu: ArrayBuffer): Observable<boolean> {
+    public chargerDonneesDeClasse(contenu: ArrayBuffer, motDePasse: string | undefined): Observable<boolean> {
 
-        const motDePasse = 'toto';
+        // Décodage du fichier (tjs encodé qu'il soit JSON ou ZIP)
+        const contenuDecode = this.decodeur.decode(contenu);
 
-        const contenuDecode = (new TextDecoder()).decode(contenu);
+        // Test si le fichier est chiffré ou pas
+        const contenuEstChiffre = !contenuDecode.startsWith('{')
 
-        // Si les données ne sont pas chiffrées
-        let contenuTextObs;
-        if (contenuDecode.startsWith('{')) {
-            console.log('Le contenu n\'est pas chiffré');
-            contenuTextObs = of(contenuDecode);
+        // Vérification de la présence du mot de passe
+        if (!motDePasse) {
+            const message = contenuEstChiffre ? 'Le fichier fourni est chiffré. Un mot de passe est requis' : 'Le fichier fourni n\'est pas chiffré mais la sauvegarde le sera obligatoirement. Donc un mot de passe doit être fourni.';
+            this.contexteService.afficherUnMessageGeneral(new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Erreur, message));
+            return of(false);
         }
-        // Sinon, on déchiffre le fichier 
-        else {
-            console.log('Le contenu est chiffré');
+
+        // Si les données sont chiffrées
+        let contenuTextObs;
+        if (contenuEstChiffre) {
             contenuTextObs = this.chiffrementService.dechiffrerEtDezipper(contenu, motDePasse);
+        }
+        // Sinon 
+        else {
+            contenuTextObs = of(contenuDecode);
         }
 
         // Parse de la string fournie
@@ -59,7 +70,7 @@ export class ChargementService {
                     }
 
                     // recompléter les données si des attributs sont manquants
-                    this.completerDonneeSiManquante(donnees);
+                    this.completerDonneeSiManquante(donnees, motDePasse);
                     // validation des données
                     this.problemeService.analyserDonnees(donnees)
                     // sauvegarde des données dans le contexte
@@ -76,12 +87,22 @@ export class ChargementService {
                     // renvoi KO
                     return false;
                 }
+            }),
+            catchError((err, caught) => {
+                console.log('erreur : ', err);
+
+                const message = 'Erreur durant le déchiffrement des données. Le mot de passe est-il bon ?';
+                this.contexteService.afficherUnMessageGeneral(new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Erreur, message));
+                return caught;
             })
         );
     }
 
     /** Ajout /completion d'attributs/membres vides. */
-    private completerDonneeSiManquante(donnees: Annee): void {
+    private completerDonneeSiManquante(donnees: Annee, motDePasse: string): void {
+
+        // Sauvegarde du mot de passe dans les données pour être utilisé à la sauvegarde
+        donnees.motDePasse = motDePasse;
 
         // Initialisation des listes et map si null ou undefined
         donnees.competences = donnees.competences ?? [];
@@ -155,8 +176,10 @@ export class ChargementService {
                     donnees.dateDerniereSauvegarde = new Date();
                 }
             }),
-            map(donnees => JSON.stringify(donnees, null, 2)),
-            mergeMap(json => this.chiffrementService.chiffrerEtZipper(json, 'toto'))
+            map(donnees => {
+                return { json: JSON.stringify(donnees, null, 2), motDePasse: donnees?.motDePasse || '' };
+            }),
+            mergeMap(obj => this.chiffrementService.chiffrerEtZipper(obj.json, obj.motDePasse))
         );
     }
 

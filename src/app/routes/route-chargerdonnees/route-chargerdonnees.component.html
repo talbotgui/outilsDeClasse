@@ -1,13 +1,29 @@
-<fieldset>
+<fieldset class="maclasse-formulaire">
     <legend>Sélectionner un fichier de l'application MaClasse pour en charger les données.</legend>
 
-    <!-- Selecteur de fichier de données -->
-    <!-- L'input FILE est en dehors du mat-form-field car Material ne les supporte pas-->
-    <button type="button" mat-icon-button (click)="inputFichierLocal.click()" matTooltip="Sélectionner un fichier" aria-label="Sélectionner un fichier en cliquant sur ce bouton">
-        <fa-icon icon="file-upload"></fa-icon>
-    </button>
-    <input hidden type="file" #inputFichierLocal (change)="onSelectFichierLocal($event)">
+    <div>
+        <!-- Selecteur de fichier de données -->
+        <div class="maclasse-padding5 maclasse-texteCentre">
+            <span class="maclasse-cliquable" (click)="inputFichierLocal.click()">{{nomFichierLocal||'Sélectionner un fichier'}}</span>
+            <!-- L'input FILE est en dehors du mat-form-field car Material ne les supporte pas-->
+            <button type="button" mat-icon-button (click)="inputFichierLocal.click()" matTooltip="Sélectionner un fichier"
+                aria-label="Sélectionner un fichier en cliquant sur ce bouton">
+                <fa-icon icon="file-upload"></fa-icon>
+            </button>
+            <input hidden type="file" #inputFichierLocal (change)="onSelectFichierLocal($event)">
+        </div>
 
-    <!-- Bouton de validation-->
-    <button mat-stroked-button (click)="onClickValiderChargementFichierLocal(inputFichierLocal)">Charger le fichier {{nomFichierLocal}}</button>
+        <!-- Mot de passe -->
+        <div class="maclasse-padding5 maclasse-texteCentre">
+            <mat-form-field>
+                <mat-label>Mot de passe</mat-label>
+                <input matInput type="password" required [(ngModel)]="motDePasse">
+            </mat-form-field>
+        </div>
+
+        <!-- Bouton de validation-->
+        <div class="maclasse-padding5 maclasse-texteCentre">
+            <button mat-stroked-button (click)="onClickValiderChargementFichierLocal(inputFichierLocal)">Charger le fichier</button>
+        </div>
+    </div>
 </fieldset>

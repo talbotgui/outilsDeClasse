@@ -2,13 +2,10 @@ BUG :
  - 
 
 TODO : 
- - élèves : créer un bouton pour copier la liste des élèves ("nom prénom dateNaissance \n")
- - elèves : créer un bouton pour générer une édition de la liste des élèves (Liste des élèves de la classe XXX puis tableau)
  - général :
-   - déplacer la liste à plat de notes dans une structure période/idItem, directement dans les élèves
    - demo : gérer un paramètre ?competencesSeulement pour charger et afficher les compétences du jeux de données de démonstration.
    - détection de changement pour inhiber la sauvegarde ?
-   - création d'un fichier de données
+   - route de création d'un fichier de données
    - aide bien rédigée
    - créer une route pour le paramétrage (entête, pied de page, périodes et maps)
 ...

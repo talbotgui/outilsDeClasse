@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +13,8 @@ import { ChargementService } from '../../service/chargement-service';
 @Component({
     selector: 'route-chargerdonnees', templateUrl: './route-chargerdonnees.component.html',
     standalone: true, imports: [
+        // Angular
+        FormsModule,
         // Matérial
         ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule,
         // FontAwesome
@@ -21,11 +23,14 @@ import { ChargementService } from '../../service/chargement-service';
 })
 export class RouteChargerDonneesComponent extends AbstractComponent {
 
+    /** Nom du fichier local sélectionné (vide sinon). */
+    public nomFichierLocal = '';
+
+    /** Mot de passe à utiliser pour déchiffrer le fichier. */
+    public motDePasse = '';
+
     /** Constructeur pour injection des dépendances. */
     constructor(private chargementService: ChargementService, private router: Router) { super(); }
-
-    /**Nom du fichier local sélectionné (vide sinon) */
-    public nomFichierLocal = '';
 
     /** A la sélection d'un fichier via upload */
     public onSelectFichierLocal(event: Event): void {
@@ -57,7 +62,7 @@ export class RouteChargerDonneesComponent extends AbstractComponent {
         const contenu = e.target['result'];
 
         // Chargement des données et renvoi vers l'accueil
-        const sub = this.chargementService.chargerDonneesDeClasse(contenu).pipe(
+        const sub = this.chargementService.chargerDonneesDeClasse(contenu, this.motDePasse).pipe(
             tap((ok) => {
                 if (ok) {
                     this.router.navigate(['route-accueil']);
