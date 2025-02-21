@@ -40,7 +40,7 @@ export class ChargementService {
         // Sinon, on déchiffre le fichier 
         else {
             console.log('Le contenu est chiffré');
-            contenuTextObs = this.chiffrementService.dezipperEtdechiffrer(contenu, motDePasse);
+            contenuTextObs = this.chiffrementService.dechiffrerEtDezipper(contenu, motDePasse);
         }
 
         // Parse de la string fournie

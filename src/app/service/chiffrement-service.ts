@@ -32,29 +32,29 @@ export class ChiffrementService {
         // Encodage de la donnée à chiffrer
         const donneeEncodee = this.encodeur.encode(donnee);
 
+        // Zip
+        const zip = Pako.deflate(donneeEncodee, { level: 6, memLevel: 9 })
+
         // Génération de la clef
         return this.genererClef(motDePasse).pipe(
             //Chiffrement
-            mergeMap(clef => window.crypto.subtle.encrypt({ name: "AES-GCM", iv: ChiffrementService.IV }, clef, donneeEncodee)),
-            // Zip
-            map(donneesChiffree => Pako.deflate(donneesChiffree, { level: 6, memLevel: 9 }))
+            mergeMap(clef => window.crypto.subtle.encrypt({ name: "AES-GCM", iv: ChiffrementService.IV }, clef, zip))
         );
     }
     /**
      * Dechiffrement d'une donnée.
-     * @param zip Donnée chiffrée.
+     * @param zipChiffre Donnée chiffrée.
      * @param motDePasse Mot de passe à utiliser comme clef de chiffrement.
      * @returns La donnée déchiffrée
      */
-    public dezipperEtdechiffrer(zip: ArrayBuffer, motDePasse: string): Observable<string> {
-
-        // Dezip
-        const donneeChiffree = Pako.inflate(zip);
+    public dechiffrerEtDezipper(zipChiffre: ArrayBuffer, motDePasse: string): Observable<string> {
 
         // Génération de la clef
         return this.genererClef(motDePasse).pipe(
             // Déchiffrement
-            mergeMap(clef => window.crypto.subtle.decrypt({ name: "AES-GCM", iv: ChiffrementService.IV }, clef, donneeChiffree)),
+            mergeMap(clef => window.crypto.subtle.decrypt({ name: "AES-GCM", iv: ChiffrementService.IV }, clef, zipChiffre)),
+            // Dezip
+            map(zip => Pako.inflate(zip)),
             // Décodage
             map(donneesDechiffreEtEncode => this.decodeur.decode(donneesDechiffreEtEncode))
         );
