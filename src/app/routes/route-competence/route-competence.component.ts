@@ -62,7 +62,7 @@ export class RouteCompetenceComponent extends AbstractRoute {
     /** @see classe parente */
     public override afficherRaffraichirDonnees(): void {
 
-        // MaJ de l'URL avec le bon ID d'élève
+        // MaJ de l'URL 
         this.mettreAjourUrl({});
     }
 

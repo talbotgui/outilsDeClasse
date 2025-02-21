@@ -78,7 +78,7 @@ export class RouteProjetComponent extends AbstractRoute {
         // Tri des lignes par date de début de la période
         this.projetService.trierLignes(this.projetSelectionne, this.periodes);
 
-        // MaJ de l'URL avec le bon ID d'élève
+        // MaJ de l'URL avec le bon ID de projet
         this.mettreAjourUrl({ id: this.projetSelectionne?.id });
     }
 
