@@ -47,7 +47,7 @@ export class RouteChargerDonneesComponent extends AbstractComponent {
 
         // Lecture des données sur les navigateurs HTML5
         if (inputFichierLocal.files && inputFichierLocal.files.length === 1) {
-            fr.readAsText(inputFichierLocal.files[0]);
+            fr.readAsArrayBuffer(inputFichierLocal.files[0]);
         }
     }
 

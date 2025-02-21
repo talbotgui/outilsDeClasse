@@ -22,25 +22,30 @@ export class ChargementService {
 
     /**
      * Chargement du contenu d'un fichier JSON de données de classe.
-     * @param donneesString Les données JSON sous forme de string.
+     * @param contenu Les données JSON sous forme de string ou un ZIP contenant les données chiffrées.
      * @return un observable indiquant le résultat du traitement
      */
-    public chargerDonneesDeClasse(donneesString: string): Observable<boolean> {
+    public chargerDonneesDeClasse(contenu: ArrayBuffer): Observable<boolean> {
 
-        const mdp = 'monMotDePasse';
+        const motDePasse = 'toto';
 
-        console.log('Donnee chiffree : ' + donneesString.length);
+        const contenuDecode = (new TextDecoder()).decode(contenu);
 
-        this.chiffrementService.chiffrer(donneesString, mdp).pipe(
-            tap(donneesChiffree => console.log('Donnee chiffree', donneesChiffree)),
-            mergeMap(donneesChiffree => this.chiffrementService.dechiffrer(donneesChiffree, mdp)),
-            tap(donneesDechiffree => console.log('Donnee identique ? ', donneesDechiffree === donneesString)),
-
-        ).subscribe();
-
+        // Si les données ne sont pas chiffrées
+        let contenuTextObs;
+        if (contenuDecode.startsWith('{')) {
+            console.log('Le contenu n\'est pas chiffré');
+            contenuTextObs = of(contenuDecode);
+        }
+        // Sinon, on déchiffre le fichier 
+        else {
+            console.log('Le contenu est chiffré');
+            contenuTextObs = this.chiffrementService.dezipperEtdechiffrer(contenu, motDePasse);
+        }
 
         // Parse de la string fournie
-        return this.parserFichierJson(donneesString).pipe(
+        return contenuTextObs.pipe(
+            mergeMap(contenuText => this.parserFichierJson(contenuText)),
             map(donnees => {
                 // Si le parse est un succès
                 if (donnees) {
@@ -143,14 +148,15 @@ export class ChargementService {
     }
 
     /** Génération d'un JSON à partir des données présentes dans le contexte */
-    public genererContenuJsonPourSauvegarde(): Observable<string> {
+    public genererContenuJsonPourSauvegarde(): Observable<ArrayBuffer> {
         return this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
             tap(donnees => {
                 if (donnees) {
                     donnees.dateDerniereSauvegarde = new Date();
                 }
             }),
-            map(donnees => JSON.stringify(donnees, null, 2))
+            map(donnees => JSON.stringify(donnees, null, 2)),
+            mergeMap(json => this.chiffrementService.chiffrerEtZipper(json, 'toto'))
         );
     }
 

@@ -80,15 +80,16 @@ export class ComposantSauvegardeComponent extends AbstractComponent implements O
     public declencherSauvegarde(): Observable<any> {
         // si les données sont chargées et la sauvegarde active
         if (this.donneesChargees && this.activationSauvegarde) {
-            // génération du JSON
+            // génération du fichier
             return this.chargementService.genererContenuJsonPourSauvegarde().pipe(
 
                 // s'il n'est pas vide
-                filter(json => json !== ''),
+                filter(fichier => fichier.byteLength > 0),
+
                 // création d'un BLOB et déclenchement du téléchargement
-                tap(json => {
+                tap(fichier => {
                     if (this.lienTelechargement) {
-                        const url = window.URL.createObjectURL(new Blob([json], { type: 'text/json' }));
+                        const url = window.URL.createObjectURL(new Blob([fichier], { type: 'application/octet-stream' }));
                         this.lienTelechargement.nativeElement.href = url;
                         this.lienTelechargement.nativeElement.download = 'sauvegarde-' + this.dateService.formaterDateEtHeure(new Date());
                         this.lienTelechargement.nativeElement.click();

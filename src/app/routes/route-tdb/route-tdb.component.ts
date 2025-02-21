@@ -386,7 +386,7 @@ export class RouteTdbComponent extends AbstractRoute {
             sousLigne.referencesProjetPeriodeEvaluee = this.projets.filter(p => (n.idsProjets || []).includes(p.id));
         } else {
             // message de succès
-            const message = new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence (\'' + n.idItem + '\') et un même élève (\'' + this.eleveSelectionne?.id + '\')');
+            const message = new MessageAafficher('creerSousLigneTableauDeBordPourUneNote', TypeMessageAafficher.Avertissement, 'Les données sauvegardées contiennent une incohérence : deux notes existent pour la même période et la même compétence (\'' + n.idItem + '\') et un même élève (\'' + this.eleveSelectionne?.id + '\')');
             this.contexteService.afficherUnMessageGeneral(message);
         }
     }

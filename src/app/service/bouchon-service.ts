@@ -35,7 +35,9 @@ export class DemonstrationService extends AbstractComponent {
         // Jdd.ajouterDesErreurAuJdd(annee);
 
         // Chargement des données
-        const sub = this.chargementService.chargerDonneesDeClasse(JSON.stringify(annee)).subscribe();
+        const json = JSON.stringify(annee);
+        const contenu = (new TextEncoder()).encode(json);
+        const sub = this.chargementService.chargerDonneesDeClasse(contenu).subscribe();
         super.declarerSouscription(sub);
 
         // Un message est affiché
