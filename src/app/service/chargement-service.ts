@@ -68,6 +68,9 @@ export class ChargementService {
                     if (donnees.versionMajeureApplication && donnees.versionMajeureApplication < 2024.1) {
                         donnees = this.transcrireDonnesSiAncienFormat2024v1(donnees);
                     }
+                    if (donnees.versionMajeureApplication && donnees.versionMajeureApplication < 2024.2) {
+                        donnees = this.transcrireDonnesSiAncienFormat2024v2(donnees);
+                    }
 
                     // recompléter les données si des attributs sont manquants
                     this.completerDonneeSiManquante(donnees, motDePasse);
@@ -402,4 +405,18 @@ export class ChargementService {
         return donnees;
     }
 
+    /**  Si les données sont à un ancien format, ménage et réadaptation.*/
+    private transcrireDonnesSiAncienFormat2024v2(donnees: Annee): Annee {
+        const message = 'Transcription des données suite à une évolution de l\'application vers la version \'2024.2\'';
+        this.contexteService.afficherUnMessageGeneral(new MessageAafficher('transcrireDonnesSiAncienFormat2024v2', TypeMessageAafficher.Information, message));
+
+        const listeDesAttributsAsupprimer = ['cycleNiveau', 'enseignant', 'anneeScolaire'];
+        donnees = Object.fromEntries(Object.entries(donnees).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Annee;
+
+        // Ajout du flag pour ne pas repasser dans ce traitement
+        donnees.versionMajeureApplication = 2024.2;
+
+        // Renvoi des données
+        return donnees;
+    }
 }
