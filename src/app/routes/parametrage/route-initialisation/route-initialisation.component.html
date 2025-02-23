@@ -1,10 +1,11 @@
 @if (choixParEleve && choixParProjet) {
 
-<h3>Pour initialiser un nouveau jeu de données {{unJeuDeDonneesDeDemonstrationEstCharge?'à partir du jeu de données de démonstration':'de votre année'}}, suivez
-    scrupuleusement les étapes suivantes :</h3>
+<h3 class="maclasse-masquerEnModePrint">Pour initialiser un nouveau jeu de données {{unJeuDeDonneesDeDemonstrationEstCharge?'à partir du jeu de données de
+    démonstration':'de votre année'}}, suivez scrupuleusement les étapes suivantes :</h3>
+<h3 class="maclasse-afficherEnModePrint" hidden="true">Cette page n'a pas de sens à être imprimée.</h3>
 
 <!-- Formulaire - Sauvegarde -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire maclasse-masquerEnModePrint">
     <legend>Etape 1 : Sauvegarde</legend>
     <div>
         <p>Avant de passer à l'étape suivante, archiver une sauvegarde de vos données de la classe de l'année actuelle !!</p>
@@ -12,7 +13,7 @@
 </fieldset>
 
 <!-- Formulaire - Désactiver la sauvegarde automatique -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire maclasse-masquerEnModePrint">
     <legend>Etape 2 : Désactiver la sauvegarde automatique</legend>
     <div>
         <p>Cliquer sur l'icône de sauvegarde présente en haut à droite pour désactiver la sauvegarde automatique (<fa-icon icon="floppy-disk"
@@ -21,7 +22,7 @@
 </fieldset>
 
 <!-- Formulaire - suppression élèves -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire maclasse-masquerEnModePrint">
     <legend>Etape 3 : Supprimer les élèves quittant votre classe durant l'été</legend>
     <div>
         @for(c of choixParEleve; track c.eleve.id){
@@ -47,7 +48,7 @@
 </fieldset>
 
 <!-- Formulaire - suppression projets -->
-<fieldset class="maclasse-formulaire">
+<fieldset class="maclasse-formulaire maclasse-masquerEnModePrint">
     <legend>Etape 4 : Supprimer les projets non reconduits</legend>
     <div>
         @for(c of choixParProjet; track c.projet.id){

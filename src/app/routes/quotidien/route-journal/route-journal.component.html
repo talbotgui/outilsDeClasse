@@ -303,7 +303,8 @@
     <!-- Si aucun journal ne correspond -->
     @else {
     <p>
-        Aucun journal à cette date. Voulez-vous en créer un ?
+        <span>Aucun journal à cette date. </span>
+        <span class="maclasse-masquerEnModePrint">Voulez-vous en créer un ?</span>
         <button type="button" class="maclasse-bouton16" (click)="creerJournal()" mat-raised-button matTooltip="Créer un journal pour la date sélectionnée"
             aria-label="Créer un journal pour la date sélectionnée">OUI</button>
     </p>

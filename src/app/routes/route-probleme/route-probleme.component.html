@@ -1,5 +1,7 @@
 @if (problemes) {
-<p>
+<h3 class="maclasse-afficherEnModePrint" hidden="true">Cette page n'a pas de sens à être imprimée.</h3>
+
+<p class=" maclasse-masquerEnModePrint">
     <button type="button" mat-raised-button (click)="relancerAnalyse()">
         Analyser à nouveau
     </button>
@@ -8,7 +10,7 @@
 </p>
 
 @if (problemes.length > 0) {
-<div class="maclasse-table">
+<div class="maclasse-table  maclasse-masquerEnModePrint">
     <div class="maclasse-table-ligne maclasse-table-entete">
         <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w70 maclasse-padding5">
             <p>Description de l'erreur</p>

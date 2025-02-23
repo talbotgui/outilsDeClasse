@@ -1,7 +1,9 @@
 @if (donnees) {
 
+<h3 class="maclasse-afficherEnModePrint" hidden="true">Cette page n'a pas de sens à être imprimée.</h3>
+
 <!-- Formulaire - sécurité -->
-<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
+<fieldset class="maclasse-formulaire maclasse-masquerEnModePrint" (keyup)="onKeyUp($event)">
     <legend>
         <span>Sécurité du fichier de sauvegarde</span>
         @if (modeEdition) {
@@ -28,7 +30,7 @@
 </fieldset>
 
 <!-- Formulaire - entête -->
-<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
+<fieldset class="maclasse-formulaire maclasse-masquerEnModePrint" (keyup)="onKeyUp($event)">
     <legend>
         <span>Données d'entête et d'édition</span>
         @if (modeEdition) {
@@ -53,7 +55,7 @@
 </fieldset>
 
 <!-- Formulaire - periodes -->
-<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
+<fieldset class="maclasse-formulaire maclasse-masquerEnModePrint" (keyup)="onKeyUp($event)">
     <legend>
         <span>Périodes</span>
         @if (modeEdition) {
