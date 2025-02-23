@@ -15,6 +15,7 @@ import { Annee } from '../../../model/model';
 import { Projet } from '../../../model/projet-model';
 import { DemonstrationService } from '../../../service/bouchon-service';
 import { ContexteService } from '../../../service/contexte-service';
+import { InitialisationService } from '../../../service/initialisation-service';
 import { AbstractRoute } from '../../route';
 
 
@@ -44,7 +45,7 @@ export class RouteInitialisationComponent extends AbstractRoute {
     public unJeuDeDonneesDeDemonstrationEstCharge = false;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService) {
+    public constructor(router: Router, private initialisationService: InitialisationService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService) {
         super(router, activatedRoute, location, demonstrationService);
     }
 
@@ -81,32 +82,26 @@ export class RouteInitialisationComponent extends AbstractRoute {
         // MaJ de l'URL avec le bon ID d'élève
         this.mettreAjourUrl({});
 
-        // Création de la liste des choix
-        this.choixParEleve = (this.donnees?.eleves || []).map(eleve => {
-            return { eleve: eleve, choix: undefined };
-        });
-
-        // Création de la liste des choix
-        this.choixParProjet = (this.donnees?.projets || []).map(projet => {
-            return { projet: projet, choix: undefined };
-        });
+        if (this.donnees) {
+            // Initialisation des listes des choix
+            this.choixParEleve = this.initialisationService.creerChoixParEleve(this.donnees);
+            this.choixParProjet = this.initialisationService.creerChoixParProjet(this.donnees);
+        }
     }
 
     /** Nettoyage de la liste des élèves */
     public nettoyerListeEleves(): void {
 
-        // Pour chaque choix
-        this.choixParEleve.forEach(c => {
-            // Suppression de l'élève
-            if (c.choix === 'suppression' && this.donnees) {
-                const index = this.donnees.eleves.indexOf(c.eleve);
-                this.donnees.eleves.splice(index, 1);
-            }
-            // Purge des notes de l'élève
-            else if (c.choix === 'vidange' && this.donnees) {
-                c.eleve.notes = [];
-            }
-        });
+        // Au cas où
+        if (!this.donnees || !this.choixParProjet) {
+            return;
+        }
+
+        // Traitement des choix
+        this.initialisationService.traiterChoixParEleve(this.choixParEleve, this.donnees);
+
+        // Raffraichissement de la liste
+        this.choixParEleve = this.initialisationService.creerChoixParEleve(this.donnees);
 
         // Raffraichir les données
         this.afficherRaffraichirDonnees();
@@ -115,14 +110,16 @@ export class RouteInitialisationComponent extends AbstractRoute {
     /** Nettoyage de la liste des projets */
     public nettoyerListeProjets(): void {
 
-        // Pour chaque choix
-        this.choixParProjet.forEach(c => {
-            // Suppression du projet
-            if (c.choix === 'suppression' && this.donnees) {
-                const index = this.donnees.projets.indexOf(c.projet);
-                this.donnees.projets.splice(index, 1);
-            }
-        });
+        // Au cas où
+        if (!this.donnees || !this.choixParProjet) {
+            return;
+        }
+
+        // Traitement des choix
+        this.initialisationService.traiterChoixParProjet(this.choixParProjet, this.donnees);
+
+        // Raffraichissement de la liste
+        this.choixParProjet = this.initialisationService.creerChoixParProjet(this.donnees);
 
         // Raffraichir les données
         this.afficherRaffraichirDonnees();
