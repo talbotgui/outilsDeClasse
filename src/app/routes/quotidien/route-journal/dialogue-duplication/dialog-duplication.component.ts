@@ -7,8 +7,8 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AbstractComponent } from '../../../directives/abstract.component';
-import { Journal, Temps } from '../../../model/journal-model';
+import { AbstractComponent } from '../../../../directives/abstract.component';
+import { Journal, Temps } from '../../../../model/journal-model';
 
 @Component({
   selector: 'dialog-duplication', templateUrl: './dialog-duplication.component.html',

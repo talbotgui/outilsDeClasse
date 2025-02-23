@@ -12,19 +12,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
-import { ROUTE_TDB } from '../../app.routes';
-import { DialogSelectionCompetenceComponent } from '../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
-import { CommentaireEtParcoursDePeriode, Eleve } from '../../model/eleve-model';
-import { MessageAafficher, TypeMessageAafficher } from '../../model/message-model';
-import { Periode } from '../../model/model';
-import { Competence, Note } from '../../model/note-model';
-import { Projet } from '../../model/projet-model';
-import { LigneDeTableauDeBord, SousLigneDeTableauDeBord } from '../../model/tdb-model';
-import { HtmlPipe } from '../../pipes/html.pipe';
-import { DemonstrationService } from '../../service/bouchon-service';
-import { ContexteService } from '../../service/contexte-service';
-import { AbstractRoute } from '../route';
-import { RouteEleveComponent } from '../route-eleve/route-eleve.component';
+import { ROUTE_TDB } from '../../../app.routes';
+import { DialogSelectionCompetenceComponent } from '../../../composants/dialogue-selectioncompetence/dialog-selectioncompetence.component';
+import { CommentaireEtParcoursDePeriode, Eleve } from '../../../model/eleve-model';
+import { MessageAafficher, TypeMessageAafficher } from '../../../model/message-model';
+import { Periode } from '../../../model/model';
+import { Competence, Note } from '../../../model/note-model';
+import { Projet } from '../../../model/projet-model';
+import { LigneDeTableauDeBord, SousLigneDeTableauDeBord } from '../../../model/tdb-model';
+import { HtmlPipe } from '../../../pipes/html.pipe';
+import { DemonstrationService } from '../../../service/bouchon-service';
+import { ContexteService } from '../../../service/contexte-service';
+import { RouteEleveComponent } from '../../organisation/route-eleve/route-eleve.component';
+import { AbstractRoute } from '../../route';
+
 
 @Component({
     selector: 'route-tdb', templateUrl: './route-tdb.component.html', styleUrl: './route-tdb.component.scss',

@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
 import { ROUTER_GUARD } from './routes/garde/route-guarde';
+import { RouteCompetenceComponent } from './routes/organisation/route-competence/route-competence.component';
+import { RouteEleveComponent } from './routes/organisation/route-eleve/route-eleve.component';
+import { RouteProjetComponent } from './routes/organisation/route-projet/route-projet.component';
+import { RouteJournalComponent } from './routes/quotidien/route-journal/route-journal.component';
+import { RouteTacheComponent } from './routes/quotidien/route-tache/route-tache.component';
+import { RouteTdbComponent } from './routes/quotidien/route-tdb/route-tdb.component';
 import { RouteAccueilComponent } from './routes/route-accueil/route-accueil.component';
 import { RouteChargerDonneesComponent } from './routes/route-chargerdonnees/route-chargerdonnees.component';
-import { RouteCompetenceComponent } from './routes/route-competence/route-competence.component';
-import { RouteEleveComponent } from './routes/route-eleve/route-eleve.component';
-import { RouteJournalComponent } from './routes/route-journal/route-journal.component';
 import { RouteParametrageComponent } from './routes/route-parametrage/route-parametrage.component';
 import { RouteProblemeComponent } from './routes/route-probleme/route-probleme.component';
-import { RouteProjetComponent } from './routes/route-projet/route-projet.component';
-import { RouteTacheComponent } from './routes/route-tache/route-tache.component';
-import { RouteTdbComponent } from './routes/route-tdb/route-tdb.component';
 
 /** Code des routes du projet */
 export const ROUTE_ACCUEIL = 'route-accueil';

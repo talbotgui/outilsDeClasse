@@ -14,14 +14,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
-import { ROUTE_ELEVE } from '../../app.routes';
-import { Eleve } from '../../model/eleve-model';
-import { ModelUtil } from '../../model/model-utils';
-import { HtmlPipe } from '../../pipes/html.pipe';
-import { DemonstrationService } from '../../service/bouchon-service';
-import { ContexteService } from '../../service/contexte-service';
-import { EleveService } from '../../service/eleve-service';
-import { AbstractRoute } from '../route';
+import { ROUTE_ELEVE } from '../../../app.routes';
+import { Eleve } from '../../../model/eleve-model';
+import { ModelUtil } from '../../../model/model-utils';
+import { HtmlPipe } from '../../../pipes/html.pipe';
+import { DemonstrationService } from '../../../service/bouchon-service';
+import { ContexteService } from '../../../service/contexte-service';
+import { EleveService } from '../../../service/eleve-service';
+import { AbstractRoute } from '../../route';
 
 
 @Component({

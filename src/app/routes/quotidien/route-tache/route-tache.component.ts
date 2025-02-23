@@ -11,12 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { ROUTE_TACHE } from '../../app.routes';
-import { Echeance, Tache } from '../../model/model';
-import { DemonstrationService } from '../../service/bouchon-service';
-import { ContexteService } from '../../service/contexte-service';
-import { TacheService } from '../../service/tache-service';
-import { AbstractRoute } from '../route';
+import { ROUTE_TACHE } from '../../../app.routes';
+import { Echeance, Tache } from '../../../model/model';
+import { DemonstrationService } from '../../../service/bouchon-service';
+import { ContexteService } from '../../../service/contexte-service';
+import { TacheService } from '../../../service/tache-service';
+import { AbstractRoute } from '../../route';
 
 @Component({
   selector: 'route-tache', templateUrl: './route-tache.component.html', styleUrl: './route-tache.component.scss',

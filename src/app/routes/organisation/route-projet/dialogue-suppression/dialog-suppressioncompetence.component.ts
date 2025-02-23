@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AbstractComponent } from '../../../directives/abstract.component';
+import { AbstractComponent } from '../../../../directives/abstract.component';
 
 @Component({
   selector: 'dialog-suppressioncompetence', templateUrl: './dialog-suppressioncompetence.component.html',

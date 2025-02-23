@@ -10,12 +10,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { ROUTE_COMPETENCE } from '../../app.routes';
-import { NoeudCompetence } from '../../model/arbre-model';
-import { Annee } from '../../model/model';
-import { DemonstrationService } from '../../service/bouchon-service';
-import { ContexteService } from '../../service/contexte-service';
-import { AbstractRoute } from '../route';
+import { ROUTE_COMPETENCE } from '../../../app.routes';
+import { NoeudCompetence } from '../../../model/arbre-model';
+import { Annee } from '../../../model/model';
+import { DemonstrationService } from '../../../service/bouchon-service';
+import { ContexteService } from '../../../service/contexte-service';
+import { AbstractRoute } from '../../route';
 
 @Component({
     selector: 'route-competence', templateUrl: './route-competence.component.html', styleUrl: './route-competence.component.scss',
