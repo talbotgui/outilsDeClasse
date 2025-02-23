@@ -23,7 +23,7 @@ export abstract class AbstractRoute extends AbstractComponent implements OnInit 
     /** Pour valider le formulaire via un CRTL+ENTRER */
     protected abstract passerEnModeLecture(): void;
     public onKeyUp(event: KeyboardEvent): void {
-        if (!!event.ctrlKey && event.key == 'Enter') {
+        if (!!event.ctrlKey && event.key === 'Enter') {
             this.passerEnModeLecture();
         }
     }

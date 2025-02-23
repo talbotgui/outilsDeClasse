@@ -7,9 +7,6 @@ import { Projet, SousProjetParPeriode } from '../model/projet-model';
 @Injectable({ providedIn: 'root' })
 export class ProjetService {
 
-    /** Constructeur pour injection des dépendances. */
-    constructor() { }
-
     /** Ajout d'une compétence dans le sous-projet */
     public ajouterCompetence(sousProjet: SousProjetParPeriode, idCompetence: string, projet: Projet, eleves: Eleve[]): void {
         if (!sousProjet.idCompetences) {
@@ -116,7 +113,7 @@ export class ProjetService {
         // Liste des problèmes
         const problemes: string[] = [];
 
-        // pour chaque note de chaque élève 
+        // pour chaque note de chaque élève
         elevesAtraiter.forEach(e =>
             e.notes.filter(n =>
                 // pour la compétence
@@ -124,7 +121,7 @@ export class ProjetService {
                 // et pour la période à traiter
                 n.idPeriode === periode.id &&
                 // avec une donnée saisie
-                (n.commentaireEvaluationPrive || n.commentaireEvaluationPublic || (n.valeurEvaluation && n.valeurEvaluation != 'n') || (n.constatEnPreparation && n.constatEnPreparation != CONSTATS_EN_PREPARATION_PAR_DEFAUT))
+                (n.commentaireEvaluationPrive || n.commentaireEvaluationPublic || (n.valeurEvaluation && n.valeurEvaluation !== 'n') || (n.constatEnPreparation && n.constatEnPreparation !== CONSTATS_EN_PREPARATION_PAR_DEFAUT))
             ).forEach(n => {
                 const competence = reference.competences.find(c => c.id === n.idItem);
                 problemes.push('en période \'' + periode.nom + '\', pour l\'élève ' + e.prenom + ' et la compétence \'' + competence?.text + '\'');

@@ -77,12 +77,12 @@ export class RouteJournalComponent extends AbstractRoute {
         super(router, activatedRoute, location, demonstrationService);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public fournirCodeRoute(): string {
         return ROUTE_JOURNAL;
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public initialiserRoute(): void {
 
         // Récupération du paramètre de date depuis l'URL
@@ -246,7 +246,7 @@ export class RouteJournalComponent extends AbstractRoute {
             this.statutsAffichage[i + 1] = affichage;
 
             // Déplacement du temps en édition
-            if (this.journal && this.tempsEnEdition == i && i < this.journal.temps.length - 1) {
+            if (this.journal && this.tempsEnEdition === i && i < this.journal.temps.length - 1) {
                 this.tempsEnEdition = i + 1;
             }
         }
@@ -267,13 +267,13 @@ export class RouteJournalComponent extends AbstractRoute {
             this.statutsAffichage[i - 1] = affichage;
 
             // Déplacement du temps en édition
-            if (this.tempsEnEdition == i && i > 0) {
+            if (this.tempsEnEdition === i && i > 0) {
                 this.tempsEnEdition = i - 1;
             }
         }
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public afficherRaffraichirDonnees(): void {
         if (this.journaux && this.dateJournal) {
             // Recherche du journal
@@ -290,7 +290,7 @@ export class RouteJournalComponent extends AbstractRoute {
 
     /** Pour valider un temps directement via un CRTL+ENTRER */
     public onKeyUpSurTempsDeJournal(event: KeyboardEvent): void {
-        if (!!event.ctrlKey && event.key == 'Enter') {
+        if (!!event.ctrlKey && event.key === 'Enter') {
             this.validerTemps();
         }
     }

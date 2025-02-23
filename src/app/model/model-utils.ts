@@ -7,7 +7,7 @@ export class ModelUtil {
     return new Array(n + 1).join((Math.random().toString(36) + '00000000000000000').slice(2, 18)).slice(0, n);
   }
 
-  /** Génération d'une Map des jours de la semaine*/
+  /** Génération d'une Map des jours de la semaine. */
   public static creerMapJoursDeLaSemaine(): Map<number, string> {
     const map = new Map();
     map.set(0, 'Dimanche');

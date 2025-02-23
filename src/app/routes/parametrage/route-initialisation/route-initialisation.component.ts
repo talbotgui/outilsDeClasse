@@ -49,16 +49,16 @@ export class RouteInitialisationComponent extends AbstractRoute {
         super(router, activatedRoute, location, demonstrationService);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public fournirCodeRoute(): string {
         return ROUTE_INITIALISATION;
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public initialiserRoute(): void {
-        // Au chargement des données, 
+        // Au chargement des données,
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
-            //récupéation des données
+            // récupéation des données
             tap(donnees => {
                 this.donnees = donnees;
                 this.afficherRaffraichirDonnees();
@@ -76,7 +76,7 @@ export class RouteInitialisationComponent extends AbstractRoute {
         // Rien à faire
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public afficherRaffraichirDonnees(): void {
 
         // MaJ de l'URL avec le bon ID d'élève

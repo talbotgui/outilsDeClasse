@@ -4,9 +4,6 @@ import { AbsenceEleve, ContactEleve, CursusEleve, Eleve } from '../model/eleve-m
 @Injectable({ providedIn: 'root' })
 export class EleveService {
 
-    /** Constructeur pour injection des dépendances. */
-    constructor() { }
-
     /** Ajout d'un contact à la liste des contacts de l'élève sélectionné */
     public ajouterUnContact(eleveSelectionne: Eleve | undefined): void {
         if (eleveSelectionne) {
@@ -54,7 +51,7 @@ export class EleveService {
             if (eleve.dateNaissance instanceof Date) {
                 anneeSuivante = eleve.dateNaissance.getFullYear();
             } else {
-                anneeSuivante = parseInt(('' + eleve.dateNaissance).substring(0, 4));
+                anneeSuivante = parseInt(('' + eleve.dateNaissance).substring(0, 4), 10);
             }
         }
 

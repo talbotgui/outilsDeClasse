@@ -80,12 +80,12 @@ export class ComposantAffichageCompetenceComponent extends AbstractComponent imp
     private calculerLibelleCompletDuneCompetence(): void {
 
         // Recherche du premier
-        let comp: Competence | undefined = this.competences.find(c => c.id == this.idCompetenceSelectionnee);
+        let comp: Competence | undefined = this.competences.find(c => c.id === this.idCompetenceSelectionnee);
 
         // Recherche des autres
         while (comp && comp.parent !== '#') {
             this.competencesSelectionnees.push(comp);
-            comp = this.competences.find(c => c.id == comp?.parent);
+            comp = this.competences.find(c => c.id === comp?.parent);
         }
 
         // Inversion du tableau

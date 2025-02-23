@@ -46,7 +46,7 @@ export class RouteCompetenceComponent extends AbstractRoute {
         super(router, activatedRoute, location, demonstrationService);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public initialiserRoute(): void {
 
         // Au chargement des données, récupéation de  la liste des élèves
@@ -59,19 +59,19 @@ export class RouteCompetenceComponent extends AbstractRoute {
         super.declarerSouscription(sub);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public override afficherRaffraichirDonnees(): void {
 
-        // MaJ de l'URL 
+        // MaJ de l'URL
         this.mettreAjourUrl({});
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public override fournirCodeRoute(): string {
         return ROUTE_COMPETENCE;
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     protected override passerEnModeLecture(): void {
         // rien à faire
     }
@@ -97,7 +97,7 @@ export class RouteCompetenceComponent extends AbstractRoute {
                     this.mapNoeuds.set(c.id, nouvelleCompetence);
 
                     // Si la compétence n'a pas de parent, elle est racine
-                    if (c.parent == '#') {
+                    if (c.parent === '#') {
                         noeudsRacine.push(nouvelleCompetence);
                     }
 
@@ -139,7 +139,7 @@ export class RouteCompetenceComponent extends AbstractRoute {
                 }
 
                 // En partant du dernier, expand de chaque noeud
-                listeNoeud.reverse().forEach(n => this.treeControl.expand(n));
+                listeNoeud.reverse().forEach(n2 => this.treeControl.expand(n2));
             }
         }
     }

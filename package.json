@@ -12,7 +12,8 @@
     "preparerPourZip": "rm -rf ./zip/outilsDeClasse-versionLocale/outilsDeClasse/* && cp -r ./docs/* ./zip/outilsDeClasse-versionLocale/outilsDeClasse/",
     "zip": "rm -f ./docs/outils-de-classe_1.0.0.versionLocale.zip && npm-build-zip --source=./zip --destination=./docs/ --name=versionLocale",
     "build": "npm run package && npm run preparerPourZip && npm run zip",
-    "http": "http-server ./doc/"
+    "http": "http-server ./doc/",
+    "lint": "tslint --project tsconfig.json"
   },
   "private": true,
   "dependencies": {
@@ -49,6 +50,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "npm-build-zip": "^1.0.4",
+    "tslint": "^6.1.3",
     "typescript": "~5.5.2"
   }
 }

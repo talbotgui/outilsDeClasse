@@ -23,7 +23,7 @@ export class RouteAccueilComponent extends AbstractRoute {
         super(router, activatedRoute, location, demonstrationService);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public override afficherRaffraichirDonnees(): void {
 
         // Sauvegarde du flag indiquant qu'un JDD de démonstration est chargé
@@ -33,17 +33,17 @@ export class RouteAccueilComponent extends AbstractRoute {
         this.mettreAjourUrl({});
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public override fournirCodeRoute(): string {
         return ROUTE_ACCUEIL;
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public override initialiserRoute(): void {
         // Rien à faire
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     protected override passerEnModeLecture(): void {
         // Rien à faire
     }

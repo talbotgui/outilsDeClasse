@@ -45,7 +45,7 @@ export class RouteProblemeComponent extends AbstractRoute {
         super(router, activatedRoute, location, demonstrationService);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public afficherRaffraichirDonnees(): void {
         // Uniquement mettre à jour l'URL
         this.mettreAjourUrl({});
@@ -58,15 +58,15 @@ export class RouteProblemeComponent extends AbstractRoute {
         }
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public fournirCodeRoute(): string {
         return ROUTE_PROBLEME;
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public initialiserRoute(): void {
 
-        // Si des problèmes sont détectés, 
+        // Si des problèmes sont détectés,
         const sub1 = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
             tap(donnees => {
                 if (donnees) {
@@ -76,7 +76,7 @@ export class RouteProblemeComponent extends AbstractRoute {
         ).subscribe();
         super.declarerSouscription(sub1);
 
-        // Si des problèmes sont détectés, 
+        // Si des problèmes sont détectés,
         const sub2 = this.contexteService.obtenirUnObservableDeDetectionDeProblemeDansLesDonnees().pipe(
             // le fait que des problèmes soient détectés est conservé
             tap(problemes => {
@@ -88,7 +88,7 @@ export class RouteProblemeComponent extends AbstractRoute {
         super.declarerSouscription(sub2);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     protected override passerEnModeLecture(): void {
         // rien à faire ici
     }

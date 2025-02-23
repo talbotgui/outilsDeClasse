@@ -3,9 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class DateService {
 
-    /** Constructeur pour injection des dépendances. */
-    constructor() { }
-
     /** Formattage d'une date. */
     public formaterDate(date?: Date, formatLong: boolean = false, separateur: string = '/'): string {
         if (date) {

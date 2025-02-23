@@ -18,9 +18,6 @@ export class ChiffrementService {
     /** Instance de composant du navigateur */
     private decodeur = new TextDecoder();
 
-    /** Constructeur pour injection des dépendances. */
-    constructor() { }
-
     /**
      * Chiffrement d'une donnée.
      * @param donnee Donnée à chiffrer.
@@ -42,10 +39,11 @@ export class ChiffrementService {
 
         // Génération de la clef
         return this.genererClef(motDePasse).pipe(
-            //Chiffrement
+            // Chiffrement
             mergeMap(clef => window.crypto.subtle.encrypt({ name: "AES-GCM", iv: ChiffrementService.IV }, clef, zip))
         );
     }
+
     /**
      * Dechiffrement d'une donnée.
      * @param zipChiffre Donnée chiffrée.

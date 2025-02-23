@@ -66,16 +66,16 @@ export class RouteParametrageComponent extends AbstractRoute {
         super(router, activatedRoute, location, demonstrationService);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public fournirCodeRoute(): string {
         return ROUTE_PARAMETRAGE;
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public initialiserRoute(): void {
-        // Au chargement des données, 
+        // Au chargement des données,
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
-            //récupéation des données
+            // Récupéation des données
             tap(donnees => this.donnees = donnees)
         ).subscribe();
         super.declarerSouscription(sub);
@@ -87,7 +87,7 @@ export class RouteParametrageComponent extends AbstractRoute {
         // Rien à faire
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public afficherRaffraichirDonnees(): void {
 
         // MaJ de l'URL avec le bon ID d'élève

@@ -42,7 +42,7 @@ export class RouteTacheComponent extends AbstractRoute {
     super(router, activatedRoute, location, demonstrationService);
   }
 
-  /** @see classe parente */
+  /** Cf. classe parente */
   public fournirCodeRoute(): string {
     return ROUTE_TACHE;
   }
@@ -61,7 +61,7 @@ export class RouteTacheComponent extends AbstractRoute {
     this.tacheService.ajouterEcheance(tache);
   }
 
-  /** @see classe parente */
+  /** Cf. classe parente */
   public initialiserRoute(): void {
     // Au chargement des données, récupéation des données
     const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
@@ -80,7 +80,7 @@ export class RouteTacheComponent extends AbstractRoute {
     super.declarerSouscription(sub);
   }
 
-  /** @see classe parente */
+  /** Cf. classe parente */
   public afficherRaffraichirDonnees(): void {
     // Tri des tâches
     this.tacheService.trierTaches(this.taches);

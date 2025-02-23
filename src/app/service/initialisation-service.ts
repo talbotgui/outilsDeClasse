@@ -6,15 +6,12 @@ import { Projet } from '../model/projet-model';
 @Injectable({ providedIn: 'root' })
 export class InitialisationService {
 
-    /** Constructeur pour injection des dépendances. */
-    constructor() { }
-
     /** Ajout d'une liste de choix */
     public creerChoixParEleve(donnees: Annee): { eleve: Eleve, choix: 'suppression' | 'vidange' | undefined }[] {
 
         // Création de la liste des choix
         const choixParEleve = (donnees?.eleves || []).map(eleve => {
-            return { eleve: eleve, choix: undefined };
+            return { eleve, choix: undefined };
         });
 
         return choixParEleve;
@@ -25,7 +22,7 @@ export class InitialisationService {
 
         // Création de la liste des choix
         const choixParProjet = (donnees?.projets || []).map(projet => {
-            return { projet: projet, choix: undefined };
+            return { projet, choix: undefined };
         });
 
         return choixParProjet;

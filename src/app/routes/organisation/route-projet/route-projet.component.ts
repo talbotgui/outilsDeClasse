@@ -72,7 +72,7 @@ export class RouteProjetComponent extends AbstractRoute {
         super(router, activatedRoute, location, demonstrationService);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public afficherRaffraichirDonnees(): void {
 
         // Tri des lignes par date de début de la période
@@ -82,7 +82,7 @@ export class RouteProjetComponent extends AbstractRoute {
         this.mettreAjourUrl({ id: this.projetSelectionne?.id });
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public fournirCodeRoute(): string {
         return ROUTE_PROJET;
     }
@@ -158,7 +158,7 @@ export class RouteProjetComponent extends AbstractRoute {
         super.declarerSouscription(sub);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public initialiserRoute(): void {
         // Au chargement des données, récupéation des données
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
@@ -190,7 +190,7 @@ export class RouteProjetComponent extends AbstractRoute {
 
     /** Pour obtenir le libellé d'une période */
     public obtenirLibellePeriode(idPeriode: string | undefined): string | undefined {
-        return this.periodes?.find(p => p.id == idPeriode)?.nom;
+        return this.periodes?.find(p => p.id === idPeriode)?.nom;
     }
 
     /** Au clic sur un projet, on le sélectionne/désélectionne */

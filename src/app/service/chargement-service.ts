@@ -49,7 +49,7 @@ export class ChargementService {
         if (contenuEstChiffre) {
             contenuTextObs = this.chiffrementService.dechiffrerEtDezipper(contenu, motDePasse);
         }
-        // Sinon 
+        // Sinon
         else {
             contenuTextObs = of(contenuDecode);
         }
@@ -61,7 +61,7 @@ export class ChargementService {
                 // Si le parse est un succès
                 if (donnees) {
                     // Transcrire les données si elles sont dans un ancien format de données
-                    let entreeVersion = Object.entries(donnees).find(entree => entree[0] === 'versionMajeureApplication');
+                    const entreeVersion = Object.entries(donnees).find(entree => entree[0] === 'versionMajeureApplication');
                     if (!entreeVersion || !entreeVersion[1]) {
                         donnees = this.transcrireDonnesSiAncienFormat2024(donnees);
                     }
@@ -85,7 +85,7 @@ export class ChargementService {
                 }
                 // sinon
                 else {
-                    //Message d'erreur
+                    // Message d'erreur
                     this.contexteService.afficherUnMessageGeneral(new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Erreur, 'Erreur durant l\'analyse du contenu du fichier. Est-ce bien un fichier de données de l\'application MaClasse ?'));
                     // renvoi KO
                     return false;
@@ -206,7 +206,7 @@ export class ChargementService {
         }
     }
 
-    /**  Si les données sont à un ancien format, ménage et réadaptation.*/
+    /** Si les données sont à un ancien format, ménage et réadaptation. */
     private transcrireDonnesSiAncienFormat2024(donnees: Annee): Annee {
         const message = 'Transcription des données suite à une évolution de l\'application vers la version \'2024\'';
         this.contexteService.afficherUnMessageGeneral(new MessageAafficher('transcrireDonnesSiAncienFormat2024', TypeMessageAafficher.Information, message));
@@ -220,8 +220,8 @@ export class ChargementService {
             e.notes = (e.notes || []).map(note => {
 
                 // Recréation d'un objet propre
-                const listeDesAttributsAsupprimer = ['valeur', 'date', 'commentaire', 'outil', 'constat', 'proposition'];
-                const nouvelleNote = Object.fromEntries(Object.entries(note).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Note;
+                const listeDesAttributsAsupprimer2 = ['valeur', 'date', 'commentaire', 'outil', 'constat', 'proposition'];
+                const nouvelleNote = Object.fromEntries(Object.entries(note).filter(([key]) => !listeDesAttributsAsupprimer2.includes(key))) as Note;
 
                 if (!nouvelleNote.valeurEvaluation) {
                     const entreeValeur = Object.entries(note).find(entree => entree[0] === 'valeur');
@@ -277,8 +277,8 @@ export class ChargementService {
                 }
 
                 // Recréation d'un objet propre
-                const listeDesAttributsAsupprimer = ['competences', 'eleves', 'nom'];
-                const nouveauTemps = Object.fromEntries(Object.entries(temps).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Temps;
+                const listeDesAttributsAsupprimer3 = ['competences', 'eleves', 'nom'];
+                const nouveauTemps = Object.fromEntries(Object.entries(temps).filter(([key]) => !listeDesAttributsAsupprimer3.includes(key))) as Temps;
 
                 // Création d'un unique groupe
                 nouveauTemps.groupes = nouveauTemps.groupes ?? [];
@@ -323,8 +323,8 @@ export class ChargementService {
         donnees.projets = (donnees.projets || []).map(projet => {
 
             // Recréation d'un objet propre
-            const listeDesAttributsAsupprimer = ['idCompetences'];
-            const nouveauProjet = Object.fromEntries(Object.entries(projet).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Projet;
+            const listeDesAttributsAsupprimer4 = ['idCompetences'];
+            const nouveauProjet = Object.fromEntries(Object.entries(projet).filter(([key]) => !listeDesAttributsAsupprimer4.includes(key))) as Projet;
 
             // Création d'un unique groupe
             nouveauProjet.sousProjetParPeriode = nouveauProjet.sousProjetParPeriode ?? [];
@@ -352,7 +352,7 @@ export class ChargementService {
         return donnees;
     }
 
-    /**  Si les données sont à un ancien format, ménage et réadaptation.*/
+    /** Si les données sont à un ancien format, ménage et réadaptation. */
     private transcrireDonnesSiAncienFormat2024v1(donnees: Annee): Annee {
         const message = 'Transcription des données suite à une évolution de l\'application vers la version \'2024.1\'';
         this.contexteService.afficherUnMessageGeneral(new MessageAafficher('transcrireDonnesSiAncienFormat2024v1', TypeMessageAafficher.Information, message));
@@ -380,8 +380,8 @@ export class ChargementService {
                 }
 
                 // Recréation d'un objet propre
-                const listeDesAttributsAsupprimer = ['idEleve'];
-                const nouvelleNote = Object.fromEntries(Object.entries(note).filter(([key]) => !listeDesAttributsAsupprimer.includes(key))) as Note;
+                const listeDesAttributsAsupprimer2 = ['idEleve'];
+                const nouvelleNote = Object.fromEntries(Object.entries(note).filter(([key]) => !listeDesAttributsAsupprimer2.includes(key))) as Note;
 
                 // Recherche de l'élève et ajout de sa note
                 donnees.eleves.find(e => e.id === entreeIdEleve[1])?.notes.push(nouvelleNote);
@@ -405,7 +405,7 @@ export class ChargementService {
         return donnees;
     }
 
-    /**  Si les données sont à un ancien format, ménage et réadaptation.*/
+    /** Si les données sont à un ancien format, ménage et réadaptation. */
     private transcrireDonnesSiAncienFormat2024v2(donnees: Annee): Annee {
         const message = 'Transcription des données suite à une évolution de l\'application vers la version \'2024.2\'';
         this.contexteService.afficherUnMessageGeneral(new MessageAafficher('transcrireDonnesSiAncienFormat2024v2', TypeMessageAafficher.Information, message));

@@ -37,7 +37,7 @@ export class DivContenuComponent extends AbstractComponent implements OnInit {
 
   /** Au chargement du composant */
   public ngOnInit(): void {
-    // Si des données sont chargées, 
+    // Si des données sont chargées,
     const sub1 = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
       // le fait que les données sont chargées est conservé
       tap(donnees => this.donneesDeClasseChargee = !!donnees)
@@ -64,7 +64,7 @@ export class DivContenuComponent extends AbstractComponent implements OnInit {
     ).subscribe();
     super.declarerSouscription(sub2);
 
-    // Si des problèmes sont détectés, 
+    // Si des problèmes sont détectés,
     const sub3 = this.contexteService.obtenirUnObservableDeDetectionDeProblemeDansLesDonnees().pipe(
       // le fait que des problèmes soient détectés est conservé
       tap(problemes => this.problemesDetectes = !!problemes)

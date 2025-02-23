@@ -41,7 +41,7 @@ import { AbstractRoute } from '../../route';
 })
 export class RouteEleveComponent extends AbstractRoute {
 
-    /** Configuration de l'éditeur commune pour toute l'application*/
+    /** Configuration de l'éditeur commune pour toute l'application. */
     public static readonly CONFIGURATION_WYSIWYG_PAR_DEFAUT: AngularEditorConfig = {
         defaultFontSize: '3',
         height: 'auto',
@@ -75,9 +75,9 @@ export class RouteEleveComponent extends AbstractRoute {
     public mapRaisonAbsence: { [key: string]: string } = {};
     /** Référentiel - Fréquences disponibles pour une absence. */
     public mapFrequenceAbsence = { '0': 'Semaine paire', '1': 'Semaine impaire', '2': 'Chaque semaine' };
-    /** Référentiel - Liste des heures pour la sélection de l'heure de début et de fin des temps*/
+    /** Référentiel - Liste des heures pour la sélection de l'heure de début et de fin des temps. */
     public tempsDisponibles: string[] = ModelUtil.creerListeHoraires();
-    /** Référentiel - Liste des jours de la semaine*/
+    /** Référentiel - Liste des jours de la semaine. */
     public joursDeLaSemaine: Map<number, string> = ModelUtil.creerMapJoursDeLaSemaine();
 
     /** Constructeur pour injection des dépendances. */
@@ -85,17 +85,17 @@ export class RouteEleveComponent extends AbstractRoute {
         super(router, activatedRoute, location, demonstrationService);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public fournirCodeRoute(): string {
         return ROUTE_ELEVE;
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public initialiserRoute(): void {
-        // Au chargement des données, 
+        // Au chargement des données,
         const sub = this.contexteService.obtenirUnObservableDuChargementDesDonneesDeClasse().pipe(
             tap(donnees => {
-                //récupéation des données
+                // récupéation des données
                 this.eleves = donnees?.eleves;
                 this.mapLibelleStatutEleve = donnees?.mapLibelleStatutEleve || {};
                 this.mapTypeContact = donnees?.mapTypeContact || {};
@@ -160,7 +160,7 @@ export class RouteEleveComponent extends AbstractRoute {
         this.afficherRaffraichirDonnees();
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public afficherRaffraichirDonnees(): void {
 
         // MaJ de l'URL avec le bon ID d'élève

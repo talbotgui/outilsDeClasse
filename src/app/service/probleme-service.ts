@@ -43,7 +43,7 @@ export class ProblemeService {
         if (donnees && donnees.projets && donnees.eleves) {
             donnees.projets.forEach(p => {
                 p.idsEleve?.forEach(idEleve => {
-                    const e = donnees.eleves.find(e => e.id === idEleve);
+                    const e = donnees.eleves.find(e2 => e2.id === idEleve);
 
                     // Eleve non trouvé
                     if (!e) {
@@ -59,11 +59,11 @@ export class ProblemeService {
                         // Recherche de la note pour chaque sousProjet et chaque compétence
                         p.sousProjetParPeriode?.forEach(sp => {
                             sp.idCompetences?.forEach(idCompetence => {
-                                const indexNoteTrouve = e.notes.findIndex(n => n.idItem === idCompetence && n.idPeriode === sp.idPeriode)
+                                const indexNoteTrouve = e.notes.findIndex(n2 => n2.idItem === idCompetence && n2.idPeriode === sp.idPeriode)
 
                                 // Si la note n'est pas trouvée, problème
                                 if (indexNoteTrouve === -1) {
-                                    const periode = donnees.periodes.find(p => p.id === sp.idPeriode);
+                                    const periode = donnees.periodes.find(p2 => p2.id === sp.idPeriode);
                                     const competence = donnees.competences.find(c => c.id === idCompetence);
                                     const libelle = 'L\'élève \'' + e.prenom + '\' est associé au projet \'' + p.nom + '\' mais n\'a pas de note pour une compétence prévue (compétence supprimée entre temps ?).';
                                     const details = ['Compétence : ' + competence?.text, 'Période : ' + periode?.nom];
@@ -75,7 +75,7 @@ export class ProblemeService {
                                 // Sinon si la note n'a pas l'ID du projet dans ses références
                                 const n = e.notes[indexNoteTrouve];
                                 if (!n.idsProjets?.includes(p.id)) {
-                                    const periode = donnees.periodes.find(p => p.id === sp.idPeriode);
+                                    const periode = donnees.periodes.find(p2 => p2.id === sp.idPeriode);
                                     const competence = donnees.competences.find(c => c.id === idCompetence);
                                     const evaluation = donnees.mapLibelleNotes[n.valeurEvaluation || ''];
                                     const libelle = 'Une note de l\'élève \'' + e.prenom + '\' ne référence pas le projet \'' + p.nom + '\'.';
@@ -113,10 +113,10 @@ export class ProblemeService {
                         // Si toutes les dates sont là
                         pp.debut && pp.fin && p.debut && p.fin &&
                         // Si les ID sont bien différents
-                        pp.id != p.id &&
+                        pp.id !== p.id &&
                         // Si la date de début ou de fin est comprise dans l'autre période
                         ((pp.debut < p.debut && p.debut < pp.fin) || (pp.fin < p.debut && p.fin < pp.fin))
-                    ).map(p => p.id);
+                    ).map(p2 => p2.id);
                     if (idChevauchements.length > 0) {
                         const libelle = 'La période \'' + p.nom + '\' chevauche la(es) période(s) \'' + idChevauchements + '\'.';
                         const details = ['Attention à bien respecter les dates des périodes fournies par l\'état sur le site Service-Public.gouv.fr'];
@@ -139,7 +139,7 @@ export class ProblemeService {
             j.temps.forEach(t => {
                 t.groupes.forEach(g => {
                     g.eleves.forEach(e => {
-                        if (typeof e == undefined || !listeIdEleves.includes(e)) {
+                        if (typeof e === undefined || !listeIdEleves.includes(e)) {
                             const libelle = 'Un journal référence un élève inconnu';
                             const details = ['Date : ' + this.datePipe.transform(j.date, 'dd/MM/yyyy'), 'Temps : de ' + t.debut + ' à ' + t.fin, 'Groupe : \'', g.nom + '\''];
                             const libelleBouton = 'Supprimer la référence';
@@ -147,7 +147,7 @@ export class ProblemeService {
                         }
                     });
                     g.competences.forEach(c => {
-                        if (typeof c == undefined || !listeIdCompetences.includes(c)) {
+                        if (typeof c === undefined || !listeIdCompetences.includes(c)) {
                             const libelle = 'Un journal référence une compétence inconnue';
                             const details = ['Date : ' + this.datePipe.transform(j.date, 'dd/MM/yyyy'), 'Temps : de ' + t.debut + ' à ' + t.fin, 'Groupe : \'', g.nom + '\''];
                             const libelleBouton = 'Supprimer la référence';
@@ -159,14 +159,14 @@ export class ProblemeService {
         });
         (donnees.eleves || []).forEach(e => {
             e.notes.forEach(n => {
-                if (typeof n.idPeriode == undefined || n.idPeriode && !listeIdPeriodes.includes(n.idPeriode)) {
+                if (typeof n.idPeriode === undefined || n.idPeriode && !listeIdPeriodes.includes(n.idPeriode)) {
                     const libelleCompetence = donnees.competences.find(c => c.id === n.idItem);
                     const libelle = 'Dans les données de \'' + e.prenom + '\', une note référence une période inconnue';
                     const details = ['Eleve : ' + e.prenom + ' ' + e.nom, 'Date création de la note : ' + this.datePipe.transform(n.dateCreation, 'dd/MM/yyyy'), 'Compétence : ' + libelleCompetence, 'Evaluation : ' + n.valeurEvaluation, 'Commentaire privé : ' + n.commentaireEvaluationPrive, 'Commentaire publié : ' + n.commentaireEvaluationPublic, 'Commentaire de préparation : ' + n.constatEnPreparation];
                     const libelleBouton = 'Supprimer la note';
                     problemes.push(new ProblemeAvecCorrectionAutomatique('N1', libelle, details, libelleBouton, [e.id, n.id]));
                 }
-                if (typeof n.idItem == undefined || n.idItem && !listeIdCompetences.includes(n.idItem)) {
+                if (typeof n.idItem === undefined || n.idItem && !listeIdCompetences.includes(n.idItem)) {
                     const libellePeriode = donnees.periodes.find(p => p.id === n.idPeriode);
                     const libelle = 'Dans les données de \'' + e.prenom + '\', une note référence une compétence inconnue';
                     const details = ['Eleve : ' + e.prenom + ' ' + e.nom, 'Date création de la note : ' + this.datePipe.transform(n.dateCreation, 'dd/MM/yyyy'), 'Période : ' + libellePeriode, 'Evaluation : ' + n.valeurEvaluation, 'Commentaire privé : ' + n.commentaireEvaluationPrive, 'Commentaire publié : ' + n.commentaireEvaluationPublic, 'Commentaire de préparation : ' + n.constatEnPreparation];
@@ -196,7 +196,7 @@ export class ProblemeService {
                 }
             });
             e.commentairesDePeriode.forEach(c => {
-                if (typeof c.idPeriode == undefined || c.idPeriode && !listeIdPeriodes.includes(c.idPeriode)) {
+                if (typeof c.idPeriode === undefined || c.idPeriode && !listeIdPeriodes.includes(c.idPeriode)) {
                     const libelle = 'Dans les données de \'' + e.prenom + '\', une période inconnue \'' + c.idPeriode + '\' est référencée dans un commentaire de période';
                     const details = ['Elève : ' + e.prenom + ' ' + e.nom, 'Commentaire : ' + c.commentaire];
                     const libelleBouton = 'Supprimer le commentaire de période';
@@ -204,7 +204,7 @@ export class ProblemeService {
                 }
             });
             e.parcoursDePeriode.forEach(p => {
-                if (typeof p.idPeriode == undefined || p.idPeriode && !listeIdPeriodes.includes(p.idPeriode)) {
+                if (typeof p.idPeriode === undefined || p.idPeriode && !listeIdPeriodes.includes(p.idPeriode)) {
                     const libelle = 'Dans les données de \'' + e.prenom + '\', une période inconnue \'' + p.idPeriode + '\' est référencée dans un parcours';
                     const details = ['Elève : ' + e.prenom + ' ' + e.nom, 'Parcours : ' + p.commentaire];
                     const libelleBouton = 'Supprimer le parcours de période';
@@ -214,14 +214,14 @@ export class ProblemeService {
         });
         donnees.projets.forEach(p => {
             (p.sousProjetParPeriode || []).forEach(sp => {
-                if (typeof sp.idPeriode == undefined || sp.idPeriode && !listeIdPeriodes.includes(sp.idPeriode)) {
+                if (typeof sp.idPeriode === undefined || sp.idPeriode && !listeIdPeriodes.includes(sp.idPeriode)) {
                     const libelle = 'Dans le projet \'' + p.nom + '\', un sous-projet référence la période \'' + sp.idPeriode + '\' inconnue.';
                     const libelleBouton = 'Supprimer le sous-projet';
                     problemes.push(new ProblemeAvecCorrectionAutomatique('PRO1', libelle, [], libelleBouton, [p.id, sp.id]));
                 }
                 (sp.idCompetences || []).forEach(c => {
-                    if (typeof c == undefined || !listeIdCompetences.includes(c)) {
-                        const periode = donnees.periodes.find(p => p.id === sp.idPeriode);
+                    if (typeof c === undefined || !listeIdCompetences.includes(c)) {
+                        const periode = donnees.periodes.find(p2 => p2.id === sp.idPeriode);
                         const libelle = 'Le projet \'' + p.nom + '\', pour la période \'' + periode?.nom + '\' référence une compétence inconnue';
                         const libelleBouton = 'Supprimer la référence inconnue';
                         problemes.push(new ProblemeAvecCorrectionAutomatique('PRO2', libelle, [], libelleBouton, [p.id, sp.id, c]));

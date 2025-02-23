@@ -25,7 +25,7 @@ export class DivMessageComponent extends AbstractComponent implements OnInit {
                 if (message) {
                     // on retire tout message venant de la même source
                     this.messagesAafficher = this.messagesAafficher.filter(m => m.codeEmetteurDuMessage !== message.codeEmetteurDuMessage);
-                    //s'il n'est pas vide
+                    // s'il n'est pas vide
                     if (message.message) {
                         // on ajoute le nouveau message
                         this.messagesAafficher.push(message);

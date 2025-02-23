@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, BaseRouteReuseStrategy, DetachedRouteHandle } from '@angular/router';
 
-/** 
- * Stratégie de conservation/réutilisation des composants associés au routeur Angular. 
+/**
+ * Stratégie de conservation/réutilisation des composants associés au routeur Angular.
  * @see https://www.angulararchitects.io/en/blog/sticky-routes-in-angular-2-3/
  */
 export class AppRouteReuseStrategy implements BaseRouteReuseStrategy {

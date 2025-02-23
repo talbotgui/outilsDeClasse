@@ -110,9 +110,9 @@ export class JournalService {
         (eleves || []).forEach(e => {
             if (e.statut === Eleve.CODE_STATUT_DANS_LA_CLASSE && e.absences) {
                 e.absences.forEach(a => {
-                    const numeroSemaine = parseInt(this.datePipe.transform(dateJournal, 'ww') as string);
-                    const verifFrequence = (typeof a.frequence === 'undefined' || a.frequence == 2) || (numeroSemaine % 2 == a.frequence);
-                    if (a.jour == dateJournal?.getDay() && verifFrequence && mapRaisonAbsence) {
+                    const numeroSemaine = parseInt(this.datePipe.transform(dateJournal, 'ww') as string, 10);
+                    const verifFrequence = (typeof a.frequence === 'undefined' || a.frequence === 2) || (numeroSemaine % 2 === a.frequence);
+                    if (a.jour === dateJournal?.getDay() && verifFrequence && mapRaisonAbsence) {
                         const raison = a.raison ? mapRaisonAbsence[a.raison] : '';
                         commentaireJournalParDefaut += '<li>' + e.prenom + ' : ' + raison + ' de ' + a.heureDebut + ' à ' + a.heureFin + '</li>';
                     }
@@ -183,7 +183,7 @@ export class JournalService {
     /** Recherche d'un journal existant */
     public rechercherJournal(journaux: Journal[], dateJournal: Date): Journal | undefined {
         const time = dateJournal.getTime();
-        return journaux?.find(j => j.date?.getTime() == time);
+        return journaux?.find(j => j.date?.getTime() === time);
     }
 
     /** Création d'un nouveau journal pour cette date */
@@ -194,7 +194,7 @@ export class JournalService {
             return undefined;
         }
         // Recherche du journal
-        let journal = this.rechercherJournal(journaux, dateJournal);
+        const journal = this.rechercherJournal(journaux, dateJournal);
         if (journal) {
             return journal;
         }
@@ -257,7 +257,7 @@ export class JournalService {
         }
 
         // Si le journal est vide, création d'un temps par défaut
-        if (journal?.temps.length == 0) {
+        if (journal?.temps.length === 0) {
             this.ajouterTempsApres(journal, -1, 'classe');
         }
 

@@ -92,12 +92,12 @@ export class RouteTdbComponent extends AbstractRoute {
         super(router, activatedRoute, location, demonstrationService);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public fournirCodeRoute(): string {
         return ROUTE_TDB;
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public initialiserRoute(): void {
 
         // Récupération du paramètre de date depuis l'URL
@@ -132,7 +132,7 @@ export class RouteTdbComponent extends AbstractRoute {
         super.declarerSouscription(sub);
     }
 
-    /** @see classe parente */
+    /** Cf. classe parente */
     public afficherRaffraichirDonnees(): void {
 
         // MaJ de l'URL avec les données de filtrage
@@ -155,8 +155,8 @@ export class RouteTdbComponent extends AbstractRoute {
         // Dans les conditions nominales
         else {
             // Recherche du commentaire pour la période
-            let commentaire = this.eleveSelectionne.commentairesDePeriode.find(c => c.idPeriode == this.periodeSelectionnee?.id);
-            let parcours = this.eleveSelectionne.parcoursDePeriode.find(c => c.idPeriode == this.periodeSelectionnee?.id);
+            let commentaire = this.eleveSelectionne.commentairesDePeriode.find(c => c.idPeriode === this.periodeSelectionnee?.id);
+            let parcours = this.eleveSelectionne.parcoursDePeriode.find(c => c.idPeriode === this.periodeSelectionnee?.id);
 
             // Création si inexistant
             if (!commentaire) {
@@ -278,7 +278,7 @@ export class RouteTdbComponent extends AbstractRoute {
 
         // Recherche de l'ascendance
         let id = idItem;
-        while (id && id != '#') {
+        while (id && id !== '#') {
             const competence = this.rechercherCompetence(id);
             if (competence) {
                 ascendance.push(competence);
@@ -291,7 +291,7 @@ export class RouteTdbComponent extends AbstractRoute {
 
     /** Calcul (ou usage du cache) d'un libellé complet de compétence */
     private calculerLibelleDeCompetence(competence: Competence, aPartirDe: number = 0): string {
-        let ascendance = this.calculerAscendance(competence.id);
+        const ascendance = this.calculerAscendance(competence.id);
         if (aPartirDe) {
             ascendance.splice(0, aPartirDe);
         }
@@ -314,7 +314,7 @@ export class RouteTdbComponent extends AbstractRoute {
                 this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
             } else {
                 this.creerSousLignesTableauDeBordPourUnePeriode(this.periodeSelectionnee, false, this.eleveSelectionne.notes);
-                let indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
+                const indexPeriodeSelectionnee = this.periodes.indexOf(this.periodeSelectionnee);
                 if (indexPeriodeSelectionnee + 1 < this.periodes.length) {
                     this.creerSousLignesTableauDeBordPourUnePeriode(this.periodes[indexPeriodeSelectionnee + 1], true, this.eleveSelectionne.notes);
                 }
@@ -348,10 +348,10 @@ export class RouteTdbComponent extends AbstractRoute {
             this.libellePeriodeEvaluee = periode.nom || '';
         }
 
-        // Pour chaque note 
+        // Pour chaque note
         notesDeLeleve
             // de la période
-            .filter(n => n.idPeriode == periode.id)
+            .filter(n => n.idPeriode === periode.id)
             // Création des lignes correspondantes
             .forEach(n => {
                 // En mode 'groupement par projet'
@@ -368,7 +368,7 @@ export class RouteTdbComponent extends AbstractRoute {
     /** Création de la sous-ligne (commune quelque soit le groupement) */
     private creerSousLigneTableauDeBordPourUneNote(ligne: LigneDeTableauDeBord, n: Note, periodePreparee: boolean, niveauDeDepartDuLibelleDeCompetenceDansLaLigne: number) {
         // Recherche (ou création) de la sous-ligne pour cette compétence
-        let sousLigne = ligne.sousLignes.find(sl => sl.competence?.id == n.idItem);
+        let sousLigne = ligne.sousLignes.find(sl => sl.competence?.id === n.idItem);
         if (!sousLigne) {
             sousLigne = new SousLigneDeTableauDeBord();
             sousLigne.competence = this.rechercherCompetence(n.idItem);
@@ -435,10 +435,10 @@ export class RouteTdbComponent extends AbstractRoute {
         if (this.groupementPar === '2') {
             // La création des lignes se fait en fonction des projets
             this.lignes = this.projets.map(p => {
-                const ligne = new LigneDeTableauDeBord();
-                ligne.libelleCompetenceParenteOuNomProjet = p.nom || '';
-                ligne.projet = p;
-                return ligne;
+                const l = new LigneDeTableauDeBord();
+                l.libelleCompetenceParenteOuNomProjet = p.nom || '';
+                l.projet = p;
+                return l;
             });
             // Plus la ligne d'ajout manuel
             const ligne = new LigneDeTableauDeBord();

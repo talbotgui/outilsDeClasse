@@ -46,11 +46,11 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
     /** Formulaire d'autocompletion (non typé volontairement car saisie d'une string mais sélection d'un OptionCompetence) */
     public controleAutocompletion: FormControl = new FormControl();
 
-    /** Sortie à la sélection d'une compétence*/
+    /** Sortie à la sélection d'une compétence. */
     @Output()
     public onSelectionDuneCompetence = new EventEmitter<Competence>();
 
-    /** Liste des résulat de l'autocomplétion*/
+    /** Liste des résulat de l'autocomplétion. */
     public resultatsAutocompletion: Observable<OptionCompetence[]> | undefined;
 
     /** Constructeur pour injection des dépendances. */
@@ -98,7 +98,7 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
         let comp: Competence | undefined = competence;
         while (comp && comp.parent !== '#') {
             libelle = comp.text + ' > ' + libelle;
-            comp = this.competences.find(c => c.id == comp?.parent);
+            comp = this.competences.find(c => c.id === comp?.parent);
         }
         return libelle.substring(0, libelle.length - 3);
     }
@@ -118,7 +118,7 @@ export class ComposantSelectionCompetenceComponent extends AbstractComponent imp
 
     /** Initialisation de 'competencesEnfantsDisponibles' */
     private definirListeCompetenceEnfant(idCompetenceParente: string): void {
-        this.competencesEnfantsDisponibles = this.competences.filter(c => c.parent == idCompetenceParente);
+        this.competencesEnfantsDisponibles = this.competences.filter(c => c.parent === idCompetenceParente);
     }
 
     /** Envoi d'un évènement de sélection depuis l'arborescence */
