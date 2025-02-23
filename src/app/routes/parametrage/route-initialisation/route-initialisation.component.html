@@ -1,0 +1,76 @@
+@if (choixParEleve && choixParProjet) {
+
+<h3>Pour initialiser un nouveau jeu de données {{unJeuDeDonneesDeDemonstrationEstCharge?'à partir du jeu de données de démonstration':'de votre année'}}, suivez
+    scrupuleusement les étapes suivantes :</h3>
+
+<!-- Formulaire - Sauvegarde -->
+<fieldset class="maclasse-formulaire">
+    <legend>Etape 1 : Sauvegarde</legend>
+    <div>
+        <p>Avant de passer à l'étape suivante, archiver une sauvegarde de vos données de la classe de l'année actuelle !!</p>
+    </div>
+</fieldset>
+
+<!-- Formulaire - Désactiver la sauvegarde automatique -->
+<fieldset class="maclasse-formulaire">
+    <legend>Etape 2 : Désactiver la sauvegarde automatique</legend>
+    <div>
+        <p>Cliquer sur l'icône de sauvegarde présente en haut à droite pour désactiver la sauvegarde automatique (<fa-icon icon="floppy-disk"
+                class="maclasse-sauvegardeArretee" size="xs"></fa-icon> attendue)</p>
+    </div>
+</fieldset>
+
+<!-- Formulaire - suppression élèves -->
+<fieldset class="maclasse-formulaire">
+    <legend>Etape 3 : Supprimer les élèves quittant votre classe durant l'été</legend>
+    <div>
+        @for(c of choixParEleve; track c.eleve.id){
+        <div>
+            <label>Pour l'élève {{c.eleve.prenom}} :</label>
+            <mat-radio-group [attr.aria-label]="'Choix pour l\'élève ' + c.eleve.prenom" [(ngModel)]="c.choix">
+                <mat-radio-button value="suppression">Suppression des données</mat-radio-button>
+                <mat-radio-button value="vidange" [disabled]="c.eleve.notes.length===0">Suppression des notes</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        }
+
+        @if (choixParEleve.length > 0) {
+        <button type="button" mat-flat-button class="maclasse-bouton16" (click)="nettoyerListeEleves()" matTooltip="Valider ces choix"
+            aria-label="Valider ces choix">
+            <fa-icon icon="check" size="xs"></fa-icon>
+            Valider
+        </button>
+        } @else {
+        <p>Aucun élève conservé</p>
+        }
+    </div>
+</fieldset>
+
+<!-- Formulaire - suppression projets -->
+<fieldset class="maclasse-formulaire">
+    <legend>Etape 4 : Supprimer les projets non reconduits</legend>
+    <div>
+        @for(c of choixParProjet; track c.projet.id){
+        <div>
+            <label>Pour le projet {{c.projet.nom}} :</label>
+            <mat-radio-group [attr.aria-label]="'Choix pour le projet ' + c.projet.nom" [(ngModel)]="c.choix">
+                <mat-radio-button value="suppression">Suppression des données</mat-radio-button>
+                <mat-radio-button value="">Conservation</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        }
+
+        @if (choixParProjet.length > 0) {
+        <button type="button" mat-flat-button class="maclasse-bouton16" (click)="nettoyerListeProjets()" matTooltip="Valider ces choix"
+            aria-label="Valider ces choix">
+            <fa-icon icon="check" size="xs"></fa-icon>
+            Valider
+        </button>
+        } @else {
+        <p>Aucun projet conservé</p>
+        }
+    </div>
+</fieldset>
+
+}
+<br />

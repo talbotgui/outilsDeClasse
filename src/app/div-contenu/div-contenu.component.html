@@ -24,7 +24,7 @@
       Organiser mon année
     </a>
     <a mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'QUOTIDIEN'" [active]="menuNiveau1 == 'QUOTIDIEN'">
-      Préparer mon quotidien
+      Gérer mon quotidien
     </a>
     <a mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'PARAMETRAGE'" [active]="menuNiveau1 == 'PARAMETRAGE'">
       Paramétrage & administration
@@ -54,6 +54,7 @@
     }
     @else if (menuNiveau1 == 'PARAMETRAGE') {
     <a mat-tab-link [active]="routeActive == '/route-parametrage'" routerLink="/route-parametrage">Paramétrage de l'année en cours</a>
+    <a mat-tab-link [active]="routeActive == '/route-initialisation'" routerLink="/route-initialisation">Initialiser l'année prochaine</a>
     }
 
   </nav>

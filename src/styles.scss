@@ -364,3 +364,8 @@ span.maclasse-eleve:not(:first-child) {
 .maclasse-table-case-bordureDroite {
     border-right: solid 1px white;
 }
+
+// Sauvegarde désactivée
+.maclasse-sauvegardeArretee {
+    color: lightgrey !important;
+}

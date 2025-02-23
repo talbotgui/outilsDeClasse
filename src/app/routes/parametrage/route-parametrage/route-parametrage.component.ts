@@ -14,13 +14,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
-import { ROUTE_PARAMETRAGE } from '../../app.routes';
-import { Annee } from '../../model/model';
-import { HtmlPipe } from '../../pipes/html.pipe';
-import { DemonstrationService } from '../../service/bouchon-service';
-import { ContexteService } from '../../service/contexte-service';
-import { EleveService } from '../../service/eleve-service';
-import { AbstractRoute } from '../route';
+import { ROUTE_PARAMETRAGE } from '../../../app.routes';
+import { Annee } from '../../../model/model';
+import { HtmlPipe } from '../../../pipes/html.pipe';
+import { DemonstrationService } from '../../../service/bouchon-service';
+import { ContexteService } from '../../../service/contexte-service';
+import { AbstractRoute } from '../../route';
 
 
 @Component({
@@ -63,7 +62,7 @@ export class RouteParametrageComponent extends AbstractRoute {
     public modeEdition: boolean = false;
 
     /** Constructeur pour injection des dépendances. */
-    public constructor(router: Router, private eleveService: EleveService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService) {
+    public constructor(router: Router, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService) {
         super(router, activatedRoute, location, demonstrationService);
     }
 
