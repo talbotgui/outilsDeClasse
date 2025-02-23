@@ -20,7 +20,7 @@ import { AbstractRoute } from '../../route';
 
 
 @Component({
-    selector: 'route-initialisation', templateUrl: './route-initialisation.component.html', styleUrl: './route-initialisation.component.scss',
+    selector: 'route-initialisation', templateUrl: './route-initialisation.component.html',
     standalone: true, imports: [
         // Angular
         CommonModule, FormsModule,

@@ -23,7 +23,7 @@ import { AbstractRoute } from '../../route';
 
 
 @Component({
-    selector: 'route-parametrage', templateUrl: './route-parametrage.component.html', styleUrl: './route-parametrage.component.scss',
+    selector: 'route-parametrage', templateUrl: './route-parametrage.component.html',
     standalone: true, imports: [
         // Angular
         CommonModule, FormsModule,

@@ -20,7 +20,7 @@ import { ProblemeService } from '../../service/probleme-service';
 import { AbstractRoute } from '../route';
 
 @Component({
-    selector: 'route-probleme', templateUrl: './route-probleme.component.html', styleUrl: './route-probleme.component.scss',
+    selector: 'route-probleme', templateUrl: './route-probleme.component.html',
     standalone: true, imports: [
         // Angular
         CommonModule, FormsModule,

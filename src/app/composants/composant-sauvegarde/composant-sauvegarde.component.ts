@@ -10,7 +10,7 @@ import { ContexteService } from '../../service/contexte-service';
 import { DateService } from '../../service/date-service';
 
 @Component({
-    selector: '[composant-sauvegarde]', templateUrl: './composant-sauvegarde.component.html', styleUrl: 'composant-sauvegarde.component.scss',
+    selector: '[composant-sauvegarde]', templateUrl: './composant-sauvegarde.component.html',
     standalone: true, imports: [
         // Pour les composants Material
         MatButtonModule, MatTooltipModule,
