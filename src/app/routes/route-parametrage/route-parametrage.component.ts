@@ -1,4 +1,4 @@
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule, DatePipe, Location } from '@angular/common';
 
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
@@ -11,10 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularEditorConfig, AngularEditorModule } from '@wfpena/angular-wysiwyg';
 import { tap } from 'rxjs';
 import { ROUTE_PARAMETRAGE } from '../../app.routes';
 import { Annee } from '../../model/model';
+import { HtmlPipe } from '../../pipes/html.pipe';
 import { DemonstrationService } from '../../service/bouchon-service';
 import { ContexteService } from '../../service/contexte-service';
 import { EleveService } from '../../service/eleve-service';
@@ -29,7 +31,11 @@ import { AbstractRoute } from '../route';
         // Matérial
         ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTooltipModule, MatChipsModule, MatSelectModule, MatDatepickerModule,
         // Pour l'éditeur WYSIWYG
-        HttpClientModule, AngularEditorModule
+        HttpClientModule, AngularEditorModule,
+        // FontAwesome
+        FontAwesomeModule,
+        // Pipes
+        HtmlPipe, DatePipe
     ]
 })
 export class RouteParametrageComponent extends AbstractRoute {
@@ -52,6 +58,9 @@ export class RouteParametrageComponent extends AbstractRoute {
 
     /** Données de l'année à éditer */
     public donnees: Annee | undefined;
+
+    /** Flag du mode édition. */
+    public modeEdition: boolean = false;
 
     /** Constructeur pour injection des dépendances. */
     public constructor(router: Router, private eleveService: EleveService, private contexteService: ContexteService, activatedRoute: ActivatedRoute, location: Location, demonstrationService: DemonstrationService) {

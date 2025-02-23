@@ -2,23 +2,128 @@
 
 <!-- Formulaire - sécurité -->
 <fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
-    <legend>Sécurité du fichier de sauvegarde</legend>
+    <legend>
+        <span>Sécurité du fichier de sauvegarde</span>
+        @if (modeEdition) {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie"
+            aria-label="Terminer la saisie">
+            <fa-icon icon="check"></fa-icon>
+        </button>
+        } @else {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer cet élève" aria-label="Editer cet élève">
+            <fa-icon icon="pencil" size="xs"></fa-icon>
+        </button>
+        }
+    </legend>
     <div>
+        @if (modeEdition) {
         <mat-form-field>
             <mat-label>Mot de passe</mat-label>
             <input matInput type="text" required #inputNom="ngModel" name="nom" [(ngModel)]="donnees.motDePasse">
         </mat-form-field>
+        } @else {
+        <label>Mot de passe : </label>{{donnees.motDePasse}}
+        }
     </div>
 </fieldset>
 
 <!-- Formulaire - entête -->
 <fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
-    <legend>Données d'entête et d'édition</legend>
+    <legend>
+        <span>Données d'entête et d'édition</span>
+        @if (modeEdition) {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie"
+            aria-label="Terminer la saisie">
+            <fa-icon icon="check"></fa-icon>
+        </button>
+        } @else {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer cet élève" aria-label="Editer cet élève">
+            <fa-icon icon="pencil" size="xs"></fa-icon>
+        </button>
+        }
+    </legend>
     <div>
+        @if (modeEdition) {
         <angular-editor [config]="configurationWysiwyg" placeholder="Entête d'édition" name="enteteEdition"
             [(ngModel)]="donnees.enteteEdition"></angular-editor>
+        } @else {
+        <div [innerHTML]="donnees.enteteEdition | html"></div>
+        }
     </div>
 </fieldset>
 
+<!-- Formulaire - periodes -->
+<fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
+    <legend>
+        <span>Périodes</span>
+        @if (modeEdition) {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie"
+            aria-label="Terminer la saisie">
+            <fa-icon icon="check"></fa-icon>
+        </button>
+        } @else {
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer cet élève" aria-label="Editer cet élève">
+            <fa-icon icon="pencil" size="xs"></fa-icon>
+        </button>
+        }
+    </legend>
+    <div>
+
+        <div class="maclasse-table">
+            <!-- Entête -->
+            <div class="maclasse-table-ligne maclasse-table-entete">
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w25 maclasse-padding5">Index</div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w25 maclasse-padding5">Nom</div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w25 maclasse-padding5">Date de début</div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w25 maclasse-padding5">Date de fin</div>
+            </div>
+
+            <!-- Pour chaque lignes -->
+            @for (periode of donnees.periodes ; track periode.id ; let idx = $index) {
+            <div class="maclasse-table-ligne">
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w25 maclasse-texteCentre">
+                    <label>Période {{idx}}</label>
+                </div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w25 maclasse-texteCentre">
+                    @if (modeEdition) {
+                    <mat-form-field class="maclasse-pleinelargeur">
+                        <mat-label>Nom</mat-label>
+                        <input matInput name="periode-{{idx}}" [(ngModel)]="periode.nom">
+                    </mat-form-field>
+                    } @else {
+                    {{periode.nom}}
+                    }
+                </div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w25 maclasse-texteCentre">
+                    @if (modeEdition) {
+                    <mat-form-field>
+                        <mat-label>Date de début</mat-label>
+                        <input matInput [matDatepicker]="pickerDateDebut" #inputDateDebut="ngModel" [(ngModel)]="periode.debut" readonly>
+                        <mat-datepicker-toggle matIconSuffix [for]="pickerDateDebut"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerDateDebut></mat-datepicker>
+                    </mat-form-field>
+
+                    } @else {
+                    {{periode.debut | date:'dd/MM/yyyy'}}
+                    }
+                </div>
+                <div class="maclasse-table-case maclasse-table-case-bordureDroite maclasse-table-case-w25 maclasse-texteCentre">
+                    @if (modeEdition) {
+                    <mat-form-field>
+                        <mat-label>Date de fin</mat-label>
+                        <input matInput [matDatepicker]="pickerDateFin" #inputDateFin="ngModel" [(ngModel)]="periode.debut" readonly>
+                        <mat-datepicker-toggle matIconSuffix [for]="pickerDateFin"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerDateFin></mat-datepicker>
+                    </mat-form-field>
+
+                    } @else {
+                    {{periode.debut | date:'dd/MM/yyyy'}}
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</fieldset>
 }
 <br />
