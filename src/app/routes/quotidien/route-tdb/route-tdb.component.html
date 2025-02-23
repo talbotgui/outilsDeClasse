@@ -53,9 +53,9 @@
     <legend>
         <span>Tableau de bord de l'élève {{eleveSelectionne.prenom}} </span>
         @if (modeAffichage=='1') {
-        <span>pour préparer la période {{periodes.indexOf(periodeSelectionnee)+1}}</span>
+        <span>pour préparer la période {{periodes.indexOf(periodeSelectionnee) + 1}}</span>
         } @else if (modeAffichage=='2' || modeAffichage=='3') {
-        <span>pour évaluer la période {{periodes.indexOf(periodeSelectionnee)+1}}</span>
+        <span>pour évaluer la période {{periodes.indexOf(periodeSelectionnee) + 1}}</span>
         }
         @if (modeAffichage=='3') {
         <span> et préparer la période suivante</span>
@@ -167,14 +167,14 @@
                         <p>{{(sousLigne.notePeriodeEvaluee &&
                             sousLigne.notePeriodeEvaluee.valeurEvaluation)?mapLibelleNotes[sousLigne.notePeriodeEvaluee.valeurEvaluation]:''}}</p>
                         }
-                        @if (sousLigne.referencesProjetPeriodeEvaluee.length > 0){
+                        @if (sousLigne.referencesProjetPeriodeEvaluee.length > 0) {
                         &nbsp;
                         <span class="maclasse-enUneLigne maclasse-masquerEnModePrint">
                             (<span>{{sousLigne.referencesProjetPeriodeEvaluee.length}}</span>
                             <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
                         </span>
                         }
-                        @if (sousLigne.notePeriodeEvaluee?.idsProjets?.includes('ajoutManuel')){
+                        @if (sousLigne.notePeriodeEvaluee?.idsProjets?.includes('ajoutManuel')) {
                         <div class="maclasse-masquerEnModePrint">
                             &nbsp;
                             <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
@@ -228,14 +228,14 @@
                         } @else {
                         <p>{{sousLigne.notePeriodePreparee?.constatEnPreparation}}</p>
                         }
-                        @if (sousLigne.referencesProjetPeriodePreparee.length > 0){
+                        @if (sousLigne.referencesProjetPeriodePreparee.length > 0) {
                         <div class="maclasse-masquerEnModePrint">
                             &nbsp;
                             (<span>{{sousLigne.referencesProjetPeriodePreparee.length}}</span>
                             <fa-icon icon="paperclip" matTooltip="Compétence ajoutée via un ou plusieurs projets"></fa-icon>)
                         </div>
                         }
-                        @if (sousLigne.notePeriodePreparee?.idsProjets?.includes('ajoutManuel')){
+                        @if (sousLigne.notePeriodePreparee?.idsProjets?.includes('ajoutManuel')) {
                         <div class="maclasse-masquerEnModePrint">
                             &nbsp;
                             <fa-icon icon="hand" matTooltip="Compétence ajoutée manuellement"></fa-icon>
@@ -264,7 +264,7 @@
         Bilan des acquis scolaires de l'élève {{eleveSelectionne.prenom}} {{eleveSelectionne.nom}} né(e) le {{eleveSelectionne.dateNaissance |
         date:'dd/MM/yyyy'}}
         <br />
-        Période {{periodes.indexOf(periodeSelectionnee)+1}} - du {{periodeSelectionnee.debut | date:'dd/MM/yyyy'}} au {{periodeSelectionnee.fin
+        Période {{periodes.indexOf(periodeSelectionnee) + 1}} - du {{periodeSelectionnee.debut | date:'dd/MM/yyyy'}} au {{periodeSelectionnee.fin
         | date:'dd/MM/yyyy'}}
     </h3>
 </div>
@@ -288,7 +288,7 @@
             <td>{{sousLigne.notePeriodeEvaluee?.commentaireEvaluationPublic}}</td>
             @for (entree of mapLibelleNotes | keyvalue ; track entree.key) {
             <td [class]="'maclasse-texteCentre maclasse-colonneNote' + entree.key">
-                @if (entree.key == sousLigne.notePeriodeEvaluee?.valeurEvaluation){
+                @if (entree.key == sousLigne.notePeriodeEvaluee?.valeurEvaluation) {
                 <span>X</span>
                 }
             </td>

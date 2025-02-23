@@ -18,14 +18,14 @@
 
 @if (projetSelectionne) {
 
-@if (modeEdition){
+@if (modeEdition) {
 <p><b>PETIT RAPPEL :</b> Tout ajout ou retrait d'une compétence ou d'un élève entraine la modification des données du tableau de bord !!</p>
 }
 
 <!-- Formulaire - données projet -->
 <fieldset class="maclasse-formulaire" (keyup)="onKeyUp($event)">
     <legend class="maclasse-legendFlex">
-        @if (modeEdition){
+        @if (modeEdition) {
         <mat-form-field>
             <mat-label>Nom</mat-label>
             <input matInput type="text" required #inputNom="ngModel" name="nom" [(ngModel)]="projetSelectionne.nom">

@@ -40,7 +40,7 @@
             aria-label="Supprimer ce journal">
             <fa-icon icon="trash"></fa-icon>
         </button>
-        @if (!journal.temps || journal.temps.length==0){
+        @if (!journal.temps || journal.temps.length == 0){
         <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterTempsApres(-1, 'classe')" matTooltip="Ajouter un premier temps"
             aria-label="Ajouter un premier temps">
             <fa-icon icon="clock"></fa-icon>
@@ -109,7 +109,7 @@
                 <mat-label>Fin</mat-label>
                 <mat-select #inputTempsFin="ngModel" [(ngModel)]="temps.fin" placeholder="Fin" name="fin">
                     @for (td of tempsDisponibles ; track td) {
-                    @if (!temps.debut || td>temps.debut) {
+                    @if (!temps.debut || td > temps.debut) {
                     <mat-option [value]="td">{{td}}</mat-option>
                     }
                     }
@@ -213,7 +213,7 @@
                                 @if (tempsEnEdition !== idx) {
                                 <span>
                                     @for (eleve of eleves; track eleve.id) {
-                                    @if (groupe.eleves && groupe.eleves.includes(eleve.id)){
+                                    @if (groupe.eleves && groupe.eleves.includes(eleve.id)) {
                                     <span class="maclasse-eleve">{{eleve.prenom}}</span>
                                     }
                                     }
