@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import Pako from "pako";
-import { from, map, mergeMap, Observable } from "rxjs";
+import { from, map, mergeMap, Observable, of } from "rxjs";
 
 
 @Injectable({ providedIn: 'root' })
@@ -31,6 +31,11 @@ export class ChiffrementService {
 
         // Encodage de la donnée à chiffrer
         const donneeEncodee = this.encodeur.encode(donnee);
+
+        // Si le chiffrement est débrayé
+        if ((window as any)['pasDeChiffrement']) {
+            return of(donneeEncodee);
+        }
 
         // Zip
         const zip = Pako.deflate(donneeEncodee, { level: 6, memLevel: 9 })
