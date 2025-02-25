@@ -11,6 +11,7 @@ import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { ROUTE_COMPETENCE } from '../../../app.routes';
+import { ComposantSelectionCompetenceComponent } from '../../../composants/composant-selectioncompetence/composant-selectioncompetence.component';
 import { NoeudCompetence } from '../../../model/arbre-model';
 import { Annee } from '../../../model/model';
 import { DemonstrationService } from '../../../service/bouchon-service';
@@ -27,7 +28,9 @@ import { AbstractRoute } from '../../route';
         // FontAwesome
         FontAwesomeModule,
         // Pour le copier/coller
-        ClipboardModule
+        ClipboardModule,
+        // Composant applicatif
+        ComposantSelectionCompetenceComponent
     ]
 })
 export class RouteCompetenceComponent extends AbstractRoute {
