@@ -37,7 +37,7 @@ export class DemonstrationService extends AbstractComponent {
         // Chargement des données
         const json = JSON.stringify(annee);
         const contenu = (new TextEncoder()).encode(json);
-        const sub = this.chargementService.chargerDonneesDeClasse(contenu, 'démonstration').subscribe();
+        const sub = this.chargementService.chargerDonneesDeClasse(contenu, annee.motDePasse).subscribe();
         super.declarerSouscription(sub);
 
         // Un message est affiché
