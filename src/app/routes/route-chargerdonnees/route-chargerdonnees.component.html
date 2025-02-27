@@ -10,20 +10,21 @@
                 aria-label="Sélectionner un fichier en cliquant sur ce bouton">
                 <fa-icon icon="file-upload"></fa-icon>
             </button>
-            <input hidden type="file" #inputFichierLocal (change)="onSelectFichierLocal($event)">
+            <input hidden class="maclasse-t-fichier" type="file" #inputFichierLocal (change)="onSelectFichierLocal($event)">
         </div>
 
         <!-- Mot de passe -->
         <div class="maclasse-padding5 maclasse-texteCentre">
             <mat-form-field>
                 <mat-label>Mot de passe</mat-label>
-                <input matInput type="password" required [(ngModel)]="motDePasse">
+                <input class="maclasse-t-motDePasse" matInput type="password" required [(ngModel)]="motDePasse">
             </mat-form-field>
         </div>
 
         <!-- Bouton de validation-->
         <div class="maclasse-padding5 maclasse-texteCentre">
-            <button mat-stroked-button (click)="onClickValiderChargementFichierLocal(inputFichierLocal)">Charger le fichier</button>
+            <button class="maclasse-t-charger" [disabled]="!motDePasse || !nomFichierLocal" mat-stroked-button
+                (click)="onClickValiderChargementFichierLocal(inputFichierLocal)">Charger le fichier</button>
         </div>
     </div>
 </fieldset>

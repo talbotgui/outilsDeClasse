@@ -16,9 +16,9 @@
                     aria-label="Afficher/masquer cette branche">
                     <fa-icon icon="dot-circle"></fa-icon>
                 </button>
-                <span>{{c.text}}</span>
-                <button type="button" mat-icon-button class="maclasse-bouton16" [cdkCopyToClipboard]="c.calculerLibelleComplet()"
-                    matTooltip="Copier le libellé complet" aria-label="Copier le libellé complet">
+                <span [class]="'maclasse-t-' + c.id">{{c.text}}</span>
+                <button type="button" mat-icon-button class="maclasse-bouton16 maclasse-t-copierLibelleDepuisArbre"
+                    [cdkCopyToClipboard]="c.calculerLibelleComplet()" matTooltip="Copier le libellé complet" aria-label="Copier le libellé complet">
                     <fa-icon icon="copy"></fa-icon>
                 </button>
             </mat-tree-node>
@@ -32,8 +32,8 @@
                         <fa-icon [icon]="treeControl.isExpanded(c) ? 'minus' : 'plus'"></fa-icon>
                     </button>
                     <span>{{c.text}}</span>
-                    <button type="button" mat-icon-button class="maclasse-bouton16" [cdkCopyToClipboard]="c.calculerLibelleComplet()"
-                        matTooltip="Copier le libellé complet" aria-label="Copier le libellé complet">
+                    <button type="button" mat-icon-button class="maclasse-bouton16 maclasse-t-copierLibelleDepuisArbre"
+                        [cdkCopyToClipboard]="c.calculerLibelleComplet()" matTooltip="Copier le libellé complet" aria-label="Copier le libellé complet">
                         <fa-icon icon="copy"></fa-icon>
                     </button>
                 </div>

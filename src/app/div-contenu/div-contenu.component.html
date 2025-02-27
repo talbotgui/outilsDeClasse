@@ -5,34 +5,33 @@
   <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="maclasse-masquerEnModePrint">
 
     <!-- Accueil tjs en niveau 1 -->
-    <a mat-tab-link (click)="afficherMenuNiveau2=false" routerLink="/route-accueil">Accueil</a>
+    <a class="maclasse-t-routeaccueil" mat-tab-link (click)="afficherMenuNiveau2=false" routerLink="/route-accueil">Accueil</a>
 
     <!-- Si pas de données chargées, tout est dans le niveau 1 -->
     @if (!donneesDeClasseChargee) {
-    <a mat-tab-link (click)="afficherMenuNiveau2=false" [active]="routeActive == '/route-chargerdonnees'" routerLink="/route-chargerdonnees">
+    <a class="maclasse-t-routechargerdonnees" mat-tab-link (click)="afficherMenuNiveau2=false" [active]="routeActive == '/route-chargerdonnees'"
+      routerLink="/route-chargerdonnees">
       Charger mon année
-    </a>
-    <a mat-tab-link (click)="afficherMenuNiveau2=false" [active]="routeActive == '/route-creerdonnees'" routerLink="/route-creerdonnees">
-      Créer mon année
-
     </a>
     }
 
     <!-- Si des données sont chargées, utilisation du niveau 2 -->
     @else {
-    <a mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'ORGA'" [active]="menuNiveau1 == 'ORGA'">
+    <a class="maclasse-t-routeORGA" mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'ORGA'" [active]="menuNiveau1 == 'ORGA'">
       Organiser mon année
     </a>
-    <a mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'QUOTIDIEN'" [active]="menuNiveau1 == 'QUOTIDIEN'">
+    <a class="maclasse-t-routeQUOTIDIEN" mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'QUOTIDIEN'" [active]="menuNiveau1 == 'QUOTIDIEN'">
       Gérer mon quotidien
     </a>
-    <a mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'PARAMETRAGE'" [active]="menuNiveau1 == 'PARAMETRAGE'">
+    <a class="maclasse-t-routePARAMETRAGE" mat-tab-link (click)="afficherMenuNiveau2 = true; menuNiveau1 = 'PARAMETRAGE'"
+      [active]="menuNiveau1 == 'PARAMETRAGE'">
       Paramétrage & administration
     </a>
 
     <!-- Si des problèmes sont détectées, les problèmes s'affichent -->
     @if (problemesDetectes) {
-    <a mat-tab-link (click)="afficherMenuNiveau2=false" [active]="routeActive == '/route-problemes'" routerLink="/route-problemes">
+    <a class="maclasse-t-routeproblemes" mat-tab-link (click)="afficherMenuNiveau2=false" [active]="routeActive == '/route-problemes'"
+      routerLink="/route-problemes">
       Problèmes
     </a>
     }
@@ -43,18 +42,20 @@
   @if (afficherMenuNiveau2){
   <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="maclasse-masquerEnModePrint">
     @if (menuNiveau1 == 'ORGA') {
-    <a mat-tab-link [active]="routeActive == '/route-competence'" routerLink="/route-competence">Compétences</a>
-    <a mat-tab-link [active]="routeActive == '/route-eleve'" routerLink="/route-eleve">Elèves</a>
-    <a mat-tab-link [active]="routeActive == '/route-projet'" routerLink="/route-projet">Projets</a>
+    <a class="maclasse-t-routecompetence" mat-tab-link [active]="routeActive == '/route-competence'" routerLink="/route-competence">Compétences</a>
+    <a class="maclasse-t-routeeleve" mat-tab-link [active]="routeActive == '/route-eleve'" routerLink="/route-eleve">Elèves</a>
+    <a class="maclasse-t-routeprojet" mat-tab-link [active]="routeActive == '/route-projet'" routerLink="/route-projet">Projets</a>
     }
     @else if (menuNiveau1 == 'QUOTIDIEN') {
-    <a mat-tab-link [active]="routeActive == '/route-journal'" routerLink="/route-journal">Cahier journal</a>
-    <a mat-tab-link [active]="routeActive == '/route-tableaudebord'" routerLink="/route-tableaudebord">Tableau de bord</a>
-    <a mat-tab-link [active]="routeActive == '/route-taches'" routerLink="/route-taches">Tâches</a>
+    <a class="maclasse-t-routejournal" mat-tab-link [active]="routeActive == '/route-journal'" routerLink="/route-journal">Cahier journal</a>
+    <a class="maclasse-t-routetableaudebord" mat-tab-link [active]="routeActive == '/route-tableaudebord'" routerLink="/route-tableaudebord">Tableau de bord</a>
+    <a class="maclasse-t-routetaches" mat-tab-link [active]="routeActive == '/route-taches'" routerLink="/route-taches">Tâches</a>
     }
     @else if (menuNiveau1 == 'PARAMETRAGE') {
-    <a mat-tab-link [active]="routeActive == '/route-parametrage'" routerLink="/route-parametrage">Paramétrage de l'année en cours</a>
-    <a mat-tab-link [active]="routeActive == '/route-initialisation'" routerLink="/route-initialisation">Initialiser l'année prochaine</a>
+    <a class="maclasse-t-routeparametrage" mat-tab-link [active]="routeActive == '/route-parametrage'" routerLink="/route-parametrage">Paramétrage de l'année en
+      cours</a>
+    <a class="maclasse-t-routeinitialisation" mat-tab-link [active]="routeActive == '/route-initialisation'" routerLink="/route-initialisation">Initialiser
+      l'année prochaine</a>
     }
 
   </nav>

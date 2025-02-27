@@ -11,7 +11,7 @@
     <div composant-sauvegarde></div>
 
     <!-- Ouverture de l'aide-->
-    <button type="button" mat-icon-button (click)="sidenav.open()" matTooltip="Afficher l'aide" aria-label="Afficher l'aide">
+    <button class="maclasse-t-afficherAide" type="button" mat-icon-button (click)="sidenav.open()" matTooltip="Afficher l'aide" aria-label="Afficher l'aide">
       <fa-icon icon="question-circle"></fa-icon>
     </button>
   </div>
@@ -20,7 +20,7 @@
   <mat-sidenav #sidenav autoFocus="true" position="end">
     <!-- Fermeture de l'aide-->
     <div class="maclasse-afficherActions">
-      <button type="button" mat-icon-button (click)="sidenav.close()" matTooltip="Masquer l'aide" aria-label="Masquer l'aide">
+      <button class="maclasse-t-masquerAide" type="button" mat-icon-button (click)="sidenav.close()" matTooltip="Masquer l'aide" aria-label="Masquer l'aide">
         <fa-icon icon="question-circle"></fa-icon>
       </button>
     </div>

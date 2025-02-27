@@ -13,7 +13,8 @@
     "zip": "rm -f ./docs/outils-de-classe_1.0.0.versionLocale.zip && npm-build-zip --source=./zip --destination=./docs/ --name=versionLocale",
     "build": "npm run package && npm run preparerPourZip && npm run zip",
     "http": "http-server ./doc/",
-    "lint": "tslint --project tsconfig.json"
+    "lint": "tslint --project tsconfig.json",
+    "cypress": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +43,7 @@
     "@angular/compiler-cli": "^18.2.13",
     "@types/jasmine": "~5.1.0",
     "@types/pako": "^2.0.3",
+    "cypress": "^14.0.3",
     "http-server": "^14.1.1",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",

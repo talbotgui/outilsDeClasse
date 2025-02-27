@@ -3,7 +3,6 @@ import localeFr from '@angular/common/locales/fr';
 import { ApplicationConfig, isDevMode, LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, RouteReuseStrategy, withHashLocation } from '@angular/router';
@@ -18,7 +17,7 @@ registerLocaleData(localeFr, 'fr');
 export const appConfig: ApplicationConfig = {
   providers: [
     // Présent par défaut
-    provideZoneChangeDetection({ eventCoalescing: true }), provideClientHydration(),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     // Pour charger les routes
     provideRouter(routes, withHashLocation()),
     // Pour ne pas détruire les composants en quitant une route (et donc conserver les données en cours d'édition)

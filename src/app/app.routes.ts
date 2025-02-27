@@ -15,7 +15,6 @@ import { RouteProblemeComponent } from './routes/route-probleme/route-probleme.c
 /** Code des routes du projet */
 export const ROUTE_ACCUEIL = 'route-accueil';
 export const ROUTE_CHARGER = 'route-chargerdonnees';
-export const ROUTE_CREER = 'route-creerdonnees';
 export const ROUTE_COMPETENCE = 'route-competence';
 export const ROUTE_ELEVE = 'route-eleve';
 export const ROUTE_INITIALISATION = 'route-initialisation';
@@ -32,7 +31,6 @@ export const routes: Routes = [
     { path: '', redirectTo: '/' + ROUTE_ACCUEIL, pathMatch: 'full' },
     { path: ROUTE_ACCUEIL, component: RouteAccueilComponent },
     { path: ROUTE_CHARGER, component: RouteChargerDonneesComponent },
-    { path: ROUTE_CREER, component: RouteAccueilComponent, canActivate: [ROUTER_GUARD] },
     { path: ROUTE_COMPETENCE, component: RouteCompetenceComponent, canActivate: [ROUTER_GUARD] },
     { path: ROUTE_ELEVE, component: RouteEleveComponent, canActivate: [ROUTER_GUARD] },
     { path: ROUTE_INITIALISATION, component: RouteInitialisationComponent, canActivate: [ROUTER_GUARD] },
