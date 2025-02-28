@@ -9,7 +9,8 @@
             <mat-chip-option (click)="onSelectionProjet(projet)" [selected]="projet==projetSelectionne">{{projet.nom}}</mat-chip-option>
             }
             <mat-chip-option selectable="false" (click)="ajouterUnProjet()">
-                <button type="button" mat-icon-button matTooltip="Ajouter un projet" aria-label="Ajouter un projet"><fa-icon icon="plus"></fa-icon></button>
+                <button type="button" class="maclasse-t-ajouterUnProjet" mat-icon-button matTooltip="Ajouter un projet" aria-label="Ajouter un projet"><fa-icon
+                        icon="plus"></fa-icon></button>
             </mat-chip-option>
         </mat-chip-listbox>
     </div>
@@ -33,21 +34,22 @@
         } @else {
         <span>Projet sélectionné : {{projetSelectionne.nom}}</span>
         }
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerProjetSelectionne()" matTooltip="Supprimer ce projet"
-            aria-label="Supprimer ce projet">
+        <button type="button" mat-icon-button class="maclasse-bouton16 maclasse-t-supprimerProjet" (click)="supprimerProjetSelectionne()"
+            matTooltip="Supprimer ce projet" aria-label="Supprimer ce projet">
             <fa-icon icon="trash"></fa-icon>
         </button>
         @if (modeEdition) {
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie"
+        <button type="button" mat-icon-button class="maclasse-bouton16 maclasse-t-terminerEdition" (click)="modeEdition=false" matTooltip="Terminer la saisie"
             aria-label="Terminer la saisie">
             <fa-icon icon="check"></fa-icon>
         </button>
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="ajouterUnSousProjet()" matTooltip="Ajouter une période"
-            aria-label="Ajouter une période">
+        <button type="button" mat-icon-button class="maclasse-bouton16 maclasse-t-ajouterSousProjet" (click)="ajouterUnSousProjet()"
+            matTooltip="Ajouter une période" aria-label="Ajouter une période">
             <fa-icon icon="plus"></fa-icon>
         </button>
         } @else {
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer ce projet" aria-label="Editer ce projet">
+        <button type="button" mat-icon-button class="maclasse-bouton16 maclasse-t-commencerEdition" (click)="modeEdition=true" matTooltip="Editer ce projet"
+            aria-label="Editer ce projet">
             <fa-icon icon="pencil" size="xs"></fa-icon>
         </button>
         }
@@ -70,7 +72,7 @@
         <div class="maclasse-listeEleves">
             @for (eleve of eleves; track eleve.id) {
             <div [class.maclasse-eleveSelectionne]="projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)"
-                (click)="ajouterRetirerEleveAuProjet(eleve.id)">
+                (click)="ajouterRetirerEleveAuProjet(eleve.id)" class="maclasse-t-selectionEleve">
                 @if (projetSelectionne && projetSelectionne.idsEleve && projetSelectionne.idsEleve.includes(eleve.id)) {
                 <fa-icon icon="check"></fa-icon>
                 }

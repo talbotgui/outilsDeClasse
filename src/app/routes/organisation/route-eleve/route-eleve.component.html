@@ -5,12 +5,14 @@
     <div>
         <mat-chip-listbox aria-label="Sélection d'un élève" [selectable]="true">
             @for (eleve of eleves; track eleve.id) {
-            <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne" [class.maclasse-texteBarre]="eleve.statut==='0'">
+            <mat-chip-option (click)="onSelectionEleve(eleve)" [selected]="eleve==eleveSelectionne" [class]="'maclasse-t-eleve-' + eleve.id"
+                [class.maclasse-texteBarre]="eleve.statut==='0'">
                 {{eleve.nom}} {{eleve.prenom}}
             </mat-chip-option>
             }
             <mat-chip-option selectable="false" (click)="ajouterUnEleve()">
-                <button type="button" mat-icon-button matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon icon="plus"></fa-icon></button>
+                <button type="button" mat-icon-button class="maclasse-t-ajouterUnEleve" matTooltip="Ajouter un élève" aria-label="Ajouter un élève"><fa-icon
+                        icon="plus"></fa-icon></button>
             </mat-chip-option>
         </mat-chip-listbox>
     </div>
@@ -23,16 +25,17 @@
     <legend>
         <span>Elève sélectionné : {{eleveSelectionne.nom}} {{eleveSelectionne.prenom}}</span>
         <button type="button" mat-icon-button class="maclasse-bouton16" (click)="supprimerEleveSelectionne()" matTooltip="Supprimer cet élève"
-            aria-label="Supprimer cet élève">
+            aria-label="Supprimer cet élève" class="maclasse-t-supprimerEleve">
             <fa-icon icon="trash"></fa-icon>
         </button>
         @if (modeEdition) {
         <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=false" matTooltip="Terminer la saisie"
-            aria-label="Terminer la saisie">
+            aria-label="Terminer la saisie" class="maclasse-t-terminerEdition">
             <fa-icon icon="check"></fa-icon>
         </button>
         } @else {
-        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer cet élève" aria-label="Editer cet élève">
+        <button type="button" mat-icon-button class="maclasse-bouton16" (click)="modeEdition=true" matTooltip="Editer cet élève" aria-label="Editer cet élève"
+            class="maclasse-t-commencerEdition">
             <fa-icon icon="pencil" size="xs"></fa-icon>
         </button>
         }
@@ -125,11 +128,11 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Téléphone</mat-label>
-                    <input matInput type="telephone" name="telephone" [(ngModel)]="contact.telephone">
+                    <input matInput type="tel" name="telephone" [(ngModel)]="contact.telephone">
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Adresse postale</mat-label>
-                    <input matInput type="adressePostale" name="adressePostale" [(ngModel)]="contact.adressePostale">
+                    <input matInput name="adressePostale" [(ngModel)]="contact.adressePostale">
                 </mat-form-field>
                 } @else {
                 <div class="maclasse-grille">
