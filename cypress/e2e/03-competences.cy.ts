@@ -1,7 +1,7 @@
 
-describe('Route compétence', () => {
+describe('Route compétences', () => {
 
-  it('Compétence - charger les données', () => {
+  it('Compétences - charger les données', () => {
 
     // Navigation
     cy.visit('http://localhost:4200/#/route-accueil');
@@ -18,7 +18,7 @@ describe('Route compétence', () => {
     cy.get('.maclasse-t-routePARAMETRAGE').should('be.visible');
   });
 
-  it('Compétence - accéder à la route', () => {
+  it('Compétences - accéder à la route', () => {
 
     // Accès à la route
     cy.get('.maclasse-t-routeORGA').click();
@@ -42,10 +42,8 @@ describe('Route compétence', () => {
     // Vérification fonctionnement de la recherche par arbo
     cy.get('route-competence').find('#mat-tab-label-0-1').click();
     cy.get('.maclasse-t-selectionnerCompetence').click();
-    cy.get('.maclasse-t-selectionnerCompetence').get('.maclasse-t-bouchon-compAsso').click();
+    cy.get('.cdk-overlay-container').find('.maclasse-t-bouchon-compAsso').click();
     cy.get('.maclasse-t-libelle-bouchon-compAsso').should('be.visible');
     cy.get('.maclasse-t-bouchon-j1_484').should('not.exist');
-
-
   });
 })
