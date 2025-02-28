@@ -43,3 +43,6 @@ Thumbs.db
 
 # Contenu du ZIP dynamique
 zip/outilsDeClasse-versionLocale/outilsDeClasse/*
+
+# Cypress
+cypress/downloads/*
