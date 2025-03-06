@@ -1,8 +1,0 @@
-BUG :
- - 
-
-TODO : 
- - général :
-   - demo : gérer un paramètre ?competencesSeulement pour charger et afficher les compétences du jeux de données de démonstration.
-   - route de création d'un fichier de données
-   - aide bien rédigée
