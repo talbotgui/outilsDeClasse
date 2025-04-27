@@ -230,7 +230,11 @@ export class Jdd {
                 accueil: '',
                 datesPPA: '',
                 datesESS: '',
-                absences: [],
+                absences: [
+                    { id: 'ca1', frequence: 2, raison: 'I', jour: 2, heureDebut: '8H00', heureFin: '12h00' },
+                    { id: 'ca1', frequence: 2, raison: 'I', jour: 3, heureDebut: '8H00', heureFin: '12h00' },
+                    { id: 'ca1', frequence: 2, raison: 'I', jour: 4, heureDebut: '8H00', heureFin: '12h00' }
+                ],
                 inclusion: { id: 'bouchon-10' },
                 notes: [
                     {

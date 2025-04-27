@@ -108,7 +108,7 @@ export class JournalService {
         // Gestion du commentaire de journal par défaut
         let commentaireJournalParDefaut = '';
         (eleves || []).forEach(e => {
-            if (e.statut === Eleve.CODE_STATUT_DANS_LA_CLASSE && e.absences) {
+            if (e.absences) {
                 e.absences.forEach(a => {
                     const numeroSemaine = parseInt(this.datePipe.transform(dateJournal, 'ww') as string, 10);
                     const verifFrequence = (typeof a.frequence === 'undefined' || a.frequence === 2) || (numeroSemaine % 2 === a.frequence);
