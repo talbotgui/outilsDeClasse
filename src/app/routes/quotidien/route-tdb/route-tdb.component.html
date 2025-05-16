@@ -113,7 +113,7 @@
                         {{libellePeriodeEvaluee}}
                     </div>
                     }
-                    @if (modeAffichage!='2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
+                    @if (modeAffichage=='1' || modeAffichage!='2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
                     <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage=='1'" [class.maclasse-table-case-w15]="modeAffichage!='1'">
                         {{libellePeriodePreparee}}
                     </div>
@@ -131,7 +131,7 @@
                     <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15">Commentaires publiés</div>
                     <div class="maclasse-table-case maclasse-afficherFlex maclasse-table-case-w15 maclasse-table-case-bordureDroite">Notes de travail</div>
                     }
-                    @if (modeAffichage != '2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
+                    @if (modeAffichage=='1' || modeAffichage!='2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
                     <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage=='1'" [class.maclasse-table-case-w15]="modeAffichage!='1'">
                         Constats/outils</div>
                     }
@@ -211,7 +211,7 @@
                         }
                     </div>
                     }
-                    @if (modeAffichage != '2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
+                    @if (modeAffichage=='1' || modeAffichage!='2' && periodes.indexOf(periodeSelectionnee) != periodes.length-1) {
                     <div class="maclasse-table-case" [class.maclasse-table-case-w30]="modeAffichage=='1'" [class.maclasse-table-case-w15]="modeAffichage!='1'">
                         @if (indexEnEdition==idx) {
                         @if (sousLigne.notePeriodePreparee) {
