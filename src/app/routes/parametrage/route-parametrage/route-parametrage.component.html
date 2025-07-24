@@ -113,13 +113,13 @@
                     @if (modeEdition) {
                     <mat-form-field>
                         <mat-label>Date de fin</mat-label>
-                        <input matInput [matDatepicker]="pickerDateFin" #inputDateFin="ngModel" [(ngModel)]="periode.debut" readonly>
+                        <input matInput [matDatepicker]="pickerDateFin" #inputDateFin="ngModel" [(ngModel)]="periode.fin" readonly>
                         <mat-datepicker-toggle matIconSuffix [for]="pickerDateFin"></mat-datepicker-toggle>
                         <mat-datepicker #pickerDateFin></mat-datepicker>
                     </mat-form-field>
 
                     } @else {
-                    {{periode.debut | date:'dd/MM/yyyy'}}
+                    {{periode.fin | date:'dd/MM/yyyy'}}
                     }
                 </div>
             </div>
