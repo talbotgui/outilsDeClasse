@@ -2,6 +2,8 @@
  * Ce fichier contient toutes les classes MODEL liées à l'affichage de message en entête de page.
  */
 
+import { ModelUtil } from "./model-utils";
+
 /** Liste des types de message affichable */
 export enum TypeMessageAafficher {
     Erreur, Avertissement, Information
@@ -9,6 +11,8 @@ export enum TypeMessageAafficher {
 
 /** Structure d'un message à afficher */
 export class MessageAafficher {
+    /** Génération d'un ID unique. */
+    public id = ModelUtil.getUID();
     /** Constructeur */
     public constructor(
         /** ID de l'emetteur (pour supprimer le message ensuite) */

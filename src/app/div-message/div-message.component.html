@@ -1,5 +1,5 @@
 <!-- Les messages d'information globaux -->
-@for (m of messagesAafficher; track m) {
+@for (m of messagesAafficher; track m.id) {
 <div class="maclasse-message maclasse-masquerEnModePrint" [class.maclasse-message-erreur]="m.isErreur" [class.maclasse-message-info]="m.isInformation"
     [class.maclasse-message-avertissement]="m.isAvertissement">
     <p [innerHTML]="m.message"></p>
