@@ -96,7 +96,7 @@ export class ChargementService {
 
                 const message = 'Erreur durant le déchiffrement des données. Le mot de passe est-il bon ?';
                 this.contexteService.afficherUnMessageGeneral(new MessageAafficher('chargerDonneesDeClasse', TypeMessageAafficher.Erreur, message));
-                return caught;
+                return of(false);
             })
         );
     }
