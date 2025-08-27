@@ -4966,7 +4966,1026 @@ export class Jdd {
                 "parent": "MC3-313",
                 "text": "Programmer la construction d'un chemin simple"
             },
-
+            {
+                "id": "MC4",
+                "parent": "M",
+                "text": "Cycle 4"
+            },
+            {
+                "id": "MC4-1",
+                "parent": "MC4",
+                "text": "Compétences travaillées "
+            },
+            {
+                "id": "MC4-2",
+                "parent": "MC4-1",
+                "text": "Chercher"
+            },
+            {
+                "id": "MC4-3",
+                "parent": "MC4-2",
+                "text": "Extraire d'un document les informations utiles, les reformuler, les organiser, les confronter à ses connaissances."
+            },
+            {
+                "id": "MC4-4",
+                "parent": "MC4-2",
+                "text": "S'engager dans une démarche scientifique, observer, questionner, manipuler, expérimenter (sur une feuille de papier, avec des objets, à l'aide de logiciels), émettre des hypothèses, chercher des exemples ou des contre- exemples, simplifier ou particulariser une situation, émettre une conjecture."
+            },
+            {
+                "id": "MC4-5",
+                "parent": "MC4-2",
+                "text": "Tester, essayer plusieurs pistes de résolution."
+            },
+            {
+                "id": "MC4-6",
+                "parent": "MC4-2",
+                "text": "Décomposer un problème en sous-problèmes."
+            },
+            {
+                "id": "MC4-7",
+                "parent": "MC4-1",
+                "text": "Modéliser"
+            },
+            {
+                "id": "MC4-8",
+                "parent": "MC4-7",
+                "text": "Reconnaître un modèle mathématique (proportionnalité, équiprobabilité) et raisonner dans le cadre de ce modèle pour résoudre un problème."
+            },
+            {
+                "id": "MC4-9",
+                "parent": "MC4-7",
+                "text": "Traduire en langage mathématique une situation réelle (par exemple à l'aide d'équations, de fonctions, de configurations géométriques, d'outils statistiques)."
+            },
+            {
+                "id": "MC4-10",
+                "parent": "MC4-7",
+                "text": "Comprendre et utiliser une simulation numérique ou géométrique."
+            },
+            {
+                "id": "MC4-11",
+                "parent": "MC4-7",
+                "text": "Valider ou invalider un modèle, comparer une situation à un modèle connu (par exemple un modèle aléatoire)."
+            },
+            {
+                "id": "MC4-12",
+                "parent": "MC4-1",
+                "text": "Représenter"
+            },
+            {
+                "id": "MC4-13",
+                "parent": "MC4-12",
+                "text": "Choisir et mettre en relation des cadres (numérique, algébrique, géométrique) adaptés pour traiter un problème ou pour étudier un objet mathématique."
+            },
+            {
+                "id": "MC4-14",
+                "parent": "MC4-12",
+                "text": "Produire et utiliser plusieurs représentations des nombres."
+            },
+            {
+                "id": "MC4-15",
+                "parent": "MC4-12",
+                "text": "Représenter des données sous forme d'une série statistique."
+            },
+            {
+                "id": "MC4-16",
+                "parent": "MC4-12",
+                "text": "Utiliser, produire et mettre en relation des représentations de solides (par exemple perspective ou vue de dessus/de dessous) et de situations spatiales (schémas, croquis, maquettes, patrons, figures géométriques, photographies, plans, cartes, courbes de niveau)."
+            },
+            {
+                "id": "MC4-17",
+                "parent": "MC4-1",
+                "text": "Raisonner"
+            },
+            {
+                "id": "MC4-18",
+                "parent": "MC4-17",
+                "text": "Résoudre des problèmes impliquant des grandeurs variées (géométriques, physiques, économiques) : mobiliser les connaissances nécessaires, analyser et exploiter ses erreurs, mettre à l'essai plusieurs solutions."
+            },
+            {
+                "id": "MC4-19",
+                "parent": "MC4-17",
+                "text": "Mener collectivement une investigation en sachant prendre en compte le point de vue d'autrui."
+            },
+            {
+                "id": "MC4-20",
+                "parent": "MC4-17",
+                "text": "Démontrer : utiliser un raisonnement logique et des règles établies (propriétés, théorèmes, formules) pour parvenir à une conclusion."
+            },
+            {
+                "id": "MC4-21",
+                "parent": "MC4-17",
+                "text": "Fonder et défendre ses jugements en s'appuyant sur des résultats établis et sur sa maîtrise de l'argumentation."
+            },
+            {
+                "id": "MC4-22",
+                "parent": "MC4-1",
+                "text": "Calculer"
+            },
+            {
+                "id": "MC4-23",
+                "parent": "MC4-22",
+                "text": "Calculer avec des nombres rationnels, de manière exacte ou approchée, en combinant de façon appropriée le calcul mental, le calcul posé et le calcul instrumenté (calculatrice ou logiciel)."
+            },
+            {
+                "id": "MC4-24",
+                "parent": "MC4-22",
+                "text": "Contrôler la vraisemblance de ses résultats, notamment en estimant des ordres de grandeur ou en utilisant des encadrements."
+            },
+            {
+                "id": "MC4-25",
+                "parent": "MC4-22",
+                "text": "Calculer en utilisant le langage algébrique (lettres, symboles, etc.)."
+            },
+            {
+                "id": "MC4-26",
+                "parent": "MC4-1",
+                "text": "Communiquer"
+            },
+            {
+                "id": "MC4-27",
+                "parent": "MC4-26",
+                "text": "Faire le lien entre le langage naturel et le langage algébrique."
+            },
+            {
+                "id": "MC4-28",
+                "parent": "MC4-26",
+                "text": "Distinguer des spécificités du langage mathématique par rapport à la langue française."
+            },
+            {
+                "id": "MC4-29",
+                "parent": "MC4-26",
+                "text": "Expliquer à l'oral ou à l'écrit (sa démarche, son raisonnement, un calcul, un protocole de construction géométrique, un algorithme), comprendre les explications d'un autre et argumenter dans l'échange."
+            },
+            {
+                "id": "MC4-30",
+                "parent": "MC4-26",
+                "text": "Vérifier la validité d'une information et distinguer ce qui est objectif et ce qui est subjectif ; lire, interpréter, commenter, produire des tableaux, des graphiques, des diagrammes."
+            },
+            {
+                "id": "MC4-31",
+                "parent": "MC4",
+                "text": "Compétences et connaissances associées : Thème A – Nombres et calculs"
+            },
+            {
+                "id": "MC4-32",
+                "parent": "MC4-31",
+                "text": "Utiliser les nombres pour comparer, calculer et résoudre des problèmes"
+            },
+            {
+                "id": "MC4-33",
+                "parent": "MC4-32",
+                "text": "Nombres"
+            },
+            {
+                "id": "MC4-34",
+                "parent": "MC4-33",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-35",
+                "parent": "MC4-34",
+                "text": "Nombres décimaux (positifs et négatifs), notion d'opposé."
+            },
+            {
+                "id": "MC4-36",
+                "parent": "MC4-34",
+                "text": "Fractions, nombres rationnels (positifs et négatifs), notion d'inverse."
+            },
+            {
+                "id": "MC4-37",
+                "parent": "MC4-34",
+                "text": "Les carrés parfaits de 1 à 144."
+            },
+            {
+                "id": "MC4-38",
+                "parent": "MC4-34",
+                "text": "Définition de la racine carrée."
+            },
+            {
+                "id": "MC4-39",
+                "parent": "MC4-34",
+                "text": "Les préfixes de nano à giga."
+            },
+            {
+                "id": "MC4-40",
+                "parent": "MC4-33",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-41",
+                "parent": "MC4-40",
+                "text": "Utiliser diverses représentations d'un même nombre (écriture décimale ou fractionnaire, notation scientifique, repérage sur une droite graduée)."
+            },
+            {
+                "id": "MC4-42",
+                "parent": "MC4-40",
+                "text": "Passer d'une représentation d'un nombre à une autre."
+            },
+            {
+                "id": "MC4-43",
+                "parent": "MC4-32",
+                "text": "Comparaisons de nombres"
+            },
+            {
+                "id": "MC4-44",
+                "parent": "MC4-43",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-45",
+                "parent": "MC4-42",
+                "text": "galité de fractions (démonstration possible à partir de la définition du quotient)."
+            },
+            {
+                "id": "MC4-46",
+                "parent": "MC4-44",
+                "text": "Ordre sur les nombres rationnels en écriture décimale ou fractionnaire."
+            },
+            {
+                "id": "MC4-47",
+                "parent": "MC4-43",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-48",
+                "parent": "MC4-47",
+                "text": "Comparer, ranger, encadrer des nombres rationnels en écriture décimale, fractionnaire ou scientifique"
+            },
+            {
+                "id": "MC4-49",
+                "parent": "MC4-47",
+                "text": "Repérer et placer un nombre rationnel sur une droite graduée."
+            },
+            {
+                "id": "MC4-50",
+                "parent": "MC4-47",
+                "text": "Associer à des objets des ordres de grandeur (par exemple taille d'un atome, d'une bactérie, d'une alvéole pulmonaire, longueur de l'intestin, capacité de stockage d'un disque dur, vitesses du son et de la lumière, populations française et mondiale, distance Terre-Lune, distance du Soleil à l'étoile la plus proche, etc.)."
+            },
+            {
+                "id": "MC4-51",
+                "parent": "MC4-32",
+                "text": "Pratiquer le calcul exact ou approché, mental, à la main ou instrumenté"
+            },
+            {
+                "id": "MC4-52",
+                "parent": "MC4-51",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-53",
+                "parent": "MC4-52",
+                "text": "Somme, différence, produit, quotient de nombres décimaux, de deux nombres rationnels."
+            },
+            {
+                "id": "MC4-54",
+                "parent": "MC4-52",
+                "text": "Puissance d'un nombre (exposants entiers, positifs ou négatifs)."
+            },
+            {
+                "id": "MC4-55",
+                "parent": "MC4-52",
+                "text": "Notation scientifique."
+            },
+            {
+                "id": "MC4-56",
+                "parent": "MC4-51",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-57",
+                "parent": "MC4-56",
+                "text": "Calculer avec des nombres relatifs, des fractions, des nombres décimaux."
+            },
+            {
+                "id": "MC4-58",
+                "parent": "MC4-56",
+                "text": "Vérifier la vraisemblance d'un résultat, notamment en estimant son ordre de grandeur."
+            },
+            {
+                "id": "MC4-59",
+                "parent": "MC4-56",
+                "text": "Effectuer des calculs numériques simples impliquant des puissances, notamment en utilisant la notation scientifique."
+            },
+            {
+                "id": "MC4-60",
+                "parent": "MC4-56",
+                "text": "Utiliser la racine carrée pour résoudre des problèmes, notamment géométriques."
+            },
+            {
+                "id": "MC4-61",
+                "parent": "MC4-56",
+                "text": "Effectuer des calculs et des comparaisons pour traiter des problèmes."
+            },
+            {
+                "id": "MC4-62",
+                "parent": "MC4-31",
+                "text": "Comprendre et utiliser les notions de divisibilité et de nombres premiers"
+            },
+            {
+                "id": "MC4-63",
+                "parent": "MC4-62",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-64",
+                "parent": "MC4-63",
+                "text": "Multiples et diviseurs."
+            },
+            {
+                "id": "MC4-65",
+                "parent": "MC4-63",
+                "text": "Critères de divisibilité par 2, 3, 5, 9."
+            },
+            {
+                "id": "MC4-66",
+                "parent": "MC4-63",
+                "text": "Division euclidienne (quotient, reste)."
+            },
+            {
+                "id": "MC4-67",
+                "parent": "MC4-63",
+                "text": "Définition d'un nombre premier ; liste des nombres premiers inférieurs ou égaux à 30."
+            },
+            {
+                "id": "MC4-68",
+                "parent": "MC4-63",
+                "text": "Fractions irréductibles."
+            },
+            {
+                "id": "MC4-69",
+                "parent": "MC4-62",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-70",
+                "parent": "MC4-69",
+                "text": "Déterminer si un entier est ou n'est pas multiple ou diviseur d'un autre entier."
+            },
+            {
+                "id": "MC4-71",
+                "parent": "MC4-69",
+                "text": "Déterminer les nombres premiers inférieurs ou égaux à 100."
+            },
+            {
+                "id": "MC4-72",
+                "parent": "MC4-69",
+                "text": "Utiliser les critères de divisibilité par 2, 3, 5, 9, 10."
+            },
+            {
+                "id": "MC4-73",
+                "parent": "MC4-69",
+                "text": "Déterminer les diviseurs d'un nombre à la main, à l'aide d'un tableur, d'une calculatrice."
+            },
+            {
+                "id": "MC4-74",
+                "parent": "MC4-69",
+                "text": "Décomposer un nombre entier en produit de facteurs premiers (à la main ou à l'aide d'un logiciel)."
+            },
+            {
+                "id": "MC4-75",
+                "parent": "MC4-69",
+                "text": "Simplifier une fraction pour la rendre irréductible."
+            },
+            {
+                "id": "MC4-76",
+                "parent": "MC4-69",
+                "text": "Modéliser et résoudre des problèmes mettant en jeu la divisibilité (engrenages, conjonction de phénomènes, etc.)."
+            },
+            {
+                "id": "MC4-77",
+                "parent": "MC4-31",
+                "text": "Utiliser le calcul littéral"
+            },
+            {
+                "id": "MC4-78",
+                "parent": "MC4-77",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-79",
+                "parent": "MC4-78",
+                "text": "Notions d'inconnue, d'équation, d'indéterminée, d'identité."
+            },
+            {
+                "id": "MC4-80",
+                "parent": "MC4-78",
+                "text": "Propriétés de distributivité (simple et double)."
+            },
+            {
+                "id": "MC4-81",
+                "parent": "MC4-78",
+                "text": "Annulation d'un produit (démonstration possible par disjonction de cas)."
+            },
+            {
+                "id": "MC4-82",
+                "parent": "MC4-78",
+                "text": "Factorisation de a2 - b2."
+            },
+            {
+                "id": "MC4-83",
+                "parent": "MC4-77",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-84",
+                "parent": "MC4-83",
+                "text": "Développer, factoriser, réduire des expressions algébriques dans des cas très simples."
+            },
+            {
+                "id": "MC4-85",
+                "parent": "MC4-83",
+                "text": "Utiliser le calcul littéral pour traduire une propriété générale (par exemple la distributivité simple), pour démontrer un résultat général (par exemple que la somme de trois entiers consécutifs est un multiple de trois), pour valider ou réfuter une conjecture, pour modéliser une situation."
+            },
+            {
+                "id": "MC4-86",
+                "parent": "MC4-83",
+                "text": "Mettre un problème en équation en vue de sa résolution."
+            },
+            {
+                "id": "MC4-87",
+                "parent": "MC4-83",
+                "text": "Résoudre algébriquement des équations du premier degré ou s'y ramenant (équations produits), en particulier des équations du type x2 = a."
+            },
+            {
+                "id": "MC4-88",
+                "parent": "MC4-83",
+                "text": "Mémorisé ou automatisé :"
+            },
+            {
+                "id": "MC4-89",
+                "parent": "MC4-88",
+                "text": "les règles de calcul sur les nombres relatifs et les fractions, notamment la condition d'égalité de deux fractions (si ad = bc, alors a/b=c/d et réciproquement) ;"
+            },
+            {
+                "id": "MC4-90",
+                "parent": "MC4-88",
+                "text": "les conventions d'écritures du calcul littéral ;"
+            },
+            {
+                "id": "MC4-91",
+                "parent": "MC4-88",
+                "text": "les formules de distributivité simple et double ;"
+            },
+            {
+                "id": "MC4-92",
+                "parent": "MC4-88",
+                "text": "l'identité a2 – b2 = (a – b)(a + b) ;"
+            },
+            {
+                "id": "MC4-93",
+                "parent": "MC4-88",
+                "text": "les procédures de résolution d'équations du type ax = b et a + x = b."
+            },
+            {
+                "id": "MC4-94",
+                "parent": "MC4",
+                "text": "Compétences et connaissances associées : Thème B – Organisation et gestion de données, fonctions"
+            },
+            {
+                "id": "MC4-95",
+                "parent": "MC4-94",
+                "text": "Interpréter, représenter et traiter des données"
+            },
+            {
+                "id": "MC4-96",
+                "parent": "MC4-95",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-97",
+                "parent": "MC4-96",
+                "text": "Effectifs, fréquences."
+            },
+            {
+                "id": "MC4-98",
+                "parent": "MC4-96",
+                "text": "Indicateurs de position : moyenne, médiane."
+            },
+            {
+                "id": "MC4-99",
+                "parent": "MC4-96",
+                "text": "Indicateur de dispersion : étendue."
+            },
+            {
+                "id": "MC4-100",
+                "parent": "MC4-95",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-101",
+                "parent": "MC4-100",
+                "text": "Recueillir des données, les organiser."
+            },
+            {
+                "id": "MC4-102",
+                "parent": "MC4-100",
+                "text": "Lire et interpréter des données sous forme de données brutes, de tableau, de diagramme (diagramme en bâtons, diagramme circulaire, histogramme)."
+            },
+            {
+                "id": "MC4-103",
+                "parent": "MC4-100",
+                "text": "Utiliser un tableur-grapheur pour présenter des données sous la forme d'un tableau ou d'un diagramme."
+            },
+            {
+                "id": "MC4-104",
+                "parent": "MC4-100",
+                "text": "Calculer des effectifs, des fréquences."
+            },
+            {
+                "id": "MC4-105",
+                "parent": "MC4-100",
+                "text": "Calculer et interpréter des indicateurs de position ou de dispersion d'une série statistique."
+            },
+            {
+                "id": "MC4-106",
+                "parent": "MC4-94",
+                "text": "Comprendre et utiliser des notions élémentaires de probabilités"
+            },
+            {
+                "id": "MC4-107",
+                "parent": "MC4-106",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-108",
+                "parent": "MC4-105",
+                "text": "Vocabulaire des probabilités."
+            },
+            {
+                "id": "MC4-109",
+                "parent": "MC4-105",
+                "text": "Notion de probabilité ; la probabilité d'un événement est comprise entre 0 et 1."
+            },
+            {
+                "id": "MC4-110",
+                "parent": "MC4-105",
+                "text": "Probabilité d'événements certains, impossibles, contraires."
+            },
+            {
+                "id": "MC4-111",
+                "parent": "MC4-106",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-112",
+                "parent": "MC4-105",
+                "text": "Aborder les questions relatives au hasard à partir de problèmes simples."
+            },
+            {
+                "id": "MC4-113",
+                "parent": "MC4-105",
+                "text": "Calculer des probabilités dans des cas simples (par exemple évaluation des chances de gain dans un jeu)."
+            },
+            {
+                "id": "MC4-114",
+                "parent": "MC4-105",
+                "text": "Exprimer des probabilités sous diverses formes (décimale, fractionnaire, pourcentage)."
+            },
+            {
+                "id": "MC4-115",
+                "parent": "MC4-105",
+                "text": "Faire le lien entre fréquence et probabilité."
+            },
+            {
+                "id": "MC4-116",
+                "parent": "MC4-94",
+                "text": "Résoudre des problèmes de proportionnalité"
+            },
+            {
+                "id": "MC4-117",
+                "parent": "MC4-116",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-118",
+                "parent": "MC4-105",
+                "text": "Coefficient de proportionnalité."
+            },
+            {
+                "id": "MC4-119",
+                "parent": "MC4-105",
+                "text": "Taux d'évolution, coefficient multiplicateur."
+            },
+            {
+                "id": "MC4-120",
+                "parent": "MC4-105",
+                "text": "Notion de ratio."
+            },
+            {
+                "id": "MC4-121",
+                "parent": "MC4-116",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-122",
+                "parent": "MC4-105",
+                "text": "Reconnaître une situation de proportionnalité ou de non-proportionnalité."
+            },
+            {
+                "id": "MC4-123",
+                "parent": "MC4-105",
+                "text": "Calculer une quatrième proportionnelle."
+            },
+            {
+                "id": "MC4-124",
+                "parent": "MC4-105",
+                "text": "Partager une quantité (par exemple une somme d'argent) en deux ou trois parts selon un ratio donné."
+            },
+            {
+                "id": "MC4-125",
+                "parent": "MC4-105",
+                "text": "Utiliser une formule liant deux grandeurs dans une situation de proportionnalité (par exemple la longueur d'un cercle en fonction de son rayon, la loi d'Ohm exprimant la tension en fonction de l'intensité, la distance parcourue en fonction du temps à vitesse constante, etc.)."
+            },
+            {
+                "id": "MC4-126",
+                "parent": "MC4-105",
+                "text": "Résoudre des problèmes utilisant la proportionnalité (pourcentages, échelles, agrandissement réduction)."
+            },
+            {
+                "id": "MC4-127",
+                "parent": "MC4-94",
+                "text": "Comprendre et utiliser la notion de fonction"
+            },
+            {
+                "id": "MC4-128",
+                "parent": "MC4-127",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-129",
+                "parent": "MC4-128",
+                "text": "Vocabulaire : variable, fonction, antécédent, image."
+            },
+            {
+                "id": "MC4-130",
+                "parent": "MC4-128",
+                "text": "Différents modes de représentation d'une fonction (expression symbolique, tableau de valeurs, représentation graphique, programme de calcul)."
+            },
+            {
+                "id": "MC4-131",
+                "parent": "MC4-128",
+                "text": "Notations f(𝑥) et 𝑥 ↦ f(𝑥)."
+            },
+            {
+                "id": "MC4-132",
+                "parent": "MC4-131",
+                "text": "Fonction linéaire, fonction affine."
+            },
+            {
+                "id": "MC4-133",
+                "parent": "MC4-127",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-134",
+                "parent": "MC4-133",
+                "text": "Passer d'un mode de représentation d'une fonction à un autre."
+            },
+            {
+                "id": "MC4-135",
+                "parent": "MC4-133",
+                "text": "Déterminer, à partir d'un mode de représentation, l'image ou un antécédent d'un nombre par une fonction."
+            },
+            {
+                "id": "MC4-136",
+                "parent": "MC4-133",
+                "text": "Représenter graphiquement une fonction linéaire, une fonction affine."
+            },
+            {
+                "id": "MC4-137",
+                "parent": "MC4-133",
+                "text": "Modéliser un phénomène continu par une fonction."
+            },
+            {
+                "id": "MC4-138",
+                "parent": "MC4-133",
+                "text": "Modéliser une situation de proportionnalité à l'aide d'une fonction linéaire."
+            },
+            {
+                "id": "MC4-139",
+                "parent": "MC4-133",
+                "text": "Résoudre des problèmes modélisés par des fonctions."
+            },
+            {
+                "id": "MC4-140",
+                "parent": "MC4-133",
+                "text": "Mémorisé ou automatisé :"
+            },
+            {
+                "id": "MC4-141",
+                "parent": "MC4-140",
+                "text": "différentes procédures de calcul d'une quatrième proportionnelle ;"
+            },
+            {
+                "id": "MC4-142",
+                "parent": "MC4-140",
+                "text": "l'allure de la représentation graphique d'une fonction affine ou linéaire ;"
+            },
+            {
+                "id": "MC4-143",
+                "parent": "MC4-140",
+                "text": "les procédures d'application et de calcul d'un pourcentage ou d'une échelle ;"
+            },
+            {
+                "id": "MC4-144",
+                "parent": "MC4-140",
+                "text": "les procédures de recherche d'image et d'antécédent d'un nombre par une fonction."
+            },
+            {
+                "id": "MC4-145",
+                "parent": "MC4",
+                "text": "Compétences et connaissances associées : Thème C – Grandeurs et mesures"
+            },
+            {
+                "id": "MC4-146",
+                "parent": "MC4-145",
+                "text": "Calculer avec des grandeurs mesurables ; exprimer les résultats dans les unités adaptées"
+            },
+            {
+                "id": "MC4-147",
+                "parent": "MC4-146",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-148",
+                "parent": "MC4-147",
+                "text": "Notion de grandeur produit et de grandeur quotient."
+            },
+            {
+                "id": "MC4-149",
+                "parent": "MC4-147",
+                "text": "Aire du parallélogramme (obtenue à partir de celle du rectangle par découpage et recollement)."
+            },
+            {
+                "id": "MC4-150",
+                "parent": "MC4-147",
+                "text": "Volume d'un prisme, d'une pyramide, d'un cylindre, d'un cône, d'une boule."
+            },
+            {
+                "id": "MC4-151",
+                "parent": "MC4-147",
+                "text": "Correspondance entre unités de volume et de contenance (1 L = 1 dm3, 1 000 L = 1 m3)."
+            },
+            {
+                "id": "MC4-152",
+                "parent": "MC4-146",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-153",
+                "parent": "MC4-152",
+                "text": "Mener des calculs impliquant des grandeurs mesurables, notamment des grandeurs composées, exprimer les résultats dans les unités adaptées."
+            },
+            {
+                "id": "MC4-154",
+                "parent": "MC4-152",
+                "text": "Vérifier la cohérence des résultats du point de vue des unités."
+            },
+            {
+                "id": "MC4-155",
+                "parent": "MC4-152",
+                "text": "Effectuer des conversions d'unités."
+            },
+            {
+                "id": "MC4-156",
+                "parent": "MC4-145",
+                "text": "Comprendre l'effet de quelques transformations sur les figures géométriques"
+            },
+            {
+                "id": "MC4-157",
+                "parent": "MC4-156",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-158",
+                "parent": "MC4-157",
+                "text": "Effet d'un déplacement, d'un agrandissement ou d'une réduction sur les longueurs, les angles, les aires et les volumes."
+            },
+            {
+                "id": "MC4-159",
+                "parent": "MC4-156",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-160",
+                "parent": "MC4-159",
+                "text": "Utiliser un rapport de réduction ou d'agrandissement (architecture, maquettes) pour calculer des longueurs, des aires, des volumes."
+            },
+            {
+                "id": "MC4-161",
+                "parent": "MC4-159",
+                "text": "Utiliser l'échelle d'une carte."
+            },
+            {
+                "id": "MC4-162",
+                "parent": "MC4-159",
+                "text": "Utiliser des transformations pour calculer des grandeurs géométriques."
+            },
+            {
+                "id": "MC4-163",
+                "parent": "MC4-159",
+                "text": "Faire le lien entre la proportionnalité et certaines configurations ou transformations"
+            },
+            {
+                "id": "MC4-164",
+                "parent": "MC4-159",
+                "text": "Mémorisé et automatisé les formules donnant les longueurs, aires, volumes des figures et solides figurant au programme, ainsi que les procédures de conversion d'unités."
+            },
+            {
+                "id": "MC4-165",
+                "parent": "MC4",
+                "text": "Compétences et connaissances associées : Thème D - Espace et géométrie"
+            },
+            {
+                "id": "MC4-166",
+                "parent": "MC4-165",
+                "text": "Représenter l'espace"
+            },
+            {
+                "id": "MC4-167",
+                "parent": "MC4-166",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-168",
+                "parent": "MC4-167",
+                "text": "Abscisse, ordonnée, altitude."
+            },
+            {
+                "id": "MC4-169",
+                "parent": "MC4-167",
+                "text": "Latitude, longitude."
+            },
+            {
+                "id": "MC4-170",
+                "parent": "MC4-166",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-171",
+                "parent": "MC4-169",
+                "text": "Se) repérer sur une droite graduée, dans le plan muni d'un repère orthogonal, dans un parallélépipède rectangle, sur une sphère."
+            },
+            {
+                "id": "MC4-172",
+                "parent": "MC4-170",
+                "text": "Reconnaître des solides (pavé droit, cube, prisme, cylindre, pyramide, cône, boule)."
+            },
+            {
+                "id": "MC4-173",
+                "parent": "MC4-170",
+                "text": "Construire et mettre en relation des représentations de ces solides (vues en perspective cavalière, de face, de dessus, sections planes, patrons, etc.)."
+            },
+            {
+                "id": "MC4-174",
+                "parent": "MC4-170",
+                "text": "Utiliser un logiciel de géométrie dynamique pour représenter des solides."
+            },
+            {
+                "id": "MC4-175",
+                "parent": "MC4-165",
+                "text": "Utiliser les notions de géométrie plane pour démontrer"
+            },
+            {
+                "id": "MC4-176",
+                "parent": "MC4-175",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-177",
+                "parent": "MC4-176",
+                "text": "Caractérisation angulaire du parallélisme : angles alternes internes, angles correspondants."
+            },
+            {
+                "id": "MC4-178",
+                "parent": "MC4-176",
+                "text": "Triangle :"
+            },
+            {
+                "id": "MC4-179",
+                "parent": "MC4-178",
+                "text": "somme des angles d'un triangle (démonstration possible en utilisant les angles correspondants) ;"
+            },
+            {
+                "id": "MC4-180",
+                "parent": "MC4-178",
+                "text": "hauteurs et médiatrices ;"
+            },
+            {
+                "id": "MC4-181",
+                "parent": "MC4-178",
+                "text": "inégalité triangulaire ;"
+            },
+            {
+                "id": "MC4-182",
+                "parent": "MC4-178",
+                "text": "cas d'égalité des triangles ;"
+            },
+            {
+                "id": "MC4-183",
+                "parent": "MC4-178",
+                "text": "triangles semblables (une définition et une propriété caractéristique)."
+            },
+            {
+                "id": "MC4-184",
+                "parent": "MC4-176",
+                "text": "Parallélogramme (une définition et une propriété caractéristique)."
+            },
+            {
+                "id": "MC4-185",
+                "parent": "MC4-176",
+                "text": "Le théorème de Thalès et sa réciproque (configurations des triangles emboîtés et du papillon)."
+            },
+            {
+                "id": "MC4-186",
+                "parent": "MC4-176",
+                "text": "Le théorème de Pythagore et sa réciproque."
+            },
+            {
+                "id": "MC4-187",
+                "parent": "MC4-176",
+                "text": "Lignes trigonométriques dans le triangle rectangle : cosinus, sinus, tangente."
+            },
+            {
+                "id": "MC4-188",
+                "parent": "MC4-175",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-189",
+                "parent": "MC4-188",
+                "text": "Mettre en oeuvre ou écrire un protocole de construction d'une figure géométrique."
+            },
+            {
+                "id": "MC4-190",
+                "parent": "MC4-188",
+                "text": "Faire le lien entre les cas d'égalité des triangles et la construction d'un triangle à partir de la donnée de longueurs des côtés et/ou de mesures d'angles."
+            },
+            {
+                "id": "MC4-191",
+                "parent": "MC4-188",
+                "text": "Comprendre l'effet d'une translation, d'une symétrie (axiale et centrale), d'une rotation, d'une homothétie sur une figure."
+            },
+            {
+                "id": "MC4-192",
+                "parent": "MC4-188",
+                "text": "Mobiliser les connaissances des figures, des configurations et des transformations au programme pour déterminer des grandeurs géométriques."
+            },
+            {
+                "id": "MC4-193",
+                "parent": "MC4-188",
+                "text": "Mener des raisonnements et s'initier à la démonstration en utilisant les propriétés des figures, des configurations et des transformations."
+            },
+            {
+                "id": "MC4-194",
+                "parent": "MC4-188",
+                "text": "Mémoriser des images mentales (configurations de Pythagore et de Thalès, lignes trigonométriques dans un triangle rectangle) et automatisé les procédures de repérage et de constructions géométriques liées aux figures et aux transformations du programme."
+            },
+            {
+                "id": "MC4-195",
+                "parent": "MC4",
+                "text": "Compétences et connaissances associées : Thème E – Algorithmique et programmation"
+            },
+            {
+                "id": "MC4-196",
+                "parent": "MC4-175",
+                "text": "crire, mettre au point, exécuter un programme"
+            },
+            {
+                "id": "MC4-197",
+                "parent": "MC4-175",
+                "text": "Connaissances"
+            },
+            {
+                "id": "MC4-198",
+                "parent": "MC4-197",
+                "text": "Notions d'algorithme et de programme."
+            },
+            {
+                "id": "MC4-199",
+                "parent": "MC4-197",
+                "text": "Notion de variable informatique."
+            },
+            {
+                "id": "MC4-200",
+                "parent": "MC4-197",
+                "text": "Déclenchement d'une action par un événement."
+            },
+            {
+                "id": "MC4-201",
+                "parent": "MC4-197",
+                "text": "Séquences d'instructions, boucles, instructions conditionnelles."
+            },
+            {
+                "id": "MC4-202",
+                "parent": "MC4-175",
+                "text": "Compétences associées"
+            },
+            {
+                "id": "MC4-203",
+                "parent": "MC4-201",
+                "text": "crire, mettre au point (tester, corriger) et exécuter un programme en réponse à un problème donné."
+            },
             {
                 "id": "FC2",
                 "parent": "F",
@@ -8583,7 +9602,1216 @@ export class Jdd {
                 "parent": "FC3-378",
                 "text": "Quelques valeurs temporelles des temps seront identifiées"
             },
-
+            {
+                "id": "FC4",
+                "parent": "F",
+                "text": "Cycle 4"
+            },
+            {
+                "id": "FC4-1",
+                "parent": "FC4",
+                "text": "Compétences travaillées"
+            },
+            {
+                "id": "FC4-2",
+                "parent": "FC4-1",
+                "text": "Comprendre et s'exprimer à l'oral"
+            },
+            {
+                "id": "FC4-3",
+                "parent": "FC4-2",
+                "text": "Comprendre et interpréter des messages et des discours oraux complexes."
+            },
+            {
+                "id": "FC4-4",
+                "parent": "FC4-2",
+                "text": "S'exprimer de façon maîtrisée en s'adressant à un auditoire."
+            },
+            {
+                "id": "FC4-5",
+                "parent": "FC4-2",
+                "text": "Participer de façon constructive à des échanges oraux."
+            },
+            {
+                "id": "FC4-6",
+                "parent": "FC4-2",
+                "text": "Exploiter les ressources expressives et créatives de la parole."
+            },
+            {
+                "id": "FC4-7",
+                "parent": "FC4-1",
+                "text": "Lire"
+            },
+            {
+                "id": "FC4-8",
+                "parent": "FC4-7",
+                "text": "Contrôler sa compréhension, devenir un lecteur autonome."
+            },
+            {
+                "id": "FC4-9",
+                "parent": "FC4-7",
+                "text": "Lire des textes non littéraires, des images et des documents composites (y compris numériques)."
+            },
+            {
+                "id": "FC4-10",
+                "parent": "FC4-7",
+                "text": "Lire des oeuvres littéraires et fréquenter des oeuvres d'art."
+            },
+            {
+                "id": "FC4-11",
+                "parent": "FC4-10",
+                "text": "laborer une interprétation de textes littéraires."
+            },
+            {
+                "id": "FC4-12",
+                "parent": "FC4-7",
+                "text": "crire"
+            },
+            {
+                "id": "FC4-13",
+                "parent": "FC4-7",
+                "text": "Exploiter les principales fonctions de l'écrit."
+            },
+            {
+                "id": "FC4-14",
+                "parent": "FC4-7",
+                "text": "Adopter des stratégies et des procédures d'écriture efficaces."
+            },
+            {
+                "id": "FC4-15",
+                "parent": "FC4-7",
+                "text": "Exploiter des lectures pour enrichir son écrit."
+            },
+            {
+                "id": "FC4-16",
+                "parent": "FC4-7",
+                "text": "Passer du recours intuitif à l'argumentation à un usage plus maîtrisé."
+            },
+            {
+                "id": "FC4-17",
+                "parent": "FC4-1",
+                "text": "Comprendre le fonctionnement de la langue"
+            },
+            {
+                "id": "FC4-18",
+                "parent": "FC4-17",
+                "text": "Connaître les différences entre l'oral et l'écrit."
+            },
+            {
+                "id": "FC4-19",
+                "parent": "FC4-17",
+                "text": "Analyser le fonctionnement de la phrase simple et de la phrase complexe."
+            },
+            {
+                "id": "FC4-20",
+                "parent": "FC4-17",
+                "text": "Consolider l'orthographe lexicale et grammaticale."
+            },
+            {
+                "id": "FC4-21",
+                "parent": "FC4-17",
+                "text": "Enrichir et structurer le lexique."
+            },
+            {
+                "id": "FC4-22",
+                "parent": "FC4-17",
+                "text": "Construire les notions permettant l'analyse et l'élaboration des textes et des discours."
+            },
+            {
+                "id": "FC4-23",
+                "parent": "FC4-1",
+                "text": "Acquérir des éléments de culture littéraire et artistique"
+            },
+            {
+                "id": "FC4-24",
+                "parent": "FC4-23",
+                "text": "Mobiliser des références culturelles pour interpréter les textes et les créations artistiques et littéraires et pour enrichir son expression personnelle."
+            },
+            {
+                "id": "FC4-25",
+                "parent": "FC4-24",
+                "text": "tablir des liens entre des créations littéraires et artistiques issues de cultures et d'époques diverses."
+            },
+            {
+                "id": "FC4-26",
+                "parent": "FC4",
+                "text": "Compétences et connaissances associées : Langage oral"
+            },
+            {
+                "id": "FC4-27",
+                "parent": "FC4-26",
+                "text": "Comprendre et interpréter des messages et des discours oraux complexes"
+            },
+            {
+                "id": "FC4-28",
+                "parent": "FC4-27",
+                "text": "Identifier les visées d'un discours oral."
+            },
+            {
+                "id": "FC4-29",
+                "parent": "FC4-27",
+                "text": "Distinguer explicite et implicite."
+            },
+            {
+                "id": "FC4-30",
+                "parent": "FC4-26",
+                "text": "S'exprimer de façon maîtrisée en s'adressant à un auditoire"
+            },
+            {
+                "id": "FC4-31",
+                "parent": "FC4-30",
+                "text": "Savoir présenter un compte rendu à l'oral."
+            },
+            {
+                "id": "FC4-32",
+                "parent": "FC4-30",
+                "text": "Savoir faire partager son point de vue sur une lecture, une oeuvre, une situation."
+            },
+            {
+                "id": "FC4-33",
+                "parent": "FC4-30",
+                "text": "Savoir utiliser des supports écrits pour l'expression orale."
+            },
+            {
+                "id": "FC4-34",
+                "parent": "FC4-30",
+                "text": "Savoir raconter une histoire."
+            },
+            {
+                "id": "FC4-35",
+                "parent": "FC4-26",
+                "text": "Participer de façon constructive à des échanges oraux"
+            },
+            {
+                "id": "FC4-36",
+                "parent": "FC4-35",
+                "text": "Construire des relations avec autrui dans un échange, une conversation, une situation de recherche."
+            },
+            {
+                "id": "FC4-37",
+                "parent": "FC4-35",
+                "text": "Participer à un débat, exprimer une opinion argumentée et prendre en compte son interlocuteur."
+            },
+            {
+                "id": "FC4-38",
+                "parent": "FC4-35",
+                "text": "Animer et arbitrer un débat."
+            },
+            {
+                "id": "FC4-39",
+                "parent": "FC4-26",
+                "text": "Exploiter les ressources expressives et créatives de la parole"
+            },
+            {
+                "id": "FC4-40",
+                "parent": "FC4-39",
+                "text": "Savoir utiliser les ressources de la voix, de la respiration, du regard, de la gestuelle, pour :"
+            },
+            {
+                "id": "FC4-41",
+                "parent": "FC4-40",
+                "text": "lire ;"
+            },
+            {
+                "id": "FC4-42",
+                "parent": "FC4-40",
+                "text": "dire de mémoire ;"
+            },
+            {
+                "id": "FC4-43",
+                "parent": "FC4-40",
+                "text": "interpréter une scène de théâtre, un poème, etc. ;"
+            },
+            {
+                "id": "FC4-44",
+                "parent": "FC4-40",
+                "text": "donner du relief à sa propre parole lors d'une prestation orale."
+            },
+            {
+                "id": "FC4-45",
+                "parent": "FC4",
+                "text": "Compétences et connaissances associées : Lecture et compréhension de l'écrit et de l'image"
+            },
+            {
+                "id": "FC4-46",
+                "parent": "FC4-45",
+                "text": "Contrôler sa compréhension, devenir un lecteur autonome"
+            },
+            {
+                "id": "FC4-47",
+                "parent": "FC4-46",
+                "text": "Vérifier sa compréhension de l'écrit de façon autonome."
+            },
+            {
+                "id": "FC4-48",
+                "parent": "FC4-47",
+                "text": "tre capable de justifier son interprétation en s'appuyant précisément sur le texte."
+            },
+            {
+                "id": "FC4-49",
+                "parent": "FC4-47",
+                "text": "tre capable d'adapter sa lecture à l'objectif affiché."
+            },
+            {
+                "id": "FC4-50",
+                "parent": "FC4-46",
+                "text": "Savoir choisir un livre adapté à son niveau de lecture, ses goûts et ses besoins."
+            },
+            {
+                "id": "FC4-51",
+                "parent": "FC4-45",
+                "text": "Lire des textes non littéraires, des images et des documents composites (y compris numériques)"
+            },
+            {
+                "id": "FC4-52",
+                "parent": "FC4-51",
+                "text": "Connaître les caractéristiques génériques des différents documents étudiés (articles de presse d'information et scientifique, essais, textes documentaires, schémas, graphiques, tableaux, images fixes et mobiles, etc.)."
+            },
+            {
+                "id": "FC4-53",
+                "parent": "FC4-51",
+                "text": "Savoir décrire et analyser l'image fixe et mobile."
+            },
+            {
+                "id": "FC4-54",
+                "parent": "FC4-45",
+                "text": "Lire des oeuvres littéraires et fréquenter des oeuvres d'art"
+            },
+            {
+                "id": "FC4-55",
+                "parent": "FC4-54",
+                "text": "Lire des oeuvres appartenant à différents genres littéraires."
+            },
+            {
+                "id": "FC4-56",
+                "parent": "FC4-54",
+                "text": "Lire des textes appartenant à différentes époques, en lien avec le programme d'histoire."
+            },
+            {
+                "id": "FC4-57",
+                "parent": "FC4-56",
+                "text": "tre capable de relier oeuvre littéraire et oeuvre artistique."
+            },
+            {
+                "id": "FC4-58",
+                "parent": "FC4-54",
+                "text": "laborer une interprétation de textes littéraires"
+            },
+            {
+                "id": "FC4-59",
+                "parent": "FC4-54",
+                "text": "Connaître les caractéristiques majeures de l'esthétique des genres."
+            },
+            {
+                "id": "FC4-60",
+                "parent": "FC4-59",
+                "text": "tre capable de situer les oeuvres lues dans leur époque, leur contexte de création."
+            },
+            {
+                "id": "FC4-61",
+                "parent": "FC4-54",
+                "text": "Avoir des repères d'histoire littéraire et culturelle, en lien avec le programme d'histoire."
+            },
+            {
+                "id": "FC4-62",
+                "parent": "FC4-54",
+                "text": "Percevoir les effets esthétiques et significatifs de la langue littéraire."
+            },
+            {
+                "id": "FC4-63",
+                "parent": "FC4-62",
+                "text": "tre capable d'en analyser les sources : notions d'analyse littéraire, de procédés stylistiques."
+            },
+            {
+                "id": "FC4-64",
+                "parent": "FC4",
+                "text": "Compétences et connaissances associées : Ecriture"
+            },
+            {
+                "id": "FC4-65",
+                "parent": "FC4-64",
+                "text": "Exploiter les principales fonctions de l'écrit"
+            },
+            {
+                "id": "FC4-66",
+                "parent": "FC4-65",
+                "text": "Comprendre le rôle historique et social de l'écriture."
+            },
+            {
+                "id": "FC4-67",
+                "parent": "FC4-65",
+                "text": "Utiliser l'écrit pour penser et pour apprendre :"
+            },
+            {
+                "id": "FC4-68",
+                "parent": "FC4-67",
+                "text": "Recourir régulièrement aux écrits de travail et aux écrits réflexifs :"
+            },
+            {
+                "id": "FC4-69",
+                "parent": "",
+                "text": "crits de travail : pour préparer des travaux, donner forme à une réflexion, classer, résumer, etc."
+            },
+            {
+                "id": "FC4-70",
+                "parent": "",
+                "text": "crits réflexifs : pour expliquer une démarche, justifier une réponse, un propos."
+            },
+            {
+                "id": "FC4-71",
+                "parent": "FC4-67",
+                "text": "Connaître les techniques et les usages de la prise de notes."
+            },
+            {
+                "id": "FC4-72",
+                "parent": "FC4-64",
+                "text": "Adopter des stratégies et des procédures d'écriture efficaces"
+            },
+            {
+                "id": "FC4-73",
+                "parent": "FC4-72",
+                "text": "Acquérir et mettre en oeuvre une démarche d'écriture (qui doit devenir progressivement autonome)."
+            },
+            {
+                "id": "FC4-74",
+                "parent": "FC4-73",
+                "text": "Prendre en compte le destinataire, les visées du texte, les caractéristiques de son genreet le support d'écriture dès la préparation de l'écrit et jusqu'à la relecture ultime."
+            },
+            {
+                "id": "FC4-75",
+                "parent": "FC4-73",
+                "text": "Mettre en oeuvre des stratégies permettant de trouver des idées ou des éléments du texte à écrire."
+            },
+            {
+                "id": "FC4-76",
+                "parent": "FC4-73",
+                "text": "Organiser l'écrit en fonction des règles propres au genre du texte à rédiger et à son support : connaissance des caractéristiques des genres littéraires pour composer librement des écrits, en intégrant éventuellement différents supports."
+            },
+            {
+                "id": "FC4-77",
+                "parent": "FC4-73",
+                "text": "Respecter les normes de l'écrit dès la première phase d'écriture (brouillon) : normes qui assurent l'unité et la cohérence du texte, mais aussi normes linguistiques."
+            },
+            {
+                "id": "FC4-78",
+                "parent": "FC4-72",
+                "text": "Vérifier et améliorer la qualité de son texte (être capable de mettre à distance son texte pour l'évaluer et le faire évoluer), en cours d'écriture, lors de la relecture et a posteriori."
+            },
+            {
+                "id": "FC4-79",
+                "parent": "FC4-77",
+                "text": "tre conscient de ses fragilités et apprendre à identifier des zones d'erreurs possibles de manière autonome afin de faciliter la révision."
+            },
+            {
+                "id": "FC4-80",
+                "parent": "FC4-78",
+                "text": "Prendre en compte les normes de l'écrit pour réviser son texte : cohérence, cohésion (syntaxe, énonciation, éléments sémantiques qui assurent l'unité du texte) et normes linguistiques."
+            },
+            {
+                "id": "FC4-81",
+                "parent": "FC4-78",
+                "text": "Savoir recourir à la modalisation. "
+            },
+            {
+                "id": "FC4-82",
+                "parent": "FC4-64",
+                "text": "Exploiter des lectures pour enrichir son écrit"
+            },
+            {
+                "id": "FC4-83",
+                "parent": "FC4-82",
+                "text": "Connaître les principaux genres littéraires et leurs caractéristiques."
+            },
+            {
+                "id": "FC4-84",
+                "parent": "FC4-81",
+                "text": "tre capable de transférer dans ses propres écrits le lexique, les tournures syntaxiques découverts lors de lectures."
+            },
+            {
+                "id": "FC4-85",
+                "parent": "FC4-83",
+                "text": "Utiliser des outils d'analyse des textes."
+            },
+            {
+                "id": "FC4-86",
+                "parent": "FC4-85",
+                "text": "tre capable d'adapter sa lecture à l'objectif affiché."
+            },
+            {
+                "id": "FC4-87",
+                "parent": "FC4-83",
+                "text": "Savoir choisir un livre adapté à son niveau de lecture, à ses goûts et à ses besoins."
+            },
+            {
+                "id": "FC4-88",
+                "parent": "FC4-64",
+                "text": "Passer du recours intuitif à l'argumentation à un usage plus maîtrisé"
+            },
+            {
+                "id": "FC4-89",
+                "parent": "FC4-88",
+                "text": "Connaître les principales fonctions et caractéristiques des discours argumentatifs."
+            },
+            {
+                "id": "FC4-90",
+                "parent": "FC4-88",
+                "text": "Repérer et identifier des procédés destinés à étayer une argumentation (organisation du propos, choix des exemples, modalisation)."
+            },
+            {
+                "id": "FC4-91",
+                "parent": "FC4-90",
+                "text": "tre capable de structurer clairement un texte argumentatif et de l'illustrer."
+            },
+            {
+                "id": "FC4-92",
+                "parent": "FC4",
+                "text": "Compétences et connaissances associées : Étude de la langue (grammaire, orthographe, lexique)"
+            },
+            {
+                "id": "FC4-93",
+                "parent": "FC4-92",
+                "text": "Connaître les différences entre l'oral et l'écrit"
+            },
+            {
+                "id": "FC4-94",
+                "parent": "FC4-93",
+                "text": "Aspects syntaxiques"
+            },
+            {
+                "id": "FC4-95",
+                "parent": "FC4-94",
+                "text": "Comprendre que la syntaxe de l'oral est différente de celle de l'écrit."
+            },
+            {
+                "id": "FC4-96",
+                "parent": "FC4-95",
+                "text": "tre capable de transposer des énoncés oraux à l'écrit et inversement."
+            },
+            {
+                "id": "FC4-97",
+                "parent": "FC4-95",
+                "text": "tre capable d'insérer dans un texte des paroles rapportées : discours direct, indirect, indirect libre."
+            },
+            {
+                "id": "FC4-98",
+                "parent": "FC4-93",
+                "text": "Formes orales et formes graphiques"
+            },
+            {
+                "id": "FC4-99",
+                "parent": "FC4-98",
+                "text": "Connaître les incidences de l'écrit sur l'oral (liaison) et de l'oral sur l'écrit (élision)."
+            },
+            {
+                "id": "FC4-100",
+                "parent": "FC4-93",
+                "text": "Aspects lexicaux"
+            },
+            {
+                "id": "FC4-101",
+                "parent": "FC4-100",
+                "text": "Mesurer les écarts de niveau de langue entre l'oral et l'écrit."
+            },
+            {
+                "id": "FC4-102",
+                "parent": "FC4-101",
+                "text": "tre capable de recourir, dans le cadre de l'oral scolaire, à des éléments lexicaux de niveau soutenu."
+            },
+            {
+                "id": "FC4-103",
+                "parent": "FC4-92",
+                "text": "Analyser le fonctionnement de la phrase simple et de la phrase complexe"
+            },
+            {
+                "id": "FC4-104",
+                "parent": "FC4-103",
+                "text": "Fonctionnement de la phrase simple"
+            },
+            {
+                "id": "FC4-105",
+                "parent": "FC4-104",
+                "text": "Distinguer les principaux constituants de la phrase et les hiérarchiser."
+            },
+            {
+                "id": "FC4-106",
+                "parent": "FC4-104",
+                "text": "Identifier et analyser les constituants de la phrase simple."
+            },
+            {
+                "id": "FC4-107",
+                "parent": "FC4-102",
+                "text": "tre capable de reconnaître le sujet même dans les cas complexes (sujet éloigné)."
+            },
+            {
+                "id": "FC4-108",
+                "parent": "FC4-106",
+                "text": "Approfondir la connaissance du COD et du COI."
+            },
+            {
+                "id": "FC4-109",
+                "parent": "FC4-106",
+                "text": "Identifier les compléments circonstanciels (NB : temps, lieu et cause abordés au cycle 3)."
+            },
+            {
+                "id": "FC4-110",
+                "parent": "FC4-104",
+                "text": "Analyser la phrase à la forme impersonnelle."
+            },
+            {
+                "id": "FC4-111",
+                "parent": "FC4-110",
+                "text": "largir ses connaissances des fonctions grammaticales :"
+            },
+            {
+                "id": "FC4-112",
+                "parent": "FC4-110",
+                "text": "Identifier l'attribut du COD."
+            },
+            {
+                "id": "FC4-113",
+                "parent": "FC4-110",
+                "text": "Identifier les expansions du nom déjà abordées au cycle 3 (épithète, complément du nom)."
+            },
+            {
+                "id": "FC4-114",
+                "parent": "FC4-110",
+                "text": "Identifier l'apposition"
+            },
+            {
+                "id": "FC4-115",
+                "parent": "FC4-104",
+                "text": "Identifier les classes de mots."
+            },
+            {
+                "id": "FC4-116",
+                "parent": "FC4-115",
+                "text": "Identifier les classes de mots abordées aux cycles précédents ainsi que les groupes de mots : nom, verbe, adjectif et ses degrés (comparatif et superlatif), article défini, article indéfini, déterminant possessif, déterminant démonstratif, pronom personnel sujet et objet, adverbe, préposition, conjonction de coordination et de subordination, groupe nominal."
+            },
+            {
+                "id": "FC4-117",
+                "parent": "FC4-115",
+                "text": "Différencier déterminant (article défini, indéfini, partitif, déterminant possessif, interrogatif, indéfini, exclamatif, numéral), adjectif et ses degrés (comparatif et superlatif) et pronom (personnel, possessif, démonstratif, indéfini, interrogatif, relatif, adverbial)."
+            },
+            {
+                "id": "FC4-118",
+                "parent": "FC4-104",
+                "text": "Identifier les types (déclaratif, interrogatif, impératif) et les formes (négative, passive, exclamative, impersonnelle) de phrase."
+            },
+            {
+                "id": "FC4-119",
+                "parent": "FC4-103",
+                "text": "Fonctionnement de la phrase complexe"
+            },
+            {
+                "id": "FC4-120",
+                "parent": "FC4-119",
+                "text": "Distinguer phrase simple / complexe."
+            },
+            {
+                "id": "FC4-121",
+                "parent": "FC4-119",
+                "text": "Identifier les constituants de la phrase complexe (par analogie avec les constituants de la phrase simple)."
+            },
+            {
+                "id": "FC4-122",
+                "parent": "FC4-119",
+                "text": "Connaître les notions de juxtaposition, coordination, subordination."
+            },
+            {
+                "id": "FC4-123",
+                "parent": "FC4-119",
+                "text": "Analyser les positions des propositions subordonnées (conjonctive, interrogative indirecte, relative, infinitive, participiale) et leurs relations avec les autres constituants de la phrase."
+            },
+            {
+                "id": "FC4-124",
+                "parent": "FC4-119",
+                "text": "Comprendre la fonction grammaticale des propositions subordonnées dans la phrase. "
+            },
+            {
+                "id": "FC4-125",
+                "parent": "FC4-119",
+                "text": "Comprendre le fonctionnement de la proposition subordonnée relative et identifier la fonction du pronom relatif dans la subordonnée."
+            },
+            {
+                "id": "FC4-126",
+                "parent": "FC4-103",
+                "text": "Rôle de la ponctuation"
+            },
+            {
+                "id": "FC4-127",
+                "parent": "FC4-125",
+                "text": "Analyser le rôle syntaxique des signes de ponctuation et utiliser ces signes à bon escient."
+            },
+            {
+                "id": "FC4-128",
+                "parent": "FC4-92",
+                "text": "Consolider l'orthographe lexicale et grammaticale"
+            },
+            {
+                "id": "FC4-129",
+                "parent": "FC4-128",
+                "text": "Connaître le fonctionnement des chaînes d'accord."
+            },
+            {
+                "id": "FC4-130",
+                "parent": "FC4-129",
+                "text": "Maîtriser l'accord dans le groupe nominal complexe (avec plusieurs noms, plusieurs adjectifs, une relative, des déterminants comme tout, chaque, leur, etc.)."
+            },
+            {
+                "id": "FC4-131",
+                "parent": "FC4-128",
+                "text": "Maîtriser l'accord du participe passé avec être (à rapprocher de l'adjectif) et avec avoir (cas du COD antéposé) cas simples."
+            },
+            {
+                "id": "FC4-132",
+                "parent": "FC4-128",
+                "text": "Maîtriser l'accord de l'adjectif et du participe passé mis en apposition."
+            },
+            {
+                "id": "FC4-133",
+                "parent": "FC4-128",
+                "text": "Maîtriser l'accord du verbe dans les cas complexes (sujet éloigné du verbe, avec plusieurs noms, avec plusieurs personnes, pronom relatif, collectif ou distributif, indiquant une quantité, présence d'un pronom ou d'un autre groupe syntaxique entre le donneur d'accord et le verbe…)."
+            },
+            {
+                "id": "FC4-134",
+                "parent": "FC4-128",
+                "text": "Maîtriser la morphologie verbale écrite en appui sur les régularités et la décomposition du verbe (radical, terminaison qui comporte les marques de mode / temps, marques de personne pour les modes personnels)."
+            },
+            {
+                "id": "FC4-135",
+                "parent": "FC4-134",
+                "text": "Connaître les verbes pronominaux."
+            },
+            {
+                "id": "FC4-136",
+                "parent": "FC4-134",
+                "text": "Identifier les principaux temps et modes (personnels et non personnels)."
+            },
+            {
+                "id": "FC4-137",
+                "parent": "FC4-134",
+                "text": "Former les temps simples : systématiser les règles de construction des formes verbales aux différents temps simples (temps de l'indicatif, impératif présent, subjonctif présent, conditionnel présent) à partir de la connaissance des bases verbales."
+            },
+            {
+                "id": "FC4-138",
+                "parent": "FC4-134",
+                "text": "Construire les temps composés ; connaître les formes du participe passé des verbes (é, i, u et formes avec consonne finale)."
+            },
+            {
+                "id": "FC4-139",
+                "parent": "FC4-134",
+                "text": "Construire le passif et analyser ses effets de sens."
+            },
+            {
+                "id": "FC4-140",
+                "parent": "FC4-128",
+                "text": "Mémoriser le présent, l'imparfait, le futur, le passé simple, le passé composé, le plus-que-parfait, le futur antérieur et le passé antérieur de l'indicatif, le présent et le passé du conditionnel, l'impératif présent, le présent, le passé, l'imparfait et le plus-que-parfait du subjonctif à toutes les personnes pour :"
+            },
+            {
+                "id": "FC4-141",
+                "parent": "FC4-139",
+                "text": "tre et avoir ;"
+            },
+            {
+                "id": "FC4-142",
+                "parent": "FC4-140",
+                "text": "les verbes des trois groupes ;"
+            },
+            {
+                "id": "FC4-143",
+                "parent": "FC4-140",
+                "text": "les verbes irréguliers du 3e groupe : faire, aller, dire, venir, pouvoir, voir, vouloir, prendre, savoir, falloir, valoir."
+            },
+            {
+                "id": "FC4-144",
+                "parent": "FC4-128",
+                "text": "Mettre en évidence le lien entre le temps employé et le sens."
+            },
+            {
+                "id": "FC4-145",
+                "parent": "FC4-143",
+                "text": "tre initié à la valeur des temps à partir d'observations et de comparaisons : opposition entre temps simples et temps composés (non accompli/accompli); opposition entre temps qui embrassent ou non l'action dans sa totalité (borné/non borné : elle lut une page/elle lisait une page)."
+            },
+            {
+                "id": "FC4-146",
+                "parent": "FC4-144",
+                "text": "Observer l'incidence de la valeur des temps sur leurs emplois (premier plan/arrière-plan)."
+            },
+            {
+                "id": "FC4-147",
+                "parent": "FC4-144",
+                "text": "Connaître les principaux emplois des différents modes."
+            },
+            {
+                "id": "FC4-148",
+                "parent": "FC4-128",
+                "text": "Mémoriser l'orthographe des affixes (préfixes, suffixes) et de leur effet éventuel sur le radical."
+            },
+            {
+                "id": "FC4-149",
+                "parent": "FC4-128",
+                "text": "Utiliser sa connaissance de l'étymologie pour orthographier les mots ayant la même racine."
+            },
+            {
+                "id": "FC4-150",
+                "parent": "FC4-128",
+                "text": "Mémoriser l'orthographe du lexique appris."
+            },
+            {
+                "id": "FC4-151",
+                "parent": "FC4-128",
+                "text": "Observer la formation, les analogies, les régularités et construire des réflexes orthographiques."
+            },
+            {
+                "id": "FC4-152",
+                "parent": "FC4-92",
+                "text": "Enrichir et structurer le lexique"
+            },
+            {
+                "id": "FC4-153",
+                "parent": "FC4-152",
+                "text": "Enrichir son lexique par les lectures, en lien avec les entrées du programme de culture littéraire et artistique, par l'écriture, par les diverses activités conduites dans toutes les disciplines."
+            },
+            {
+                "id": "FC4-154",
+                "parent": "FC4-152",
+                "text": "Enrichir son lexique par l'usage du dictionnaire ou autres outils en version papier ou numérique."
+            },
+            {
+                "id": "FC4-155",
+                "parent": "FC4-152",
+                "text": "Savoir réutiliser à bon escient, à l'écrit et à l'oral, le lexique appris."
+            },
+            {
+                "id": "FC4-156",
+                "parent": "FC4-152",
+                "text": "Observer la formation des mots : dérivation et composition, étymologie et néologie, locutions, graphie des mots, notamment à partir d'éléments latins et grecs ou empruntés aux langues étrangères ; mettre en évidence les changements de catégorie syntaxique induits par la dérivation (déménager / déménagement ; beau / beauté, etc.) et de leurs incidences orthographiques."
+            },
+            {
+                "id": "FC4-157",
+                "parent": "FC4-152",
+                "text": "Connaître le sens des préfixes et suffixes les plus fréquents et de certaines racines latines et grecques."
+            },
+            {
+                "id": "FC4-158",
+                "parent": "FC4-152",
+                "text": "Mettre en réseau des mots (groupements par champ lexical, par famille de mots et par champ sémantique) et maîtriser leur classement par degré d'intensité et de généralité."
+            },
+            {
+                "id": "FC4-159",
+                "parent": "FC4-152",
+                "text": "Analyser le sens des mots : polysémie et synonymie, antonymie et homonymie, nuances et glissements de sens, locutions, construction des verbes et variations de sens, dénotation, connotation et niveaux de langue."
+            },
+            {
+                "id": "FC4-160",
+                "parent": "FC4-152",
+                "text": "Utiliser différents types de dictionnaires et d'outils numériques."
+            },
+            {
+                "id": "FC4-161",
+                "parent": "FC4-92",
+                "text": "Construire les notions permettant l'analyse et l'élaboration des textes et des discours"
+            },
+            {
+                "id": "FC4-162",
+                "parent": "FC4-161",
+                "text": "Observer les variations de la langue en fonction des enjeux de la communication."
+            },
+            {
+                "id": "FC4-163",
+                "parent": "FC4-162",
+                "text": "Repérer ce qui détermine un niveau de langue (situation de communication, enjeu, etc.), et ce qui le caractérise (organisation du propos, lexique, syntaxe) à partir de quelques exemples contrastés."
+            },
+            {
+                "id": "FC4-164",
+                "parent": "FC4-162",
+                "text": "Observer la variation à travers le repérage de différentes manières d'exprimer une même idée ou une idée nouvelle : évolution du sens des mots selon les époques, néologie, emprunts ; variation en fonction du lieu, du contexte, du moyen de communication."
+            },
+            {
+                "id": "FC4-165",
+                "parent": "FC4-161",
+                "text": "Prendre en compte les caractéristiques des textes lus ou à rédiger."
+            },
+            {
+                "id": "FC4-166",
+                "parent": "FC4-165",
+                "text": "Identifier et interpréter les éléments de la situation d'énonciation : qui parle à qui ? où ? quand ? (marques de personne, de lieu et de temps) ; prendre en compte la situation d'énonciation dans l'écriture ; repérer et savoir utiliser les phénomènes d'accord en relation avec l'énonciation (je, tu)."
+            },
+            {
+                "id": "FC4-167",
+                "parent": "FC4-165",
+                "text": "Reconnaître et utiliser les paroles rapportées, directement ou indirectement."
+            },
+            {
+                "id": "FC4-168",
+                "parent": "FC4-165",
+                "text": "Identifier et utiliser des marques d'organisation du texte (mise en page, typographie, ponctuation, connecteurs)."
+            },
+            {
+                "id": "FC4-169",
+                "parent": "FC4-165",
+                "text": "Reconnaître des formes actives/passives et leurs valeurs sémantiques ; connaître les permutations pour marquer l'insistance ou l'emphase ; savoir recourir aux présentatifs ; valeur sémantique de la phrase impersonnelle."
+            },
+            {
+                "id": "FC4-170",
+                "parent": "FC4",
+                "text": "Compétences et connaissances associées : Culture littéraire et artistique"
+            },
+            {
+                "id": "FC4-171",
+                "parent": "FC4-170",
+                "text": "Cinquième"
+            },
+            {
+                "id": "FC4-172",
+                "parent": "FC4-171",
+                "text": "Se chercher, se construire / Le voyage et l'aventure : pourquoi aller vers l'inconnu ?"
+            },
+            {
+                "id": "FC4-173",
+                "parent": "FC4-172",
+                "text": "découvrir diverses formes de récits d'aventures, fictifs ou non, des journaux d'explorateurs et des textes célébrant les voyages ;"
+            },
+            {
+                "id": "FC4-174",
+                "parent": "FC4-172",
+                "text": "comprendre les raisons qui poussent à vouloir découvrir l'autre et l'ailleurs, et s'interroger sur les valeurs mises en jeu dans ces projets et ces rencontres ;"
+            },
+            {
+                "id": "FC4-175",
+                "parent": "FC4-172",
+                "text": "s'interroger sur le sens des représentations qui sont données des voyages et de ce qu'ils font découvrir."
+            },
+            {
+                "id": "FC4-176",
+                "parent": "FC4-171",
+                "text": "Vivre en société, participer à la société / Avec autrui : familles, amis, réseaux"
+            },
+            {
+                "id": "FC4-177",
+                "parent": "FC4-176",
+                "text": "découvrir diverses formes, dramatiques et narratives, de la représentation des relations avec autrui ;"
+            },
+            {
+                "id": "FC4-178",
+                "parent": "FC4-176",
+                "text": "comprendre la complexité de ces relations, des attachements et des tensions qui sont figurés dans les textes, en mesurer les enjeux ;"
+            },
+            {
+                "id": "FC4-179",
+                "parent": "FC4-176",
+                "text": "s'interroger sur le sens et les difficultés de la conquête de l'autonomie au sein du groupe ou contre lui."
+            },
+            {
+                "id": "FC4-180",
+                "parent": "FC4-171",
+                "text": "Regarder le monde, inventer des mondes / Imaginer des univers nouveaux"
+            },
+            {
+                "id": "FC4-181",
+                "parent": "FC4-180",
+                "text": "découvrir des textes et des images relevant de différents genres et proposant la représentation de mondes imaginaires, merveilleux ou utopiques ou des récits d'anticipation exprimant les interrogations, les angoisses et les espoirs de l'humanité, y compris en matière d'environnement ;"
+            },
+            {
+                "id": "FC4-182",
+                "parent": "FC4-181",
+                "text": "tre capable de percevoir la cohérence de ces univers imaginaires ;"
+            },
+            {
+                "id": "FC4-183",
+                "parent": "FC4-180",
+                "text": "apprécier le pouvoir de reconfiguration de l'imagination et s'interroger sur ce que ces textes et images apportent à notre perception de la réalité."
+            },
+            {
+                "id": "FC4-184",
+                "parent": "FC4-171",
+                "text": "Agir sur le monde / Héros, héroïnes et héroïsmes"
+            },
+            {
+                "id": "FC4-185",
+                "parent": "FC4-184",
+                "text": "découvrir des oeuvres et des textes relevant de l'épopée et du roman, et proposant une représentation du héros / de l'héroïne et de ses actions ;"
+            },
+            {
+                "id": "FC4-186",
+                "parent": "FC4-184",
+                "text": "comprendre le caractère d'exemplarité qui s'attache à la geste du héros / de l'héroïne et la relation entre la singularité du personnage et la dimension collective des valeurs mises en jeu ;"
+            },
+            {
+                "id": "FC4-187",
+                "parent": "FC4-184",
+                "text": "s'interroger sur la diversité des figures de héros / d'héroïnes et sur le sens de l'intérêt qu'elles suscitent ;"
+            },
+            {
+                "id": "FC4-188",
+                "parent": "FC4-184",
+                "text": "interroger les alliances ou oppositions de la nature et du héros dans des romans ou des épopées."
+            },
+            {
+                "id": "FC4-189",
+                "parent": "FC4-171",
+                "text": "Questionnements complémentaires (un au moins par année, au choix) / L'être humain est-il maître de la nature ?"
+            },
+            {
+                "id": "FC4-190",
+                "parent": "FC4-189",
+                "text": "interroger le rapport de l'être humain à la nature à partir de textes et d'images empruntés aux représentations de la nature et de sa domestication à diverses époques, en relation avec l'histoire des arts, et saisir les retournements amorcés au XIXe siècle et prolongés à notre époque ;"
+            },
+            {
+                "id": "FC4-191",
+                "parent": "FC4-189",
+                "text": "comprendre et anticiper les responsabilités humaines actuelles en matière de changement climatique, de dégradation de l'environnement, de biodiversité…"
+            },
+            {
+                "id": "FC4-192",
+                "parent": "FC4-171",
+                "text": "Questionnement libre"
+            },
+            {
+                "id": "FC4-193",
+                "parent": "FC4-170",
+                "text": "Quatrième"
+            },
+            {
+                "id": "FC4-194",
+                "parent": "FC4-193",
+                "text": "Se chercher, se construire / Dire l'amour"
+            },
+            {
+                "id": "FC4-195",
+                "parent": "FC4-194",
+                "text": "découvrir des poèmes de différentes époques exprimant les variations du discours amoureux ;"
+            },
+            {
+                "id": "FC4-196",
+                "parent": "FC4-194",
+                "text": "comprendre les nuances du sentiment amoureux et quelques-unes des raisons qui en font un thème majeur de l'expression littéraire et artistique ;"
+            },
+            {
+                "id": "FC4-197",
+                "parent": "FC4-194",
+                "text": "s'interroger sur le rôle des images et des références dans la poésie amoureuse."
+            },
+            {
+                "id": "FC4-198",
+                "parent": "FC4-193",
+                "text": "Vivre en société, participer à la société / Individu et société : confrontations de valeurs ?"
+            },
+            {
+                "id": "FC4-199",
+                "parent": "FC4-198",
+                "text": "découvrir, à travers des textes relevant des genres dramatique et romanesque, la confrontation des valeurs portées par les personnages ;"
+            },
+            {
+                "id": "FC4-200",
+                "parent": "FC4-198",
+                "text": "comprendre que la structure et le dynamisme de l'action dramatique, ou romanesque, ont partie liée avec les conflits, et saisir quels sont les intérêts et les valeurs qu'ils mettent en jeu ;"
+            },
+            {
+                "id": "FC4-201",
+                "parent": "FC4-198",
+                "text": "s'interroger sur les conciliations possibles ou non entre les systèmes de valeurs mis en jeu."
+            },
+            {
+                "id": "FC4-202",
+                "parent": "FC4-193",
+                "text": "Regarder le monde, inventer des mondes / La fiction pour interroger le réel"
+            },
+            {
+                "id": "FC4-203",
+                "parent": "FC4-202",
+                "text": "découvrir des oeuvres et des textes narratifs relevant de l'esthétique réaliste ou naturaliste ;"
+            },
+            {
+                "id": "FC4-204",
+                "parent": "FC4-202",
+                "text": "comprendre quelles sont les ambitions du roman réaliste ou naturaliste au XIXe siècle en matière de représentation de la société ;"
+            },
+            {
+                "id": "FC4-205",
+                "parent": "FC4-202",
+                "text": "comprendre comment le récit fantastique, tout en s'inscrivant dans cette esthétique, interroge le statut et les limites du réel ; "
+            },
+            {
+                "id": "FC4-206",
+                "parent": "FC4-202",
+                "text": "s'interroger sur la manière dont les personnages sont représentés et sur leur rôle dans la représentation de la réalité."
+            },
+            {
+                "id": "FC4-207",
+                "parent": "FC4-193",
+                "text": "Agir sur le monde / Informer, s'informer, déformer ?"
+            },
+            {
+                "id": "FC4-208",
+                "parent": "FC4-207",
+                "text": "découvrir des articles, des reportages, des images d'information sur des supports et dans des formats variés, se rapportant à un même événement, à une question de société ou à une thématique commune ;"
+            },
+            {
+                "id": "FC4-209",
+                "parent": "FC4-207",
+                "text": "comprendre l'importance de la vérification et du recoupement des sources, la différence entre fait brut et information, les effets de la rédaction, de la citation réduite et du montage ;"
+            },
+            {
+                "id": "FC4-210",
+                "parent": "FC4-207",
+                "text": "s'interroger sur les évolutions éditoriales de l'information."
+            },
+            {
+                "id": "FC4-211",
+                "parent": "FC4-193",
+                "text": "Questionnements complémentaires (un au moins par année, au choix) / La ville, lieu de tous les possibles ?"
+            },
+            {
+                "id": "FC4-212",
+                "parent": "FC4-211",
+                "text": "montrer comment la ville inspire les écrivains"
+            },
+            {
+                "id": "FC4-213",
+                "parent": "FC4-211",
+                "text": "poètes, auteurs de romans policiers, grands romanciers des XIXe et XXe siècles, etc. et les artistes qui la représentent dans sa diversité, sa complexité et ses contradictions ;"
+            },
+            {
+                "id": "FC4-214",
+                "parent": "FC4-211",
+                "text": "s'interroger sur les ambivalences des représentations du milieu urbain : lieu d'évasion, de liberté, de rencontres, de découvertes, mais aussi lieu de « perdition »,de solitude, de désillusion, de peurs ou d'utopies ;"
+            },
+            {
+                "id": "FC4-215",
+                "parent": "FC4-211",
+                "text": "réfléchir aux conséquences à venir du développement des mégalopoles."
+            },
+            {
+                "id": "FC4-216",
+                "parent": "FC4-193",
+                "text": "Questionnement libre"
+            },
+            {
+                "id": "FC4-217",
+                "parent": "FC4-170",
+                "text": "Troisième"
+            },
+            {
+                "id": "FC4-218",
+                "parent": "FC4-217",
+                "text": "Se chercher, se construire / Se raconter, se représenter"
+            },
+            {
+                "id": "FC4-219",
+                "parent": "FC4-218",
+                "text": "découvrir différentes formes de l'écriture de soi et de l'autoportrait ;"
+            },
+            {
+                "id": "FC4-220",
+                "parent": "FC4-218",
+                "text": "comprendre les raisons et le sens de l'entreprise qui consiste à se raconter ou à se représenter ;"
+            },
+            {
+                "id": "FC4-221",
+                "parent": "FC4-218",
+                "text": "percevoir l'effort de saisie de soi et de recherche de la vérité ;"
+            },
+            {
+                "id": "FC4-222",
+                "parent": "FC4-218",
+                "text": "s'interroger sur les raisons et les effets de la composition du récit ou du portrait de soi."
+            },
+            {
+                "id": "FC4-223",
+                "parent": "FC4-217",
+                "text": "Vivre en société, participer à la société / Dénoncer les travers de la société"
+            },
+            {
+                "id": "FC4-224",
+                "parent": "FC4-223",
+                "text": "découvrir des oeuvres, des textes et des images à visée satirique, relevant de différents arts, genres et formes ;"
+            },
+            {
+                "id": "FC4-225",
+                "parent": "FC4-223",
+                "text": "comprendre les raisons, les visées et les modalités de la satire, les effets d'ironie, de grossissement, de rabaissement ou de déplacement dont elle joue, savoir en apprécier le sel et en saisir la portée et les limites ;"
+            },
+            {
+                "id": "FC4-226",
+                "parent": "FC4-223",
+                "text": "s'interroger sur la dimension morale et sociale du comique satirique."
+            },
+            {
+                "id": "FC4-227",
+                "parent": "FC4-217",
+                "text": "Regarder le monde, inventer des mondes / Visions poétiques du monde"
+            },
+            {
+                "id": "FC4-228",
+                "parent": "FC4-227",
+                "text": "découvrir des oeuvres et des textes relevant principalement de la poésie, du romantisme à nos jours ;"
+            },
+            {
+                "id": "FC4-229",
+                "parent": "FC4-227",
+                "text": "comprendre que la poésie joue de toutes les ressources de la langue pour célébrer et intensifier notre présence au monde, et pour en interroger le sens ;"
+            },
+            {
+                "id": "FC4-230",
+                "parent": "FC4-227",
+                "text": "percevoir le rôle central du rapport à la nature dans cette célébration du « chant du monde » ;"
+            },
+            {
+                "id": "FC4-231",
+                "parent": "FC4-227",
+                "text": "cultiver la sensibilité à la beauté des textes poétiques et s'interroger sur le rapport au monde qu'ils invitent le lecteur à éprouver par l'expérience de leur lecture."
+            },
+            {
+                "id": "FC4-232",
+                "parent": "FC4-217",
+                "text": "Agir sur le monde / Agir dans la cité : individu et pouvoir"
+            },
+            {
+                "id": "FC4-233",
+                "parent": "FC4-232",
+                "text": "découvrir des oeuvres et textes du XXe siècle appartenant à des genres divers liées à des bouleversements historiques majeurs ;"
+            },
+            {
+                "id": "FC4-234",
+                "parent": "FC4-232",
+                "text": "comprendre en quoi les textes littéraires dépassent le statut de document historique et pourquoi ils visent au-delà du témoignage et de la simple efficacité rhétorique ;"
+            },
+            {
+                "id": "FC4-235",
+                "parent": "FC4-232",
+                "text": "s'interroger sur les notions d'engagement et de résistance, et sur le rapport à l'histoire qui caractérise les oeuvres et textes étudiés."
+            },
+            {
+                "id": "FC4-236",
+                "parent": "FC4-217",
+                "text": "Questionnements complémentaires (un au moins par année, au choix) / Progrès et rêves scientifiques"
+            },
+            {
+                "id": "FC4-237",
+                "parent": "FC4-236",
+                "text": "s'interroger sur l'idée du progrès scientifique notamment au XIXe siècle, tantôt exalté et mythifié, tantôt objet de répulsion ou de désillusion ;"
+            },
+            {
+                "id": "FC4-238",
+                "parent": "FC4-236",
+                "text": "poser la question des rapports entre les sciences et la littérature, notamment à travers des oeuvres mettant en scène la figure du savant, créateur génial et bienfaiteur, ou figure malfaisante et diabolique ;"
+            },
+            {
+                "id": "FC4-239",
+                "parent": "FC4-236",
+                "text": "interroger l'ambition de l'art à penser, imaginer voire anticiper le progrès scientifique et technologique ;"
+            },
+            {
+                "id": "FC4-240",
+                "parent": "FC4-239",
+                "text": "tudier les récits d'anticipation, utopies ou dystopies, comme expression des interrogations, des angoisses et des espoirs de l'humanité, y compris en matière d'environnement."
+            },
+            {
+                "id": "FC4-241",
+                "parent": "FC4-217",
+                "text": "Questionnement libre"
+            },
             {
                 "id": "EMC",
                 "parent": "#",
@@ -10195,6 +12423,586 @@ export class Jdd {
             { "id": "JF72322", "parent": "JF7232", "text": "Habiter un espace de faible densité à vocation agricole." },
             { "id": "JF7233", "parent": "JF723", "text": "Thème 3 Habiter les littoraux" },
             { "id": "JF72331", "parent": "JF7233", "text": "Littoral industrialoportuaire, littoral touristique." },
+            {
+                "id": "HG4",
+                "parent": "HG",
+                "text": "Cycle 4"
+            },
+            {
+                "id": "HG4-1",
+                "parent": "HG4",
+                "text": "Compétences travaillées"
+            },
+            {
+                "id": "HG4-2",
+                "parent": "HG4-1",
+                "text": "Se repérer dans le temps : construire des repères historiques"
+            },
+            {
+                "id": "HG4-3",
+                "parent": "HG4-2",
+                "text": "Situer un fait dans une époque ou une période donnée."
+            },
+            {
+                "id": "HG4-4",
+                "parent": "HG4-2",
+                "text": "Ordonner des faits les uns par rapport aux autres."
+            },
+            {
+                "id": "HG4-5",
+                "parent": "HG4-2",
+                "text": "Mettre en relation des faits d'une époque ou d'une période donnée."
+            },
+            {
+                "id": "HG4-6",
+                "parent": "HG4-2",
+                "text": "Identifier des continuités et des ruptures chronologiques pour s'approprier la périodisation de l'histoire et pratiquer de conscients allers-retours au sein de la chronologie."
+            },
+            {
+                "id": "HG4-7",
+                "parent": "HG4-1",
+                "text": "Se repérer dans l'espace : construire des repères géographiques"
+            },
+            {
+                "id": "HG4-8",
+                "parent": "HG4-7",
+                "text": "Nommer et localiser les grands repères géographiques."
+            },
+            {
+                "id": "HG4-9",
+                "parent": "HG4-7",
+                "text": "Nommer, localiser et caractériser un lieu dans un espace géographique."
+            },
+            {
+                "id": "HG4-10",
+                "parent": "HG4-7",
+                "text": "Nommer, localiser et caractériser des espaces plus complexes."
+            },
+            {
+                "id": "HG4-11",
+                "parent": "HG4-7",
+                "text": "Situer des lieux et des espaces les uns par rapport aux autres."
+            },
+            {
+                "id": "HG4-12",
+                "parent": "HG4-7",
+                "text": "Utiliser des représentations analogiques et numériques des espaces à différentes échelles ainsi que différents modes de projection."
+            },
+            {
+                "id": "HG4-13",
+                "parent": "HG4-1",
+                "text": "Raisonner, justifier une démarche et les choix effectués"
+            },
+            {
+                "id": "HG4-14",
+                "parent": "HG4-13",
+                "text": "Poser des questions, se poser des questions à propos de situations historiques ou/et géographiques."
+            },
+            {
+                "id": "HG4-15",
+                "parent": "HG4-13",
+                "text": "Construire des hypothèses d'interprétation de phénomènes historiques ou géographiques."
+            },
+            {
+                "id": "HG4-16",
+                "parent": "HG4-13",
+                "text": "Vérifier des données et des sources."
+            },
+            {
+                "id": "HG4-17",
+                "parent": "HG4-13",
+                "text": "Justifier une démarche, une interprétation."
+            },
+            {
+                "id": "HG4-18",
+                "parent": "HG4-1",
+                "text": "S'informer dans le monde du numérique"
+            },
+            {
+                "id": "HG4-19",
+                "parent": "HG4-18",
+                "text": "Connaître différents systèmes d'information, les utiliser."
+            },
+            {
+                "id": "HG4-20",
+                "parent": "HG4-18",
+                "text": "Trouver, sélectionner et exploiter des informations."
+            },
+            {
+                "id": "HG4-21",
+                "parent": "HG4-18",
+                "text": "Utiliser des moteurs de recherche, des dictionnaires et des encyclopédies en ligne, des sites et des réseaux de ressources documentaires, des manuels numériques, des systèmes d'information géographique."
+            },
+            {
+                "id": "HG4-22",
+                "parent": "HG4-18",
+                "text": "Vérifier l'origine/la source des informations et leur pertinence."
+            },
+            {
+                "id": "HG4-23",
+                "parent": "HG4-18",
+                "text": "Exercer son esprit critique sur les données numériques, en apprenant à les comparer à celles qu'on peut tirer de documents de divers types."
+            },
+            {
+                "id": "HG4-24",
+                "parent": "HG4-1",
+                "text": "Analyser et comprendre un document"
+            },
+            {
+                "id": "HG4-25",
+                "parent": "HG4-24",
+                "text": "Comprendre le sens général d'un document."
+            },
+            {
+                "id": "HG4-26",
+                "parent": "HG4-24",
+                "text": "Identifier le document et son point de vue particulier."
+            },
+            {
+                "id": "HG4-27",
+                "parent": "HG4-24",
+                "text": "Extraire des informations pertinentes pour répondre à une question portant sur un document ou plusieurs documents, les classer, les hiérarchiser."
+            },
+            {
+                "id": "HG4-28",
+                "parent": "HG4-24",
+                "text": "Confronter un document à ce qu'on peut connaître par ailleurs du sujet étudié."
+            },
+            {
+                "id": "HG4-29",
+                "parent": "HG4-24",
+                "text": "Utiliser ses connaissances pour expliciter, expliquer le document et exercer son esprit critique."
+            },
+            {
+                "id": "HG4-30",
+                "parent": "HG4-1",
+                "text": "Pratiquer différents langages en histoire et en géographie"
+            },
+            {
+                "id": "HG4-31",
+                "parent": "HG4-29",
+                "text": "crire pour construire sa pensée et son savoir, pour argumenter et écrire pour communiquer et échanger."
+            },
+            {
+                "id": "HG4-32",
+                "parent": "HG4-30",
+                "text": "S'exprimer à l'oral pour penser, communiquer et échanger."
+            },
+            {
+                "id": "HG4-33",
+                "parent": "HG4-30",
+                "text": "Connaître les caractéristiques des récits historiques et des descriptions employées en histoire et en géographie, et en réaliser."
+            },
+            {
+                "id": "HG4-34",
+                "parent": "HG4-30",
+                "text": "Réaliser des productions graphiques et cartographiques."
+            },
+            {
+                "id": "HG4-35",
+                "parent": "HG4-30",
+                "text": "Réaliser une production audio-visuelle, un diaporama."
+            },
+            {
+                "id": "HG4-36",
+                "parent": "HG4-30",
+                "text": "S'approprier et utiliser un lexique spécifique en contexte."
+            },
+            {
+                "id": "HG4-37",
+                "parent": "HG4-30",
+                "text": "S'initier aux techniques d'argumentation."
+            },
+            {
+                "id": "HG4-38",
+                "parent": "HG4-1",
+                "text": "Coopérer et mutualiser"
+            },
+            {
+                "id": "HG4-39",
+                "parent": "HG4-38",
+                "text": "Organiser son travail dans le cadre d'un groupe pour élaborer une tâche commune et/ou une production collective et mettre à la disposition des autres ses compétences et ses connaissances."
+            },
+            {
+                "id": "HG4-40",
+                "parent": "HG4-38",
+                "text": "Adapter son rythme de travail à celui du groupe."
+            },
+            {
+                "id": "HG4-41",
+                "parent": "HG4-38",
+                "text": "Discuter, expliquer, confronter ses représentations, argumenter pour défendre ses choix."
+            },
+            {
+                "id": "HG4-42",
+                "parent": "HG4-38",
+                "text": "Négocier une solution commune si une production collective est demandée."
+            },
+            {
+                "id": "HG4-43",
+                "parent": "HG4-38",
+                "text": "Apprendre à utiliser les outils numériques qui peuvent conduire à des réalisations collectives."
+            },
+            {
+                "id": "HG4-44",
+                "parent": "HG4",
+                "text": "Compétences et connaissances associées : Histoire"
+            },
+            {
+                "id": "HG4-45",
+                "parent": "HG4-44",
+                "text": "Cinquième"
+            },
+            {
+                "id": "HG4-46",
+                "parent": "HG4-45",
+                "text": "Thème 1 Chrétientés et islam (VIe-XIIIe siècles), des mondes en contact"
+            },
+            {
+                "id": "HG4-47",
+                "parent": "HG4-46",
+                "text": "Byzance et l'Europe carolingienne."
+            },
+            {
+                "id": "HG4-48",
+                "parent": "HG4-46",
+                "text": "De la naissance de l'islam à la prise de Bagdad par les Mongols : pouvoirs, sociétés, cultures."
+            },
+            {
+                "id": "HG4-49",
+                "parent": "HG4-45",
+                "text": "Thème 2 Société, Église et pouvoir politique dans l'occident féodal (XIe-XVe siècles)"
+            },
+            {
+                "id": "HG4-50",
+                "parent": "HG4-49",
+                "text": "L'ordre seigneurial : la formation et la domination des campagnes."
+            },
+            {
+                "id": "HG4-51",
+                "parent": "HG4-49",
+                "text": "L'émergence d'une nouvelle société urbaine."
+            },
+            {
+                "id": "HG4-52",
+                "parent": "HG4-49",
+                "text": "L'affirmation de l'État monarchique dans le Royaume des Capétiens et des Valois."
+            },
+            {
+                "id": "HG4-53",
+                "parent": "HG4-45",
+                "text": "Thème 3 Transformations de l'Europe et ouverture sur le monde aux XVIe et XVIIe siècles"
+            },
+            {
+                "id": "HG4-54",
+                "parent": "HG4-53",
+                "text": "Le monde au temps de Charles Quint et Soliman le Magnifique."
+            },
+            {
+                "id": "HG4-55",
+                "parent": "HG4-53",
+                "text": "Humanisme, réformes et conflits religieux."
+            },
+            {
+                "id": "HG4-56",
+                "parent": "HG4-53",
+                "text": "Du Prince de la Renaissance au roi absolu. (François Ier, Henri IV, Louis XIV)"
+            },
+            {
+                "id": "HG4-57",
+                "parent": "HG4-44",
+                "text": "Quatrième"
+            },
+            {
+                "id": "HG4-58",
+                "parent": "HG4-57",
+                "text": "Thème 1 Le XVIIIe siècle. Expansions, Lumières et révolutions"
+            },
+            {
+                "id": "HG4-59",
+                "parent": "HG4-58",
+                "text": "Bourgeoisies marchandes, négoces internationaux, traites négrières et esclavage au XVIIIe siècle."
+            },
+            {
+                "id": "HG4-60",
+                "parent": "HG4-58",
+                "text": "L'Europe des Lumières : circulation des idées, despotisme éclairé et contestation de l'absolutisme."
+            },
+            {
+                "id": "HG4-61",
+                "parent": "HG4-58",
+                "text": "La Révolution française et l'Empire : nouvel ordre politique et société révolutionnée en France et en Europe."
+            },
+            {
+                "id": "HG4-62",
+                "parent": "HG4-57",
+                "text": "Thème 2 L'Europe et le monde au XIXe siècle :"
+            },
+            {
+                "id": "HG4-63",
+                "parent": "HG4-62",
+                "text": "L'Europe de la « révolution industrielle »."
+            },
+            {
+                "id": "HG4-64",
+                "parent": "HG4-62",
+                "text": "Conquêtes et sociétés coloniales."
+            },
+            {
+                "id": "HG4-65",
+                "parent": "HG4-57",
+                "text": "Thème 3 Société, culture et politique dans la France du XIXe siècle"
+            },
+            {
+                "id": "HG4-66",
+                "parent": "HG4-65",
+                "text": "Une difficile conquête : voter de 1815 à 1870."
+            },
+            {
+                "id": "HG4-67",
+                "parent": "HG4-65",
+                "text": "La Troisième République."
+            },
+            {
+                "id": "HG4-68",
+                "parent": "HG4-65",
+                "text": "Conditions féminines dans une société en mutation."
+            },
+            {
+                "id": "HG4-69",
+                "parent": "HG4-44",
+                "text": "Troisième"
+            },
+            {
+                "id": "HG4-70",
+                "parent": "HG4-69",
+                "text": "Thème 1 L'Europe, un théâtre majeur des guerres totales (1914-1945) Civils et militaires dans la Première Guerre mondiale."
+            },
+            {
+                "id": "HG4-71",
+                "parent": "HG4-70",
+                "text": "Démocraties fragilisées et expériences totalitaires dans l'Europe de l'entre-deux-guerres."
+            },
+            {
+                "id": "HG4-72",
+                "parent": "HG4-70",
+                "text": "La Deuxième Guerre mondiale, une guerre d'anéantissement."
+            },
+            {
+                "id": "HG4-73",
+                "parent": "HG4-70",
+                "text": "La France défaite et occupée. Régime de Vichy, collaboration, Résistance."
+            },
+            {
+                "id": "HG4-74",
+                "parent": "HG4-69",
+                "text": "Thème 2 Le monde depuis 1945"
+            },
+            {
+                "id": "HG4-75",
+                "parent": "HG4-74",
+                "text": "Indépendances et construction de nouveaux États."
+            },
+            {
+                "id": "HG4-76",
+                "parent": "HG4-74",
+                "text": "Un monde bipolaire au temps de la guerre froide."
+            },
+            {
+                "id": "HG4-77",
+                "parent": "HG4-74",
+                "text": "Affirmation et mise en oeuvre du projet européen."
+            },
+            {
+                "id": "HG4-78",
+                "parent": "HG4-74",
+                "text": "Enjeux et conflits dans le monde après 1989."
+            },
+            {
+                "id": "HG4-79",
+                "parent": "HG4-69",
+                "text": "Thème 3 Françaises et Français dans une République repensée"
+            },
+            {
+                "id": "HG4-80",
+                "parent": "HG4-79",
+                "text": "1944-1947: refonder la République, redéfinir la démocratie."
+            },
+            {
+                "id": "HG4-81",
+                "parent": "HG4-79",
+                "text": "La Ve République, de la République gaullienne à l'alternance et à la cohabitation."
+            },
+            {
+                "id": "HG4-82",
+                "parent": "HG4-79",
+                "text": "Femmes et hommes dans la société des années 1950 aux années 1980 : nouveaux enjeux sociaux et culturels, réponses politiques."
+            },
+            {
+                "id": "HG4-83",
+                "parent": "HG4",
+                "text": "Compétences et connaissances associées : Géographie"
+            },
+            {
+                "id": "HG4-84",
+                "parent": "HG4-83",
+                "text": "Cinquième"
+            },
+            {
+                "id": "HG4-85",
+                "parent": "HG4-84",
+                "text": "Thème 1 La question démographique et l'inégal développement"
+            },
+            {
+                "id": "HG4-86",
+                "parent": "HG4-85",
+                "text": "La croissance démographique et ses effets."
+            },
+            {
+                "id": "HG4-87",
+                "parent": "HG4-85",
+                "text": "Répartition de la richesse et de la pauvreté dans le monde."
+            },
+            {
+                "id": "HG4-88",
+                "parent": "HG4-84",
+                "text": "Thème 2 Des ressources limitées, à gérer et à renouveler "
+            },
+            {
+                "id": "HG4-89",
+                "parent": "HG4-88",
+                "text": "L'énergie, l'eau : des ressources à ménager et à mieux utiliser."
+            },
+            {
+                "id": "HG4-90",
+                "parent": "HG4-88",
+                "text": "L'alimentation : comment nourrir une humanité en croissance démographique et aux besoins alimentaires accrus ?"
+            },
+            {
+                "id": "HG4-91",
+                "parent": "HG4-84",
+                "text": "Thème 3 L'environnement, du local au planétaire."
+            },
+            {
+                "id": "HG4-92",
+                "parent": "HG4-91",
+                "text": "Le changement climatique et ses principaux effets géographiques régionaux"
+            },
+            {
+                "id": "HG4-93",
+                "parent": "HG4-91",
+                "text": "Prévenir et s'adapter aux risques (industriels, technologiques et sanitaires ou liés au changement climatique)"
+            },
+            {
+                "id": "HG4-94",
+                "parent": "HG4-83",
+                "text": "Quatrième"
+            },
+            {
+                "id": "HG4-95",
+                "parent": "HG4-94",
+                "text": "Thème 1 L'urbanisation du monde."
+            },
+            {
+                "id": "HG4-96",
+                "parent": "HG4-95",
+                "text": "Espaces et paysages de l'urbanisation : géographie des centres et des périphéries."
+            },
+            {
+                "id": "HG4-97",
+                "parent": "HG4-95",
+                "text": "Des villes inégalement connectées aux réseaux de la mondialisation."
+            },
+            {
+                "id": "HG4-98",
+                "parent": "HG4-94",
+                "text": "Thème 2 Les mobilités humaines transnationales"
+            },
+            {
+                "id": "HG4-99",
+                "parent": "HG4-98",
+                "text": "Un monde de migrants."
+            },
+            {
+                "id": "HG4-100",
+                "parent": "HG4-98",
+                "text": "Le tourisme et ses espaces."
+            },
+            {
+                "id": "HG4-101",
+                "parent": "HG4-94",
+                "text": "Thème 3 Des espaces transformés par la mondialisation"
+            },
+            {
+                "id": "HG4-102",
+                "parent": "HG4-101",
+                "text": "Mers et Océans : un monde maritimisé."
+            },
+            {
+                "id": "HG4-103",
+                "parent": "HG4-101",
+                "text": "L'adaptation du territoire des États-Unis aux nouvelles conditions de la mondialisation."
+            },
+            {
+                "id": "HG4-104",
+                "parent": "HG4-101",
+                "text": "Les dynamiques d'un grand ensemble géographique africain (au choix : Afrique de l'Ouest, Afrique Orientale, Afrique australe)."
+            },
+            {
+                "id": "HG4-105",
+                "parent": "HG4-83",
+                "text": "Troisième"
+            },
+            {
+                "id": "HG4-106",
+                "parent": "HG4-105",
+                "text": "Thème 1 Dynamiques territoriales de la France contemporaine"
+            },
+            {
+                "id": "HG4-107",
+                "parent": "HG4-106",
+                "text": "Les aires urbaines, une nouvelle géographie d'une France mondialisée."
+            },
+            {
+                "id": "HG4-108",
+                "parent": "HG4-106",
+                "text": "Les espaces productifs et leurs évolutions."
+            },
+            {
+                "id": "HG4-109",
+                "parent": "HG4-106",
+                "text": "Les espaces de faible densité (espaces ruraux, montagnes, secteurs touristiques peu urbanisés) et leurs atouts."
+            },
+            {
+                "id": "HG4-110",
+                "parent": "HG4-105",
+                "text": "Thème 2 Pourquoi et comment aménager le territoire?"
+            },
+            {
+                "id": "HG4-111",
+                "parent": "HG4-110",
+                "text": "Aménager pour répondre aux inégalités croissantes entre territoires français, à toutes les échelles."
+            },
+            {
+                "id": "HG4-112",
+                "parent": "HG4-110",
+                "text": "Les territoires ultramarins français : une problématique spécifique."
+            },
+            {
+                "id": "HG4-113",
+                "parent": "HG4-105",
+                "text": "Thème 3 La France et l'Union européenne"
+            },
+            {
+                "id": "HG4-114",
+                "parent": "HG4-113",
+                "text": "L'Union européenne, un nouveau territoire de référence et d'appartenance."
+            },
+            {
+                "id": "HG4-115",
+                "parent": "HG4-113",
+                "text": "La France et l'Europe dans le monde."
+            },
             { "id": "SET", "parent": "#", "text": "Sciences et Technologie" },
             { "id": "SETC3", "parent": "SET", "text": "Cycle 3" },
             { "id": "JF81", "parent": "SETC3", "text": "Matière, mouvement, énergie, information" },
@@ -10314,6 +13122,456 @@ export class Jdd {
             { "id": "JF8425", "parent": "JF842", "text": "Suivre et décrire le devenir de quelques matériaux de l'environnement proche." },
             { "id": "JF8426", "parent": "JF842", "text": "Relier les besoins de l'être humain, l'exploitation des ressources naturelles et les impacts à prévoir et gérer (risques, rejets, valorisations, épuisement des stocks)." },
             { "id": "JF8427", "parent": "JF842", "text": "Exploitation raisonnée et utilisation des ressources (eau, pétrole, charbon, minerais, biodiversité, sols, bois, roches à des fins de construction…)." },
+            {
+                "id": "SETC4",
+                "parent": "SET",
+                "text": "Cycle 4"
+            },
+            {
+                "id": "SETC4-1",
+                "parent": "SETC4",
+                "text": "Compétences travaillées"
+            },
+            {
+                "id": "SETC4-2",
+                "parent": "SETC4-1",
+                "text": "Pratiquer des démarches scientifiques"
+            },
+            {
+                "id": "SETC4-3",
+                "parent": "SETC4-2",
+                "text": "Formuler une question ou un problème scientifique."
+            },
+            {
+                "id": "SETC4-4",
+                "parent": "SETC4-2",
+                "text": "Proposer une ou des hypothèses pour résoudre un problème ou répondre à une question. Concevoir et mettre en oeuvre des expériences ou d'autres stratégies de résolution pour tester cette ou ces hypothèses."
+            },
+            {
+                "id": "SETC4-5",
+                "parent": "SETC4-2",
+                "text": "Utiliser des instruments d'observation, de mesures et des techniques de préparation et de collecte."
+            },
+            {
+                "id": "SETC4-6",
+                "parent": "SETC4-2",
+                "text": "Interpréter des résultats et en tirer des conclusions."
+            },
+            {
+                "id": "SETC4-7",
+                "parent": "SETC4-2",
+                "text": "Communiquer sur les démarches, les résultats et les choix, en argumentant."
+            },
+            {
+                "id": "SETC4-8",
+                "parent": "SETC4-2",
+                "text": "Identifier et choisir des notions, des outils et des techniques, ou des modèles simples pour mettre en oeuvre une démarche scientifique."
+            },
+            {
+                "id": "SETC4-9",
+                "parent": "SETC4-1",
+                "text": "Concevoir, créer, réaliser"
+            },
+            {
+                "id": "SETC4-10",
+                "parent": "SETC4-9",
+                "text": "Concevoir et mettre en oeuvre un protocole expérimental."
+            },
+            {
+                "id": "SETC4-11",
+                "parent": "SETC4-9",
+                "text": "Utiliser des outils et mobiliser des méthodes pour apprendre"
+            },
+            {
+                "id": "SETC4-12",
+                "parent": "SETC4-9",
+                "text": "Apprendre à organiser son travail (par ex. pour mettre en oeuvre un protocole expérimental)."
+            },
+            {
+                "id": "SETC4-13",
+                "parent": "SETC4-9",
+                "text": "Identifier et choisir les outils et les techniques pour garder trace de ses recherches (à l'oral et à l'écrit)."
+            },
+            {
+                "id": "SETC4-14",
+                "parent": "SETC4-1",
+                "text": "Pratiquer des langages"
+            },
+            {
+                "id": "SETC4-15",
+                "parent": "SETC4-14",
+                "text": "Lire et exploiter des données présentées sous différentes formes : tableaux, graphiques, diagrammes, dessins, conclusions de recherches, cartes heuristiques, etc."
+            },
+            {
+                "id": "SETC4-16",
+                "parent": "SETC4-14",
+                "text": "Représenter des données sous différentes formes, passer d'une représentation à une autre et choisir celle qui est adaptée à la situation de travail."
+            },
+            {
+                "id": "SETC4-17",
+                "parent": "SETC4-1",
+                "text": "Utiliser des outils numériques"
+            },
+            {
+                "id": "SETC4-18",
+                "parent": "SETC4-17",
+                "text": "Conduire une recherche d'informations sur internet pour répondre à une question ou un problème scientifique, en choisissant des mots-clés pertinents, et en évaluant la fiabilité des sources et la validité des résultats."
+            },
+            {
+                "id": "SETC4-19",
+                "parent": "SETC4-17",
+                "text": "Utiliser des logiciels d'acquisition de données, de simulation et des bases de données."
+            },
+            {
+                "id": "SETC4-20",
+                "parent": "SETC4-1",
+                "text": "Adopter un comportement éthique et responsable"
+            },
+            {
+                "id": "SETC4-21",
+                "parent": "SETC4-20",
+                "text": "Identifier les impacts (bénéfices et nuisances) des activités humaines sur l'environnement à différentes échelles."
+            },
+            {
+                "id": "SETC4-22",
+                "parent": "SETC4-20",
+                "text": "Fonder ses choix de comportement responsable vis-à-vis de sa santé ou de l'environnement sur des arguments scientifiques."
+            },
+            {
+                "id": "SETC4-23",
+                "parent": "SETC4-20",
+                "text": "Comprendre les responsabilités individuelle et collective en matière de préservation des ressources de la planète (biodiversité, ressources minérales et ressources énergétiques) et de santé."
+            },
+            {
+                "id": "SETC4-24",
+                "parent": "SETC4-20",
+                "text": "Participer à l'élaboration de règles de sécurité et les appliquer au laboratoire et sur le terrain."
+            },
+            {
+                "id": "SETC4-25",
+                "parent": "SETC4-20",
+                "text": "Distinguer ce qui relève d'une croyance ou d'une opinion et ce qui constitue un savoir scientifique."
+            },
+            {
+                "id": "SETC4-26",
+                "parent": "SETC4-1",
+                "text": "Se situer dans l'espace et dans le temps"
+            },
+            {
+                "id": "SETC4-27",
+                "parent": "SETC4-26",
+                "text": "Situer l'espèce humaine dans l'évolution des espèces."
+            },
+            {
+                "id": "SETC4-28",
+                "parent": "SETC4-26",
+                "text": "Appréhender différentes échelles de temps géologique et biologique (ex : histoire de la Terre ; apparition de la vie, évolution et extinction des espèces vivantes…)."
+            },
+            {
+                "id": "SETC4-29",
+                "parent": "SETC4-26",
+                "text": "Appréhender différentes échelles spatiales d'un même phénomène/d'une même fonction (ex : nutrition : niveau de l'organisme, niveau des organes et niveau cellulaire)."
+            },
+            {
+                "id": "SETC4-30",
+                "parent": "SETC4-26",
+                "text": "Identifier par l'histoire des sciences et des techniques comment se construit un savoir scientifique."
+            },
+            {
+                "id": "SETC4-31",
+                "parent": "SETC4",
+                "text": "Compétences et connaissances associées : La planète Terre, l'environnement et l'action humaine"
+            },
+            {
+                "id": "SETC4-32",
+                "parent": "SETC4-31",
+                "text": "Expliquer quelques phénomènes géologiques à partir du contexte géodynamique global :"
+            },
+            {
+                "id": "SETC4-33",
+                "parent": "SETC4-32",
+                "text": "La Terre dans le système solaire, le globe terrestre (dynamique interne et tectonique des plaques lithosphériques ; séismes, éruptions volcaniques."
+            },
+            {
+                "id": "SETC4-34",
+                "parent": "SETC4-33",
+                "text": "res géologiques."
+            },
+            {
+                "id": "SETC4-35",
+                "parent": "SETC4-31",
+                "text": "Expliquer quelques phénomènes météorologiques et climatiques :"
+            },
+            {
+                "id": "SETC4-36",
+                "parent": "SETC4-35",
+                "text": "Météorologie ; dynamique des masses d'air et des masses d'eau ; vents et courants océaniques."
+            },
+            {
+                "id": "SETC4-37",
+                "parent": "SETC4-35",
+                "text": "Différence entre météo et climat ; Les grandes zones climatiques de la Terre et la répartition des faunes et des flores."
+            },
+            {
+                "id": "SETC4-38",
+                "parent": "SETC4-35",
+                "text": "Les changements climatiques passés (temps géologiques) et actuels (influence des activités humaines sur le climat notamment par l'émission de gaz à effet de serre) ; leurs conséquences sur la répartition des êtres vivants."
+            },
+            {
+                "id": "SETC4-39",
+                "parent": "SETC4-31",
+                "text": "Relier les connaissances scientifiques sur les risques naturels (ex. : séismes, cyclones, inondations) ainsi que ceux liés aux activités humaines (pollution de l'air et des mers, réchauffement climatique, montée du niveau des océans…) aux mesures de prévention, de protection, d'adaptation, ou d'atténuation :"
+            },
+            {
+                "id": "SETC4-40",
+                "parent": "SETC4-39",
+                "text": "Les phénomènes naturels : risques et enjeux pour l'être humain."
+            },
+            {
+                "id": "SETC4-41",
+                "parent": "SETC4-39",
+                "text": "Notions d'aléas, de vulnérabilité et de risque en lien avec les phénomènes naturels ; prévisions."
+            },
+            {
+                "id": "SETC4-42",
+                "parent": "SETC4-31",
+                "text": "Caractériser quelques-uns des principaux enjeux de l'exploitation d'une ressource naturelle par l'être humain, en lien avec quelques grandes questions de société."
+            },
+            {
+                "id": "SETC4-43",
+                "parent": "SETC4-42",
+                "text": "L'exploitation de quelques ressources naturelles par l'être humain (eau, sol, pétrole, charbon, bois, ressources minérales, ressources halieutiques…) pour ses besoins en nourriture et ses activités quotidiennes."
+            },
+            {
+                "id": "SETC4-44",
+                "parent": "SETC4-31",
+                "text": "Expliquer les choix en matière de gestion de ressources naturelles à différentes échelles."
+            },
+            {
+                "id": "SETC4-45",
+                "parent": "SETC4-31",
+                "text": "Expliquer comment une activité humaine peut modifier l'organisation et le fonctionnement des écosystèmes en lien avec quelques questions environnementales globales."
+            },
+            {
+                "id": "SETC4-46",
+                "parent": "SETC4-31",
+                "text": "Analyser les impacts engendrés par le rythme, la nature (bénéfices/nuisances), l'importance et la variabilité des actions de l'être humain sur l'environnement."
+            },
+            {
+                "id": "SETC4-47",
+                "parent": "SETC4-31",
+                "text": "Quelques exemples d'interactions entre les activités humaines  et l'environnement, dont l'interaction être humain - biodiversité (de l'échelle d'un écosystème local et de sa dynamique jusqu'à celle de la planète)."
+            },
+            {
+                "id": "SETC4-48",
+                "parent": "SETC4",
+                "text": "Compétences et connaissances associées : Le vivant et son évolution"
+            },
+            {
+                "id": "SETC4-49",
+                "parent": "SETC4-48",
+                "text": "Relier les besoins en nutriments et dioxygène des cellules animales et le rôle des systèmes de transport dans l'organisme."
+            },
+            {
+                "id": "SETC4-50",
+                "parent": "SETC4-49",
+                "text": "Nutrition et organisation fonctionnelle à l'échelle de l'organisme, des organes, des tissus et des cellules."
+            },
+            {
+                "id": "SETC4-51",
+                "parent": "SETC4-49",
+                "text": "Nutrition et interactions avec des microorganismes."
+            },
+            {
+                "id": "SETC4-52",
+                "parent": "SETC4-48",
+                "text": "Relier les besoins des cellules d'une plante chlorophyllienne (CO2, eau, sels minéraux et énergie lumineuse), les lieux de production ou de prélèvement de matière et de stockage et les systèmes de transport au sein de la plante."
+            },
+            {
+                "id": "SETC4-53",
+                "parent": "SETC4-48",
+                "text": "Relier des éléments de biologie de la reproduction sexuée et asexuée des êtres vivants et l'influence du milieu sur la survie des individus, à la dynamique des populations."
+            },
+            {
+                "id": "SETC4-54",
+                "parent": "SETC4-53",
+                "text": "Reproductions sexuée et asexuée, rencontre des gamètes, milieux et modes de reproduction et de dissémination."
+            },
+            {
+                "id": "SETC4-55",
+                "parent": "SETC4-53",
+                "text": "Gamètes et patrimoine génétique chez les Vertébrés et les plantes à fleurs."
+            },
+            {
+                "id": "SETC4-56",
+                "parent": "SETC4-53",
+                "text": "Dynamique des populations et paramètres d'influence."
+            },
+            {
+                "id": "SETC4-57",
+                "parent": "SETC4-48",
+                "text": "Relier l'étude des relations de parenté entre les êtres vivants, et l'évolution."
+            },
+            {
+                "id": "SETC4-58",
+                "parent": "SETC4-57",
+                "text": "Caractères partagés et classification."
+            },
+            {
+                "id": "SETC4-59",
+                "parent": "SETC4-57",
+                "text": "Les grands groupes d'êtres vivants, dont Homo sapiens, leur parenté et leur évolution."
+            },
+            {
+                "id": "SETC4-60",
+                "parent": "SETC4-48",
+                "text": "Expliquer sur quoi reposent la diversité et la stabilité génétique des individus."
+            },
+            {
+                "id": "SETC4-61",
+                "parent": "SETC4-48",
+                "text": "Expliquer les mécanismes à l'origine de la diversité et de la stabilité génétique des individus."
+            },
+            {
+                "id": "SETC4-62",
+                "parent": "SETC4-48",
+                "text": "Expliquer comment les phénotypes sont déterminés par les génotypes et par l'action de l'environnement."
+            },
+            {
+                "id": "SETC4-63",
+                "parent": "SETC4-48",
+                "text": "Relier, comme des processus dynamiques, la diversité génétique et la biodiversité."
+            },
+            {
+                "id": "SETC4-64",
+                "parent": "SETC4-63",
+                "text": "Diversité et dynamique du monde vivant à différents niveaux d'organisation ; diversité des relations interspécifiques."
+            },
+            {
+                "id": "SETC4-65",
+                "parent": "SETC4-63",
+                "text": "Diversité génétique au sein d'une population ; héritabilité, stabilité des groupes."
+            },
+            {
+                "id": "SETC4-66",
+                "parent": "SETC4-63",
+                "text": "ADN, mutations, brassage, gène, méiose et fécondation."
+            },
+            {
+                "id": "SETC4-67",
+                "parent": "SETC4-48",
+                "text": "Mettre en évidence des faits d'évolution des espèces et donner des arguments en faveur de quelques mécanismes de l'évolution."
+            },
+            {
+                "id": "SETC4-68",
+                "parent": "SETC4-67",
+                "text": "Apparition et disparition d'espèces au cours du temps (traces fossiles des premiers organismes vivants sur Terre)."
+            },
+            {
+                "id": "SETC4-69",
+                "parent": "SETC4-67",
+                "text": "Maintien des formes aptes à se reproduire, hasard, sélection naturelle."
+            },
+            {
+                "id": "SETC4-70",
+                "parent": "SETC4",
+                "text": "Compétences et connaissances associées : Le corps humain et la santé"
+            },
+            {
+                "id": "SETC4-71",
+                "parent": "SETC4-70",
+                "text": "Expliquer comment le système nerveux, le système respiratoire et le système cardiovasculaire interviennent lors d'un effort musculaire, en identifiant les capacités et les limites de l'organisme."
+            },
+            {
+                "id": "SETC4-72",
+                "parent": "SETC4-71",
+                "text": "Rythmes cardiaque et respiratoire, et effort physique"
+            },
+            {
+                "id": "SETC4-73",
+                "parent": "SETC4-70",
+                "text": "Mettre en évidence le rôle du cerveau dans la réception et l'intégration d'informations multiples."
+            },
+            {
+                "id": "SETC4-74",
+                "parent": "SETC4-73",
+                "text": "Message nerveux, centres nerveux, nerfs, cellules nerveuses."
+            },
+            {
+                "id": "SETC4-75",
+                "parent": "SETC4-70",
+                "text": "Relier quelques comportements à leurs effets sur le fonctionnement du système nerveux."
+            },
+            {
+                "id": "SETC4-76",
+                "parent": "SETC4-75",
+                "text": "Activité cérébrale ; hygiène de vie : conditions d'un bon fonctionnement du système nerveux, perturbations par certaines situations ou consommations (seuils, excès, dopage, limites et effets de l'entraînement)."
+            },
+            {
+                "id": "SETC4-77",
+                "parent": "SETC4-70",
+                "text": "Expliquer le devenir des aliments dans le tube digestif."
+            },
+            {
+                "id": "SETC4-78",
+                "parent": "SETC4-77",
+                "text": "Système digestif, digestion, absorption ; aliments et nutriments."
+            },
+            {
+                "id": "SETC4-79",
+                "parent": "SETC4-70",
+                "text": "Relier la nature des aliments et leurs apports qualitatifs et quantitatifs pour comprendre l'importance de l'alimentation pour l'organisme (besoins nutritionnels)."
+            },
+            {
+                "id": "SETC4-80",
+                "parent": "SETC4-79",
+                "text": "Groupes d'aliments, besoins alimentaires, besoins nutritionnels et diversité des régimes alimentaires."
+            },
+            {
+                "id": "SETC4-81",
+                "parent": "SETC4-70",
+                "text": "Relier le monde microbien hébergé par notre organisme et son fonctionnement."
+            },
+            {
+                "id": "SETC4-82",
+                "parent": "SETC4-81",
+                "text": "Ubiquité, diversité et évolution du monde bactérien (dont la résistance aux antibiotiques)."
+            },
+            {
+                "id": "SETC4-83",
+                "parent": "SETC4-70",
+                "text": "Expliquer les réactions qui permettent à l'organisme de se préserver des micro-organismes pathogènes."
+            },
+            {
+                "id": "SETC4-84",
+                "parent": "SETC4-83",
+                "text": "Réactions immunitaires."
+            },
+            {
+                "id": "SETC4-85",
+                "parent": "SETC4-70",
+                "text": "Relier ses connaissances aux politiques de prévention et de lutte contre la contamination et/ou l'infection."
+            },
+            {
+                "id": "SETC4-86",
+                "parent": "SETC4-85",
+                "text": "Mesures d'hygiène, vaccination, action des antiseptiques et des antibiotiques."
+            },
+            {
+                "id": "SETC4-87",
+                "parent": "SETC4-70",
+                "text": "Relier le fonctionnement des appareils reproducteurs à partir de la puberté aux principes de la maîtrise de la reproduction."
+            },
+            {
+                "id": "SETC4-88",
+                "parent": "SETC4-87",
+                "text": "Puberté, organes reproducteurs, production de cellules reproductrices, contrôles hormonaux."
+            },
+            {
+                "id": "SETC4-89",
+                "parent": "SETC4-70",
+                "text": "Expliquer sur quoi reposent les comportements responsables dans le domaine de la sexualité : fertilité, grossesse, respect de l'autre, choix raisonné de la procréation, contraception, prévention des infections sexuellementtransmissibles."
+            }
         ],
         dateDerniereSauvegarde: new Date('2025-08-17T21:00:00.000Z'),
         journal: [
