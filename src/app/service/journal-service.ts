@@ -109,9 +109,10 @@ export class JournalService {
         let commentaireJournalParDefaut = '';
         (eleves || []).forEach(e => {
             if (e.absences) {
+                const numeroSemaine = parseInt(this.datePipe.transform(dateJournal, 'ww') as string, 10);
                 e.absences.forEach(a => {
-                    const numeroSemaine = parseInt(this.datePipe.transform(dateJournal, 'ww') as string, 10);
-                    const verifFrequence = (typeof a.frequence === 'undefined' || a.frequence === 2) || (numeroSemaine % 2 === a.frequence);
+                    // pas de === car nombre et string se mélangent
+                    const verifFrequence = (typeof a.frequence === 'undefined' || a.frequence == 2) || (numeroSemaine % 2 == a.frequence);
                     if (a.jour === dateJournal?.getDay() && verifFrequence && mapRaisonAbsence) {
                         const raison = a.raison ? mapRaisonAbsence[a.raison] : '';
                         commentaireJournalParDefaut += '<li>' + e.prenom + ' : ' + raison + ' de ' + a.heureDebut + ' à ' + a.heureFin + '</li>';

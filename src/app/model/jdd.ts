@@ -231,9 +231,9 @@ export class Jdd {
                 datesPPA: '',
                 datesESS: '',
                 absences: [
-                    { id: 'ca1', frequence: 2, raison: 'I', jour: 2, heureDebut: '8H00', heureFin: '12h00' },
-                    { id: 'ca1', frequence: 2, raison: 'I', jour: 3, heureDebut: '8H00', heureFin: '12h00' },
-                    { id: 'ca1', frequence: 2, raison: 'I', jour: 4, heureDebut: '8H00', heureFin: '12h00' }
+                    { id: 'ca1', frequence: 0, raison: 'I', jour: 2, heureDebut: '8H00', heureFin: '12h00' },
+                    { id: 'ca2', frequence: 1, raison: 'I', jour: 3, heureDebut: '8H00', heureFin: '12h00' },
+                    { id: 'ca3', frequence: 2, raison: 'I', jour: 4, heureDebut: '8H00', heureFin: '12h00' }
                 ],
                 inclusion: { id: 'bouchon-10' },
                 notes: [
@@ -6008,1665 +6008,1424 @@ export class Jdd {
             },
             {
                 "id": "FC2-3",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-4",
                 "parent": "FC2-2",
                 "text": "En fin de période 1"
             },
             {
-                "id": "FC2-5",
-                "parent": "",
+                "id": "FC2-4",
+                "parent": "FC2-3",
                 "text": "Décoder et encoder 12 à 15 correspondances grapho-phonémiques (CGP) régulières, fréquentes et aisément prononçables."
             },
             {
+                "id": "FC2-5",
+                "parent": "FC2-3",
+                "text": "Déchiffrer des syllabes, des mots puis des phrases en fonction de la progression de l’apprentissage des CGP."
+            },
+            {
                 "id": "FC2-6",
-                "parent": "",
-                "text": "Déchiffrer des syllabes, des mots puis des phrases en fonction de la progression de l'apprentissage des CGP."
+                "parent": "FC2-2",
+                "text": "En milieu d’année"
             },
             {
                 "id": "FC2-7",
-                "parent": "FC2-2",
-                "text": "En milieu d'année"
-            },
-            {
-                "id": "FC2-8",
-                "parent": "",
+                "parent": "FC2-6",
                 "text": "Décoder et encoder de 25 à 30 CGP."
             },
             {
-                "id": "FC2-9",
-                "parent": "",
-                "text": "Avoir pris conscience de la présence de lettres finales muettes et s'appuyer sur le sens des mots pour les déchiffrer correctement."
+                "id": "FC2-8",
+                "parent": "FC2-6",
+                "text": "Avoir pris conscience de la présence de lettres finales muettes et s’appuyer sur le sens des mots pour les déchiffrer correctement."
             },
             {
-                "id": "FC2-10",
-                "parent": "",
+                "id": "FC2-9",
+                "parent": "FC2-6",
                 "text": "Mémoriser les mots fréquents et réguliers."
             },
             {
-                "id": "FC2-11",
-                "parent": "",
+                "id": "FC2-10",
+                "parent": "FC2-6",
                 "text": "Déchiffrer entre 15 et 30 mots par minute."
             },
             {
-                "id": "FC2-12",
+                "id": "FC2-11",
                 "parent": "FC2-2",
-                "text": "En fin d'année"
+                "text": "En fin d’année"
             },
             {
-                "id": "FC2-13",
-                "parent": "",
+                "id": "FC2-12",
+                "parent": "FC2-11",
                 "text": "Décoder 30 mots par minute au minimum fin CP, sans préparation, 50 après préparation."
             },
             {
-                "id": "FC2-14",
+                "id": "FC2-13",
                 "parent": "FC2-1",
                 "text": "Lire à voix haute"
             },
             {
+                "id": "FC2-14",
+                "parent": "FC2-13",
+                "text": "Dès le début de l’année"
+            },
+            {
                 "id": "FC2-15",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-16",
                 "parent": "FC2-14",
-                "text": "Dès le début de l'année"
-            },
-            {
-                "id": "FC2-17",
-                "parent": "",
                 "text": "Oraliser les syllabes déchiffrées et encodées, puis les mots."
             },
             {
-                "id": "FC2-18",
-                "parent": "FC2-14",
-                "text": "En cours d'année"
+                "id": "FC2-16",
+                "parent": "FC2-13",
+                "text": "En cours d’année"
             },
             {
-                "id": "FC2-19",
-                "parent": "",
+                "id": "FC2-17",
+                "parent": "FC2-16",
                 "text": "Oraliser régulièrement les mots et phrases déchiffrés et encodés."
             },
             {
+                "id": "FC2-18",
+                "parent": "FC2-16",
+                "text": "S’entrainer à lire des textes déchiffrables de manière à automatiser sa lecture."
+            },
+            {
+                "id": "FC2-19",
+                "parent": "FC2-13",
+                "text": "En fin d’année"
+            },
+            {
                 "id": "FC2-20",
-                "parent": "",
-                "text": "S'entrainer à lire des textes déchiffrables de manière à automatiser sa lecture."
-            },
-            {
-                "id": "FC2-21",
-                "parent": "FC2-14",
-                "text": "En fin d'année"
-            },
-            {
-                "id": "FC2-22",
-                "parent": "",
+                "parent": "FC2-19",
                 "text": "Lire après préparation un texte adapté à son niveau de lecture avec une vitesse de 30 mots par minute au minimum sans préparation, 50 après préparation."
             },
             {
-                "id": "FC2-23",
-                "parent": "",
+                "id": "FC2-21",
+                "parent": "FC2-19",
                 "text": "Identifier les marques de ponctuation et les prendre en compte sur un texte préparé."
             },
             {
-                "id": "FC2-24",
-                "parent": "",
+                "id": "FC2-22",
+                "parent": "FC2-19",
                 "text": "Amorcer une lecture expressive."
             },
             {
-                "id": "FC2-25",
-                "parent": "FC2-14",
+                "id": "FC2-23",
+                "parent": "FC2-1",
                 "text": "Comprendre un texte"
             },
             {
-                "id": "FC2-26",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "id": "FC2-24",
+                "parent": "FC2-23",
+                "text": "Dégager le sens global d’un texte entendu ou lu de façon autonome."
             },
             {
-                "id": "FC2-27",
-                "parent": "FC2-25",
-                "text": "Dégager le sens global d'un texte entendu ou lu de façon autonome."
-            },
-            {
-                "id": "FC2-28",
-                "parent": "FC2-25",
+                "id": "FC2-25",
+                "parent": "FC2-23",
                 "text": "Identifier les mots inconnus dans un texte et chercher à leur donner un sens."
             },
             {
-                "id": "FC2-29",
-                "parent": "FC2-25",
-                "text": "Se repérer dans la chaine anaphorique (qui relie un nom à sa ou ses reprise(s) pronominale(s) ou à d'autres noms de sens équivalent)."
+                "id": "FC2-26",
+                "parent": "FC2-23",
+                "text": "Se repérer dans la chaine anaphorique (qui relie un nom à sa ou ses reprise(s) pronominale(s) ou à d’autres noms de sens équivalent)."
             },
             {
-                "id": "FC2-30",
-                "parent": "FC2-25",
+                "id": "FC2-27",
+                "parent": "FC2-23",
                 "text": "Comprendre ce qui est implicite (inférences simples)."
             },
             {
-                "id": "FC2-31",
-                "parent": "FC2-25",
+                "id": "FC2-28",
+                "parent": "FC2-23",
                 "text": "Justifier ses réponses par un retour au texte."
             },
             {
-                "id": "FC2-32",
-                "parent": "FC2-25",
-                "text": "Lire et comprendre en autonomie un texte narratif, informatif ou prescriptif d'une dizaine de lignes."
+                "id": "FC2-29",
+                "parent": "FC2-23",
+                "text": "Lire et comprendre en autonomie un texte narratif, informatif ou prescriptif d’une dizaine de lignes."
             },
             {
-                "id": "FC2-33",
+                "id": "FC2-30",
                 "parent": "FC2-1",
                 "text": "Devenir lecteur"
             },
             {
-                "id": "FC2-34",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-35",
-                "parent": "FC2-25",
+                "id": "FC2-31",
+                "parent": "FC2-30",
                 "text": "Lire 5 à 10 oeuvres complètes et variées issues du patrimoine et de la littérature de jeunesse (albums, romans, contes, fables, poèmes, pièces de théâtre et documentaires)."
             },
             {
-                "id": "FC2-36",
-                "parent": "FC2-25",
+                "id": "FC2-32",
+                "parent": "FC2-30",
                 "text": "Repérer et reconnaitre des types de personnages."
             },
             {
-                "id": "FC2-37",
-                "parent": "FC2-25",
-                "text": "Aller vers les livres et être capable d'en choisir à titre personnel."
+                "id": "FC2-33",
+                "parent": "FC2-30",
+                "text": "Aller vers les livres et être capable d’en choisir à titre personnel."
             },
             {
-                "id": "FC2-38",
-                "parent": "FC2-25",
-                "text": "Relier ses lectures à son expérience personnelle, être en mesure d'établir des liens entre ses différentes lectures (mise en réseau)."
+                "id": "FC2-34",
+                "parent": "FC2-30",
+                "text": "Relier ses lectures à son expérience personnelle, être en mesure d’établir des liens entre ses différentes lectures (mise en réseau)."
             },
             {
-                "id": "FC2-39",
-                "parent": "FC2-25",
+                "id": "FC2-35",
+                "parent": "FC2-30",
                 "text": "Fréquenter régulièrement des lieux de lecture et se familiariser avec eux, rencontrer des acteurs du livre."
             },
             {
-                "id": "FC2-40",
-                "parent": "FC2-34",
+                "id": "FC2-36",
+                "parent": "FC2-0",
                 "text": "Cours élémentaire première année"
+            },
+            {
+                "id": "FC2-37",
+                "parent": "FC2-36",
+                "text": "Identifier les mots de manière de plus en plus aisée"
+            },
+            {
+                "id": "FC2-38",
+                "parent": "FC2-37",
+                "text": "Tout au long de l’année"
+            },
+            {
+                "id": "FC2-39",
+                "parent": "FC2-38",
+                "text": "Automatiser le décodage des correspondances graphophonémiques (CGP) apprises au CP."
+            },
+            {
+                "id": "FC2-40",
+                "parent": "FC2-37",
+                "text": "En fin d’année"
             },
             {
                 "id": "FC2-41",
                 "parent": "FC2-40",
-                "text": "Identifier les mots de manière de plus en plus aisée"
-            },
-            {
-                "id": "FC2-42",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-43",
-                "parent": "FC2-41",
-                "text": "Tout au long de l'année"
-            },
-            {
-                "id": "FC2-44",
-                "parent": "FC2-39",
-                "text": "Automatiser le décodage des correspondances graphophonémiques (CGP) apprises au CP."
-            },
-            {
-                "id": "FC2-45",
-                "parent": "FC2-41",
-                "text": "En fin d'année"
-            },
-            {
-                "id": "FC2-46",
-                "parent": "FC2-39",
                 "text": "Décoder toutes les CGP y compris les plus complexes."
             },
             {
-                "id": "FC2-47",
-                "parent": "FC2-39",
-                "text": "Avoir mémorisé l'ensemble des CGP dans tous les types d'écriture, en particulier celles des sons proches (en encodage et décodage)."
-            },
-            {
-                "id": "FC2-48",
-                "parent": "FC2-39",
-                "text": "Identifier directement l'ensemble des mots courants et déchiffrer avec exactitude les mots nouveaux dont le décodage n'a pas encore été automatisé."
-            },
-            {
-                "id": "FC2-49",
+                "id": "FC2-42",
                 "parent": "FC2-40",
+                "text": "Avoir mémorisé l’ensemble des CGP dans tous les types d’écriture, en particulier celles des sons proches (en encodage et décodage)."
+            },
+            {
+                "id": "FC2-43",
+                "parent": "FC2-40",
+                "text": "Identifier directement l’ensemble des mots courants et déchiffrer avec exactitude les mots nouveaux dont le décodage n’a pas encore été automatisé."
+            },
+            {
+                "id": "FC2-44",
+                "parent": "FC2-36",
                 "text": "Lire à voix haute"
             },
             {
+                "id": "FC2-45",
+                "parent": "FC2-44",
+                "text": "En fin d’année"
+            },
+            {
+                "id": "FC2-46",
+                "parent": "FC2-45",
+                "text": "Lire un texte adapté à son niveau de lecture avec une vitesse de 70 mots par minute."
+            },
+            {
+                "id": "FC2-47",
+                "parent": "FC2-45",
+                "text": "Lire des textes narratifs, documentaires et prescriptifs en respectant tous les signes de ponctuation et les groupes de souffle."
+            },
+            {
+                "id": "FC2-48",
+                "parent": "FC2-45",
+                "text": "Lire de manière expressive."
+            },
+            {
+                "id": "FC2-49",
+                "parent": "FC2-36",
+                "text": "Comprendre un texte"
+            },
+            {
                 "id": "FC2-50",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-49",
+                "text": "Dégager le sens global d’un texte lu, de façon autonome, à la suite d’une séance dédiée à la compréhension."
             },
             {
                 "id": "FC2-51",
                 "parent": "FC2-49",
-                "text": "En fin d'année"
-            },
-            {
-                "id": "FC2-52",
-                "parent": "FC2-39",
-                "text": "Lire un texte adapté à son niveau de lecture avec une vitesse de 70 mots par minute."
-            },
-            {
-                "id": "FC2-53",
-                "parent": "FC2-39",
-                "text": "Lire des textes narratifs, documentaires et prescriptifs en respectant tous les signes de ponctuation et les groupes de souffle."
-            },
-            {
-                "id": "FC2-54",
-                "parent": "FC2-39",
-                "text": "Lire de manière expressive."
-            },
-            {
-                "id": "FC2-55",
-                "parent": "FC2-40",
-                "text": "Comprendre un texte"
-            },
-            {
-                "id": "FC2-56",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-57",
-                "parent": "FC2-51",
-                "text": "Dégager le sens global d'un texte lu, de façon autonome, à la suite d'une séance dédiée à la compréhension."
-            },
-            {
-                "id": "FC2-58",
-                "parent": "FC2-51",
                 "text": "Développer des stratégies pour élucider le sens des mots et des expressions inconnus."
             },
             {
-                "id": "FC2-59",
-                "parent": "FC2-51",
-                "text": "Se repérer dans la chaine anaphorique (qui relie un nom à sa ou ses reprise(s) pronominale(s) ou à d'autres noms de sens équivalent) et s'appuyer sur le sens du texte pour résoudre des ambigüités."
+                "id": "FC2-52",
+                "parent": "FC2-49",
+                "text": "Se repérer dans la chaine anaphorique (qui relie un nom à sa ou ses reprise(s) pronominale(s) ou à d’autres noms de sens équivalent) et s’appuyer sur le sens du texte pour résoudre des ambigüités."
             },
             {
-                "id": "FC2-60",
-                "parent": "FC2-51",
+                "id": "FC2-53",
+                "parent": "FC2-49",
                 "text": "Comprendre ce qui est implicite dans le texte (inférences) dans des cas simples."
             },
             {
-                "id": "FC2-61",
-                "parent": "FC2-51",
+                "id": "FC2-54",
+                "parent": "FC2-49",
                 "text": "Justifier ses réponses par un retour au texte."
             },
             {
-                "id": "FC2-62",
-                "parent": "FC2-51",
-                "text": "Lire et comprendre en autonomie un texte narratif, informatif ou prescriptif d'une quinzaine de lignes."
+                "id": "FC2-55",
+                "parent": "FC2-49",
+                "text": "Lire et comprendre en autonomie un texte narratif, informatif ou prescriptif d’une quinzaine de lignes."
             },
             {
-                "id": "FC2-63",
-                "parent": "FC2-40",
+                "id": "FC2-56",
+                "parent": "FC2-36",
                 "text": "Devenir lecteur"
             },
             {
-                "id": "FC2-64",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-65",
-                "parent": "FC2-51",
+                "id": "FC2-57",
+                "parent": "FC2-56",
                 "text": "Lire 5 à 10 oeuvres complètes et variées issues du patrimoine et de la littérature de jeunesse (albums, romans, contes, fables, poèmes, pièces de théâtre et documentaires)."
             },
             {
-                "id": "FC2-66",
-                "parent": "FC2-51",
+                "id": "FC2-58",
+                "parent": "FC2-56",
                 "text": "Se familiariser aux différents genres et types de textes."
             },
             {
-                "id": "FC2-67",
-                "parent": "FC2-51",
-                "text": "Faire preuve d'initiative dans ses lectures personnelles en empruntant des livres en fonction de ses gouts."
+                "id": "FC2-59",
+                "parent": "FC2-56",
+                "text": "Faire preuve d’initiative dans ses lectures personnelles en empruntant des livres en fonction de ses gouts."
             },
             {
-                "id": "FC2-68",
-                "parent": "FC2-51",
-                "text": "Relier ses lectures à son expérience personnelle, être en mesure d'établir des liens entre ses différentes lectures (mise en réseau)."
+                "id": "FC2-60",
+                "parent": "FC2-56",
+                "text": "Relier ses lectures à son expérience personnelle, être en mesure d’établir des liens entre ses différentes lectures (mise en réseau)."
             },
             {
-                "id": "FC2-69",
-                "parent": "FC2-64",
+                "id": "FC2-61",
+                "parent": "FC2-0",
                 "text": "Cours élémentaire deuxième année"
             },
             {
-                "id": "FC2-70",
-                "parent": "FC2-69",
+                "id": "FC2-62",
+                "parent": "FC2-61",
                 "text": "Identifier les mots de manière de plus en plus aisée"
             },
             {
-                "id": "FC2-71",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-72",
-                "parent": "FC2-51",
+                "id": "FC2-63",
+                "parent": "FC2-62",
                 "text": "Avoir automatisé toutes les correspondances graphophonémiques (CGP)."
             },
             {
-                "id": "FC2-73",
-                "parent": "FC2-51",
-                "text": "Lire un texte nouveau en s'appuyant sur un décodage rapide."
+                "id": "FC2-64",
+                "parent": "FC2-62",
+                "text": "Lire un texte nouveau en s’appuyant sur un décodage rapide."
             },
             {
-                "id": "FC2-74",
-                "parent": "FC2-51",
+                "id": "FC2-65",
+                "parent": "FC2-62",
                 "text": "Automatiser la lecture des mots."
             },
             {
-                "id": "FC2-75",
-                "parent": "FC2-51",
-                "text": "Repérer les lettres muettes et décoder les mots inconnus en conservant une vitesse de lecture correspondant aux objectifs de fin d'année."
+                "id": "FC2-66",
+                "parent": "FC2-62",
+                "text": "Repérer les lettres muettes et décoder les mots inconnus en conservant une vitesse de lecture correspondant aux objectifs de fin d’année."
             },
             {
-                "id": "FC2-76",
-                "parent": "FC2-69",
+                "id": "FC2-67",
+                "parent": "FC2-61",
                 "text": "Lire à voix haute"
             },
             {
-                "id": "FC2-77",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-78",
-                "parent": "FC2-51",
+                "id": "FC2-68",
+                "parent": "FC2-67",
                 "text": "Lire un texte adapté à son niveau de lecture avec une vitesse de 90 mots par minute."
             },
             {
-                "id": "FC2-79",
-                "parent": "FC2-51",
-                "text": "Lire un texte en respectant l'ensemble des marques de ponctuation et les liaisons."
+                "id": "FC2-69",
+                "parent": "FC2-67",
+                "text": "Lire un texte en respectant l’ensemble des marques de ponctuation et les liaisons."
             },
             {
-                "id": "FC2-80",
-                "parent": "FC2-51",
+                "id": "FC2-70",
+                "parent": "FC2-67",
                 "text": "Manifester sa compréhension par une lecture expressive qui respecte la structure du texte, de la phrase et le sens."
             },
             {
-                "id": "FC2-81",
-                "parent": "FC2-69",
+                "id": "FC2-71",
+                "parent": "FC2-61",
                 "text": "Comprendre un texte"
             },
             {
-                "id": "FC2-82",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "id": "FC2-72",
+                "parent": "FC2-71",
+                "text": "Lire et dégager le sens d’un texte narratif, poétique, documentaire ou théâtral, lu en autonomie ou lu par un adulte en s’appuyant sur les caractéristiques de ces textes."
             },
             {
-                "id": "FC2-83",
-                "parent": "FC2-51",
-                "text": "Lire et dégager le sens d'un texte narratif, poétique, documentaire ou théâtral, lu en autonomie ou lu par un adulte en s'appuyant sur les caractéristiques de ces textes."
-            },
-            {
-                "id": "FC2-84",
-                "parent": "FC2-51",
+                "id": "FC2-73",
+                "parent": "FC2-71",
                 "text": "Adopter une posture active par rapport au vocabulaire inconnu."
             },
             {
-                "id": "FC2-85",
-                "parent": "FC2-51",
-                "text": "Se repérer dans la chaine anaphorique (qui relie un nom à sa ou ses reprise(s) pronominale(s) ou à d'autres noms de sens équivalent) et s'appuyer sur le sens du texte pour résoudre des ambigüités."
+                "id": "FC2-74",
+                "parent": "FC2-71",
+                "text": "Se repérer dans la chaine anaphorique (qui relie un nom à sa ou ses reprise(s) pronominale(s) ou à d’autres noms de sens équivalent) et s’appuyer sur le sens du texte pour résoudre des ambigüités."
             },
             {
-                "id": "FC2-86",
-                "parent": "FC2-51",
+                "id": "FC2-75",
+                "parent": "FC2-71",
                 "text": "Différencier le type narratif du type informatif et prescriptif."
             },
             {
-                "id": "FC2-87",
-                "parent": "FC2-51",
-                "text": "Comprendre ce qui est implicite (inférences) en s'appuyant sur des indices explicites et sur ses propres connaissances."
+                "id": "FC2-76",
+                "parent": "FC2-71",
+                "text": "Comprendre ce qui est implicite (inférences) en s’appuyant sur des indices explicites et sur ses propres connaissances."
             },
             {
-                "id": "FC2-88",
-                "parent": "FC2-51",
+                "id": "FC2-77",
+                "parent": "FC2-71",
                 "text": "Revenir au texte pour identifier et comprendre les éléments complexes."
             },
             {
-                "id": "FC2-89",
-                "parent": "FC2-51",
-                "text": "Lire et comprendre en autonomie un texte narratif, informatif ou prescriptif d'une vingtaine de lignes."
+                "id": "FC2-78",
+                "parent": "FC2-71",
+                "text": "Lire et comprendre en autonomie un texte narratif, informatif ou prescriptif d’une vingtaine de lignes."
             },
             {
-                "id": "FC2-90",
-                "parent": "FC2-69",
+                "id": "FC2-79",
+                "parent": "FC2-61",
                 "text": "Devenir lecteur"
             },
             {
-                "id": "FC2-91",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-92",
-                "parent": "FC2-51",
+                "id": "FC2-80",
+                "parent": "FC2-79",
                 "text": "Lire de manière autonome 5 à 10 oeuvres complètes et variées issues du patrimoine et de la littérature de jeunesse (albums, romans, contes, fables, poèmes, pièces de théâtre et documentaires)."
             },
             {
-                "id": "FC2-93",
-                "parent": "FC2-51",
-                "text": "Relier ses lectures à son expérience personnelle, être en mesure d'établir des liens entre ses différentes lectures (mise en réseau)."
+                "id": "FC2-81",
+                "parent": "FC2-79",
+                "text": "Relier ses lectures à son expérience personnelle, être en mesure d’établir des liens entre ses différentes lectures (mise en réseau)."
             },
             {
-                "id": "FC2-94",
-                "parent": "FC2-51",
+                "id": "FC2-82",
+                "parent": "FC2-79",
                 "text": "Fréquenter des lieux de lecture régulièrement et rencontrer des acteurs du livre."
             },
             {
-                "id": "FC2-95",
+                "id": "FC2-83",
                 "parent": "FC2",
                 "text": "Ecriture"
             },
             {
+                "id": "FC2-84",
+                "parent": "FC2-83",
+                "text": "Cours préparatoire"
+            },
+            {
+                "id": "FC2-85",
+                "parent": "FC2-84",
+                "text": "Apprendre à écrire en écriture cursive"
+            },
+            {
+                "id": "FC2-86",
+                "parent": "FC2-85",
+                "text": "Apprendre à écrire en écriture cursive tous les graphèmes étudiés selon la progression en décodage."
+            },
+            {
+                "id": "FC2-87",
+                "parent": "FC2-85",
+                "text": "Apprendre à les enchainer, avec fluidité, avec d’autres lettres dans des syllabes, mots, phrases."
+            },
+            {
+                "id": "FC2-88",
+                "parent": "FC2-84",
+                "text": "Encoder puis écrire sous dictée"
+            },
+            {
+                "id": "FC2-89",
+                "parent": "FC2-88",
+                "text": "Dès le début de l’année"
+            },
+            {
+                "id": "FC2-90",
+                "parent": "FC2-89",
+                "text": "Encoder des syllabes simples puis des mots selon la progression des CGP."
+            },
+            {
+                "id": "FC2-91",
+                "parent": "FC2-88",
+                "text": "Dès la fin de la 2e période"
+            },
+            {
+                "id": "FC2-92",
+                "parent": "FC2-90",
+                "text": "crire des mots dictés avec des lettres muettes apprises (mettre en relation des morphogrammes lexicaux et grammaticaux)."
+            },
+            {
+                "id": "FC2-93",
+                "parent": "FC2-88",
+                "text": "En fin d’année"
+            },
+            {
+                "id": "FC2-94",
+                "parent": "FC2-90",
+                "text": "crire sous la dictée des mots et des phrases."
+            },
+            {
+                "id": "FC2-95",
+                "parent": "FC2-84",
+                "text": "Copier et acquérir des stratégies de copie"
+            },
+            {
                 "id": "FC2-96",
                 "parent": "FC2-95",
-                "text": "Cours préparatoire"
+                "text": "Dès le début de l’année"
             },
             {
                 "id": "FC2-97",
                 "parent": "FC2-96",
-                "text": "Apprendre à écrire en écriture cursive"
-            },
-            {
-                "id": "FC2-98",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-99",
-                "parent": "FC2-51",
-                "text": "Apprendre à écrire en écriture cursive tous les graphèmes étudiés selon la progression en décodage."
-            },
-            {
-                "id": "FC2-100",
-                "parent": "FC2-51",
-                "text": "Apprendre à les enchainer, avec fluidité, avec d'autres lettres dans des syllabes, mots, phrases."
-            },
-            {
-                "id": "FC2-101",
-                "parent": "FC2-96",
-                "text": "Encoder puis écrire sous dictée"
-            },
-            {
-                "id": "FC2-102",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-103",
-                "parent": "FC2-101",
-                "text": "Dès le début de l'année"
-            },
-            {
-                "id": "FC2-104",
-                "parent": "FC2-100",
-                "text": "Encoder des syllabes simples puis des mots selon la progression des CGP."
-            },
-            {
-                "id": "FC2-105",
-                "parent": "FC2-101",
-                "text": "Dès la fin de la 2e période"
-            },
-            {
-                "id": "FC2-106",
-                "parent": "FC2-104",
-                "text": "crire des mots dictés avec des lettres muettes apprises (mettre en relation des morphogrammes lexicaux et grammaticaux)."
-            },
-            {
-                "id": "FC2-107",
-                "parent": "FC2-101",
-                "text": "En fin d'année"
-            },
-            {
-                "id": "FC2-108",
-                "parent": "FC2-104",
-                "text": "crire sous la dictée des mots et des phrases."
-            },
-            {
-                "id": "FC2-109",
-                "parent": "FC2-96",
-                "text": "Copier et acquérir des stratégies de copie"
-            },
-            {
-                "id": "FC2-110",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-111",
-                "parent": "FC2-109",
-                "text": "Dès le début de l'année"
-            },
-            {
-                "id": "FC2-112",
-                "parent": "FC2-100",
                 "text": "Copier des syllabes simples puis des mots avec lettres muettes."
             },
             {
-                "id": "FC2-113",
-                "parent": "FC2-109",
+                "id": "FC2-98",
+                "parent": "FC2-95",
                 "text": "Dès la fin de la période 1"
             },
             {
-                "id": "FC2-114",
-                "parent": "FC2-100",
+                "id": "FC2-99",
+                "parent": "FC2-98",
                 "text": "Copier une phrase en lien avec les 12/15 correspondances graphophonémiques étudiées."
             },
             {
-                "id": "FC2-115",
-                "parent": "FC2-100",
-                "text": "Commencer à verbaliser et à utiliser des stratégies de copie pour dépasser la copie lettre à lettre : prise d'indices, mémorisation de mots ou groupes de mots."
+                "id": "FC2-100",
+                "parent": "FC2-98",
+                "text": "Commencer à verbaliser et à utiliser des stratégies de copie pour dépasser la copie lettre à lettre : prise d’indices, mémorisation de mots ou groupes de mots."
             },
             {
-                "id": "FC2-116",
-                "parent": "FC2-100",
+                "id": "FC2-101",
+                "parent": "FC2-98",
                 "text": "Commencer à savoir se relire après copie."
             },
             {
-                "id": "FC2-117",
-                "parent": "FC2-109",
-                "text": "En fin d'année"
+                "id": "FC2-102",
+                "parent": "FC2-95",
+                "text": "En fin d’année"
             },
             {
-                "id": "FC2-118",
-                "parent": "FC2-100",
+                "id": "FC2-103",
+                "parent": "FC2-102",
                 "text": "Copier trois ou quatre phrases sans erreur et de façon lisible."
             },
             {
-                "id": "FC2-119",
-                "parent": "FC2-96",
+                "id": "FC2-104",
+                "parent": "FC2-84",
                 "text": "Produire des écrits"
             },
             {
-                "id": "FC2-120",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "id": "FC2-105",
+                "parent": "FC2-104",
+                "text": "Dès le début de l’année"
             },
             {
-                "id": "FC2-121",
-                "parent": "FC2-119",
-                "text": "Dès le début de l'année"
+                "id": "FC2-106",
+                "parent": "FC2-103",
+                "text": "crire des graphèmes, des syllabes, des mots puis quelques phrases avec l’aide du professeur à partir des mots connus et déchiffrés. Les activités de dictées à l’adulte sont poursuivies."
             },
             {
-                "id": "FC2-122",
-                "parent": "FC2-118",
-                "text": "crire des graphèmes, des syllabes, des mots puis quelques phrases avec l'aide du professeur à partir des mots connus et déchiffrés. Les activités de dictées à l'adulte sont poursuivies."
-            },
-            {
-                "id": "FC2-123",
-                "parent": "FC2-119",
+                "id": "FC2-107",
+                "parent": "FC2-104",
                 "text": "Dès la 2e période"
             },
             {
-                "id": "FC2-124",
-                "parent": "FC2-100",
-                "text": "Produire des écrits courts porteurs de sens, d'une à cinq lignes, en articulation avec l'apprentissage de la lecture."
+                "id": "FC2-108",
+                "parent": "FC2-107",
+                "text": "Produire des écrits courts porteurs de sens, d’une à cinq lignes, en articulation avec l’apprentissage de la lecture."
             },
             {
-                "id": "FC2-125",
-                "parent": "FC2-100",
-                "text": "S'appuyer sur les textes de lecture pour les transformer sur quelques points seulement (écrire à la façon de, ajouter un épisode, etc.)."
+                "id": "FC2-109",
+                "parent": "FC2-107",
+                "text": "S’appuyer sur les textes de lecture pour les transformer sur quelques points seulement (écrire à la façon de, ajouter un épisode, etc.)."
             },
             {
-                "id": "FC2-126",
-                "parent": "FC2-119",
-                "text": "En fin d'année"
+                "id": "FC2-110",
+                "parent": "FC2-104",
+                "text": "En fin d’année"
             },
             {
-                "id": "FC2-127",
-                "parent": "FC2-100",
-                "text": "Produire des écrits courts porteurs de sens d'une à cinq lignes en articulation avec l'apprentissage de la lecture."
+                "id": "FC2-111",
+                "parent": "FC2-110",
+                "text": "Produire des écrits courts porteurs de sens d’une à cinq lignes en articulation avec l’apprentissage de la lecture."
             },
             {
-                "id": "FC2-128",
-                "parent": "FC2-100",
+                "id": "FC2-112",
+                "parent": "FC2-110",
                 "text": "Commencer à acquérir une méthodologie de production écrite : planification, mise en mots avec vigilance orthographique, relectures et révisions."
             },
             {
+                "id": "FC2-113",
+                "parent": "FC2-110",
+                "text": "Repérer les dysfonctionnements de son texte par la relecture à voix haute du professeur ou grâce à des outils d’aide construits à cet effet."
+            },
+            {
+                "id": "FC2-114",
+                "parent": "FC2-83",
+                "text": "Cours élémentaire première année"
+            },
+            {
+                "id": "FC2-115",
+                "parent": "FC2-114",
+                "text": "Apprendre à écrire en écriture cursive"
+            },
+            {
+                "id": "FC2-116",
+                "parent": "FC2-115",
+                "text": "Dès la période 1"
+            },
+            {
+                "id": "FC2-117",
+                "parent": "FC2-116",
+                "text": "Mémoriser le tracé normé et la transcription de toutes les lettres minuscules scriptes en lettres minuscules cursives."
+            },
+            {
+                "id": "FC2-118",
+                "parent": "FC2-117",
+                "text": "partir de la période 2"
+            },
+            {
+                "id": "FC2-119",
+                "parent": "FC2-116",
+                "text": "Reconnaitre les lettres dans les quatre écritures : minuscules (scripte et cursive), majuscules (scripte ou cursive)."
+            },
+            {
+                "id": "FC2-120",
+                "parent": "FC2-116",
+                "text": "Apprendre le tracé normé des lettres majuscules cursives par familles de gestes."
+            },
+            {
+                "id": "FC2-121",
+                "parent": "FC2-114",
+                "text": "Encoder puis écrire sous dictée"
+            },
+            {
+                "id": "FC2-122",
+                "parent": "FC2-121",
+                "text": "Orthographier correctement les mots fréquents, réguliers puis irréguliers."
+            },
+            {
+                "id": "FC2-123",
+                "parent": "FC2-121",
+                "text": "Réaliser des accords en genre et en nombre dans le groupe nominal (article, nom, adjectif) et dans le groupe verbal (marque de pluriel des verbes = nt)."
+            },
+            {
+                "id": "FC2-124",
+                "parent": "FC2-114",
+                "text": "Copier et acquérir des stratégies de copie"
+            },
+            {
+                "id": "FC2-125",
+                "parent": "FC2-124",
+                "text": "Automatiser le geste d’écriture cursive par la copie de textes en temps limité."
+            },
+            {
+                "id": "FC2-126",
+                "parent": "FC2-124",
+                "text": "Acquérir des stratégies de copie et en mesurer l’efficacité."
+            },
+            {
+                "id": "FC2-127",
+                "parent": "FC2-120",
+                "text": "l’issue de la période 1"
+            },
+            {
+                "id": "FC2-128",
+                "parent": "FC2-126",
+                "text": "Copier quatre à cinq phrases courtes."
+            },
+            {
                 "id": "FC2-129",
-                "parent": "FC2-100",
-                "text": "Repérer les dysfonctionnements de son texte par la relecture à voix haute du professeur ou grâce à des outils d'aide construits à cet effet."
+                "parent": "FC2-128",
+                "text": "partir de la période 3"
             },
             {
                 "id": "FC2-130",
-                "parent": "FC2-120",
-                "text": "Cours élémentaire première année"
+                "parent": "FC2-126",
+                "text": "Copier cinq ou six lignes sans erreur."
             },
             {
                 "id": "FC2-131",
                 "parent": "FC2-130",
-                "text": "Apprendre à écrire en écriture cursive"
+                "text": "la fin de l’année"
             },
             {
                 "id": "FC2-132",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-126",
+                "text": "Recopier sans effort une dizaine de lignes en respectant la ponctuation et la mise en page."
             },
             {
                 "id": "FC2-133",
-                "parent": "FC2-131",
-                "text": "Dès la période 1"
+                "parent": "FC2-114",
+                "text": "Produire des écrits"
             },
             {
                 "id": "FC2-134",
-                "parent": "FC2-100",
-                "text": "Mémoriser le tracé normé et la transcription de toutes les lettres minuscules scriptes en lettres minuscules cursives."
+                "parent": "FC2-133",
+                "text": "Dès les premières semaines"
             },
             {
                 "id": "FC2-135",
-                "parent": "FC2-100",
-                "text": "partir de la période 2"
+                "parent": "FC2-134",
+                "text": "Rédiger une phrase simple à partir d’une phrase prototypique, en changeant un puis plusieurs mots."
             },
             {
                 "id": "FC2-136",
-                "parent": "FC2-100",
-                "text": "Reconnaitre les lettres dans les quatre écritures : minuscules (scripte et cursive), majuscules (scripte ou cursive)."
+                "parent": "FC2-133",
+                "text": "Dès la période 1"
             },
             {
                 "id": "FC2-137",
-                "parent": "FC2-100",
-                "text": "Apprendre le tracé normé des lettres majuscules cursives par familles de gestes."
+                "parent": "FC2-135",
+                "text": "crire un texte court de une à trois phrases."
             },
             {
                 "id": "FC2-138",
-                "parent": "FC2-130",
-                "text": "Encoder puis écrire sous dictée"
+                "parent": "FC2-133",
+                "text": "Au cours des périodes 1 à 5"
             },
             {
                 "id": "FC2-139",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-138",
+                "text": "Insérer des connecteurs pour rendre cohérent l’enchainement de plusieurs phrases."
             },
             {
                 "id": "FC2-140",
-                "parent": "FC2-133",
-                "text": "Orthographier correctement les mots fréquents, réguliers puis irréguliers."
+                "parent": "FC2-138",
+                "text": "Retravailler un texte (issu de lecture et/ou d’écriture) en fonction d’une ou deux contraintes d’écriture."
             },
             {
                 "id": "FC2-141",
-                "parent": "FC2-133",
-                "text": "Réaliser des accords en genre et en nombre dans le groupe nominal (article, nom, adjectif) et dans le groupe verbal (marque de pluriel des verbes = nt)."
+                "parent": "FC2-138",
+                "text": "Continuer à acquérir une méthodologie de production écrite : planification, mise en mots avec vigilance. orthographique, révision après retours immédiats du professeur."
             },
             {
                 "id": "FC2-142",
-                "parent": "FC2-130",
-                "text": "Copier et acquérir des stratégies de copie"
+                "parent": "FC2-133",
+                "text": "En fin d’année"
             },
             {
                 "id": "FC2-143",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-141",
+                "text": "crire un texte de six ou sept phrases maximum en assurant la cohérence syntaxique et logique du texte produit."
             },
             {
                 "id": "FC2-144",
-                "parent": "FC2-133",
-                "text": "Automatiser le geste d'écriture cursive par la copie de textes en temps limité."
+                "parent": "FC2-83",
+                "text": "Cours élémentaire deuxième année"
             },
             {
                 "id": "FC2-145",
-                "parent": "FC2-133",
-                "text": "Acquérir des stratégies de copie et en mesurer l'efficacité."
+                "parent": "FC2-144",
+                "text": "Apprendre à écrire en écriture cursive"
             },
             {
                 "id": "FC2-146",
                 "parent": "FC2-145",
-                "text": "l'issue de la période 1"
+                "text": "Dès la période 1"
             },
             {
                 "id": "FC2-147",
-                "parent": "FC2-145",
-                "text": "Copier quatre à cinq phrases courtes."
+                "parent": "FC2-146",
+                "text": "Automatiser l’écriture de toutes les lettres minuscules et majuscules en cursive."
             },
             {
                 "id": "FC2-148",
-                "parent": "FC2-145",
-                "text": "partir de la période 3"
+                "parent": "FC2-144",
+                "text": "Encoder puis écrire sous dictée"
             },
             {
                 "id": "FC2-149",
-                "parent": "FC2-145",
-                "text": "Copier cinq ou six lignes sans erreur."
+                "parent": "FC2-147",
+                "text": "la fin de l’année"
             },
             {
                 "id": "FC2-150",
-                "parent": "FC2-145",
-                "text": "la fin de l'année"
+                "parent": "FC2-146",
+                "text": "Orthographier correctement les mots fréquents, réguliers et irréguliers et des phrases selon les accords étudiés dans le cadre de dictées."
             },
             {
                 "id": "FC2-151",
-                "parent": "FC2-145",
-                "text": "Recopier sans effort une dizaine de lignes en respectant la ponctuation et la mise en page."
+                "parent": "FC2-144",
+                "text": "Copier et acquérir des stratégies de copie"
             },
             {
                 "id": "FC2-152",
-                "parent": "FC2-130",
-                "text": "Produire des écrits"
+                "parent": "FC2-151",
+                "text": "En fin d’année"
             },
             {
                 "id": "FC2-153",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-152",
+                "text": "Copier une dizaine de lignes sans erreur en conjuguant vitesse et exactitude et en respectant les mises en page complexes."
             },
             {
                 "id": "FC2-154",
-                "parent": "FC2-152",
-                "text": "Dès les premières semaines"
+                "parent": "FC2-144",
+                "text": "Produire des écrits"
             },
             {
                 "id": "FC2-155",
-                "parent": "FC2-145",
-                "text": "Rédiger une phrase simple à partir d'une phrase prototypique, en changeant un puis plusieurs mots."
+                "parent": "FC2-154",
+                "text": "Développer tout au long de l’année les compétences qui lui permettront en fin d’année :"
             },
             {
                 "id": "FC2-156",
-                "parent": "FC2-152",
-                "text": "Dès la période 1"
+                "parent": "FC2-155",
+                "text": "d’écrire pour transmettre un message, une émotion, une information, etc., à un destinataire ;"
             },
             {
                 "id": "FC2-157",
                 "parent": "FC2-155",
-                "text": "crire un texte court de une à trois phrases."
+                "text": "de rédiger quelques phrases qui permettent d’entrainer les automatismes appris en grammaire et orthographe ;"
             },
             {
                 "id": "FC2-158",
-                "parent": "FC2-152",
-                "text": "Au cours des périodes 1 à 5"
+                "parent": "FC2-155",
+                "text": "d’écrire un texte d’une dizaine de lignes de différents types et relevant des différents enseignements : respecter la syntaxe, les règles orthographiques étudiées, réemployer un lexique précis et prendre en compte des contraintes d’écriture ;"
             },
             {
                 "id": "FC2-159",
-                "parent": "FC2-145",
-                "text": "Insérer des connecteurs pour rendre cohérent l'enchainement de plusieurs phrases."
+                "parent": "FC2-155",
+                "text": "de relire son texte méthodiquement."
             },
             {
                 "id": "FC2-160",
-                "parent": "FC2-145",
-                "text": "Retravailler un texte (issu de lecture et/ou d'écriture) en fonction d'une ou deux contraintes d'écriture."
+                "parent": "FC2-83",
+                "text": "Cours préparatoire"
             },
             {
                 "id": "FC2-161",
-                "parent": "FC2-145",
-                "text": "Continuer à acquérir une méthodologie de production écrite : planification, mise en mots avec vigilance. orthographique, révision après retours immédiats du professeur."
+                "parent": "FC2-154",
+                "text": "couter pour comprendre"
             },
             {
                 "id": "FC2-162",
-                "parent": "FC2-152",
-                "text": "En fin d'année"
+                "parent": "FC2-154",
+                "text": "Comprendre un message entendu de quelques minutes et mémoriser quelques informations importantes."
             },
             {
                 "id": "FC2-163",
-                "parent": "FC2-161",
-                "text": "crire un texte de six ou sept phrases maximum en assurant la cohérence syntaxique et logique du texte produit."
+                "parent": "FC2-160",
+                "text": "Dire pour être compris"
             },
             {
                 "id": "FC2-164",
-                "parent": "FC2-153",
-                "text": "Cours élémentaire deuxième année"
+                "parent": "FC2-163",
+                "text": "Mener une brève production orale pour rapporter, raconter, décrire ou expliquer, en utilisant quelques organisateurs du discours et en mobilisant le lexique appris."
             },
             {
                 "id": "FC2-165",
-                "parent": "FC2-164",
-                "text": "Apprendre à écrire en écriture cursive"
+                "parent": "FC2-163",
+                "text": "S’écouter pour progresser et proposer des reformulations."
             },
             {
                 "id": "FC2-166",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-163",
+                "text": "Oraliser un texte mémorisé ou préparé en tenant compte de son auditoire."
             },
             {
                 "id": "FC2-167",
-                "parent": "FC2-165",
-                "text": "Dès la période 1"
+                "parent": "FC2-160",
+                "text": "Participer à des échanges"
             },
             {
                 "id": "FC2-168",
-                "parent": "FC2-145",
-                "text": "Automatiser l'écriture de toutes les lettres minuscules et majuscules en cursive."
+                "parent": "FC2-167",
+                "text": "Participer aux échanges en respectant les règles, en écoutant les autres et en donnant son avis."
             },
             {
                 "id": "FC2-169",
-                "parent": "FC2-164",
-                "text": "Encoder puis écrire sous dictée"
+                "parent": "FC2-167",
+                "text": "Prendre conscience des écarts de niveau de langue selon les situations de communication."
             },
             {
                 "id": "FC2-170",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-83",
+                "text": "Cours élémentaire première année"
             },
             {
                 "id": "FC2-171",
-                "parent": "FC2-145",
-                "text": "la fin de l'année"
+                "parent": "FC2-167",
+                "text": "couter pour comprendre"
             },
             {
                 "id": "FC2-172",
-                "parent": "FC2-145",
-                "text": "Orthographier correctement les mots fréquents, réguliers et irréguliers et des phrases selon les accords étudiés dans le cadre de dictées."
+                "parent": "FC2-167",
+                "text": "Maintenir une attention active pendant quelques minutes pour repérer, mémoriser, classer ou ordonner les informations importantes entendues à l’oral."
             },
             {
                 "id": "FC2-173",
-                "parent": "FC2-164",
-                "text": "Copier et acquérir des stratégies de copie"
+                "parent": "FC2-170",
+                "text": "Dire pour être compris"
             },
             {
                 "id": "FC2-174",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-173",
+                "text": "Utiliser à l’oral l’ensemble des temps verbaux pour raconter, décrire, expliquer, comparer ou exposer."
             },
             {
                 "id": "FC2-175",
                 "parent": "FC2-173",
-                "text": "En fin d'année"
+                "text": "Utiliser les critères définis pour évaluer sa prestation ou celle des autres et progresser dans la production de différents types de discours."
             },
             {
                 "id": "FC2-176",
-                "parent": "FC2-145",
-                "text": "Copier une dizaine de lignes sans erreur en conjuguant vitesse et exactitude et en respectant les mises en page complexes."
+                "parent": "FC2-170",
+                "text": "Participer à des échanges"
             },
             {
                 "id": "FC2-177",
-                "parent": "FC2-164",
-                "text": "Produire des écrits"
+                "parent": "FC2-176",
+                "text": "Respecter le propos au cours des échanges au sein d’un groupe."
             },
             {
                 "id": "FC2-178",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-176",
+                "text": "Adapter le registre de langue utilisé (familier, courant, soutenu) à la situation de communication proposée : conversation entre pairs, dialogue avec un adulte connu, une personnalité inconnue, etc."
             },
             {
                 "id": "FC2-179",
-                "parent": "FC2-175",
-                "text": "Développer tout au long de l'année les compétences qui lui permettront en fin d'année :"
+                "parent": "FC2-83",
+                "text": "Cours élémentaire deuxième année"
             },
             {
                 "id": "FC2-180",
-                "parent": "FC2-175",
-                "text": "d'écrire pour transmettre un message, une émotion, une information, etc., à un destinataire ;"
-            },
-            {
-                "id": "FC2-181",
-                "parent": "FC2-175",
-                "text": "de rédiger quelques phrases qui permettent d'entrainer les automatismes appris en grammaire et orthographe ;"
-            },
-            {
-                "id": "FC2-182",
-                "parent": "FC2-175",
-                "text": "d'écrire un texte d'une dizaine de lignes de différents types et relevant des différents enseignements : respecter la syntaxe, les règles orthographiques étudiées, réemployer un lexique précis et prendre en compte des contraintes d'écriture ;"
-            },
-            {
-                "id": "FC2-183",
-                "parent": "FC2-175",
-                "text": "de relire son texte méthodiquement."
-            },
-            {
-                "id": "FC2-184",
-                "parent": "FC2-178",
-                "text": "Cours préparatoire"
-            },
-            {
-                "id": "FC2-185",
-                "parent": "FC2-177",
+                "parent": "FC2-176",
                 "text": "couter pour comprendre"
             },
             {
+                "id": "FC2-181",
+                "parent": "FC2-176",
+                "text": "Repérer, mémoriser et relier entre elles plusieurs informations importantes pour construire la cohérence d’un message entendu de plus en plus long et complexe (5 minutes maximum), en évaluant son degré de compréhension."
+            },
+            {
+                "id": "FC2-182",
+                "parent": "FC2-179",
+                "text": "Dire pour être compris"
+            },
+            {
+                "id": "FC2-183",
+                "parent": "FC2-182",
+                "text": "Mener une production orale de plus en plus longue et structurée pour raconter, expliquer, argumenter, justifier."
+            },
+            {
+                "id": "FC2-184",
+                "parent": "FC2-182",
+                "text": "Maintenir l’intérêt de son auditoire lors des différentes prestations orales."
+            },
+            {
+                "id": "FC2-185",
+                "parent": "FC2-179",
+                "text": "Participer à des échanges"
+            },
+            {
                 "id": "FC2-186",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "parent": "FC2-185",
+                "text": "Tenir compte de ce qui a déjà été dit lors des interventions au sein d’un groupe."
             },
             {
                 "id": "FC2-187",
                 "parent": "FC2-185",
-                "text": "Comprendre un message entendu de quelques minutes et mémoriser quelques informations importantes."
-            },
-            {
-                "id": "FC2-188",
-                "parent": "FC2-184",
-                "text": "Dire pour être compris"
-            },
-            {
-                "id": "FC2-189",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-190",
-                "parent": "FC2-185",
-                "text": "Mener une brève production orale pour rapporter, raconter, décrire ou expliquer, en utilisant quelques organisateurs du discours et en mobilisant le lexique appris."
-            },
-            {
-                "id": "FC2-191",
-                "parent": "FC2-185",
-                "text": "S'écouter pour progresser et proposer des reformulations."
-            },
-            {
-                "id": "FC2-192",
-                "parent": "FC2-185",
-                "text": "Oraliser un texte mémorisé ou préparé en tenant compte de son auditoire."
-            },
-            {
-                "id": "FC2-193",
-                "parent": "FC2-184",
-                "text": "Participer à des échanges"
-            },
-            {
-                "id": "FC2-194",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-195",
-                "parent": "FC2-185",
-                "text": "Participer aux échanges en respectant les règles, en écoutant les autres et en donnant son avis."
-            },
-            {
-                "id": "FC2-196",
-                "parent": "FC2-185",
-                "text": "Prendre conscience des écarts de niveau de langue selon les situations de communication."
-            },
-            {
-                "id": "FC2-197",
-                "parent": "FC2-194",
-                "text": "Cours élémentaire première année"
-            },
-            {
-                "id": "FC2-198",
-                "parent": "FC2-193",
-                "text": "couter pour comprendre"
-            },
-            {
-                "id": "FC2-199",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-200",
-                "parent": "FC2-198",
-                "text": "Maintenir une attention active pendant quelques minutes pour repérer, mémoriser, classer ou ordonner les informations importantes entendues à l'oral."
-            },
-            {
-                "id": "FC2-201",
-                "parent": "FC2-197",
-                "text": "Dire pour être compris"
-            },
-            {
-                "id": "FC2-202",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-203",
-                "parent": "FC2-198",
-                "text": "Utiliser à l'oral l'ensemble des temps verbaux pour raconter, décrire, expliquer, comparer ou exposer."
-            },
-            {
-                "id": "FC2-204",
-                "parent": "FC2-198",
-                "text": "Utiliser les critères définis pour évaluer sa prestation ou celle des autres et progresser dans la production de différents types de discours."
-            },
-            {
-                "id": "FC2-205",
-                "parent": "FC2-197",
-                "text": "Participer à des échanges"
-            },
-            {
-                "id": "FC2-206",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-207",
-                "parent": "FC2-198",
-                "text": "Respecter le propos au cours des échanges au sein d'un groupe."
-            },
-            {
-                "id": "FC2-208",
-                "parent": "FC2-198",
-                "text": "Adapter le registre de langue utilisé (familier, courant, soutenu) à la situation de communication proposée : conversation entre pairs, dialogue avec un adulte connu, une personnalité inconnue, etc."
-            },
-            {
-                "id": "FC2-209",
-                "parent": "FC2-206",
-                "text": "Cours élémentaire deuxième année"
-            },
-            {
-                "id": "FC2-210",
-                "parent": "FC2-205",
-                "text": "couter pour comprendre"
-            },
-            {
-                "id": "FC2-211",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-212",
-                "parent": "FC2-210",
-                "text": "Repérer, mémoriser et relier entre elles plusieurs informations importantes pour construire la cohérence d'un message entendu de plus en plus long et complexe (5 minutes maximum), en évaluant son degré de compréhension."
-            },
-            {
-                "id": "FC2-213",
-                "parent": "FC2-209",
-                "text": "Dire pour être compris"
-            },
-            {
-                "id": "FC2-214",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-215",
-                "parent": "FC2-210",
-                "text": "Mener une production orale de plus en plus longue et structurée pour raconter, expliquer, argumenter, justifier."
-            },
-            {
-                "id": "FC2-216",
-                "parent": "FC2-210",
-                "text": "Maintenir l'intérêt de son auditoire lors des différentes prestations orales."
-            },
-            {
-                "id": "FC2-217",
-                "parent": "FC2-209",
-                "text": "Participer à des échanges"
-            },
-            {
-                "id": "FC2-218",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-219",
-                "parent": "FC2-210",
-                "text": "Tenir compte de ce qui a déjà été dit lors des interventions au sein d'un groupe."
-            },
-            {
-                "id": "FC2-220",
-                "parent": "FC2-210",
                 "text": "Utiliser un registre de langue et adopter des postures adaptées aux situations proposées (jeux de rôles)."
             },
             {
-                "id": "FC2-221",
-                "parent": "FC2-218",
+                "id": "FC2-188",
+                "parent": "FC2-83",
                 "text": "Cours préparatoire"
             },
             {
-                "id": "FC2-222",
-                "parent": "FC2-221",
+                "id": "FC2-189",
+                "parent": "FC2-188",
                 "text": "Enrichir son vocabulaire dans tous les enseignements"
             },
             {
-                "id": "FC2-223",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-224",
-                "parent": "FC2-210",
+                "id": "FC2-190",
+                "parent": "FC2-189",
                 "text": "Enrichir en contexte le vocabulaire appris au cycle 1."
             },
             {
-                "id": "FC2-225",
-                "parent": "FC2-224",
+                "id": "FC2-191",
+                "parent": "FC2-190",
                 "text": "tre sensible, sans en apprendre les concepts, à la polysémie et à la différence entre sens propre et sens figuré."
             },
             {
-                "id": "FC2-226",
-                "parent": "FC2-210",
-                "text": "Commencer à mobiliser l'ordre alphabétique pour utiliser un dictionnaire adapté (papier ou numérique)."
+                "id": "FC2-192",
+                "parent": "FC2-189",
+                "text": "Commencer à mobiliser l’ordre alphabétique pour utiliser un dictionnaire adapté (papier ou numérique)."
             },
             {
-                "id": "FC2-227",
-                "parent": "FC2-222",
+                "id": "FC2-193",
+                "parent": "FC2-189",
                 "text": "tablir des relations entre les mots"
             },
             {
-                "id": "FC2-228",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-229",
-                "parent": "FC2-227",
+                "id": "FC2-194",
+                "parent": "FC2-189",
                 "text": "Constituer des répertoires de mots par thème, par classe grammaticale, par famille de mots, par analogies morphologiques."
             },
             {
-                "id": "FC2-230",
-                "parent": "FC2-227",
+                "id": "FC2-195",
+                "parent": "FC2-189",
                 "text": "Savoir proposer et justifier une catégorisation du corpus de mots étudié."
             },
             {
-                "id": "FC2-231",
-                "parent": "FC2-227",
+                "id": "FC2-196",
+                "parent": "FC2-189",
                 "text": "Savoir trouver des synonymes et des antonymes."
             },
             {
-                "id": "FC2-232",
-                "parent": "FC2-221",
+                "id": "FC2-197",
+                "parent": "FC2-188",
                 "text": "Réemployer le vocabulaire étudié"
             },
             {
-                "id": "FC2-233",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-234",
-                "parent": "FC2-227",
+                "id": "FC2-198",
+                "parent": "FC2-197",
                 "text": "Réemployer et mémoriser le vocabulaire appris en maternelle."
             },
             {
-                "id": "FC2-235",
-                "parent": "FC2-227",
+                "id": "FC2-199",
+                "parent": "FC2-197",
                 "text": "Réemployer et mémoriser les expressions et les mots appris en fonction de contraintes de production orale ou écrite."
             },
             {
-                "id": "FC2-236",
-                "parent": "FC2-227",
+                "id": "FC2-200",
+                "parent": "FC2-197",
                 "text": "Percevoir la différence entre deux niveaux de langue et choisir le plus adapté à la situation."
             },
             {
-                "id": "FC2-237",
-                "parent": "FC2-221",
-                "text": "Mémoriser l'orthographe lexicale"
+                "id": "FC2-201",
+                "parent": "FC2-188",
+                "text": "Mémoriser l’orthographe lexicale"
             },
             {
-                "id": "FC2-238",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "id": "FC2-202",
+                "parent": "FC2-201",
+                "text": "Mémoriser l’orthographe des mots réguliers fréquemment rencontrés et du lexique le plus couramment employé et pouvoir les écrire sous la dictée, en lien avec les correspondances graphophonémiques (CGP) étudiées."
             },
             {
-                "id": "FC2-239",
-                "parent": "FC2-227",
-                "text": "Mémoriser l'orthographe des mots réguliers fréquemment rencontrés et du lexique le plus couramment employé et pouvoir les écrire sous la dictée, en lien avec les correspondances graphophonémiques (CGP) étudiées."
-            },
-            {
-                "id": "FC2-240",
-                "parent": "FC2-227",
+                "id": "FC2-203",
+                "parent": "FC2-201",
                 "text": "Identifier et nommer les accents."
             },
             {
-                "id": "FC2-241",
-                "parent": "FC2-227",
+                "id": "FC2-204",
+                "parent": "FC2-201",
                 "text": "Connaitre la valeur sonore de certaines lettres (s – c – g) et la composition de certains graphèmes selon la lettre qui suit (an/am, en/em, on/om, in/im), en fonction du contexte et dans des mots fréquemment rencontrés."
             },
             {
-                "id": "FC2-242",
-                "parent": "FC2-241",
-                "text": "tre capable de comprendre la présence d'une lettre muette finale à l'aide d'un mot de la même famille : chat/chaton, gros/grossir, etc."
+                "id": "FC2-205",
+                "parent": "FC2-204",
+                "text": "tre capable de comprendre la présence d’une lettre muette finale à l’aide d’un mot de la même famille : chat/chaton, gros/grossir, etc."
             },
             {
-                "id": "FC2-243",
-                "parent": "FC2-238",
+                "id": "FC2-206",
+                "parent": "FC2-83",
                 "text": "Cours élémentaire première année"
             },
             {
-                "id": "FC2-244",
-                "parent": "FC2-243",
+                "id": "FC2-207",
+                "parent": "FC2-206",
                 "text": "Enrichir son vocabulaire dans toutes les disciplines"
             },
             {
-                "id": "FC2-245",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-246",
-                "parent": "FC2-227",
+                "id": "FC2-208",
+                "parent": "FC2-207",
                 "text": "Enrichir les répertoires constitués au CP en y ajoutant notamment des expressions ou locutions."
             },
             {
-                "id": "FC2-247",
-                "parent": "FC2-227",
-                "text": "Automatiser l'utilisation de différentes formulations, associées à un même réseau, en contexte."
+                "id": "FC2-209",
+                "parent": "FC2-207",
+                "text": "Automatiser l’utilisation de différentes formulations, associées à un même réseau, en contexte."
             },
             {
-                "id": "FC2-248",
-                "parent": "FC2-227",
-                "text": "S'appuyer sur la morphologie des mots pour en trouver le sens."
+                "id": "FC2-210",
+                "parent": "FC2-207",
+                "text": "S’appuyer sur la morphologie des mots pour en trouver le sens."
             },
             {
-                "id": "FC2-249",
-                "parent": "FC2-227",
-                "text": "Prendre l'habitude de consulter des articles de dictionnaire adapté."
+                "id": "FC2-211",
+                "parent": "FC2-207",
+                "text": "Prendre l’habitude de consulter des articles de dictionnaire adapté."
             },
             {
-                "id": "FC2-250",
-                "parent": "FC2-244",
+                "id": "FC2-212",
+                "parent": "FC2-207",
                 "text": "tablir des relations entre les mots"
             },
             {
-                "id": "FC2-251",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-252",
-                "parent": "FC2-250",
+                "id": "FC2-213",
+                "parent": "FC2-207",
                 "text": "Percevoir de grandes catégories et hiérarchiser les termes génériques, de base et spécifiques."
             },
             {
-                "id": "FC2-253",
-                "parent": "FC2-250",
+                "id": "FC2-214",
+                "parent": "FC2-207",
                 "text": "Percevoir les niveaux de langue familier, courant et soutenu."
             },
             {
-                "id": "FC2-254",
-                "parent": "FC2-250",
+                "id": "FC2-215",
+                "parent": "FC2-207",
                 "text": "Comprendre la différence entre sens propre/sens figuré."
             },
             {
-                "id": "FC2-255",
-                "parent": "FC2-250",
+                "id": "FC2-216",
+                "parent": "FC2-207",
                 "text": "Trier et apparier les mots et leurs dérivés en fonction des préfixes et suffixes identifiés."
             },
             {
-                "id": "FC2-256",
-                "parent": "FC2-243",
+                "id": "FC2-217",
+                "parent": "FC2-206",
                 "text": "Réemployer le vocabulaire étudié"
             },
             {
-                "id": "FC2-257",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-258",
-                "parent": "FC2-250",
+                "id": "FC2-218",
+                "parent": "FC2-217",
                 "text": "Mobiliser les mots rencontrés en contexte en fonction des lectures et des activités conduites pour mieux parler, mieux comprendre et mieux écrire."
             },
             {
-                "id": "FC2-259",
-                "parent": "FC2-250",
+                "id": "FC2-219",
+                "parent": "FC2-217",
                 "text": "Utiliser les relations établies entre les mots depuis le cycle 1 (champ lexical, classe grammaticale, morphologie, niveau de langue) pour varier et adapter son expression."
             },
             {
-                "id": "FC2-260",
-                "parent": "FC2-243",
-                "text": "Mémoriser l'orthographe des mots"
+                "id": "FC2-220",
+                "parent": "FC2-206",
+                "text": "Mémoriser l’orthographe des mots"
             },
             {
-                "id": "FC2-261",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "id": "FC2-221",
+                "parent": "FC2-220",
+                "text": "Mémoriser l’orthographe des mots réguliers et irréguliers fréquemment rencontrés et du lexique le plus couramment employé."
             },
             {
-                "id": "FC2-262",
-                "parent": "FC2-250",
-                "text": "Mémoriser l'orthographe des mots réguliers et irréguliers fréquemment rencontrés et du lexique le plus couramment employé."
-            },
-            {
-                "id": "FC2-263",
-                "parent": "FC2-250",
+                "id": "FC2-222",
+                "parent": "FC2-220",
                 "text": "Tenir compte des accents."
             },
             {
-                "id": "FC2-264",
-                "parent": "FC2-250",
+                "id": "FC2-223",
+                "parent": "FC2-220",
                 "text": "Classer par analogie et mémoriser les mots les plus fréquents comportant des graphèmes à prononciation variable : s prononcé –ss ou –z, c prononcé –ss ou –k, g prononcé –j ou –g."
+            },
+            {
+                "id": "FC2-224",
+                "parent": "FC2-223",
+                "text": "tre capable d’anticiper une lettre muette finale à l’aide d’un mot de la même famille : blanc/blanche, sang/sanguin, etc."
+            },
+            {
+                "id": "FC2-225",
+                "parent": "FC2-83",
+                "text": "Cours élémentaire deuxième année"
+            },
+            {
+                "id": "FC2-226",
+                "parent": "FC2-225",
+                "text": "Enrichir son vocabulaire dans toutes les disciplines"
+            },
+            {
+                "id": "FC2-227",
+                "parent": "FC2-226",
+                "text": "Enrichir les répertoires constitués au CP et au CE1 en y ajoutant notamment des expressions ou des locutions."
+            },
+            {
+                "id": "FC2-228",
+                "parent": "FC2-226",
+                "text": "Automatiser l’utilisation de différentes formulations, associées à un réseau, en contexte."
+            },
+            {
+                "id": "FC2-229",
+                "parent": "FC2-226",
+                "text": "Comprendre le lien sémantique entre sens propre et sens figuré dans les cas les plus fréquents."
+            },
+            {
+                "id": "FC2-230",
+                "parent": "FC2-226",
+                "text": "S’appuyer sur la morphologie des mots pour en trouver le sens."
+            },
+            {
+                "id": "FC2-231",
+                "parent": "FC2-226",
+                "text": "Consulter avec aisance des articles de dictionnaire adapté pour y vérifier le sens supposé de mots rencontrés."
+            },
+            {
+                "id": "FC2-232",
+                "parent": "FC2-226",
+                "text": "tablir des relations entre les mots"
+            },
+            {
+                "id": "FC2-233",
+                "parent": "FC2-226",
+                "text": "Enrichir les collections constituées au début du cycle avec des mots, des expressions et des associations fréquentes."
+            },
+            {
+                "id": "FC2-234",
+                "parent": "FC2-226",
+                "text": "Percevoir de grandes catégories et hiérarchiser les termes génériques de base et spécifiques."
+            },
+            {
+                "id": "FC2-235",
+                "parent": "FC2-226",
+                "text": "Savoir utiliser les niveaux de langue (familier, courant et soutenu) en fonction des situations et des interlocuteurs."
+            },
+            {
+                "id": "FC2-236",
+                "parent": "FC2-226",
+                "text": "Se constituer un répertoire lexical personnel qui pourra forger l’autonomie visée au cycle 3."
+            },
+            {
+                "id": "FC2-237",
+                "parent": "FC2-226",
+                "text": "Trier et apparier des mots et leurs dérivés en fonction des préfixes et suffixes identifiés."
+            },
+            {
+                "id": "FC2-238",
+                "parent": "FC2-225",
+                "text": "Réemployer le vocabulaire étudié"
+            },
+            {
+                "id": "FC2-239",
+                "parent": "FC2-238",
+                "text": "Employer à bon escient et rigoureusement les mots étudiés, en référence à leur contexte d’emploi et leur éventuelle polysémie."
+            },
+            {
+                "id": "FC2-240",
+                "parent": "FC2-238",
+                "text": "Comprendre la différence entre sens propre/sens figuré."
+            },
+            {
+                "id": "FC2-241",
+                "parent": "FC2-238",
+                "text": "Changer de niveau de langue selon les situations."
+            },
+            {
+                "id": "FC2-242",
+                "parent": "FC2-238",
+                "text": "Automatiser la restitution des mots d’un corpus étudié (fluence verbale)."
+            },
+            {
+                "id": "FC2-243",
+                "parent": "FC2-225",
+                "text": "Mémoriser l’orthographe des mots"
+            },
+            {
+                "id": "FC2-244",
+                "parent": "FC2-242",
+                "text": "crire correctement sous la dictée les mots réguliers et irréguliers fréquemment rencontrés."
+            },
+            {
+                "id": "FC2-245",
+                "parent": "FC2-243",
+                "text": "Tenir compte des accents."
+            },
+            {
+                "id": "FC2-246",
+                "parent": "FC2-243",
+                "text": "S’appuyer sur des critères morphologiques (radical, préfixe et suffixe) et analogiques pour orthographier correctement les mots."
+            },
+            {
+                "id": "FC2-247",
+                "parent": "FC2-83",
+                "text": "Cours préparatoire"
+            },
+            {
+                "id": "FC2-248",
+                "parent": "FC2-247",
+                "text": "Se repérer dans la phrase simple"
+            },
+            {
+                "id": "FC2-249",
+                "parent": "FC2",
+                "text": "Objectifs"
+            },
+            {
+                "id": "FC2-250",
+                "parent": "FC2-248",
+                "text": "S’approprier progressivement la notion de phrase simple et ses trois marqueurs essentiels : majuscule initiale, ponctuation finale forte et sens."
+            },
+            {
+                "id": "FC2-251",
+                "parent": "FC2-248",
+                "text": "Comprendre que certains éléments (sujet/verbe et déterminants/noms/adjectifs) fonctionnent ensemble et constituent un système."
+            },
+            {
+                "id": "FC2-252",
+                "parent": "FC2-248",
+                "text": "S’appuyer sur la ponctuation pour reconnaitre les trois types de phrases (déclarative, interrogative et impérative)."
+            },
+            {
+                "id": "FC2-253",
+                "parent": "FC2-248",
+                "text": "Reconnaitre les formes négative et exclamative."
+            },
+            {
+                "id": "FC2-254",
+                "parent": "FC2-248",
+                "text": "Constituer des corpus par classe de mots : noms, verbes, déterminants, adjectifs, pronoms personnels."
+            },
+            {
+                "id": "FC2-255",
+                "parent": "FC2-247",
+                "text": "Découvrir, comprendre et mettre en oeuvre l’orthographe grammaticale"
+            },
+            {
+                "id": "FC2-256",
+                "parent": "FC2",
+                "text": "Objectifs"
+            },
+            {
+                "id": "FC2-257",
+                "parent": "FC2-255",
+                "text": "Comprendre les notions de masculin et de féminin."
+            },
+            {
+                "id": "FC2-258",
+                "parent": "FC2-255",
+                "text": "Comprendre les notions de singulier et de pluriel (plusieurs, plus qu’un)."
+            },
+            {
+                "id": "FC2-259",
+                "parent": "FC2-255",
+                "text": "Se familiariser avec la notion de « chaine d’accords » (déterminant/nom/adjectif) en repérant et en identifiant les régularités des marques de genre et de nombre."
+            },
+            {
+                "id": "FC2-260",
+                "parent": "FC2-255",
+                "text": "S’initier à l’identification de la relation sujet-verbe à partir du sens et de l’observation des effets des transformations liées aux temps et aux personnes."
+            },
+            {
+                "id": "FC2-261",
+                "parent": "FC2-255",
+                "text": "Observer les différentes formes verbales fréquentes et régulières."
+            },
+            {
+                "id": "FC2-262",
+                "parent": "FC2-255",
+                "text": "Apprendre à conjuguer être et avoir au présent de l’indicatif et commencer à les mobiliser à l’écrit."
+            },
+            {
+                "id": "FC2-263",
+                "parent": "FC2-256",
+                "text": "Cours élémentaire première année"
+            },
+            {
+                "id": "FC2-264",
+                "parent": "FC2-263",
+                "text": "Se repérer dans la phrase simple"
             },
             {
                 "id": "FC2-265",
                 "parent": "FC2-264",
-                "text": "tre capable d'anticiper une lettre muette finale à l'aide d'un mot de la même famille : blanc/blanche, sang/sanguin, etc."
-            },
-            {
-                "id": "FC2-266",
-                "parent": "FC2-261",
-                "text": "Cours élémentaire deuxième année"
-            },
-            {
-                "id": "FC2-267",
-                "parent": "FC2-266",
-                "text": "Enrichir son vocabulaire dans toutes les disciplines"
-            },
-            {
-                "id": "FC2-268",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-269",
-                "parent": "FC2-250",
-                "text": "Enrichir les répertoires constitués au CP et au CE1 en y ajoutant notamment des expressions ou des locutions."
-            },
-            {
-                "id": "FC2-270",
-                "parent": "FC2-250",
-                "text": "Automatiser l'utilisation de différentes formulations, associées à un réseau, en contexte."
-            },
-            {
-                "id": "FC2-271",
-                "parent": "FC2-250",
-                "text": "Comprendre le lien sémantique entre sens propre et sens figuré dans les cas les plus fréquents."
-            },
-            {
-                "id": "FC2-272",
-                "parent": "FC2-250",
-                "text": "S'appuyer sur la morphologie des mots pour en trouver le sens."
-            },
-            {
-                "id": "FC2-273",
-                "parent": "FC2-250",
-                "text": "Consulter avec aisance des articles de dictionnaire adapté pour y vérifier le sens supposé de mots rencontrés."
-            },
-            {
-                "id": "FC2-274",
-                "parent": "FC2-267",
-                "text": "tablir des relations entre les mots"
-            },
-            {
-                "id": "FC2-275",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-276",
-                "parent": "FC2-274",
-                "text": "Enrichir les collections constituées au début du cycle avec des mots, des expressions et des associations fréquentes."
-            },
-            {
-                "id": "FC2-277",
-                "parent": "FC2-274",
-                "text": "Percevoir de grandes catégories et hiérarchiser les termes génériques de base et spécifiques."
-            },
-            {
-                "id": "FC2-278",
-                "parent": "FC2-274",
-                "text": "Savoir utiliser les niveaux de langue (familier, courant et soutenu) en fonction des situations et des interlocuteurs."
-            },
-            {
-                "id": "FC2-279",
-                "parent": "FC2-274",
-                "text": "Se constituer un répertoire lexical personnel qui pourra forger l'autonomie visée au cycle 3."
-            },
-            {
-                "id": "FC2-280",
-                "parent": "FC2-274",
-                "text": "Trier et apparier des mots et leurs dérivés en fonction des préfixes et suffixes identifiés."
-            },
-            {
-                "id": "FC2-281",
-                "parent": "FC2-266",
-                "text": "Réemployer le vocabulaire étudié"
-            },
-            {
-                "id": "FC2-282",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-283",
-                "parent": "FC2-274",
-                "text": "Employer à bon escient et rigoureusement les mots étudiés, en référence à leur contexte d'emploi et leur éventuelle polysémie."
-            },
-            {
-                "id": "FC2-284",
-                "parent": "FC2-274",
-                "text": "Comprendre la différence entre sens propre/sens figuré."
-            },
-            {
-                "id": "FC2-285",
-                "parent": "FC2-274",
-                "text": "Changer de niveau de langue selon les situations."
-            },
-            {
-                "id": "FC2-286",
-                "parent": "FC2-274",
-                "text": "Automatiser la restitution des mots d'un corpus étudié (fluence verbale)."
-            },
-            {
-                "id": "FC2-287",
-                "parent": "FC2-266",
-                "text": "Mémoriser l'orthographe des mots"
-            },
-            {
-                "id": "FC2-288",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-289",
-                "parent": "FC2-286",
-                "text": "crire correctement sous la dictée les mots réguliers et irréguliers fréquemment rencontrés."
-            },
-            {
-                "id": "FC2-290",
-                "parent": "FC2-274",
-                "text": "Tenir compte des accents."
-            },
-            {
-                "id": "FC2-291",
-                "parent": "FC2-274",
-                "text": "S'appuyer sur des critères morphologiques (radical, préfixe et suffixe) et analogiques pour orthographier correctement les mots."
-            },
-            {
-                "id": "FC2-292",
-                "parent": "FC2-288",
-                "text": "Cours préparatoire"
-            },
-            {
-                "id": "FC2-293",
-                "parent": "FC2-292",
-                "text": "Se repérer dans la phrase simple"
-            },
-            {
-                "id": "FC2-294",
-                "parent": "FC2",
-                "text": "Objectifs"
-            },
-            {
-                "id": "FC2-295",
-                "parent": "FC2-274",
-                "text": "S'approprier progressivement la notion de phrase simple et ses trois marqueurs essentiels : majuscule initiale, ponctuation finale forte et sens."
-            },
-            {
-                "id": "FC2-296",
-                "parent": "FC2-274",
-                "text": "Comprendre que certains éléments (sujet/verbe et déterminants/noms/adjectifs) fonctionnent ensemble et constituent un système."
-            },
-            {
-                "id": "FC2-297",
-                "parent": "FC2-274",
-                "text": "S'appuyer sur la ponctuation pour reconnaitre les trois types de phrases (déclarative, interrogative et impérative)."
-            },
-            {
-                "id": "FC2-298",
-                "parent": "FC2-274",
-                "text": "Reconnaitre les formes négative et exclamative."
-            },
-            {
-                "id": "FC2-299",
-                "parent": "FC2-274",
-                "text": "Constituer des corpus par classe de mots : noms, verbes, déterminants, adjectifs, pronoms personnels."
-            },
-            {
-                "id": "FC2-300",
-                "parent": "FC2-292",
-                "text": "Découvrir, comprendre et mettre en oeuvre l'orthographe grammaticale"
-            },
-            {
-                "id": "FC2-301",
-                "parent": "FC2",
-                "text": "Objectifs"
-            },
-            {
-                "id": "FC2-302",
-                "parent": "FC2-274",
-                "text": "Comprendre les notions de masculin et de féminin."
-            },
-            {
-                "id": "FC2-303",
-                "parent": "FC2-274",
-                "text": "Comprendre les notions de singulier et de pluriel (plusieurs, plus qu'un)."
-            },
-            {
-                "id": "FC2-304",
-                "parent": "FC2-274",
-                "text": "Se familiariser avec la notion de « chaine d'accords » (déterminant/nom/adjectif) en repérant et en identifiant les régularités des marques de genre et de nombre."
-            },
-            {
-                "id": "FC2-305",
-                "parent": "FC2-274",
-                "text": "S'initier à l'identification de la relation sujet-verbe à partir du sens et de l'observation des effets des transformations liées aux temps et aux personnes."
-            },
-            {
-                "id": "FC2-306",
-                "parent": "FC2-274",
-                "text": "Observer les différentes formes verbales fréquentes et régulières."
-            },
-            {
-                "id": "FC2-307",
-                "parent": "FC2-274",
-                "text": "Apprendre à conjuguer être et avoir au présent de l'indicatif et commencer à les mobiliser à l'écrit."
-            },
-            {
-                "id": "FC2-308",
-                "parent": "FC2-301",
-                "text": "Cours élémentaire première année"
-            },
-            {
-                "id": "FC2-309",
-                "parent": "FC2-308",
-                "text": "Se repérer dans la phrase simple"
-            },
-            {
-                "id": "FC2-310",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-311",
-                "parent": "FC2-274",
                 "text": "Identifier la phrase simple, en distinguer les principaux constituants et les nommer : groupe sujet (GS), verbe et compléments sans distinguer ces derniers entre eux."
             },
             {
-                "id": "FC2-312",
-                "parent": "FC2-274",
+                "id": "FC2-266",
+                "parent": "FC2-264",
                 "text": "Reconnaitre et utiliser les trois types de phrases, en lien avec la ponctuation : déclarative, interrogative et impérative."
             },
             {
-                "id": "FC2-313",
-                "parent": "FC2-274",
+                "id": "FC2-267",
+                "parent": "FC2-264",
                 "text": "Reconnaitre les formes négatives et exclamatives et savoir effectuer des transformations."
             },
             {
-                "id": "FC2-314",
-                "parent": "FC2-274",
-                "text": "Différencier et nommer les principales classes de mots : le déterminant, le nom commun, le nom propre, l'adjectif, le verbe, le pronom personnel sujet."
+                "id": "FC2-268",
+                "parent": "FC2-264",
+                "text": "Différencier et nommer les principales classes de mots : le déterminant, le nom commun, le nom propre, l’adjectif, le verbe, le pronom personnel sujet."
             },
             {
-                "id": "FC2-315",
-                "parent": "FC2-308",
-                "text": "Découvrir, comprendre et mettre en oeuvre l'orthographe grammaticale"
+                "id": "FC2-269",
+                "parent": "FC2-263",
+                "text": "Découvrir, comprendre et mettre en oeuvre l’orthographe grammaticale"
             },
             {
-                "id": "FC2-316",
+                "id": "FC2-270",
                 "parent": "FC2",
                 "text": "Objectifs"
             },
             {
-                "id": "FC2-317",
-                "parent": "FC2-274",
-                "text": "Reconnaitre le GN (déterminant/nom/adjectif) et, en écoutant des transformations de phrases à l'oral puis en les observant à l'écrit, comprendre le lien entre le déterminant, le nom et l'adjectif dans la « chaine d'accords »."
+                "id": "FC2-271",
+                "parent": "FC2-269",
+                "text": "Reconnaitre le GN (déterminant/nom/adjectif) et, en écoutant des transformations de phrases à l’oral puis en les observant à l’écrit, comprendre le lien entre le déterminant, le nom et l’adjectif dans la « chaine d’accords »."
             },
             {
-                "id": "FC2-318",
-                "parent": "FC2-274",
-                "text": "Identifier la relation sujet-verbe à partir de l'observation des effets des transformations liées au changement de temps et de personne dans des situations simples (groupe sujet + verbe)."
+                "id": "FC2-272",
+                "parent": "FC2-269",
+                "text": "Identifier la relation sujet-verbe à partir de l’observation des effets des transformations liées au changement de temps et de personne dans des situations simples (groupe sujet + verbe)."
             },
             {
-                "id": "FC2-319",
-                "parent": "FC2-274",
-                "text": "Identifier le radical et la terminaison d'un verbe du premier groupe conjugué et trouver son infinitif."
+                "id": "FC2-273",
+                "parent": "FC2-269",
+                "text": "Identifier le radical et la terminaison d’un verbe du premier groupe conjugué et trouver son infinitif."
             },
             {
-                "id": "FC2-320",
-                "parent": "FC2-274",
-                "text": "Apprendre à conjuguer au présent, à l'imparfait, au futur puis au passé composé de l'indicatif être et avoir et les verbes du premier groupe."
+                "id": "FC2-274",
+                "parent": "FC2-269",
+                "text": "Apprendre à conjuguer au présent, à l’imparfait, au futur puis au passé composé de l’indicatif être et avoir et les verbes du premier groupe."
             },
             {
-                "id": "FC2-321",
-                "parent": "FC2-316",
+                "id": "FC2-275",
+                "parent": "FC2-270",
                 "text": "Cours élémentaire deuxième année"
             },
             {
-                "id": "FC2-322",
-                "parent": "FC2-321",
+                "id": "FC2-276",
+                "parent": "FC2-275",
                 "text": "Se repérer dans la phrase simple"
             },
             {
-                "id": "FC2-323",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
-            },
-            {
-                "id": "FC2-324",
-                "parent": "FC2-274",
+                "id": "FC2-277",
+                "parent": "FC2-276",
                 "text": "Identifier la phrase simple et reconnaitre ses principaux constituants : le groupe sujet, le verbe et les compléments sans distinguer ces derniers entre eux."
             },
             {
-                "id": "FC2-325",
-                "parent": "FC2-274",
+                "id": "FC2-278",
+                "parent": "FC2-276",
                 "text": "Reconnaitre et produire les trois types de phrases : déclarative, interrogative et impérative."
             },
             {
-                "id": "FC2-326",
-                "parent": "FC2-274",
+                "id": "FC2-279",
+                "parent": "FC2-276",
                 "text": "Reconnaitre et produire les formes négative et exclamative."
             },
             {
-                "id": "FC2-327",
-                "parent": "FC2-274",
-                "text": "Différencier et nommer les principales classes de mots : le déterminant, le nom commun, le nom propre, l'adjectif, le verbe, le pronom personnel sujet et l'adverbe."
+                "id": "FC2-280",
+                "parent": "FC2-276",
+                "text": "Différencier et nommer les principales classes de mots : le déterminant, le nom commun, le nom propre, l’adjectif, le verbe, le pronom personnel sujet et l’adverbe."
             },
             {
-                "id": "FC2-328",
-                "parent": "FC2-274",
+                "id": "FC2-281",
+                "parent": "FC2-276",
                 "text": "Utiliser la ponctuation de fin de phrase (. ! ?) et reconnaitre les marques du discours rapporté (« … »)."
             },
             {
-                "id": "FC2-329",
-                "parent": "FC2-321",
-                "text": "Découvrir, comprendre et mettre en oeuvre l'orthographe grammaticale"
+                "id": "FC2-282",
+                "parent": "FC2-275",
+                "text": "Découvrir, comprendre et mettre en oeuvre l’orthographe grammaticale"
             },
             {
-                "id": "FC2-330",
-                "parent": "FC2",
-                "text": "Objectifs d'apprentissage"
+                "id": "FC2-283",
+                "parent": "FC2-282",
+                "text": "Repérer, comprendre et mettre en oeuvre les marques d’accord au sein du groupe nominal."
             },
             {
-                "id": "FC2-331",
-                "parent": "FC2-274",
-                "text": "Repérer, comprendre et mettre en oeuvre les marques d'accord au sein du groupe nominal."
-            },
-            {
-                "id": "FC2-332",
-                "parent": "FC2-274",
+                "id": "FC2-284",
+                "parent": "FC2-282",
                 "text": "Identifier, dans des situations simples, la relation sujet-verbe."
             },
             {
-                "id": "FC2-333",
-                "parent": "FC2-274",
-                "text": "Apprendre à conjuguer au présent, à l'imparfait, au futur et au passé composé de l'indicatif être et avoir, les verbes du premier groupe et les verbes irréguliers du 3e groupe (faire, aller, dire, venir, pouvoir, voir, vouloir, prendre)."
+                "id": "FC2-285",
+                "parent": "FC2-282",
+                "text": "Apprendre à conjuguer au présent, à l’imparfait, au futur et au passé composé de l’indicatif être et avoir, les verbes du premier groupe et les verbes irréguliers du 3e groupe (faire, aller, dire, venir, pouvoir, voir, vouloir, prendre)."
             },
             {
-                "id": "FC2-334",
-                "parent": "FC2-274",
-                "text": "Identifier le radical et la terminaison d'un verbe conjugué au programme et trouver son infinitif."
+                "id": "FC2-286",
+                "parent": "FC2-282",
+                "text": "Identifier le radical et la terminaison d’un verbe conjugué au programme et trouver son infinitif."
             },
-
             {
                 "id": "FC3",
                 "parent": "F",
