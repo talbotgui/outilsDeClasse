@@ -134,6 +134,16 @@ export class ProblemeService {
         // Tri des périodes (au cas où)
         donnees.periodes.sort((p1, p2) => (p1.debut && p2.debut) ? p1.debut.getTime() - p2.debut.getTime() : -1);
 
+        // Validation des compétences
+        const idCompetences = (donnees.competences ?? []).map(c => c.id);
+        (donnees.competences ?? []).filter(c => c.parent && c.parent != '#' && !idCompetences.includes(c.parent))
+            .forEach(c => {
+                const libelle = 'Une compétence disponible est mal paramétrée';
+                const details = ['Id : ' + c.id, 'Libellé : ' + c.text];
+                const libelleBouton = 'Supprimer la compétence (DANGER en cas de sous-compétences existantes)';
+                problemes.push(new ProblemeAvecCorrectionAutomatique('C1', libelle, details, libelleBouton, [c.id]));
+            });
+
         // Validation des références dans les données
         donnees.journal.forEach(j => {
             j.temps.forEach(t => {
@@ -467,5 +477,16 @@ export class ProblemeService {
             }
         }
 
+        // Compétence => compétence
+        else if (pb.code === 'C1') {
+            // Lecture des données
+            const idCompetence = pb.ids[0];
+
+            // Suppression de la compétence
+            const index = donnees.competences.findIndex(c => c.id === idCompetence);
+            if (index !== -1) {
+                donnees.competences.splice(index, 1);
+            }
+        }
     }
 }
