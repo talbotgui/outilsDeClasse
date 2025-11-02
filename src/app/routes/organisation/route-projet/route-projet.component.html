@@ -60,7 +60,7 @@
         <angular-editor [config]="configurationWysiwyg" placeholder="Description" name="Description"
             [(ngModel)]="projetSelectionne.description"></angular-editor>
         } @else {
-        <span [innerHTML]="projetSelectionne.description | html"></span>
+        <p [innerHTML]="projetSelectionne.description | html"></p>
         }
     </div>
 </fieldset>

@@ -18,7 +18,7 @@
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="afficherOptionCompetenceDansAutocomplete"
                     (optionSelected)="selectionnerCompetenceDepuisAutocompletion($event)">
                     @for (c of resultatsAutocompletion | async; track c.competence.id) {
-                    <mat-option [value]="c" class="maclasse-t-propositionCompetence">{{c.competence.text}}</mat-option>
+                    <mat-option [value]="c" class="maclasse-t-propositionCompetence">{{c.textComplet}}</mat-option>
                     }
                 </mat-autocomplete>
             </mat-form-field>
